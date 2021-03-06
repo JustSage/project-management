@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 const path = require('path');
 const express = require('express');
 
@@ -10,21 +11,29 @@ const express = require("express");
 
 const app = express();
 const publicDirectoryPath = path.join(__dirname, "../public");
->>>>>>> 5b1bfb94dc44341710e9b8bfd47af552ef585758
 
-const port = process.env.PORT || 3000;
+const path = require("path");
+const express = require("express");
+const userRouter = require("./routers/user")
+
+const app = express();
+const publicDirectoryPath = path.join(__dirname, "../public");
+
+const port = process.env.PORT || 3001;
 
 app.use(express.static(publicDirectoryPath));
 
-<<<<<<< HEAD
 app.get('/', (req, res) => {
   res.sendFile('index.html');
+app.use(userRouter);
+app.get("/", (req, res) => {
+  res.sendFile("index.html");
 });
 
 app.listen(port, () => {
-  console.log(`app is listen to port ${port}`);
+  console.log(`App is listen to port ${port}`);
 });
-=======
+
 app.get("/", (req, res) => {
     res.sendFile('index.html')
 })
@@ -32,4 +41,3 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
     console.log(`app is listen to port ${port}`);
 });
->>>>>>> 5b1bfb94dc44341710e9b8bfd47af552ef585758
