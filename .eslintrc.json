@@ -2,21 +2,34 @@
     "env": {
         "browser": true,
         "es2021": true,
-        "node": true,
-        "es6": true
+        "node": true
     },
     "extends": [
-        "eslint:recommended"
+        "eslint:recommended",
+        "plugin:react/recommended"
     ],
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaVersion": 12
+    },
+    "plugins": [
+        "react", "prettier"
+    ],
+    "settings": { "react": { "version" : "detect" }
     },
     "rules": {
-        "semi": ["error", "always"],
-        "quotes": ["error", "double"]
+        "prettier/prettier": [
+            "error",
+            {
+                "printWidth": 80,
+                "trailingComma": "es5",
+                "semi": false,
+                "jsxSingleQuote": true,
+                "singleQuote": true,
+                "useTabs": true
+            }
+        ],
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
     }
 }
