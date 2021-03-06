@@ -9,11 +9,14 @@
         "plugin:react/recommended"
     ],
     "parserOptions": {
+        "sourceType": "module",
         "ecmaVersion": 12
     },
     "plugins": [
         "react", "prettier"
     ],
+    "settings": { "react": { "version" : "detect" }
+    },
     "rules": {
         "prettier/prettier": [
             "error",
@@ -25,6 +28,8 @@
                 "singleQuote": true,
                 "useTabs": true
             }
-        ]
+        ],
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
     }
 }

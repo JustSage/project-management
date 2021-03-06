@@ -10,7 +10,6 @@
     "server": "nodemon server/app.js",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
 
-    // Linter scripts
     "prettier:base": "prettier --ignore-path .gitignore",
     "eslint:base": "eslint --ignore-path .gitignore",
     "lint:eslint": "npm run eslint:base -- --max-warnings 0 \"**/*.{js,ts,tsx,mdx}\"",
