@@ -2,41 +2,29 @@
     "env": {
         "browser": true,
         "es2021": true,
-        "node": true,
-        "es6": true
+        "node": true
     },
     "extends": [
-        "plugin:react/recommended",
-        "eslint:recommended"
+        "eslint:recommended",
+        "plugin:react/recommended"
     ],
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
+        "ecmaVersion": 12
     },
-
     "plugins": [
-        "react": {
-        "createClass": "createReactClass",
-             "pragma": "React",
-             "fragment": "Fragment",
-             "version": "detect",
-             "flowVersion": "0.53"
-           },
-           "propWrapperFunctions": [
-               "forbidExtraProps",
-               {"property": "freeze", "object": "Object"},
-               {"property": "myFavoriteWrapper"}
-           ],
-           "linkComponents": [
-             "Hyperlink",
-             {"name": "Link", "linkAttribute": "to"}
-           ]
+        "react", "prettier"
     ],
-
     "rules": {
-       "react/react-in-jsx-scope": "off",
-       "require-jsdoc" : 0
+        "prettier/prettier": [
+            "error",
+            {
+                "printWidth": 80,
+                "trailingComma": "es5",
+                "semi": false,
+                "jsxSingleQuote": true,
+                "singleQuote": true,
+                "useTabs": true
+            }
+        ]
+    }
 }
