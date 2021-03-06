@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./css/App.css";
 // eslint-disable-next-line no-unused-vars
 import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
