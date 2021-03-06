@@ -7,11 +7,19 @@
     "build": "react-scripts build",
     "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
-    "lint": "eslint --print-config server/app.js | eslint-config-prettier-check",
-    "lint-fix": "eslint ./ --fix",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "server": "nodemon server/app.js",
-    "dev": "concurrently \"npm run server\" \"npm run start\""
+    "dev": "concurrently \"npm run server\" \"npm run start\"",
+
+    // Linter scripts
+    "prettier:base": "prettier --ignore-path .gitignore",
+    "eslint:base": "eslint --ignore-path .gitignore",
+    "lint:eslint": "npm run eslint:base -- --max-warnings 0 \"**/*.{js,ts,tsx,mdx}\"",
+    "lint:eslint-config-prettier": "eslint --print-config .eslintrc | eslint-config-prettier-check",
+    "lint": "npm run lint:eslint",
+    "format:prettier": "npm run prettier:base -- --write \"**/*.{js,ts,tsx,json,md,mdx}\"",
+    "format:eslint": "npm run eslint:base -- --fix \"**/*.{js,ts,tsx,mdx}\"",
+    "format": "npm run format:eslint && npm run format:prettier"
+
   },
   "eslintConfig": {
     "extends": [
