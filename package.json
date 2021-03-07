@@ -5,11 +5,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --passWithNoTests",
+    "test": "concurrently \"jest\" \"react-scripts test --passWithNoTests\"",
     "eject": "react-scripts eject",
     "server": "nodemon server/app.js",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
-
     "prettier:base": "prettier --ignore-path .gitignore",
     "eslint:base": "eslint --ignore-path .gitignore",
     "lint:eslint": "npm run eslint:base -- --max-warnings 0 \"**/*.{js,ts,tsx,mdx}\"",
@@ -18,7 +17,6 @@
     "format:prettier": "npm run prettier:base -- --write \"**/*.{js,ts,tsx,json,md,mdx}\"",
     "format:eslint": "npm run eslint:base -- --fix \"**/*.{js,ts,tsx,mdx}\"",
     "format": "npm run format:eslint && npm run format:prettier"
-
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +41,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.6.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
