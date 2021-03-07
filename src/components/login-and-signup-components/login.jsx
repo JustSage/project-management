@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
@@ -58,8 +57,8 @@ class Login extends React.Component {
 		} else
 			return (
 				<>
-					<div style={{height:80}}>
-					<h1>Login page</h1>
+					<div style={{ height: 80 }}>
+						<h1>Login page</h1>
 					</div>
 					<Form.Group controlId='formBasicEmail'>
 						<form onSubmit={this.handleSubmit} method='get'>
@@ -68,12 +67,12 @@ class Login extends React.Component {
 								placeholder='Enter username'
 								value={this.state.username}
 								onChange={this.handleUsername}
-								style={{width: 200}}
+								style={{ width: 200 }}
 							/>
 							<br />
 							<br />
 							<Form.Control
-								style={{width: 200}}
+								style={{ width: 200 }}
 								type='password'
 								placeholder='Enter password'
 								value={this.state.password}
@@ -92,4 +91,3 @@ class Login extends React.Component {
 }
 
 export default Login
-/*eslint-disable */
