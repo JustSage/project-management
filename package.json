@@ -6,6 +6,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "concurrently \"jest\" \"react-scripts test --passWithNoTests\"",
+<<<<<<< HEAD
+=======
+    "test": "react-scripts test --passWithNoTests",
+>>>>>>> b954330c2d575c810f9ff6648012569d90c747a3
     "eject": "react-scripts eject",
     "server": "nodemon server/app.js",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
