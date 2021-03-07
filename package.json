@@ -9,7 +9,6 @@
     "eject": "react-scripts eject",
     "server": "nodemon server/app.js",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
-
     "prettier:base": "prettier --ignore-path .gitignore",
     "eslint:base": "eslint --ignore-path .gitignore",
     "lint:eslint": "npm run eslint:base -- --max-warnings 0 \"**/*.{js,ts,tsx,mdx}\"",
@@ -18,7 +17,6 @@
     "format:prettier": "npm run prettier:base -- --write \"**/*.{js,ts,tsx,json,md,mdx}\"",
     "format:eslint": "npm run eslint:base -- --fix \"**/*.{js,ts,tsx,mdx}\"",
     "format": "npm run format:eslint && npm run format:prettier"
-
   },
   "eslintConfig": {
     "extends": [
