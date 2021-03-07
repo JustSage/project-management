@@ -27,7 +27,14 @@ class Login extends React.Component {
 	handleSubmit = () => {
 		event.preventDefault()
 		axios
-			.get(`/login/${this.state.username}`, {})
+			.post(
+				'/login',
+				{
+					username: this.state.username,
+					password: this.state.password,
+				},
+				{ headers: { 'content-type': 'application/json' } }
+			)
 			.then((response) => {
 				alert(response.data.message)
 				this.setState({
