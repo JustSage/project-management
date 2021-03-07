@@ -1,6 +1,10 @@
+/*eslint-disable */
 import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 
 class Login extends React.Component {
 	constructor(props) {
@@ -54,29 +58,38 @@ class Login extends React.Component {
 		} else
 			return (
 				<>
+					<div style={{height:80}}>
 					<h1>Login page</h1>
-					<form onSubmit={this.handleSubmit} method='get'>
-						<input
-							type='text'
-							placeholder='Enter username'
-							value={this.state.username}
-							onChange={this.handleUsername}
-						/>
-						<br />
-						<br />
-						<input
-							type='password'
-							placeholder='Enter password'
-							value={this.state.password}
-							onChange={this.handlePassword}
-						/>
-						<br />
-						<br />
-						<button type='submit'>Log in!</button>
-					</form>
+					</div>
+					<Form.Group controlId='formBasicEmail'>
+						<form onSubmit={this.handleSubmit} method='get'>
+							<Form.Control
+								type='text'
+								placeholder='Enter username'
+								value={this.state.username}
+								onChange={this.handleUsername}
+								style={{width: 200}}
+							/>
+							<br />
+							<br />
+							<Form.Control
+								style={{width: 200}}
+								type='password'
+								placeholder='Enter password'
+								value={this.state.password}
+								onChange={this.handlePassword}
+							/>
+							<br />
+							<br />
+							<Button variant='outline-primary' type='submit'>
+								Log in!
+							</Button>
+						</form>
+					</Form.Group>
 				</>
 			)
 	}
 }
 
 export default Login
+/*eslint-disable */
