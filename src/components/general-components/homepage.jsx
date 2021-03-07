@@ -1,18 +1,20 @@
 /* eslint-disable prettier/prettier */
-import React from 'react'
+import React, { Component } from 'react'
+import Navbar1 from './navbar'
+class Homepage extends Component {
+	constructor(props) {
+		super(props)
+	}
 
-class Homepage extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
-    render() {
-        return (
-            <>
-                <h1>Im the Homepage!</h1>
-            </>
-        );
-    }
+	render() {
+		return (
+			<div>
+				<Navbar1 />
+                <br/>
+				<h1>Im the Homepage!</h1>
+			</div>
+		)
+	}
 }
 
-export default Homepage;
+export default Homepage
