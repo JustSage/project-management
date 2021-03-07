@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Button from 'react-bootstrap/Button'
 
 class Login extends React.Component {
 	constructor(props) {
@@ -65,7 +67,9 @@ class Login extends React.Component {
 						/>
 						<br />
 						<br />
-						<button type='submit'>Log in!</button>
+						<Button variant='primary' type='submit'>
+							Log in!
+						</Button>
 					</form>
 				</>
 			)
