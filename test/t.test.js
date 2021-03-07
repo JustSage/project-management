@@ -1,4 +1,2 @@
 /* eslint-disable no-undef */
-test("Hello world!", () => {
-    
-});
+test('Hello world!', () => {})
