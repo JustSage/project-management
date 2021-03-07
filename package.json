@@ -5,13 +5,22 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+<<<<<<< HEAD
     "test": "concurrently \"jest\" \"react-scripts test --passWithNoTests\"",
+=======
+    "test": "react-scripts test --passWithNoTests",
+>>>>>>> 856a022cf385746eddd707cb1b9ee1ae17af73f8
     "eject": "react-scripts eject",
-    "lint": "eslint ./",
-    "lint-fix": "eslint ./ --fix",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "server": "nodemon server/app.js",
-    "dev": "concurrently \"npm run server\" \"npm run start\""
+    "dev": "concurrently \"npm run server\" \"npm run start\"",
+    "prettier:base": "prettier --ignore-path .gitignore",
+    "eslint:base": "eslint --ignore-path .gitignore",
+    "lint:eslint": "npm run eslint:base -- --max-warnings 0 \"**/*.{js,ts,tsx,mdx}\"",
+    "lint:eslint-config-prettier": "eslint --print-config .eslintrc | eslint-config-prettier-check",
+    "lint": "npm run lint:eslint",
+    "format:prettier": "npm run prettier:base -- --write \"**/*.{js,ts,tsx,json,md,mdx}\"",
+    "format:eslint": "npm run eslint:base -- --fix \"**/*.{js,ts,tsx,mdx}\"",
+    "format": "npm run format:eslint && npm run format:prettier"
   },
   "eslintConfig": {
     "extends": [
@@ -49,12 +58,22 @@
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "concurrently": "^6.0.0",
     "eslint": "^7.21.0",
-    "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.1.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-flowtype": "^5.3.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.7",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-testing-library": "^3.10.1",
     "jest": "^26.6.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",

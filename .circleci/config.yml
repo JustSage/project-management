@@ -12,8 +12,12 @@ jobs:
             - run: npm install
             - run: npm run test
             - run: npm run lint
+            - run: npm run format
 workflows:
     build-and-test:
       jobs:
         - build-and-test
+<<<<<<< HEAD
 
+=======
+>>>>>>> 856a022cf385746eddd707cb1b9ee1ae17af73f8

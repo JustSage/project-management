@@ -1,21 +1,21 @@
-const path = require("path");
-const express = require("express");
-const userRouter = require("./routers/user");
-const cors = require("cors");
+const path = require('path')
+const express = require('express')
+const userRouter = require('./routers/user')
+const cors = require('cors')
 
-const app = express();
-const publicDirectoryPath = path.join(__dirname, "../public");
+const app = express()
+const publicDirectoryPath = path.join(__dirname, '../public')
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001
 
-app.use(express.static(publicDirectoryPath));
-app.use(userRouter);
-app.use(cors());
+app.use(express.static(publicDirectoryPath))
+app.use(userRouter)
+app.use(cors())
 
-app.get("/", (req, res) => {
-  res.sendFile("index.html");
-});
+app.get('/', (req, res) => {
+	res.sendFile('index.html')
+})
 
 app.listen(port, () => {
-  console.log(`App is listen to port ${port}`);
-});
+	console.log(`App is listen to port ${port}`)
+})
