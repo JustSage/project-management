@@ -5,11 +5,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-<<<<<<< HEAD
     "test": "concurrently \"jest\" \"react-scripts test --passWithNoTests\"",
-=======
     "test": "react-scripts test --passWithNoTests",
->>>>>>> 856a022cf385746eddd707cb1b9ee1ae17af73f8
     "eject": "react-scripts eject",
     "server": "nodemon server/app.js",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
