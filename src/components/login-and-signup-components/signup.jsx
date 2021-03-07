@@ -1,11 +1,11 @@
 import React from 'react'
-import axios from 'axios'
-import { Redirect } from 'react-router'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import { Redirect } from 'react-router'
 
-class Login extends React.Component {
+class Signup extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -31,7 +31,7 @@ class Login extends React.Component {
 		event.preventDefault()
 		axios
 			.post(
-				'/login',
+				'/signup',
 				{
 					username: this.state.username,
 					password: this.state.password,
@@ -58,31 +58,39 @@ class Login extends React.Component {
 			return (
 				<>
 					<div style={{ height: 80 }}>
-						<h1>Login page</h1>
+						<h1>Signup page</h1>
 					</div>
 					<Form.Group controlId='formBasicEmail'>
 						<form onSubmit={this.handleSubmit} method='get'>
-							<Form.Control
-								type='text'
-								placeholder='Enter username'
-								value={this.state.username}
-								onChange={this.handleUsername}
-								style={{ width: 200 }}
-							/>
-							<br />
-							<br />
-							<Form.Control
-								style={{ width: 200 }}
-								type='password'
-								placeholder='Enter password'
-								value={this.state.password}
-								onChange={this.handlePassword}
-							/>
-							<br />
-							<br />
-							<Button variant='outline-primary' type='submit'>
-								Log in!
-							</Button>
+							<div style={{ marginBottom: 5 }}>
+								<Form.Control
+									type='text'
+									placeholder='Enter username'
+									value={this.state.username}
+									onChange={this.handleUsername}
+									style={{ width: 200 }}
+								/>
+							</div>
+							<div style={{ marginBottom: 5 }}>
+								<Form.Control
+									style={{ width: 200 }}
+									type='password'
+									placeholder='Enter password'
+									value={this.state.password}
+									onChange={this.handlePassword}
+								/>
+							</div>
+
+							<div style={{ marginBottom: 5 }}>
+								<Form.Control
+									style={{ width: 200 }}
+									type='password'
+									placeholder='Confirm password'
+									value={this.state.password}
+									onChange={this.handlePassword}
+								/>
+							</div>
+
 							<Button variant='outline-primary' type='submit'>
 								Sign up!
 							</Button>
@@ -93,4 +101,4 @@ class Login extends React.Component {
 	}
 }
 
-export default Login
+export default Signup
