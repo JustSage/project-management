@@ -69,6 +69,7 @@ class Login extends React.Component {
 										<label style={{ fontSize: '15' }}>Login: </label>
 										<br></br>
 										<input
+											style={myInput}
 											type='text'
 											placeholder='Enter username'
 											value={this.state.username}
@@ -79,6 +80,7 @@ class Login extends React.Component {
 										<label style={{ fontSize: '15' }}>Password: </label>
 										<br></br>
 										<input
+											style={myInput}
 											type='password'
 											placeholder='Enter password'
 											value={this.state.password}
@@ -106,8 +108,8 @@ export default Login
 const props2 = {
 	background: 'Orange',
 	margin: 'auto',
-	width: '240px',
-	maxWidth: '30%',
+	width: '100%',
+	maxWidth: '235px',
 	height: '30rem',
 	border: '5px solid #0101',
 	padding: '10px',
@@ -115,9 +117,9 @@ const props2 = {
 }
 
 const myForm = {
-	width: '40%',
+	maxWidth: '30%',
+	width: '100%',
 	padding: '10px',
-	maxWidth: '200px',
 }
 
 const img = {
@@ -129,17 +131,22 @@ const img = {
 
 const btn = {
 	display: 'block',
-	marginLeft: '13px',
+	marginLeft: '14px',
 	marginRight: 'auto',
 	width: '150px',
-	background: '#ffcc99',
+	background: '#ff9933',
 	borderRadius: '15px',
-	height: '40px',
+	height: '60px',
 	position: 'border',
 	top: '50%',
-	marginTop: '9px',
+	marginTop: '10px',
 }
 
 const wrapper = {
 	textAlign: 'center',
+}
+
+const myInput = {
+	borderRadius: '10px',
+	height: '40px',
 }
