@@ -10,8 +10,8 @@ class Homepage extends Component {
 		return (
 			<div>
 				<Navbar1 />
-                <br/>
-				<h1>Im the Homepage!</h1>
+				<br />
+				<h1>Im home!</h1>
 			</div>
 		)
 	}
