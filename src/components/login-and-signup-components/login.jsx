@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { Spring } from 'react-spring/renderprops'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
