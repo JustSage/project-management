@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
+import { Spring } from 'react-spring/renderprops'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 class Login extends React.Component {
 	constructor(props) {
@@ -53,30 +55,91 @@ class Login extends React.Component {
 			return <Redirect to='/homepage' />
 		} else
 			return (
-				<>
-					<h1>Login page</h1>
-					<form onSubmit={this.handleSubmit} method='get'>
-						<input
-							type='text'
-							placeholder='Enter username'
-							value={this.state.username}
-							onChange={this.handleUsername}
-						/>
-						<br />
-						<br />
-						<input
-							type='password'
-							placeholder='Enter password'
-							value={this.state.password}
-							onChange={this.handlePassword}
-						/>
-						<br />
-						<br />
-						<button type='submit'>Log in</button>
-					</form>
-				</>
+				<Spring
+					from={{ opacity: 0, marginTop: -500 }}
+					to={{ opacity: 1, marginTop: 200 }}
+				>
+					{(props) => (
+						<div style={props}>
+							<div style={props2}>
+								<img style={img} src='/images/avatar.png'></img>
+								<h2 style={{ textAlign: 'center' }}>Sign In:</h2>
+								<div style={myForm}>
+									<form onSubmit={this.handleSubmit} method='get'>
+										<label style={{ fontSize: '15' }}>Login: </label>
+										<br></br>
+										<input
+											type='text'
+											placeholder='Enter username'
+											value={this.state.username}
+											onChange={this.handleUsername}
+										/>
+										<br />
+										<br />
+										<label style={{ fontSize: '15' }}>Password: </label>
+										<br></br>
+										<input
+											type='password'
+											placeholder='Enter password'
+											value={this.state.password}
+											onChange={this.handlePassword}
+										/>
+										<br />
+										<br />
+										<div style={wrapper}>
+											<button style={btn} type='submit'>
+												Log in
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					)}
+				</Spring>
 			)
 	}
 }
 
 export default Login
+
+const props2 = {
+	background: 'Orange',
+	margin: 'auto',
+	width: '240px',
+	maxWidth: '30%',
+	height: '30rem',
+	border: '5px solid #0101',
+	padding: '10px',
+	borderRadius: '50px',
+}
+
+const myForm = {
+	width: '40%',
+	padding: '10px',
+	maxWidth: '200px',
+}
+
+const img = {
+	display: 'block',
+	marginLeft: 'auto',
+	marginRight: 'auto',
+	width: '50%',
+}
+
+const btn = {
+	display: 'block',
+	marginLeft: '13px',
+	marginRight: 'auto',
+	width: '150px',
+	background: '#ffcc99',
+	borderRadius: '15px',
+	height: '40px',
+	position: 'border',
+	top: '50%',
+	marginTop: '9px',
+}
+
+const wrapper = {
+	textAlign: 'center',
+}
