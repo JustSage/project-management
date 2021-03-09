@@ -72,7 +72,7 @@ export default class signUp extends Component {
 						<div style={props}>
 							<div style={props2}>
 								<img style={img} src='/images/avatar_signUp.jpg'></img>
-								<h2 style={{ textAlign: 'center' }}>Sign In:</h2>
+								<h2 style={{ textAlign: 'center' }}>Sign Up:</h2>
 								<div style={myForm}>
 									<form onSubmit={this.handleSubmit} method='get'>
 										<label style={{ fontSize: '15' }}>Login: </label>

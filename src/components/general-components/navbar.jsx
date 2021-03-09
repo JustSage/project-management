@@ -1,7 +1,7 @@
 import React from 'react'
-import { NavDropdown, Nav, Navbar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
+import '@trendmicro/react-sidenav/dist/react-sidenav.css'
 class Navbar1 extends React.Component {
 	state = {
 		img: (
@@ -9,47 +9,53 @@ class Navbar1 extends React.Component {
 		),
 	}
 	render() {
-		const { img } = this.state
 		return (
-			<div>
-				<Navbar
-					brand={img}
-					collapseOnSelect
-					expand='lg'
-					bg='dark'
-					variant='dark'
-				>
-					<Navbar.Brand href='#home'>PineApple Travels</Navbar.Brand>
-					<Navbar.Toggle aria-controls='responsive-navbar-nav' />
-					<Navbar.Collapse id='responsive-navbar-nav'>
-						<Nav className='mr-auto'>
-							<Nav.Link href='#features'>Features</Nav.Link>
-							<Nav.Link href='#pricing'>Pricing</Nav.Link>
-							<NavDropdown title='Dropdown' id='collasible-nav-dropdown'>
-								<NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
-								<NavDropdown.Item href='#action/3.2'>
-									Another action
-								</NavDropdown.Item>
-								<NavDropdown.Item href='#action/3.3'>
-									Something
-								</NavDropdown.Item>
-								<NavDropdown.Divider />
-								<NavDropdown.Item href='#action/3.4'>
-									Separated link
-								</NavDropdown.Item>
-							</NavDropdown>
-						</Nav>
-						<Nav>
-							<Nav.Link href='#deets'>More deets</Nav.Link>
-							<Nav.Link eventKey={2} href='#memes'>
-								Dank memes
-							</Nav.Link>
-						</Nav>
-					</Navbar.Collapse>
-				</Navbar>
-			</div>
+			<SideNav
+				onSelect={() => {
+					// Add your code here
+				}}
+				style={myStyle}
+			>
+				<SideNav.Toggle />
+				<SideNav.Nav defaultSelected='home'>
+					<NavItem eventKey='home'>
+						<NavIcon>
+							<i className='fa fa-fw fa-home' style={{ fontSize: '1.75em' }} />
+						</NavIcon>
+						<NavText>Home</NavText>
+					</NavItem>
+					<NavItem eventKey='charts'>
+						<NavIcon>
+							<i
+								className='fa fa-fw fa-line-chart'
+								style={{ fontSize: '1.75em' }}
+							/>
+						</NavIcon>
+						<NavText>Charts</NavText>
+						<NavItem eventKey='charts/linechart'>
+							<NavText>Line Chart</NavText>
+						</NavItem>
+						<NavItem eventKey='charts/barchart'>
+							<NavText>Bar Chart</NavText>
+						</NavItem>
+					</NavItem>
+				</SideNav.Nav>
+			</SideNav>
 		)
 	}
 }
 
 export default Navbar1
+
+const myStyle = {
+	backgroundImage: 'url("images/nav_background.jpg")',
+	backgroundSize: 'cover',
+}
+
+{
+	/* <img
+						style={{ width: '76px', height: '76px' }}
+						src='images/nav_logo.png'
+						alt='logo'
+					></img> */
+}

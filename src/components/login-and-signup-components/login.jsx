@@ -67,7 +67,10 @@ class Login extends React.Component {
 			return (
 				<Spring
 					from={{ opacity: 0, marginTop: -500 }}
-					to={{ opacity: 1, marginTop: 200 }}
+					to={{
+						opacity: 1,
+						marginTop: 200,
+					}}
 					config={{ delay: 400, duration: 1500 }}
 				>
 					{(props) => (
