@@ -86,7 +86,7 @@ class Login extends React.Component {
 										<input
 											style={myInput}
 											type='text'
-											placeholder='Enter username'
+											placeholder='Enter username or email'
 											value={this.state.username}
 											onChange={this.handleUsername}
 										/>
