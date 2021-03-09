@@ -15,7 +15,7 @@ router.post('/login', async (req, res) => {
 		user.username === userData.username &&
 		user.password === userData.password
 	) {
-		res.send({ message: 'logged in successfully!' })
+		res.status(200).send({ message: 'logged in successfully!' })
 	} else res.status(404).send()
 })
 
