@@ -5,14 +5,18 @@ import Homepage from './components/general-components/homepage'
 import SignUp from './components/login-and-signup-components/sign-up'
 function App() {
 	return (
-		<Router>
-			<Switch>
-				<Route exact path='/' component={Login} />
-				<Route path='/login' component={Login} />
-				<Route path='/signUp' component={SignUp} />
-				<Route path='/homepage' component={Homepage} />
-			</Switch>
-		</Router>
+		<>
+			<div className='bg'>
+				<Router>
+					<Switch>
+						<Route exact path='/' component={Login} />
+						<Route path='/login' component={Login} />
+						<Route path='/signUp' component={SignUp} />
+						<Route path='/homepage' component={Homepage} />
+					</Switch>
+				</Router>
+			</div>
+		</>
 	)
 }
 
