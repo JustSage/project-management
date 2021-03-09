@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavDropdown, Nav, Navbar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 class Navbar1 extends React.Component {
 	state = {
 		img: (
@@ -18,7 +17,13 @@ class Navbar1 extends React.Component {
 					expand='lg'
 					bg='dark'
 					variant='dark'
+					style={navStyle}
 				>
+					<img
+						style={{ width: '76px', height: '76px' }}
+						src='images/nav_logo.png'
+						alt='logo'
+					></img>
 					<Navbar.Brand href='#home'>PineApple Travels</Navbar.Brand>
 					<Navbar.Toggle aria-controls='responsive-navbar-nav' />
 					<Navbar.Collapse id='responsive-navbar-nav'>
@@ -53,3 +58,8 @@ class Navbar1 extends React.Component {
 }
 
 export default Navbar1
+
+const navStyle = {
+	backgroundImage: 'url("images/nav_background.jpg")',
+	backgroundSize: 'cover',
+}

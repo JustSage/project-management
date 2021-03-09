@@ -8,7 +8,7 @@ class Homepage extends Component {
 
 	render() {
 		return (
-			<div>
+			<div style={myStyle}>
 				<Navbar1 />
 				<br />
 				<h1>Im home!</h1>
@@ -18,3 +18,10 @@ class Homepage extends Component {
 }
 
 export default Homepage
+
+
+const myStyle = {
+	backgroundImage: 'url("images/background_orange.png")',
+	backgroundSize: 'cover',
+    height:'100%',
+}
