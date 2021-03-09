@@ -1,8 +1,8 @@
+/* eslint-disable no-undef */
 const request = require('supertest')
 const app = require('../server/app')
 
-/* eslint-disable no-undef */
-test('Hello world!!', () => {})
+// test('Hello world!!', () => {})
 
 const userOne = {
 	name: 'Admin',
@@ -10,15 +10,7 @@ const userOne = {
 	password: 'Admin',
 }
 
-function sum(a, b) {
-	return a + b
-}
-
-test('adds 1 + 2 to equal 3', () => {
-	expect(sum(1, 2)).toBe(3)
-})
-
-test('Check user', async () => {
+test('Check user', async (done) => {
 	await request(app)
 		.post('/login')
 		.send({
@@ -26,4 +18,5 @@ test('Check user', async () => {
 			password: userOne.password,
 		})
 		.expect(200)
+	done()
 })

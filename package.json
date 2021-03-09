@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "concurrently \"jest --detectOpenHandles\" \"react-scripts test --passWithNoTests\"",
+    "test": "concurrently \"jest --forceExit\" \"react-scripts test --passWithNoTests\"",
     "eject": "react-scripts eject",
     "server": "nodemon server/app.js",
     "dev": "concurrently \"npm run server\" \"npm run start\"",

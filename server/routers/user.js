@@ -9,7 +9,6 @@ const userData = {
 }
 
 router.post('/login', async (req, res) => {
-	console.log(req.body)
 	const user = { username: req.body.username, password: req.body.password }
 	if (
 		user.username === userData.username &&
