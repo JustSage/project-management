@@ -1,18 +1,32 @@
 /* eslint-disable prettier/prettier */
-import React from 'react'
+import React, { Component } from 'react'
+import Navbar1 from './navbar'
 
-class Homepage extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+class Homepage extends Component {
+	constructor(props) {
+		super(props)
+	}
 
-    render() {
-        return (
-            <>
-                <h1>Im the Homepage!</h1>
-            </>
-        );
-    }
+	render() {
+		return (
+			<div className='containter'>
+				<div className='row'>
+					<div className='col-xs-12'>
+						<Navbar1></Navbar1>
+					</div>
+					<div className='col-xs-12'>
+						<h3>Home Page</h3>
+					</div>
+				</div>
+			</div>
+		)
+	}
 }
 
-export default Homepage;
+export default Homepage
+
+// const myStyle = {
+// 	backgroundImage: 'url("images/background_orange.png")',
+// 	backgroundSize: 'cover',
+//     height:'100%',
+// }
