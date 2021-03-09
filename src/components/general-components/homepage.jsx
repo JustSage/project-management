@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
-import Navbar1 from './navbar'
+import Navbar1 from '../../css/navbar'
 
 class Homepage extends Component {
 	constructor(props) {
@@ -12,7 +12,7 @@ class Homepage extends Component {
 			<div className='containter'>
 				<div className='row'>
 					<div className='col-xs-12'>
-						<Navbar1></Navbar1>
+						<Navbar1/>
 					</div>
 					<div className='col-xs-12'>
 						<h3>Home Page</h3>

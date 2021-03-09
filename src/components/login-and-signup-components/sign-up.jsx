@@ -4,7 +4,7 @@ import { Redirect } from 'react-router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
 
-export default class signUp extends Component {
+class signUp extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -55,11 +55,9 @@ export default class signUp extends Component {
 
 	render() {
 		if (this.state.signUp_redirect) {
-			console.log('!!!!')
 			return <Redirect to='/SignUp' />
 		}
 		if (this.state.redirect) {
-			console.log('!!!!')
 			return <Redirect to='/homepage' />
 		} else
 			return (
@@ -162,3 +160,5 @@ const myInput = {
 	height: '40px',
 	width: '205px',
 }
+
+export default signUp
