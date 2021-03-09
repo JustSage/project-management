@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Spring } from 'react-spring/renderprops'
 import { Redirect } from 'react-router'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import axios from 'axios'
+//import axios from 'axios'
 
 class signUp extends Component {
 	constructor(props) {
@@ -10,6 +10,7 @@ class signUp extends Component {
 		this.state = {
 			password: '',
 			username: '',
+			email: '',
 			redirect: false,
 			signUp_redirect: false,
 		}
@@ -18,6 +19,7 @@ class signUp extends Component {
 		this.handleUsername = this.handleUsername.bind(this)
 		this.handlePassword = this.handlePassword.bind(this)
 		this.handleSignUp = this.handleSignUp.bind(this)
+		this.handleEmail = this.handleEmail.bind(this)
 	}
 	handlePassword = (event) => {
 		this.setState({ password: event.target.value })
@@ -26,31 +28,40 @@ class signUp extends Component {
 	handleUsername = (event) => {
 		this.setState({ username: event.target.value })
 	}
+
+	handleEmail = (event) => {
+		this.setState({ email: event.target.value })
+	}
+
 	handleSignUp = () => {
 		this.setState({ signUp_redirect: true })
 	}
 
 	handleSubmit = () => {
 		event.preventDefault()
-		axios
-			.post(
-				'/login',
-				{
-					username: this.state.username,
-					password: this.state.password,
-				},
-				{ headers: { 'content-type': 'application/json' } }
-			)
-			.then((response) => {
-				alert(response.data.message)
-				this.setState({
-					redirect: true,
-				})
-			})
-			.catch((error) => {
-				console.log(error)
-				alert('User not found!')
-			})
+		alert('Signed Up!')
+		//This part will be out of comment when server will be connected
+
+		// axios
+		// 	.post(
+		// 		'/signup',
+		// 		{
+		// 			username: this.state.username,
+		// 			password: this.state.password,
+		// 			email: this.state.email
+		// 		},
+		// 		{ headers: { 'content-type': 'application/json' } }
+		// 	)
+		// 	.then((response) => {
+		// 		alert(response.data.message)
+		// 		this.setState({
+		// 			redirect: true,
+		// 		})
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log(error)
+		// 		alert('User not found!')
+		// 	})
 	}
 
 	render() {
@@ -74,26 +85,37 @@ class signUp extends Component {
 								<div style={myForm}>
 									<form onSubmit={this.handleSubmit} method='get'>
 										<label style={{ fontSize: '15' }}>Login: </label>
-										<br></br>
+										<br />
 										<input
 											style={myInput}
 											type='text'
 											placeholder='Enter username'
 											value={this.state.username}
 											onChange={this.handleUsername}
+											required
 										/>
 										<br />
-										<br />
 										<label style={{ fontSize: '15' }}>Password: </label>
-										<br></br>
+										<br />
 										<input
 											style={myInput}
 											type='password'
 											placeholder='Enter password'
 											value={this.state.password}
 											onChange={this.handlePassword}
+											required
 										/>
 										<br />
+										<label style={{ fontSize: '15' }}>Email: </label>
+										<br />
+										<input
+											style={myInput}
+											type='email'
+											placeholder='Enter email'
+											value={this.state.email}
+											onChange={this.handleEmail}
+											required
+										/>
 										<br />
 										<div style={wrapper}>
 											<button style={btn} type='submit'>
