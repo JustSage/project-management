@@ -4,6 +4,7 @@ import { Redirect } from 'react-router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Spring } from 'react-spring/renderprops'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '../../css/login.css'
 
 class Login extends React.Component {
 	constructor(props) {
