@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
 import Navbar1 from './navbar'
+
 class Homepage extends Component {
 	constructor(props) {
 		super(props)
@@ -8,10 +9,15 @@ class Homepage extends Component {
 
 	render() {
 		return (
-			<div style={myStyle}>
-				<Navbar1 />
-				<br />
-				<h1>Im home!</h1>
+			<div className='containter'>
+				<div className='row'>
+					<div className='col-xs-12'>
+						<Navbar1></Navbar1>
+					</div>
+					<div className='col-xs-12'>
+						<h3>Home Page</h3>
+					</div>
+				</div>
 			</div>
 		)
 	}
@@ -19,9 +25,8 @@ class Homepage extends Component {
 
 export default Homepage
 
-
-const myStyle = {
-	backgroundImage: 'url("images/background_orange.png")',
-	backgroundSize: 'cover',
-    height:'100%',
-}
+// const myStyle = {
+// 	backgroundImage: 'url("images/background_orange.png")',
+// 	backgroundSize: 'cover',
+//     height:'100%',
+// }
