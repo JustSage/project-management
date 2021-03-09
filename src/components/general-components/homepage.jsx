@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
-import Navbar1 from '../../css/navbar'
+import Navbar1 from '../../css/navbar.css'
 
 class Homepage extends Component {
 	constructor(props) {
