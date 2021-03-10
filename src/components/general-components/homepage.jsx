@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
-<<<<<<< HEAD
 import Navbar1 from './navbar'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -12,9 +11,6 @@ import Button from 'react-bootstrap/Button'
 library.add(fab, faCheckSquare, faCoffee, faUser)
 
 
-=======
-import Navbar1 from '../../css/navbar.css'
->>>>>>> 9500b254e019677c45ad18dc9dada8e996d98c4b
 
 class Homepage extends Component {
 	constructor(props) {
@@ -30,7 +26,7 @@ class Homepage extends Component {
 			<div className='containter' style={{display:'flex',flexDirection:'row'}}>
 				<div className='row' style={{flex:1}}>
 					<div className='col-xs-12'>
-						<Navbar1/>
+						<Navbar1></Navbar1>
 					</div>
 				</div>
 				<div className='col-xs-12' style={{flex:1}}>
