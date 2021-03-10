@@ -54,7 +54,7 @@ export default Sidebar
 const myStyle = {
 	backgroundImage: 'url("images/nav_background.jpg")',
 	backgroundSize: 'auto',
-	marginTop: '64px',
+	marginTop: '56px',
 }
 
 {

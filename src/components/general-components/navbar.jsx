@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-<<<<<<< HEAD
-import { Navbar, Nav, Button, Form, FormControl } from 'react-bootstrap'
+
 import '../../css/navbar.css'
-=======
 import { Navbar, Nav, Button, Form } from 'react-bootstrap'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -13,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 library.add(fab, faUser)
 
->>>>>>> 80000a2c2cba59fcb46790f9a133aec3c20ad0d1
 class NavbarComponent extends React.Component {
 	constructor(props) {
 		super(props)
@@ -32,11 +29,7 @@ class NavbarComponent extends React.Component {
 	render() {
 		return (
 			<>
-<<<<<<< HEAD
-				<Navbar bg='dark' variant='dark' className='navbar navbar-custom'>
-=======
 				<Navbar bg='warning' variant='dark'>
->>>>>>> 80000a2c2cba59fcb46790f9a133aec3c20ad0d1
 					<Navbar.Brand href='#home'>Navbar</Navbar.Brand>
 					<Nav className='mr-auto'>
 						<Nav.Link href='#home'>Home</Nav.Link>
