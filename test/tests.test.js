@@ -25,7 +25,7 @@ test('Validate email', () => {
 })
 
 test('Check if username include letters', () => {
-	expect(validator.isAlpha(userOne.user)).toBe(true)
+	expect(validator.isAlpha(userOne.name)).toBe(true)
 })
 
 test('Check if password include letters and numbers', () => {
