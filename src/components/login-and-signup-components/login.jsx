@@ -4,6 +4,7 @@ import { Redirect } from 'react-router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Spring } from 'react-spring/renderprops'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '../../css/login.css'
 
 class Login extends React.Component {
 	constructor(props) {
@@ -57,11 +58,9 @@ class Login extends React.Component {
 
 	render() {
 		if (this.state.signUp_redirect) {
-			console.log('!!!!')
 			return <Redirect to='/SignUp' />
 		}
 		if (this.state.redirect) {
-			console.log('!!!!')
 			return <Redirect to='/homepage' />
 		} else
 			return (
@@ -85,9 +84,10 @@ class Login extends React.Component {
 										<input
 											style={myInput}
 											type='text'
-											placeholder='Enter username'
+											placeholder='Enter username or email'
 											value={this.state.username}
 											onChange={this.handleUsername}
+											required
 										/>
 										<br />
 										<br />
@@ -99,6 +99,7 @@ class Login extends React.Component {
 											placeholder='Enter password'
 											value={this.state.password}
 											onChange={this.handlePassword}
+											required
 										/>
 										<br />
 										<br />

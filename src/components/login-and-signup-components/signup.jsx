@@ -4,6 +4,7 @@ import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { Redirect } from 'react-router'
+import { InputGroup } from 'react-bootstrap'
 
 class Signup extends React.Component {
 	constructor(props) {
@@ -12,6 +13,7 @@ class Signup extends React.Component {
 			password: '',
 			username: '',
 			redirect: false,
+			textType: 'invalid',
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -62,6 +64,21 @@ class Signup extends React.Component {
 					</div>
 					<Form.Group controlId='formBasicEmail'>
 						<form onSubmit={this.handleSubmit} method='get'>
+							{this.state.textType == 'invalid' ? (
+								<InputGroup hasValidation>
+									<Form.Control type='text' required isInValid></Form.Control>
+									<Form.Control.Feedback type='invalid'>
+										Please choose a username.
+									</Form.Control.Feedback>
+								</InputGroup>
+							) : (
+								<InputGroup hasValidation>
+									<Form.Control type='text' required isValid></Form.Control>
+									<Form.Control.Feedback type='valid'>
+										Please choose a username.
+									</Form.Control.Feedback>
+								</InputGroup>
+							)}
 							<div style={{ marginBottom: 5 }}>
 								<Form.Control
 									type='text'
