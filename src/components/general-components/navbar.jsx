@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-
 import '../../css/navbar.css'
 import { Navbar, Nav, Button, Form } from 'react-bootstrap'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -29,7 +28,7 @@ class NavbarComponent extends React.Component {
 	render() {
 		return (
 			<>
-				<Navbar bg='warning' variant='dark'>
+				<Navbar bg='dark' variant='dark' className='navbar navbar-custom'>
 					<Navbar.Brand href='#home'>Navbar</Navbar.Brand>
 					<Nav className='mr-auto'>
 						<Nav.Link href='#home'>Home</Nav.Link>
