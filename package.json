@@ -12,7 +12,7 @@
     "server": "nodemon server/dev-app.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "prettier:base": "prettier --ignore-path .gitignore",
-    "eslint:base": "eslint --ignore-path .gitignore ",
+    "eslint:base": "eslint --ignore-path .eslintignore",
     "lint:eslint": "npm run eslint:base -- --max-warnings 0 \"**/*.{js,ts,tsx,mdx}\"",
     "lint:eslint-config-prettier": "eslint --print-config .eslintrc | eslint-config-prettier-check",
     "lint": "npm run lint:eslint",
