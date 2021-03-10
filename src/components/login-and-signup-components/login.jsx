@@ -45,6 +45,7 @@ class Login extends React.Component {
 				{ headers: { 'content-type': 'application/json' } }
 			)
 			.then(() => {
+				// saves a cookie during session
 				sessionStorage.setItem('logged-in-username', this.state.username)
 				this.setState({
 					redirect: true,
@@ -177,6 +178,7 @@ const wrapper = {
 const myInput = {
 	borderRadius: '10px',
 	height: '40px',
+	width: '430%',
 }
 
 const btn_signUp = {
