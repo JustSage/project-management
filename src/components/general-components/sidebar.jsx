@@ -2,7 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
 import '@trendmicro/react-sidenav/dist/react-sidenav.css'
-
+import '../../css/sidebar.css'
 class Sidebar extends React.Component {
 	state = {
 		img: (
@@ -21,7 +21,7 @@ class Sidebar extends React.Component {
 			>
 				<SideNav.Toggle />
 				<SideNav.Nav defaultSelected='home'>
-					<NavItem eventKey='home'>
+					<NavItem eventKey='home' className='myLink'>
 						<NavIcon>
 							<i className='fa fa-fw fa-home' style={{ fontSize: '1.75em' }} />
 						</NavIcon>
@@ -31,6 +31,7 @@ class Sidebar extends React.Component {
 						<NavIcon>
 							<i
 								className='fa fa-fw fa-line-chart'
+								id='myId'
 								style={{ fontSize: '1.75em' }}
 							/>
 						</NavIcon>
@@ -52,7 +53,8 @@ export default Sidebar
 
 const myStyle = {
 	backgroundImage: 'url("images/nav_background.jpg")',
-	backgroundSize: 'cover',
+	backgroundSize: 'auto',
+	marginTop: '64px',
 }
 
 {
