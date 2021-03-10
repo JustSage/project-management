@@ -5,5 +5,5 @@
 - [X] Initialized linter (eslint)
 - [X] Added test support (jest)
 - [ ] Arrange folders
-- [ ] Add Navbar
-- [ ] Add Login Page
+- [X] Add Navbar
+- [X] Add Login Page
