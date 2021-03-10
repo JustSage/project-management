@@ -8,10 +8,12 @@ class Navbar1 extends React.Component {
 		img: (
 			<img src="'https://image.freepik.com/free-vector/pineapple-logo-design-inspiration-awesome_110852-29.jpg'" />
 		),
+		expand: true,
 	}
 	render() {
 		return (
 			<SideNav
+				expanded={this.state.expand}
 				onSelect={() => {
 					// Add your code here
 				}}
