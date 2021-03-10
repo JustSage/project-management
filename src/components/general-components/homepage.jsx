@@ -19,7 +19,7 @@ class Homepage extends Component {
 	}
 
 	logoutClick=()=>{
-		Storage.removeItem('logged-in-username')
+		sessionStorage.removeItem('logged-in-username')
 		this.props.history.push('/')
 	}
 

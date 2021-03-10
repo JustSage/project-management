@@ -44,12 +44,11 @@ class Login extends React.Component {
 				},
 				{ headers: { 'content-type': 'application/json' } }
 			)
-			.then((response) => {
-				alert(response.data.message)
+			.then(() => {
+				sessionStorage.setItem('logged-in-username', this.state.username)
 				this.setState({
 					redirect: true,
 				})
-				sessionStorage.setItem('logged-in-username', this.state.username)
 			})
 			.catch((error) => {
 				console.log(error)
