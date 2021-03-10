@@ -29,5 +29,5 @@ test('Check if username include letters', () => {
 })
 
 test('Check if password include letters and numbers', () => {
-	expect(validator.isAlphaNumeric(userOne.password)).toBe(true)
+	expect(validator.isAlphanumeric(userOne.password)).toBe(true)
 })
