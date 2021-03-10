@@ -19,19 +19,11 @@ class Homepage extends Component {
 		super(props)
 	}
 
-	logoutClick = () => {
-		/*
-		 * Removes user session after logging out and redirects to login-page ('/')
-		 */
-		sessionStorage.removeItem('logged-in-username')
-		this.props.history.push('/')
-	}
-
 	render() {
 		if (sessionStorage.getItem('logged-in-username')) {
 			return (
 				<>
-					<NavbarComponent />
+					<NavbarComponent history = {this.props.history}/>
 					<div
 						className='containter'
 						style={{ display: 'flex', flexDirection: 'row' }}
