@@ -9,6 +9,8 @@ class signUp extends Component {
 		super(props)
 		this.state = {
 			password: '',
+			confirmPass: '',
+			confirmPassBorder: '',
 			username: '',
 			email: '',
 			redirect: false,
@@ -24,7 +26,15 @@ class signUp extends Component {
 	handlePassword = (event) => {
 		this.setState({ password: event.target.value })
 	}
-
+	handleConfirmPass = (event) => {
+		this.setState({ confirmPass: event.target.value })
+		let passCheck = event.target.value
+		if (passCheck == this.state.password)
+			// eslint-disable-next-line react/no-direct-mutation-state
+			this.state.confirmPassBorder = 'lime'
+		// eslint-disable-next-line react/no-direct-mutation-state
+		else this.state.confirmPassBorder = 'red'
+	}
 	handleUsername = (event) => {
 		this.setState({ username: event.target.value })
 	}
@@ -36,7 +46,6 @@ class signUp extends Component {
 	handleSignUp = () => {
 		this.setState({ signUp_redirect: true })
 	}
-
 	handleSubmit = () => {
 		event.preventDefault()
 		alert('Signed Up!')
@@ -84,43 +93,56 @@ class signUp extends Component {
 								<h2 style={{ textAlign: 'center' }}>Sign Up:</h2>
 								<div style={myForm}>
 									<form onSubmit={this.handleSubmit} method='get'>
-										<label style={{ fontSize: '15' }}>Login: </label>
-										<br />
-										<input
-											style={myInput}
-											type='text'
-											placeholder='Enter username'
-											value={this.state.username}
-											onChange={this.handleUsername}
-											required
-										/>
-										<br />
-										<label style={{ fontSize: '15' }}>Password: </label>
-										<br />
-										<input
-											style={myInput}
-											type='password'
-											placeholder='Enter password'
-											value={this.state.password}
-											onChange={this.handlePassword}
-											required
-										/>
-										<br />
-										<label style={{ fontSize: '15' }}>Email: </label>
-										<br />
-										<input
-											style={myInput}
-											type='email'
-											placeholder='Enter email'
-											value={this.state.email}
-											onChange={this.handleEmail}
-											required
-										/>
-										<br />
-										<div style={wrapper}>
-											<button style={btn} type='submit'>
-												Accept
-											</button>
+										<div style={{ display: 'flex', flexDirection: 'column' }}>
+											<label style={{ fontSize: '15' }}>Username: </label>
+											<input
+												style={myInput}
+												type='text'
+												placeholder='Enter username'
+												value={this.state.username}
+												onChange={this.handleUsername}
+												required
+											/>
+											<label style={{ fontSize: '15' }}>Password: </label>
+											<input
+												style={myInput}
+												type='password'
+												placeholder='Enter password'
+												value={this.state.password}
+												onChange={this.handlePassword}
+												required
+											/>
+											<label style={{ fontSize: '15', width: 200 }}>
+												Confirm Password:{' '}
+											</label>
+											<input
+												style={{
+													outlineColor: this.state.confirmPassBorder,
+													width: '205px',
+													borderRadius: '10px',
+													height: '40px',
+													marginLeft: '5px',
+												}}
+												type='password'
+												placeholder='Confirm password'
+												value={this.state.confirmPass}
+												onChange={this.handleConfirmPass}
+												required
+											/>
+											<label style={{ fontSize: '15' }}>Email: </label>
+											<input
+												style={myInput}
+												type='email'
+												placeholder='Enter email'
+												value={this.state.email}
+												onChange={this.handleEmail}
+												required
+											/>
+											<div style={wrapper}>
+												<button style={btn} type='submit'>
+													Accept
+												</button>
+											</div>
 										</div>
 									</form>
 								</div>
@@ -136,7 +158,7 @@ const props2 = {
 	margin: 'auto',
 	width: '100%',
 	maxWidth: '235px',
-	height: '30rem',
+	height: '33rem',
 	border: '#0101',
 	borderRadius: '50px',
 	backgroundImage: 'url("images/background.jpg")',
@@ -181,6 +203,7 @@ const myInput = {
 	borderRadius: '10px',
 	height: '40px',
 	width: '205px',
+	marginLeft: '5px',
 }
 
 export default signUp

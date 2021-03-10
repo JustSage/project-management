@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
 import Navbar1 from './navbar'
@@ -17,11 +18,14 @@ class Homepage extends Component {
 		super(props)
 	}
 
-	logInClick=()=>{
-		alert("Open Login modal")
+	logoutClick=()=>{
+		sessionStorage.removeItem('logged-in-username')
+		this.props.history.push('/')
 	}
 
 	render() {
+		if (sessionStorage.getItem('logged-in-username'))
+		{
 		return (
 			<div className='containter' style={{display:'flex',flexDirection:'row'}}>
 				<div className='row' style={{flex:1}}>
@@ -33,11 +37,18 @@ class Homepage extends Component {
 						<h3>Home Page</h3>			
 				</div>
 				<div style={{display:'flex'}}>
-				<h5><FontAwesomeIcon icon='user' style={{marginTop:10}}></FontAwesomeIcon> Welcom guest</h5>
-				<Button variant="warning" size='sm' style={{marginLeft:15, marginTop:5, marginRight:3, fontWeight:'bold'}} onClick={()=>this.logInClick()}>Log In</Button>
+				<h5><FontAwesomeIcon icon='user' style={{marginTop:10}}></FontAwesomeIcon> Welcome {sessionStorage.getItem('logged-in-username')}</h5>
+				<Button variant="warning" size='sm' style={{marginLeft:15, marginTop:5, marginRight:3, fontWeight:'bold'}} onClick={()=>this.logoutClick()}>Log out</Button>
 				</div>
 			</div>
-		)
+		)}
+		else {
+			return (
+				<>
+					<h2>You have no permission to visit this page, please <a href="/">Log-in</a></h2> 
+				</>
+			)
+		}
 	}
 }
 

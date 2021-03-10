@@ -14,8 +14,7 @@ function App() {
 			<div className='bg'>
 				<Router>
 					<Switch>
-						<Route exact path='/' component={Homepage} />
-						<Route path='/login' component={Login} />
+						<Route exact path='/' component={Login} />
 						<Route path='/signUp' component={SignUp} />
 						<Route path='/homepage' component={Homepage} />
 					</Switch>
