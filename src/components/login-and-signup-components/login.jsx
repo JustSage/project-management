@@ -4,8 +4,8 @@ import { Redirect } from 'react-router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Spring } from 'react-spring/renderprops'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import '../../css/login.css'
 
+import '../login-and-signup-components/login.css'
 class Login extends React.Component {
 	constructor(props) {
 		super(props)
@@ -75,15 +75,15 @@ class Login extends React.Component {
 				>
 					{(props) => (
 						<div style={props}>
-							<div style={props2}>
-								<img style={img} src='/images/avatar.png'></img>
+							<div className='props2'>
+								<img className='img' src='/images/avatar.png'></img>
 								<h2 style={{ textAlign: 'center' }}>Log In:</h2>
-								<div style={myForm}>
+								<div className='myForm'>
 									<form onSubmit={this.handleSubmit} method='get'>
 										<label style={{ fontSize: '15' }}>Username: </label>
 										<br></br>
 										<input
-											style={myInput}
+											className='myInput'
 											type='text'
 											placeholder='Enter username or email'
 											value={this.state.username}
@@ -95,7 +95,7 @@ class Login extends React.Component {
 										<label style={{ fontSize: '15' }}>Password: </label>
 										<br></br>
 										<input
-											style={myInput}
+											className='myInput'
 											type='password'
 											placeholder='Enter password'
 											value={this.state.password}
@@ -104,15 +104,15 @@ class Login extends React.Component {
 										/>
 										<br />
 										<br />
-										<div style={wrapper}>
-											<button style={btn} type='submit'>
+										<div className='wrapper'>
+											<button className='btn' type='submit'>
 												Log in
 											</button>
 										</div>
 									</form>
 								</div>
 								<button
-									style={btn_signUp}
+									className='btn_signUp'
 									type='signUp'
 									onClick={this.handleSignUp}
 								>
@@ -127,71 +127,3 @@ class Login extends React.Component {
 }
 
 export default Login
-
-const props2 = {
-	background: 'Orange',
-	margin: 'auto',
-	width: '100%',
-	maxWidth: '235px',
-	height: '30rem',
-	border: '#0101',
-	padding: '10px',
-	borderRadius: '50px',
-	backgroundImage: 'url("images/background_orange.png")',
-	backgroundSize: 'cover',
-}
-
-const myForm = {
-	maxWidth: '30%',
-	width: '100%',
-	padding: '10px',
-}
-
-const img = {
-	display: 'block',
-	marginLeft: 'auto',
-	marginRight: 'auto',
-	width: '50%',
-	borderRadius: '50%',
-	borderStyle: 'ridge',
-}
-
-const btn = {
-	display: 'block',
-	marginLeft: '14px',
-	marginRight: 'auto',
-	width: '150px',
-	background: '#ff9933',
-	borderRadius: '25px',
-	height: '50px',
-	position: 'border',
-	top: '50%',
-	marginTop: '-5px',
-	backgroundImage: 'url("images/background_orange.png")',
-	backgroundSize: 'cover',
-}
-
-const wrapper = {
-	textAlign: 'center',
-}
-
-const myInput = {
-	borderRadius: '10px',
-	height: '40px',
-	width: '430%',
-}
-
-const btn_signUp = {
-	padding: '5px',
-	display: 'block',
-	marginLeft: '50px',
-	marginRight: 'auto',
-	width: '100px',
-	background: '#ff9933',
-	borderRadius: '15px',
-	height: '35px',
-	position: 'border',
-	marginTop: '10px',
-	backgroundImage: 'url("images/background_orange.png")',
-	backgroundSize: 'cover',
-}

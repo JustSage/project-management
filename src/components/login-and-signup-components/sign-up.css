@@ -1,0 +1,50 @@
+.props2 {
+	background: #ff99ff;
+	margin: auto;
+	width: 100%;
+	max-width: 235px;
+	height: 33rem;
+	border: #0101;
+	border-radius: 50px;
+	background-image: url('../background_orange.jpg');
+	background-size: cover;
+}
+.myForm {
+	max-width: 30%;
+	width: 100%;
+    margin-left: -0.5rem;
+}
+
+.img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	border-radius: 50%;
+	border-style: outset;
+}
+
+.btn {
+	display: block;
+	margin-left: 28px;
+	margin-right: auto;
+	width: 150px;
+	background: #ff99b3;
+	border-radius: 25px;
+	height: 50px;
+	position: border;
+	top: 50%;
+	margin-top: 15px;
+	background-image: url('../background_orange.jpg');
+	background-size: cover;
+}
+.wrapper {
+	text-align: center;
+}
+
+.myInput {
+	border-radius: 10px;
+	height: 40px;
+	width: 205px;
+	margin-left: 5px;
+}
