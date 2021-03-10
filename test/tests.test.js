@@ -21,7 +21,7 @@ test('Check user', async () => {
 })
 
 test('Validate email', () => {
-	expect(validator.isEmail(userOne.email).toBe(true))
+	expect(validator.isEmail(userOne.email)).toBe(true)
 })
 
 test('Check if username include letters', () => {
