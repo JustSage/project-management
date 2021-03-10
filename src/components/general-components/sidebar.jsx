@@ -13,7 +13,7 @@ class Sidebar extends React.Component {
 	render() {
 		return (
 			<SideNav
-				expanded={this.state.expand}
+				// expanded={this.state.expand}
 				onSelect={() => {
 					// Add your code here
 				}}
