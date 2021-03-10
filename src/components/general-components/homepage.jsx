@@ -19,10 +19,13 @@ class Homepage extends Component {
 	}
 
 	logoutClick=()=>{
+		Storage.removeItem('logged-in-username')
 		this.props.history.push('/')
 	}
 
 	render() {
+		if (sessionStorage.getItem('logged-in-username'))
+		{
 		return (
 			<div className='containter' style={{display:'flex',flexDirection:'row'}}>
 				<div className='row' style={{flex:1}}>
@@ -34,11 +37,18 @@ class Homepage extends Component {
 						<h3>Home Page</h3>			
 				</div>
 				<div style={{display:'flex'}}>
-				<h5><FontAwesomeIcon icon='user' style={{marginTop:10}}></FontAwesomeIcon> Welcome guest</h5>
+				<h5><FontAwesomeIcon icon='user' style={{marginTop:10}}></FontAwesomeIcon> Welcome {sessionStorage.getItem('logged-in-username')}</h5>
 				<Button variant="warning" size='sm' style={{marginLeft:15, marginTop:5, marginRight:3, fontWeight:'bold'}} onClick={()=>this.logoutClick()}>Log out</Button>
 				</div>
 			</div>
-		)
+		)}
+		else {
+			return (
+				<>
+					<h2>You have no permission to visit this page, please <a href="/">Log-in</a></h2> 
+				</>
+			)
+		}
 	}
 }
 

@@ -49,6 +49,7 @@ class Login extends React.Component {
 				this.setState({
 					redirect: true,
 				})
+				sessionStorage.setItem('logged-in-username', this.state.username)
 			})
 			.catch((error) => {
 				console.log(error)
