@@ -1,7 +1,22 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { Navbar, Nav, Button, Form, FormControl } from 'react-bootstrap'
 import '../../css/navbar.css'
 class NavbarComponent extends React.Component {
+	constructor(props) {
+		super(props)
+
+		this.logoutClick = this.logoutClick.bind(this)
+	}
+
+	logoutClick = () => {
+		/*
+		 * Removes user session after logging out and redirects to login-page ('/')
+		 */
+		sessionStorage.removeItem('logged-in-username')
+		this.props.history.push('/')
+	}
+
 	render() {
 		return (
 			<>
