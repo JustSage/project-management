@@ -14,13 +14,11 @@ class signUp extends Component {
 			username: '',
 			email: '',
 			redirect: false,
-			signUp_redirect: false,
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleUsername = this.handleUsername.bind(this)
 		this.handlePassword = this.handlePassword.bind(this)
-		this.handleSignUp = this.handleSignUp.bind(this)
 		this.handleEmail = this.handleEmail.bind(this)
 	}
 	handlePassword = (event) => {
@@ -42,13 +40,10 @@ class signUp extends Component {
 	handleEmail = (event) => {
 		this.setState({ email: event.target.value })
 	}
-
-	handleSignUp = () => {
-		this.setState({ signUp_redirect: true })
-	}
 	handleSubmit = () => {
 		event.preventDefault()
 		alert('Signed Up!')
+		this.setState({ redirect: true })
 		//This part will be out of comment when server will be connected
 
 		// axios
@@ -74,9 +69,6 @@ class signUp extends Component {
 	}
 
 	render() {
-		if (this.state.signUp_redirect) {
-			return <Redirect to='/SignUp' />
-		}
 		if (this.state.redirect) {
 			return <Redirect to='/homepage' />
 		} else
