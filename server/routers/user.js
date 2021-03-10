@@ -5,7 +5,7 @@ const validator = require('validator')
 
 const userData = {
 	username: 'Admin',
-	password: 'Admin',
+	password: 'Admin123',
 	email: 'admin@gmail.com',
 }
 

@@ -26,7 +26,7 @@ class Homepage extends Component {
 			<div className='containter' style={{display:'flex',flexDirection:'row'}}>
 				<div className='row' style={{flex:1}}>
 					<div className='col-xs-12'>
-						<Navbar1></Navbar1>
+						<Navbar1/>
 					</div>
 				</div>
 				<div className='col-xs-12' style={{flex:1}}>
