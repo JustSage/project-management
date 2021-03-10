@@ -5,7 +5,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 const app = express()
-const publicDirectoryPath = path.join(__dirname, './build')
+const publicDirectoryPath = path.join(__dirname, '../public')
 
 const port = process.env.PORT || 3001
 
