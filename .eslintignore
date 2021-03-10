@@ -1,2 +1,2 @@
 # Ignore built files except build/index.js
-server/build/
+./server/build/*
