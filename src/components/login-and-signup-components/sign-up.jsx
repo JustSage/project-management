@@ -44,6 +44,7 @@ class signUp extends Component {
 	handleSubmit = () => {
 		event.preventDefault()
 		alert('Signed Up!')
+		sessionStorage.setItem('logged-in-username', this.state.username)
 		this.setState({ redirect: true })
 		//This part will be out of comment when server will be connected
 
