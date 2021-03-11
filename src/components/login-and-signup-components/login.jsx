@@ -4,8 +4,8 @@ import { Redirect } from 'react-router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Spring } from 'react-spring/renderprops'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '../../css/login.css'
 
-import '../login-and-signup-components/login.css'
 class Login extends React.Component {
 	constructor(props) {
 		super(props)
@@ -80,7 +80,7 @@ class Login extends React.Component {
 								<h2 style={{ textAlign: 'center' }}>Log In:</h2>
 								<div className='myForm'>
 									<form onSubmit={this.handleSubmit} method='get'>
-										<label style={{ fontSize: '15' }}>Username: </label>
+										<label>Username: </label>
 										<br></br>
 										<input
 											className='myInput'
@@ -92,7 +92,7 @@ class Login extends React.Component {
 										/>
 										<br />
 										<br />
-										<label style={{ fontSize: '15' }}>Password: </label>
+										<label>Password:</label>
 										<br></br>
 										<input
 											className='myInput'

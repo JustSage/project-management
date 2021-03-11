@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Spring } from 'react-spring/renderprops'
 import { Redirect } from 'react-router'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import '../login-and-signup-components/sign-up.css'
+import '../../css/sign-up.css'
 //import axios from 'axios'
 
 class signUp extends Component {

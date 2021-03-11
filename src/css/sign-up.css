@@ -6,7 +6,7 @@
 	height: 33rem;
 	border: #0101;
 	border-radius: 50px;
-	background-image: url('../background_orange.jpg');
+	background-image: url('../../src/images/background_orange.jpg');
 	background-size: cover;
 }
 .myForm {
@@ -35,7 +35,7 @@
 	position: border;
 	top: 50%;
 	margin-top: 15px;
-	background-image: url('../background_orange.jpg');
+	background-image: url('../../src/images/background_orange.jpg');
 	background-size: cover;
 }
 .wrapper {
