@@ -6,8 +6,9 @@
 }
 
 .img_logo:hover {
-	width: 205px;
+	width: 210px;
 	height: 205px;
+	margin-left: -5px;
 }
 .navbar-custom {
 	height: 64px;
