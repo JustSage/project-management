@@ -31,9 +31,15 @@ class NavbarComponent extends React.Component {
 				<Navbar variant='dark' className='navbar navbar-custom'>
 					<img src={logo} alt='' className='img_logo' />
 					<Nav className='mr-auto'>
-						<Nav.Link href='#home'>Home</Nav.Link>
-						<Nav.Link href='#features'>Features</Nav.Link>
-						<Nav.Link href='#pricing'>Pricing</Nav.Link>
+						<Nav.Link className='navLink' href='#home'>
+							Home
+						</Nav.Link>
+						<Nav.Link className='navLink' href='#features'>
+							Features
+						</Nav.Link>
+						<Nav.Link className='navLink' href='#pricing'>
+							Pricing
+						</Nav.Link>
 					</Nav>
 					<Form inline>
 						<h5>
@@ -41,7 +47,12 @@ class NavbarComponent extends React.Component {
 								icon='user'
 								style={{ marginTop: 10, fontSize: 17 }}
 							></FontAwesomeIcon>{' '}
-							Welcome {sessionStorage.getItem('logged-in-username')}
+							<span style={{ fontSize: '14px', opacity: '0.7' }}>Welcome </span>
+							<span
+								style={{ fontSize: '14px', opacity: '0.9', color: '#A52A2A' }}
+							>
+								{sessionStorage.getItem('logged-in-username')}
+							</span>
 						</h5>
 						<button className='logout_btn' onClick={this.logoutClick}>
 							Log out
