@@ -43,7 +43,9 @@ class NavbarComponent extends React.Component {
 							></FontAwesomeIcon>{' '}
 							Welcome {sessionStorage.getItem('logged-in-username')}
 						</h5>
-						<button className='logout_btn'>Log out</button>
+						<button className='logout_btn' onClick={this.logoutClick}>
+							Log out
+						</button>
 					</Form>
 				</Navbar>
 			</>
