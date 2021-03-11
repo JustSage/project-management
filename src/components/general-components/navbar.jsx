@@ -36,7 +36,7 @@ class NavbarComponent extends React.Component {
 						<Nav.Link href='#pricing'>Pricing</Nav.Link>
 					</Nav>
 					<Form inline>
-						<h5 style={{ fontSize: 17, marginRight: '10px' }}>
+						<h5>
 							<FontAwesomeIcon
 								icon='user'
 								style={{ marginTop: 10, fontSize: 17 }}

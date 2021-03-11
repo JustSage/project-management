@@ -11,6 +11,7 @@ import {
 	faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '../../css/homepage.css'
 
 library.add(fab, faCheckSquare, faCoffee, faUser)
 
@@ -25,15 +26,14 @@ class Homepage extends Component {
 				<>
 					<NavbarComponent history = {this.props.history}/>
 					<div
-						className='containter'
-						style={{ display: 'flex', flexDirection: 'row' }}
+						className='container'
 					>
-						<div className='row' style={{ flex: 1 }}>
+						<div className='row hp-divs'>
 							<div className='col-xs-12'>
 								<Sidebar />
 							</div>
 						</div>
-						<div className='col-xs-12' style={{ flex: 1 }}>
+						<div className='col-xs-12 hp-divs'>
 							<h3>Home Page</h3>
 						</div>
 					</div>

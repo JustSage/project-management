@@ -1,6 +1,3 @@
-/* #myImg {
-	
-} */
 .img_logo {
 	width: 200px;
 	height: 200px;
@@ -35,4 +32,9 @@
 .logout_btn:hover {
 	opacity: 1;
 	background-color: rgb(218, 90, 31);
+}
+
+h5 {
+	font-size: 17;
+	margin-right: 10px; 
 }
