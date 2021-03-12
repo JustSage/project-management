@@ -111,6 +111,7 @@ class Login extends React.Component {
 										</div>
 									</form>
 								</div>
+								<label>New friend?</label>
 								<button
 									className='btn_signUp'
 									type='signUp'
