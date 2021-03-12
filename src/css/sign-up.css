@@ -48,3 +48,7 @@
 	width: 205px;
 	margin-left: 5px;
 }
+
+.btn:hover {
+	opacity: 0.7;
+}

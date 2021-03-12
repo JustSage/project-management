@@ -43,9 +43,6 @@
 	transition: all ease 0.5s;
 }
 
-.btn:hover {
-	opacity: 0.7;
-}
 
 .wrapper {
 	text-align: center;
@@ -68,5 +65,8 @@
 }
 
 .btn_signUp:hover {
+	opacity: 0.7;
+}
+.btn:hover {
 	opacity: 0.7;
 }
