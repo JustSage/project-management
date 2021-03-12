@@ -17,7 +17,7 @@ class Sidebar extends React.Component {
 				onSelect={() => {
 					// Add your code here
 				}}
-				style={myStyle}
+				className='myStyle'
 			>
 				<SideNav.Toggle />
 				<SideNav.Nav defaultSelected='home'>
@@ -50,17 +50,3 @@ class Sidebar extends React.Component {
 }
 
 export default Sidebar
-
-const myStyle = {
-	backgroundImage: 'url("images/nav_background.jpg")',
-	backgroundSize: 'auto',
-	marginTop: '64px',
-}
-
-{
-	/* <img
-						style={{ width: '76px', height: '76px' }}
-						src='images/nav_logo.png'
-						alt='logo'
-					></img> */
-}
