@@ -17,6 +17,10 @@ class NavbarComponent extends React.Component {
 		this.logoutClick = this.logoutClick.bind(this)
 	}
 
+	sendData = (data) => {
+		this.props.parentCallBack(data)
+	}
+
 	logoutClick = () => {
 		/*
 		 * Removes user session after logging out and redirects to login-page ('/')
@@ -31,9 +35,30 @@ class NavbarComponent extends React.Component {
 				<Navbar variant='dark' className='navbar navbar-custom'>
 					<img src={logo} alt='' className='img_logo' />
 					<Nav className='mr-auto'>
-						<Nav.Link className='navLink'>Home</Nav.Link>
-						<Nav.Link className='navLink'>Features</Nav.Link>
-						<Nav.Link className='navLink'>Pricing</Nav.Link>
+						<Nav.Link
+							className='navLink'
+							onClick={() => {
+								this.sendData('flights')
+							}}
+						>
+							Flights
+						</Nav.Link>
+						<Nav.Link
+							className='navLink'
+							onClick={() => {
+								this.sendData('hotels')
+							}}
+						>
+							Hotels
+						</Nav.Link>
+						<Nav.Link
+							className='navLink'
+							onClick={() => {
+								this.sendData('cars')
+							}}
+						>
+							Cars
+						</Nav.Link>
 					</Nav>
 					<Form inline>
 						<h5>
