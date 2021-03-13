@@ -2,6 +2,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Spring } from 'react-spring/renderprops'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -58,7 +59,7 @@ class Login extends React.Component {
 
 	render() {
 		if (this.state.signUp_redirect) {
-			return <Redirect to='/SignUp' />
+			return <Redirect to='/signUp' />
 		} else
 			return (
 				<Spring
@@ -104,9 +105,9 @@ class Login extends React.Component {
 										<div className='not-user'>
 											Not a user?
 											<br></br>
-											<a className='signup-link' href='/signUp'>
+											<Link className='signup-link' to='/signup'>
 												Sign up now!
-											</a>
+											</Link>
 										</div>
 									</form>
 								</div>

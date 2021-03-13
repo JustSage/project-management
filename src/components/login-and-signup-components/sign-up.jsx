@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Spring } from 'react-spring/renderprops'
 import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../css/sign-up.css'
 //import axios from 'axios'
@@ -134,9 +135,9 @@ class signUp extends Component {
 											<div className='already-user'>
 												Already a user?
 												<br></br>
-												<a className='login-link' href='/login'>
+												<Link className='login-link' to='/login'>
 													Log in now!
-												</a>
+												</Link>
 											</div>
 										</div>
 									</form>
