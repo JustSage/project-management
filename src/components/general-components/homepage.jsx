@@ -24,16 +24,14 @@ class Homepage extends Component {
 		if (sessionStorage.getItem('logged-in-username')) {
 			return (
 				<>
-					<NavbarComponent history = {this.props.history}/>
-					<div
-						className='container'
-					>
+					<NavbarComponent history={this.props.history} />
+					<div className='container'>
 						<div className='row hp-divs'>
 							<div className='col-xs-12'>
 								<Sidebar />
 							</div>
 						</div>
-						<div className='col-xs-12 hp-divs'>
+						<div style={{ marginTop: '10%' }} className='col-xs-12 hp-divs'>
 							<h3>Home Page</h3>
 						</div>
 					</div>

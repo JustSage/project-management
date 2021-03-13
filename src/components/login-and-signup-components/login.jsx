@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
@@ -47,9 +48,7 @@ class Login extends React.Component {
 			.then(() => {
 				// saves a cookie during session
 				sessionStorage.setItem('logged-in-username', this.state.username)
-				this.setState({
-					redirect: true,
-				})
+				this.props.history.push('/homepage')
 			})
 			.catch((error) => {
 				console.log(error)
@@ -60,9 +59,6 @@ class Login extends React.Component {
 	render() {
 		if (this.state.signUp_redirect) {
 			return <Redirect to='/SignUp' />
-		}
-		if (this.state.redirect) {
-			return <Redirect to='/homepage' />
 		} else
 			return (
 				<Spring
@@ -111,6 +107,7 @@ class Login extends React.Component {
 										</div>
 									</form>
 								</div>
+								<label>New friend?</label>
 								<button
 									className='btn_signUp'
 									type='signUp'
