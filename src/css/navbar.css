@@ -54,3 +54,19 @@ h5 {
 	border: tomato;
 	text-shadow: 0px 10px 5px #aaa396;
 }
+
+.welcome{
+	font-size: 17px;
+	opacity: 0.7;
+}
+
+.user-name{
+	font-size: 17px;
+	opacity: 0.9;
+	color: #A52A2A;
+}
+
+.user-icon{
+	margin-top: 10;
+	font-size: 17px;
+}

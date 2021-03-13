@@ -3,17 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
 import '@trendmicro/react-sidenav/dist/react-sidenav.css'
 import '../../css/sidebar.css'
+
 class Sidebar extends React.Component {
-	state = {
-		img: (
-			<img src="'https://image.freepik.com/free-vector/pineapple-logo-design-inspiration-awesome_110852-29.jpg'" />
-		),
-		expand: true,
-	}
 	render() {
 		return (
 			<SideNav
-				// expanded={this.state.expand}
 				onSelect={() => {
 					// Add your code here
 				}}
@@ -23,17 +17,13 @@ class Sidebar extends React.Component {
 				<SideNav.Nav defaultSelected='home'>
 					<NavItem eventKey='home' className='myLink'>
 						<NavIcon>
-							<i className='fa fa-fw fa-home' style={{ fontSize: '1.75em' }} />
+							<i className='fa fa-fw fa-home' />
 						</NavIcon>
 						<NavText>Home</NavText>
 					</NavItem>
 					<NavItem eventKey='charts'>
 						<NavIcon>
-							<i
-								className='fa fa-fw fa-line-chart'
-								id='myId'
-								style={{ fontSize: '1.75em' }}
-							/>
+							<i className='fa fa-fw fa-line-chart' id='myId' />
 						</NavIcon>
 						<NavText>Charts</NavText>
 						<NavItem eventKey='charts/linechart'>

@@ -31,26 +31,18 @@ class NavbarComponent extends React.Component {
 				<Navbar variant='dark' className='navbar navbar-custom'>
 					<img src={logo} alt='' className='img_logo' />
 					<Nav className='mr-auto'>
-						<Nav.Link className='navLink' href='#home'>
-							Home
-						</Nav.Link>
-						<Nav.Link className='navLink' href='#features'>
-							Features
-						</Nav.Link>
-						<Nav.Link className='navLink' href='#pricing'>
-							Pricing
-						</Nav.Link>
+						<Nav.Link className='navLink'>Home</Nav.Link>
+						<Nav.Link className='navLink'>Features</Nav.Link>
+						<Nav.Link className='navLink'>Pricing</Nav.Link>
 					</Nav>
 					<Form inline>
 						<h5>
 							<FontAwesomeIcon
+								className='user-icon'
 								icon='user'
-								style={{ marginTop: 10, fontSize: 17 }}
 							></FontAwesomeIcon>{' '}
-							<span style={{ fontSize: '14px', opacity: '0.7' }}>Welcome </span>
-							<span
-								style={{ fontSize: '14px', opacity: '0.9', color: '#A52A2A' }}
-							>
+							<span className='welcome'>Welcome </span>
+							<span className='user-name'>
 								{sessionStorage.getItem('logged-in-username')}
 							</span>
 						</h5>
