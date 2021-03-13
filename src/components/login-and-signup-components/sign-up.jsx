@@ -134,7 +134,7 @@ class signUp extends Component {
 											<div className='already-user'>
 												Already a user?
 												<br></br>
-												<a className='login-link' href='/'>
+												<a className='login-link' href='/login'>
 													Log in now!
 												</a>
 											</div>
