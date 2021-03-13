@@ -20,15 +20,26 @@ class Homepage extends Component {
 		super(props)
 	}
 
+	state = {
+		fromChildMessage: 'flights',
+	}
+
+	callBackFunc = (childData) => {
+		this.setState({ fromChildMessage: childData })
+	}
+
 	render() {
 		if (sessionStorage.getItem('logged-in-username')) {
 			return (
 				<>
-					<NavbarComponent history={this.props.history} />
+					<NavbarComponent
+						history={this.props.history}
+						parentCallBack={this.callBackFunc}
+					/>
 					<div className='container'>
 						<div className='row hp-divs'>
 							<div className='col-xs-12'>
-								<Sidebar />
+								<Sidebar name={this.state.fromChildMessage} />
 							</div>
 						</div>
 						<div style={{ marginTop: '10%' }} className='col-xs-12 hp-divs'>
