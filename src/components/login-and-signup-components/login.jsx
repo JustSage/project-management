@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
@@ -47,9 +48,7 @@ class Login extends React.Component {
 			.then(() => {
 				// saves a cookie during session
 				sessionStorage.setItem('logged-in-username', this.state.username)
-				this.setState({
-					redirect: true,
-				})
+				this.props.history.push('/homepage')
 			})
 			.catch((error) => {
 				console.log(error)
@@ -60,9 +59,6 @@ class Login extends React.Component {
 	render() {
 		if (this.state.signUp_redirect) {
 			return <Redirect to='/SignUp' />
-		}
-		if (this.state.redirect) {
-			return <Redirect to='/homepage' />
 		} else
 			return (
 				<Spring
@@ -75,8 +71,8 @@ class Login extends React.Component {
 				>
 					{(props) => (
 						<div style={props}>
-							<div className='props2'>
-								<img className='img' src='/images/avatar.png'></img>
+							<div className='login-frame'>
+								<img className='login-img'></img>
 								<h2 style={{ textAlign: 'center' }}>Log In:</h2>
 								<div className='myForm'>
 									<form onSubmit={this.handleSubmit} method='get'>
@@ -91,9 +87,7 @@ class Login extends React.Component {
 											required
 										/>
 										<br />
-										<br />
 										<label>Password:</label>
-										<br></br>
 										<input
 											className='myInput'
 											type='password'
@@ -102,23 +96,20 @@ class Login extends React.Component {
 											onChange={this.handlePassword}
 											required
 										/>
-										<br />
-										<br />
 										<div className='wrapper'>
 											<button className='btn' type='submit'>
 												Log in
 											</button>
 										</div>
+										<div className='not-user'>
+											Not a user?
+											<br></br>
+											<a className='signup-link' href='/signUp'>
+												Sign up now!
+											</a>
+										</div>
 									</form>
 								</div>
-								<label>New friend?</label>
-								<button
-									className='btn_signUp'
-									type='signUp'
-									onClick={this.handleSignUp}
-								>
-									Sign Up
-								</button>
 							</div>
 						</div>
 					)}

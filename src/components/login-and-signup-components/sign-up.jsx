@@ -28,11 +28,11 @@ class signUp extends Component {
 	handleConfirmPass = (event) => {
 		this.setState({ confirmPass: event.target.value })
 		let passCheck = event.target.value
-		if (passCheck == this.state.password)
-			// eslint-disable-next-line react/no-direct-mutation-state
-			this.state.confirmPassBorder = 'lime'
-		// eslint-disable-next-line react/no-direct-mutation-state
-		else this.state.confirmPassBorder = 'red'
+		if (passCheck == this.state.password) {
+			this.setStage({ confirmPassBorder: 'lime' })
+		} else {
+			this.setState({ confirmPassBorder: 'red' })
+		}
 	}
 	handleUsername = (event) => {
 		this.setState({ username: event.target.value })
@@ -82,13 +82,13 @@ class signUp extends Component {
 				>
 					{(props) => (
 						<div style={props}>
-							<div className='props2'>
-								<img className='img' src='/images/avatar_signUp.jpg'></img>
-								<h2 style={{ textAlign: 'center' }}>Sign Up:</h2>
+							<div className='signup-frame'>
+								<img className='signup-img'></img>
+								<h2 className='header'>Sign Up:</h2>
 								<div className='myForm'>
 									<form onSubmit={this.handleSubmit} method='get'>
-										<div style={{ display: 'flex', flexDirection: 'column' }}>
-											<label style={{ fontSize: '15' }}>Username: </label>
+										<div className='innerForm'>
+											<label className='labels'>Username: </label>
 											<input
 												className='myInput'
 												type='text'
@@ -97,7 +97,7 @@ class signUp extends Component {
 												onChange={this.handleUsername}
 												required
 											/>
-											<label style={{ fontSize: '15' }}>Password: </label>
+											<label className='labels'>Password: </label>
 											<input
 												className='myInput'
 												type='password'
@@ -106,24 +106,18 @@ class signUp extends Component {
 												onChange={this.handlePassword}
 												required
 											/>
-											<label style={{ fontSize: '15', width: 200 }}>
+											<label className='labelsConfirm'>
 												Confirm Password:{' '}
 											</label>
 											<input
-												style={{
-													outlineColor: this.state.confirmPassBorder,
-													width: '205px',
-													borderRadius: '10px',
-													height: '40px',
-													marginLeft: '5px',
-												}}
+												className='myInput'
 												type='password'
 												placeholder='Confirm password'
 												value={this.state.confirmPass}
 												onChange={this.handleConfirmPass}
 												required
 											/>
-											<label style={{ fontSize: '15' }}>Email: </label>
+											<label className='labels'>Email: </label>
 											<input
 												className='myInput'
 												type='email'
@@ -136,6 +130,13 @@ class signUp extends Component {
 												<button className='btn' type='submit'>
 													Accept
 												</button>
+											</div>
+											<div className='already-user'>
+												Already a user?
+												<br></br>
+												<a className='login-link' href='/login'>
+													Log in now!
+												</a>
 											</div>
 										</div>
 									</form>
