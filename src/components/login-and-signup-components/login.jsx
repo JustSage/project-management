@@ -71,8 +71,8 @@ class Login extends React.Component {
 				>
 					{(props) => (
 						<div style={props}>
-							<div className='props2'>
-								<img className='img' src='/images/avatar.png'></img>
+							<div className='login-frame'>
+								<img className='login-img'></img>
 								<h2 style={{ textAlign: 'center' }}>Log In:</h2>
 								<div className='myForm'>
 									<form onSubmit={this.handleSubmit} method='get'>
@@ -87,9 +87,7 @@ class Login extends React.Component {
 											required
 										/>
 										<br />
-										<br />
 										<label>Password:</label>
-										<br></br>
 										<input
 											className='myInput'
 											type='password'
@@ -98,23 +96,20 @@ class Login extends React.Component {
 											onChange={this.handlePassword}
 											required
 										/>
-										<br />
-										<br />
 										<div className='wrapper'>
 											<button className='btn' type='submit'>
 												Log in
 											</button>
 										</div>
+										<div className='not-user'>
+											Not a user?
+											<br></br>
+											<a className='signup-link' href='/signUp'>
+												Sign up now!
+											</a>
+										</div>
 									</form>
 								</div>
-								<label>New friend?</label>
-								<button
-									className='btn_signUp'
-									type='signUp'
-									onClick={this.handleSignUp}
-								>
-									Sign Up
-								</button>
 							</div>
 						</div>
 					)}

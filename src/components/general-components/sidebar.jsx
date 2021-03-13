@@ -3,16 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
 import '@trendmicro/react-sidenav/dist/react-sidenav.css'
 import '../../css/sidebar.css'
-
 class Sidebar extends React.Component {
 	render() {
 		return (
-			<SideNav
-				onSelect={() => {
-					// Add your code here
-				}}
-				className='myStyle'
-			>
+			<SideNav className='myStyle'>
 				<SideNav.Toggle />
 				<SideNav.Nav defaultSelected='home'>
 					<NavItem eventKey='home' className='myLink'>

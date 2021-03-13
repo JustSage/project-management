@@ -1,4 +1,4 @@
-.props2 {
+.login-frame {
 	background: Orange;
 	margin: auto;
 	width: 100%;
@@ -7,7 +7,7 @@
 	border: 4px 4px 4px solid #5555;
 	padding: 10px;
 	border-radius: 50px;
-	background-image: url('../../src/images/background_orange.jpg');
+	background-image: url('../images/background_orange.jpg');
 	background-size: cover;
 	box-shadow: 0px -10px 40px 30px rgb(221, 200, 187);
 }
@@ -18,18 +18,27 @@
 	padding: 10px;
 }
 
-.img {
+label{
+	font-size: 15;
+	margin-top: 5px;
+	margin-left: 15px
+}
+
+.login-img {
+	background-image: url('../images/avatar.png');
+	background-size: cover;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	width: 50%;
+	height: 25%;
+	width: 55%;
 	border-radius: 50%;
-	border-style: ridge;
+	border-style: outset;
 }
 
 .btn {
 	display: block;
-	margin-left: 14px;
+	margin-left: 13px;
 	margin-right: auto;
 	width: 150px;
 	background: #ff9933;
@@ -38,11 +47,10 @@
 	position: border;
 	top: 50%;
 	margin-top: -5px;
-	background-image: url('../../src/images/background_orange.jpg');
+	background-image: url('../images/background_orange.jpg');
 	background-size: cover;
 	transition: all ease 0.5s;
 }
-
 
 .wrapper {
 	text-align: center;
@@ -54,18 +62,14 @@
 	width: 430%;
 }
 
-.btn_signUp {
-	margin-left: 56px;
-	width: 100px;
-	height: 35px;
-	border-radius: 20px;
-	background-image: url('../../src/images/background_orange.jpg');
-	background-size: cover;
-	transition: all ease 0.5s;
+.not-user{
+	width: 200px;
+	margin-left: 65px;
+	margin-top: 5px;
 }
 
-.btn_signUp:hover {
-	opacity: 0.7;
+.signup-link{
+	margin-left: -5px;
 }
 .btn:hover {
 	opacity: 0.7;

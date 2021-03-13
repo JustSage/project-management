@@ -7,7 +7,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import logo from '../../images/pineApple_logo.png'
+import logo from '../../images/pine-apple-logo.png'
 library.add(fab, faUser)
 
 class NavbarComponent extends React.Component {

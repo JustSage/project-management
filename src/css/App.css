@@ -38,13 +38,13 @@
 }
 
 body {
-  background-image: url('../images/background_orange.jpg');
-  height: 100%;
-  width: 100%;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+	background-image: url('../images/background_orange.jpg');
+	height: 100%;
+	width: 100%;
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
 }
 
 form label {
