@@ -5,17 +5,16 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 const app = express()
-const publicDirectoryPath = path.join(__dirname, './build')
 
 const port = process.env.PORT || 3001
 
 app.use(bodyParser.json())
-app.use(express.static(publicDirectoryPath))
 app.use(userRouter)
 app.use(cors())
+app.use(express.static(path.join(__dirname, 'build')))
 
-app.get('/', (req, res) => {
-	res.sendFile('index.html')
+app.get('/*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 app.listen(port, () => {
