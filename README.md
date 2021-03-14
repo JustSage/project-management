@@ -41,8 +41,9 @@ Pre-Installation requirements:
 
 ## Code Example
 * Server side using express:
-* 
-`const path = require('path')
+
+```
+const path = require('path')
 const express = require('express')
 const userRouter = require('./routers/user')
 const cors = require('cors')
@@ -65,7 +66,8 @@ app.listen(port, () => {
 	console.log(`App is listen to port ${port}`)
 })
 
-module.exports = app`
+module.exports = app
+```
 
 ## Features
 Currently added basic pages and components:
