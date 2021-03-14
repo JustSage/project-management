@@ -42,7 +42,7 @@ Pre-Installation requirements:
 ## Code Example
 * Server side using express:
 
-```
+```javascript
 const path = require('path')
 const express = require('express')
 const userRouter = require('./routers/user')
