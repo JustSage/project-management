@@ -1,5 +1,6 @@
 const path = require('path')
 const express = require('express')
+require('./database/mongoclient')
 const userRouter = require('./routers/user')
 const cors = require('cors')
 const bodyParser = require('body-parser')
