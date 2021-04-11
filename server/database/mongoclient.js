@@ -10,10 +10,7 @@ async function main() {
 	try {
 		await client.connect()
 		await listDatabases(client)
-<<<<<<< HEAD
-=======
 		console.log('MongoDB is connected!')
->>>>>>> dev/yehonatan
 	} catch (e) {
 		console.error(e)
 	} finally {
