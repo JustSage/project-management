@@ -90,7 +90,8 @@ router.post('/login', async (req, res) => {
 					return res.status(400).send({ message: 'password is not correct.' })
 				}
 
-				res.send({ message: 'logged in.' })
+				//Send user role for later use.
+				res.send({ message: 'logged in.', role: foundUser.role })
 			} catch (e) {
 				console.log(e)
 				res.status(500).send({ message: "Can't login!" })

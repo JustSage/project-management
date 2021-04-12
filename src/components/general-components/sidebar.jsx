@@ -1,9 +1,28 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
 import '@trendmicro/react-sidenav/dist/react-sidenav.css'
 import '../../css/sidebar.css'
 class Sidebar extends React.Component {
+	constructor(props) {
+		super(props)
+
+		this.isAdmin = this.isAdmin.bind(this)
+	}
+
+	isAdmin = () => {
+		if (sessionStorage.getItem('logged-in-role') == 'Admin')
+			return (
+				<NavItem
+					eventKey='charts/admin'
+					onClick={() => this.props.history.push('/Admin-ref')}
+				>
+					<NavText>Admin References</NavText>
+				</NavItem>
+			)
+	}
+
 	render() {
 		return (
 			<SideNav className='myStyle'>
@@ -26,6 +45,7 @@ class Sidebar extends React.Component {
 						<NavItem eventKey='charts/barchart'>
 							<NavText>Bar Chart</NavText>
 						</NavItem>
+						{this.isAdmin()}
 					</NavItem>
 				</SideNav.Nav>
 			</SideNav>

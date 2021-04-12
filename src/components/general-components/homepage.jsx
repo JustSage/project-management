@@ -28,7 +28,7 @@ class Homepage extends Component {
 					<div className='container'>
 						<div className='row hp-divs'>
 							<div className='col-xs-12'>
-								<Sidebar />
+								<Sidebar history={this.props.history}/>
 							</div>
 						</div>
 						<div style={{ marginTop: '10%' }} className='col-xs-12 hp-divs'>

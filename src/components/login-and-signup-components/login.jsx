@@ -50,6 +50,7 @@ class Login extends React.Component {
 			.then((response) => {
 				// saves a cookie during session
 				sessionStorage.setItem('logged-in-username', this.state.username)
+				sessionStorage.setItem('logged-in-role', response.data.role)
 				this.props.history.push('/homepage')
 			})
 			.catch((error) => {
