@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react'
 import axios from 'axios'
@@ -46,14 +47,14 @@ class Login extends React.Component {
 				},
 				{ headers: { 'content-type': 'application/json' } }
 			)
-			.then(() => {
+			.then((response) => {
 				// saves a cookie during session
 				sessionStorage.setItem('logged-in-username', this.state.username)
 				this.props.history.push('/homepage')
 			})
 			.catch((error) => {
-				console.log(error)
-				alert('User not found!')
+				console.log(error.response)
+				alert(error.response.data.message)
 			})
 	}
 
