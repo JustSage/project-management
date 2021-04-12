@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Spring } from 'react-spring/renderprops'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -45,20 +47,21 @@ class Login extends React.Component {
 				},
 				{ headers: { 'content-type': 'application/json' } }
 			)
-			.then(() => {
+			.then((response) => {
 				// saves a cookie during session
 				sessionStorage.setItem('logged-in-username', this.state.username)
+				sessionStorage.setItem('logged-in-role', response.data.role)
 				this.props.history.push('/homepage')
 			})
 			.catch((error) => {
-				console.log(error)
-				alert('User not found!')
+				console.log(error.response)
+				alert(error.response.data.message)
 			})
 	}
 
 	render() {
 		if (this.state.signUp_redirect) {
-			return <Redirect to='/SignUp' />
+			return <Redirect to='/signUp' />
 		} else
 			return (
 				<Spring
@@ -104,9 +107,9 @@ class Login extends React.Component {
 										<div className='not-user'>
 											Not a user?
 											<br></br>
-											<a className='signup-link' href='/signUp'>
+											<Link className='signup-link' to='/signup'>
 												Sign up now!
-											</a>
+											</Link>
 										</div>
 									</form>
 								</div>

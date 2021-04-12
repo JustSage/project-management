@@ -4,6 +4,7 @@ const userRouter = require('./routers/user')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
+
 const app = express()
 const publicDirectoryPath = path.join(__dirname, '../public')
 
