@@ -50,3 +50,8 @@ body {
 form label {
 	font-size: 15px;
 }
+
+input:focus, select:focus {
+    box-shadow: none !important;
+    border-color: orange !important;
+}

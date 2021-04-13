@@ -53,7 +53,7 @@ class signUp extends Component {
 					password: this.state.password,
 					confirmPass: this.state.confirmPass,
 					email: this.state.email,
-					role: 'customer',
+					role: 'Customer',
 				},
 				{ headers: { 'content-type': 'application/json' } }
 			)
