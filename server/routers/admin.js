@@ -2,16 +2,11 @@ const express = require('express')
 const router = new express.Router()
 const { MongoClient } = require('mongodb')
 
-const url =
-	'mongodb+srv://sage:vL2PPAcKN5cokJJe@database.rufn2.mongodb.net/database?retryWrites=true&w=majority'
-
-const dbName = 'database'
-
 router.post('/modify-role', async (req, res) => {
 	const data = req.body
-    console.log(data)
+
 	MongoClient.connect(
-		url,
+		process.env.MONGODB_URL,
 		{ useNewUrlParser: true, useUnifiedTopology: true },
 		async (error, client) => {
 			if (error) {
@@ -20,7 +15,7 @@ router.post('/modify-role', async (req, res) => {
 			}
 			console.log('MongoDB is connected!')
 
-			var db = client.db(dbName)
+			var db = client.db(process.env.DATABASE_NAME)
 
 			try {
 				const foundUser = await db

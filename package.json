@@ -7,9 +7,9 @@
     "build": "react-scripts build",
     "heroku-postbuild": "npm run build",
     "client": "react-scripts start",
-    "test": "concurrently \"env-cmd ./config/test.env jest --forceExit\" \"react-scripts test --passWithNoTests\"",
+    "test": "concurrently \"env-cmd -f ./config/test.env jest --forceExit --watchAll\" \"react-scripts test --passWithNoTests\"",
     "eject": "react-scripts eject",
-    "server": "nodemon server/dev-app.js",
+    "server": "env-cmd -f ./config/dev.env nodemon server/dev-app.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "prettier:base": "prettier --ignore-path .gitignore",
     "eslint:base": "eslint --ignore-path .eslintignore",
@@ -19,9 +19,6 @@
     "format:prettier": "npm run prettier:base -- --write \"**/*.{js,ts,tsx,json,md,mdx}\"",
     "format:eslint": "npm run eslint:base -- --fix \"**/*.{js,ts,tsx,mdx}\"",
     "format": "npm run format:eslint && npm run format:prettier"
-  },
-  "jest": {
-    "testEnvironment": "node"
   },
   "eslintConfig": {
     "extends": [
@@ -78,7 +75,7 @@
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-flowtype": "^5.3.1",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jest": "^24.1.7",
+    "eslint-plugin-jest": "^24.3.5",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
