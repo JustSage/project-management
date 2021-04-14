@@ -6,6 +6,18 @@ const validator = require('validator')
 const { MongoClient } = require('mongodb')
 const bcrypt = require('bcrypt')
 
+//Meanwhile it will be here but later we need to move this to env file and ignore the file
+const url =
+	'mongodb+srv://sage:vL2PPAcKN5cokJJe@database.rufn2.mongodb.net/database?retryWrites=true&w=majority'
+
+const dbName = 'database'
+
+const userData = {
+	username: 'Admin',
+	password: 'Admin123',
+	email: 'admin@gmail.com',
+}
+
 router.post('/sign-up', async (req, res) => {
 	const user = req.body
 	if (user.password != user.confirmPass)
@@ -17,7 +29,7 @@ router.post('/sign-up', async (req, res) => {
 
 	//Connect to mongodb to save new user in db
 	MongoClient.connect(
-		process.env.MONGODB_URL,
+		url,
 		{ useNewUrlParser: true, useUnifiedTopology: true },
 		async (error, client) => {
 			if (error) {
@@ -26,7 +38,7 @@ router.post('/sign-up', async (req, res) => {
 			}
 			console.log('MongoDB is connected!')
 
-			var db = client.db(process.env.DATABASE_NAME)
+			var db = client.db(dbName)
 
 			try {
 				//TODO: Check if username/email already exist in db.
@@ -39,7 +51,6 @@ router.post('/sign-up', async (req, res) => {
 
 				//Insert the user which his details sent in body with post req
 				await db.collection('users').insertOne(user)
-
 				res.send({ message: `customer ${user.username} created successfully.` })
 			} catch (e) {
 				console.log(e)
@@ -52,7 +63,7 @@ router.post('/sign-up', async (req, res) => {
 router.post('/login', async (req, res) => {
 	const user = { username: req.body.username, password: req.body.password }
 	MongoClient.connect(
-		process.env.MONGODB_URL,
+		url,
 		{ useNewUrlParser: true, useUnifiedTopology: true },
 		async (error, client) => {
 			if (error) {
@@ -61,7 +72,7 @@ router.post('/login', async (req, res) => {
 			}
 			console.log('MongoDB is connected!')
 
-			var db = client.db(process.env.DATABASE_NAME)
+			var db = client.db(dbName)
 
 			try {
 				//find user by typed usernmae/email in the input

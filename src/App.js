@@ -12,9 +12,6 @@ import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 library.add(fab, faCheckSquare, faCoffee)
 
 class App extends React.Component {
-	constructor(props) {
-		super(props)
-	}
 	render() {
 		return (
 			<>
