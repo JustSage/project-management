@@ -1,8 +1,10 @@
 .container {
-    display: flex;
-    flex-direction: row;
+	flex-direction: row;
 }
 
-.hp-divs {
-    flex: 1;
+.context {
+    background-color: red;
+	display: absolute;
+    align-items: center;
+    justify-content: center;
 }
