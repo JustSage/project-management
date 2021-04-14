@@ -29,22 +29,17 @@
 	border-style: outset;
 }
 
-.btn {
+.signup-btn {
 	display: block;
-	margin-left: 60px;
-	margin-right: auto;
 	width: 100px;
-	background: #ff99b3;
 	border-radius: 25px;
-	height: 40px;
-	position: border;
-	top: 50%;
-	margin-top: 15px;
+	height: 3rem;
+	width: 250%;
+	margin-top: 55%;
+	transition: all ease 0.5s;
+	margin-left: 110%;
 	background-image: url('../images/background_orange.jpg');
 	background-size: cover;
-}
-.wrapper {
-	text-align: center;
 }
 
 .myInput {
@@ -54,7 +49,7 @@
 	margin-left: 13px;
 }
 
-.btn:hover {
+.signup-btn:hover {
 	opacity: 0.7;
 }
 
@@ -80,12 +75,12 @@
 	text-align: center;
 }
 
-.already-user{
+.already-user {
 	width: 200px;
-	margin-left: 55px;
-	margin-top: 15px;
+	margin-left: 50px;
+	margin-top: 10px;
 }
 
-.login-link{
+.login-link {
 	margin-left: 10px;
 }

@@ -20,7 +20,7 @@ class AdminRef extends Component {
 					</div>
 				</div>
 				<h3>Admin</h3>
-				<Container>
+				<Container className='h-100 row align-items-center'>
 					<Form className='admin-form'>
 						<Form.Group controlId='exampleForm.ControlInput1'>
 							<Form.Control placeholder='Enter username here' />

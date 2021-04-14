@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import '../../../css/Package.css'
+// import Card from './Package-Components/Card'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 /* 
 	the main idea behind Package Component:
@@ -10,6 +13,15 @@ import React, { Component } from 'react'
 */
 export default class Package extends Component {
 	render() {
-		return <div>Packages</div>
+		return (
+			<div className='package'>
+				<div className='wrraper'>
+					<label className='packageLabel' htmlFor='location'>
+						Choose a Location:
+					</label>
+					<input className='packageInput' id='location' />
+				</div>
+			</div>
+		)
 	}
 }

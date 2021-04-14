@@ -77,7 +77,7 @@ class signUp extends Component {
 				<Spring
 					from={{ opacity: 0, marginTop: -500 }}
 					to={{ opacity: 1, marginTop: 200 }}
-					config={{ delay: 400, duration: 1500 }}
+					config={{ delay: 100, duration: 800 }}
 				>
 					{(props) => (
 						<div style={props}>
@@ -126,7 +126,7 @@ class signUp extends Component {
 												required
 											/>
 											<div className='wrapper'>
-												<button className='btn' type='submit'>
+												<button className='signup-btn' type='submit'>
 													Accept
 												</button>
 											</div>

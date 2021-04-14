@@ -70,7 +70,7 @@ class Login extends React.Component {
 						opacity: 1,
 						marginTop: 200,
 					}}
-					config={{ delay: 400, duration: 1500 }}
+					config={{ delay: 400, duration: 800 }}
 				>
 					{(props) => (
 						<div style={props}>
@@ -79,7 +79,7 @@ class Login extends React.Component {
 								<h2 style={{ textAlign: 'center' }}>Log In:</h2>
 								<div className='myForm'>
 									<form onSubmit={this.handleSubmit} method='get'>
-										<label>Username: </label>
+										<label className='login-label'>Username: </label>
 										<br></br>
 										<input
 											className='myInput'
@@ -90,7 +90,7 @@ class Login extends React.Component {
 											required
 										/>
 										<br />
-										<label>Password:</label>
+										<label className='login-label'>Password:</label>
 										<input
 											className='myInput'
 											type='password'
@@ -99,11 +99,10 @@ class Login extends React.Component {
 											onChange={this.handlePassword}
 											required
 										/>
-										<div className='wrapper'>
-											<button className='btn' type='submit'>
-												Log in
-											</button>
-										</div>
+
+										<button className='login-btn' type='submit'>
+											Log in
+										</button>
 										<div className='not-user'>
 											Not a user?
 											<br></br>
