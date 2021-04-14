@@ -4,50 +4,9 @@ import NavbarComponent from '../general-components/navbar'
 import Sidebar from '../general-components/sidebar'
 import { Button, Form, Container } from 'react-bootstrap'
 import '../../css/Admin.css'
-import axios from 'axios'
 class AdminRef extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			role: 'Admin',
-			username: '',
-		}
-
-		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleSelectedOption = this.handleSelectedOption.bind(this)
-		this.handleUsername = this.handleUsername.bind(this)
-	}
-
-	//Function Handling the submmition of the typed data to server, if it succees alert an ok message, else an error
-	handleSubmit = () => {
-		event.preventDefault()
-		axios
-			.post(
-				'/modify-role',
-				{
-					newRole: this.state.role,
-					username: this.state.username,
-				},
-				{ headers: { 'content-type': 'application/json' } }
-			)
-			.then((response) => {
-				alert(response.data.message)
-				this.props.history.push('/homepage')
-			})
-			.catch((error) => {
-				console.log(error.response.data.message)
-				alert(error.response.data.message)
-			})
-	}
-
-	//Function handling the selected option
-	handleSelectedOption = (option) => {
-		this.setState({ role: option.target.value })
-	}
-
-	//Function handling the username that was typed
-	handleUsername = (option) => {
-		this.setState({ username: option.target.value })
 	}
 
 	render() {
@@ -62,25 +21,19 @@ class AdminRef extends Component {
 				</div>
 				<h3>Admin</h3>
 				<Container>
-					<Form className='admin-form' onSubmit={this.handleSubmit}>
+					<Form className='admin-form'>
 						<Form.Group controlId='exampleForm.ControlInput1'>
-							<Form.Control
-								placeholder='Enter username here'
-								required
-								onChange={this.handleUsername}
-							/>
+							<Form.Control placeholder='Enter username here' />
 						</Form.Group>
 						<Form.Group controlId='exampleForm.ControlSelect2'>
 							<Form.Label>Select new role:</Form.Label>
-							<Form.Control as='select' onChange={this.handleSelectedOption}>
+							<Form.Control as='select' multiple>
 								<option>Admin</option>
-								<option>Customer</option>
+								<option>customer</option>
 								<option>Travel Agent</option>
 							</Form.Control>
 						</Form.Group>
-						<Button type='submit' style={{ border: 'none' }}>
-							Submit!
-						</Button>
+						<Button>Submit!</Button>
 					</Form>
 				</Container>
 			</>

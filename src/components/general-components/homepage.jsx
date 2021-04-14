@@ -12,7 +12,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../css/homepage.css'
+
 library.add(fab, faCheckSquare, faCoffee, faUser)
+
 
 class Homepage extends Component {
 	constructor(props) {
@@ -25,11 +27,15 @@ class Homepage extends Component {
 				<>
 					<NavbarComponent history={this.props.history} />
 					<div className='container'>
-						<div className='row justify-content-center'>
-							<div className='col-xs-12 text-center'>
-								<Sidebar history={this.props.history} />
+						<div className='row hp-divs'>
+							<div className='col-xs-12'>
+								<Sidebar
+									history={this.props.history}
+								/>
 							</div>
-							<div className='col-xs-12 text-center'></div>
+						</div>
+						<div style={{ marginTop: '10%' }} className='col-xs-12 hp-divs context'>
+							<h3>Home Page</h3>
 						</div>
 					</div>
 				</>

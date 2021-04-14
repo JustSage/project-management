@@ -1,34 +1,33 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const request = require('supertest')
-const app = require('../server/app-source')
+const app = require('../server/app')
 const validator = require('validator')
 
-// const userOne = {
-// 	name: 'Admin',
-// 	email: 'admin@gmail.com',
-// 	password: 'Admin123',
-// }
+const userOne = {
+	name: 'Admin',
+	email: 'admin@gmail.com',
+	password: 'Admin123',
+}
 
-// // Checks if post request passes
-// test('Check user', async () => {
-// 	await request(app)
-// 		.post('/login')
-// 		.send({
-// 			username: userOne.name,
-// 			password: userOne.password,
-// 		})
-// 		.expect(200)
-// })
+// Checks if post request passes
+test('Check user', async () => {
+	await request(app)
+		.post('/login')
+		.send({
+			username: userOne.name,
+			password: userOne.password,
+		})
+		.expect(200)
+})
 
 test('Validate email', () => {
-	expect(validator.isEmail('abcd@gmail.com')).toBe(true)
+	expect(validator.isEmail(userOne.email)).toBe(true)
 })
 
 test('Check if username include letters', () => {
-	expect(validator.isAlpha('Admin')).toBe(true)
+	expect(validator.isAlpha(userOne.name)).toBe(true)
 })
 
 test('Check if password include letters and numbers', () => {
-	expect(validator.isAlphanumeric('12345abc')).toBe(true)
+	expect(validator.isAlphanumeric(userOne.password)).toBe(true)
 })
