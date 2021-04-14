@@ -6,19 +6,17 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css'
 import '../../css/sidebar.css'
 
 const roleBars = {
-	travelAgent: ['Packages', 'Reservations', 'Users', 'Contacts'],
+	travelAgent: ['Reservations', 'Customers '],
 	admin: ['Test1', 'Test2', 'Test3'],
 }
 
 class Sidebar extends React.Component {
 	constructor(props) {
 		super(props)
-
-		this.isAdmin = this.isAdmin.bind(this)
 	}
 
 	state = {
-		user: ['Flights', 'Hotels', 'Rent Car', 'Best deals', 'Attractions'],
+		user: ['Flights', 'Hotels', 'Rental Cars', 'Packages', 'Attractions'],
 	}
 
 	getRole = () => {
@@ -34,7 +32,13 @@ class Sidebar extends React.Component {
 		else if (sessionStorage.getItem('logged-in-role') === 'Travel Agent') {
 			const charts = roleBars.travelAgent.map((element) => {
 				return (
-					<NavItem key={element} eventKey='charts/linechart'>
+					<NavItem
+						onClick={() => {
+							this.props.callBackSideNave(element)
+						}}
+						key={element}
+						eventKey='charts/linechart'
+					>
 						<NavIcon>
 							<i className='fa fa-fw fa-home' />
 						</NavIcon>
@@ -58,7 +62,14 @@ class Sidebar extends React.Component {
 	userBars = () => {
 		const userBars = this.state.user.map((element) => {
 			return (
-				<NavItem className='myLink' key={element} eventKey='TravelAgent'>
+				<NavItem
+					onClick={() => {
+						this.props.callBackSideNave(element)
+					}}
+					className='myLink'
+					key={element}
+					eventKey={element}
+				>
 					<NavIcon>
 						<i className='fa fa-fw fa-home' />
 					</NavIcon>
@@ -69,25 +80,13 @@ class Sidebar extends React.Component {
 		return userBars
 	}
 
-	isAdmin = () => {
-		if (sessionStorage.getItem('logged-in-role') == 'Admin')
-			return (
-				<NavItem
-					eventKey='charts/admin'
-					onClick={() => this.props.history.push('/Admin-ref')}
-				>
-					<NavText>Admin References</NavText>
-				</NavItem>
-			)
-	}
-
 	render() {
 		return (
 			<SideNav className='myStyle'>
 				<SideNav.Toggle />
-				<SideNav.Nav defaultSelected='charts'>
-					{this.getRole()}
+				<SideNav.Nav defaultSelected='Flights'>
 					{this.userBars()}
+					{this.getRole()}
 				</SideNav.Nav>
 			</SideNav>
 		)
