@@ -2,6 +2,14 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
 import Sidebar from './sidebar'
+import Packages from './Customer/Package'
+import HomeContext from './Customer/HomeContext'
+import Reservations from './TravelAgent/Reservations'
+import CustomersList from './TravelAgent/CustomersList'
+import Attractions from './Customer/Attractions'
+import Car from './Customer/Car'
+import Flights from './Customer/Flights'
+import Hotels from './Customer/Hotels'
 import NavbarComponent from './navbar'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -25,7 +33,26 @@ class Homepage extends Component {
 
 	callBackSideNave = (data) => {
 		this.setState({ bar: data })
-		console.log(this.state.bar)
+	}
+
+	chooseContext = () => {
+		if (this.state.bar === '') {
+			return <HomeContext />
+		} else if (this.state.bar === 'Packages') {
+			return <Packages />
+		} else if (this.state.bar === 'Reservations') {
+			return <Reservations />
+		} else if (this.state.bar === 'CustomersList') {
+			return <CustomersList />
+		} else if (this.state.bar === 'Attractions') {
+			return <Attractions />
+		} else if (this.state.bar === 'Rental Cars') {
+			return <Car />
+		} else if (this.state.bar === 'Flights') {
+			return <Flights />
+		} else if (this.state.bar === 'Hotels') {
+			return <Hotels />
+		}
 	}
 
 	render() {
@@ -43,7 +70,7 @@ class Homepage extends Component {
 							</div>
 						</div>
 						<div style={{ marginTop: '10%' }} className='col-xs-12 hp-divs context'>
-							<h3>Home Page</h3>
+							{this.chooseContext()}
 						</div>
 					</div>
 				</>
