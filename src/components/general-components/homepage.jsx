@@ -15,10 +15,17 @@ import '../../css/homepage.css'
 
 library.add(fab, faCheckSquare, faCoffee, faUser)
 
-
 class Homepage extends Component {
 	constructor(props) {
 		super(props)
+	}
+	state = {
+		bar: '',
+	}
+
+	callBackSideNave = (data) => {
+		this.setState({ bar: data })
+		console.log(this.state.bar)
 	}
 
 	render() {
@@ -30,6 +37,7 @@ class Homepage extends Component {
 						<div className='row hp-divs'>
 							<div className='col-xs-12'>
 								<Sidebar
+									callBackSideNave={this.callBackSideNave}
 									history={this.props.history}
 								/>
 							</div>
