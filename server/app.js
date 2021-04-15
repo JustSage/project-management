@@ -2,6 +2,12 @@ const app = require('./app-source')
 const path = require('path')
 const express = require('express')
 
+<<<<<<< HEAD
+=======
+const app = express()
+const publicDirectoryPath = path.join(__dirname, './build')
+
+>>>>>>> 001182d... pulled after deployment
 const port = process.env.PORT || 3001
 
 app.use(express.static(path.join(__dirname, 'build')))
