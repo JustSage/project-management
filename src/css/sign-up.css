@@ -1,0 +1,91 @@
+.signup-frame {
+	margin: auto;
+	width: 100%;
+	max-width: 235px;
+	height: 600px;
+	border: #0101;
+	box-shadow: 0px -10px 40px 30px rgb(221, 200, 187);
+	border-radius: 50px;
+	padding: 10px;
+	background-image: url('../images/background_orange.jpg');
+	background-size: cover;
+}
+.myForm {
+	max-width: 30%;
+	width: 100%;
+	margin-left: -0.5rem;
+	margin-top: -1.25rem;
+}
+
+.signup-img {
+	background-image: url('../images/avatar_signUp.jpg');
+	background-size: cover;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 20%;
+	width: 55%;
+	border-radius: 50%;
+	border-style: outset;
+}
+
+.btn {
+	display: block;
+	margin-left: 60px;
+	margin-right: auto;
+	width: 100px;
+	background: #ff99b3;
+	border-radius: 25px;
+	height: 40px;
+	position: border;
+	top: 50%;
+	margin-top: 15px;
+	background-image: url('../images/background_orange.jpg');
+	background-size: cover;
+}
+.wrapper {
+	text-align: center;
+}
+
+.myInput {
+	border-radius: 10px;
+	height: 40px;
+	width: 190px;
+	margin-left: 13px;
+}
+
+.btn:hover {
+	opacity: 0.7;
+}
+
+.labels {
+	font-size: 15;
+	margin-top: 5px;
+	margin-left: 15px;
+}
+
+.labelsConfirm {
+	font-size: 15;
+	margin-top: 5px;
+	margin-left: 15px;
+	width: 200px;
+}
+
+.innerForm {
+	display: 'flex';
+	flex-direction: 'column';
+}
+
+.header {
+	text-align: center;
+}
+
+.already-user{
+	width: 200px;
+	margin-left: 55px;
+	margin-top: 15px;
+}
+
+.login-link{
+	margin-left: 10px;
+}

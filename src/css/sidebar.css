@@ -1,0 +1,9 @@
+.myStyle {
+	background-image: url('../images/nav-background.jpg');
+	background-size: auto;
+	margin-top: 64px;
+}
+
+.fa {
+ font-size: 1.75em;
+}
