@@ -57,6 +57,7 @@
     "is-reachable": "^5.0.0",
     "mongodb": "^3.6.6",
     "mongoose": "^5.11.18",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
