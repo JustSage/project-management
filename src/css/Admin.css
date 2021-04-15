@@ -1,17 +1,15 @@
 .container {
-	display: flex;
-	flex-direction: row;
-    margin-left: 10%;
-	align-items: center;
-	
+    display: flex;
+    flex-direction: row;
+    margin-left: 30%;
 }
 
 h3 {
-	margin-top: 5%;
-	margin-left: 50%;
+    margin-top: 5%;
+    margin-left: 50%;
 }
 
 .admin-form {
-	margin-top: 2%;
-	margin-left: 19%;
+    margin-top: 2%;
+    margin-left: 19%;
 }

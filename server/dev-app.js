@@ -1,19 +1,10 @@
-const path = require('path')
+const app = require('./app-source')
 const express = require('express')
-const userRouter = require('./routers/user')
-const cors = require('cors')
-const bodyParser = require('body-parser')
-
-
-const app = express()
+const path = require('path')
 const publicDirectoryPath = path.join(__dirname, '../public')
+app.use(express.static(publicDirectoryPath))
 
 const port = process.env.PORT || 3001
-
-app.use(bodyParser.json())
-app.use(express.static(publicDirectoryPath))
-app.use(userRouter)
-app.use(cors())
 
 app.get('/', (req, res) => {
 	res.sendFile('index.html')
