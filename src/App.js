@@ -8,6 +8,7 @@ import AdminRef from './components/Admin/AdminRef'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+import Packages from './components/general-components/Packages'
 
 library.add(fab, faCheckSquare, faCoffee)
 
@@ -26,6 +27,7 @@ class App extends React.Component {
 							<Route path='/signUp' component={SignUp} />
 							<Route path='/homepage' component={Homepage} />
 							<Route path='/Admin-ref' component={AdminRef} />
+							<Route path='/packages' component={Packages} />
 						</Switch>
 					</Router>
 				</div>
