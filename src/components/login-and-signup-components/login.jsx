@@ -79,7 +79,7 @@ class Login extends React.Component {
 								<h2 style={{ textAlign: 'center' }}>Log In:</h2>
 								<div className='myForm'>
 									<form onSubmit={this.handleSubmit} method='get'>
-										<label>Username: </label>
+										<label className='login-label'>Username: </label>
 										<br></br>
 										<input
 											className='myInput'
@@ -90,7 +90,7 @@ class Login extends React.Component {
 											required
 										/>
 										<br />
-										<label>Password:</label>
+										<label className='login-label'>Password:</label>
 										<input
 											className='myInput'
 											type='password'

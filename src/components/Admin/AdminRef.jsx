@@ -5,6 +5,10 @@ import Sidebar from '../general-components/sidebar'
 import { Button, Form, Container } from 'react-bootstrap'
 import '../../css/Admin.css'
 import axios from 'axios'
+
+/**
+ * Class represented only to admin and allows him to modify references in the Travel Agency data.
+ */
 class AdminRef extends Component {
 	constructor(props) {
 		super(props)
@@ -18,7 +22,9 @@ class AdminRef extends Component {
 		this.handleUsername = this.handleUsername.bind(this)
 	}
 
-	//Function Handling the submmition of the typed data to server, if it succees alert an ok message, else an error
+	/**
+	 *	Function Handling the submmition of the typed data to server, if it succees alert an ok message, else an error
+	 */
 	handleSubmit = () => {
 		event.preventDefault()
 		axios
@@ -40,12 +46,18 @@ class AdminRef extends Component {
 			})
 	}
 
-	//Function handling the selected option
+	/**
+	 * Function handling the selected option
+	 * @param {*} option
+	 */
 	handleSelectedOption = (option) => {
 		this.setState({ role: option.target.value })
 	}
 
-	//Function handling the username that was typed
+	/**
+	 * Function handling the username that was typed
+	 * @param {*} option
+	 */
 	handleUsername = (option) => {
 		this.setState({ username: option.target.value })
 	}
@@ -60,7 +72,7 @@ class AdminRef extends Component {
 						<Sidebar history={this.props.history} />
 					</div>
 				</div>
-				<h3>Admin</h3>
+				<h3 className='h-as-title'>Admin</h3>
 				<Container>
 					<Form className='admin-form' onSubmit={this.handleSubmit}>
 						<Form.Group controlId='exampleForm.ControlInput1'>
