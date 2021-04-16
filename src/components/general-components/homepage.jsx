@@ -30,7 +30,7 @@ class Homepage extends Component {
 								<Sidebar history={this.props.history}/>
 							</div>
 						</div>
-							<h3>Home Page</h3>
+							<h3 className='h-as-title'>Home Page</h3>
 				</>
 			)
 		} else {

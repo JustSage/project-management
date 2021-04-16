@@ -9,6 +9,23 @@ import { Container } from 'react-bootstrap'
  * by routing. This page includes the package-components.
  */
 class Packages extends Component {
+	constructor(props) {
+		super(props)
+		this.AddPackage = this.AddPackage.bind(this)
+	}
+
+	AddPackage = () => {
+		if (
+			sessionStorage.getItem('logged-in-role') == 'Admin' ||
+			sessionStorage.getItem('logged-in-role') == 'Travel Agent'
+		)
+			return (
+				<h5 className='h5-packages'>
+					<a href='/add-package'>Add new package!</a>
+				</h5>
+			)
+	}
+
 	render() {
 		return (
 			<>
@@ -19,7 +36,8 @@ class Packages extends Component {
 						<Sidebar history={this.props.history} />
 					</div>
 				</div>
-				<h3>Packages</h3>
+				<h3 className='h-as-title'>Packages</h3>
+				{this.AddPackage()}
 				<Container>
 					<Package />
 				</Container>

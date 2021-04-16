@@ -60,7 +60,7 @@ class AddPackage extends Component {
 							<Sidebar history={this.props.history} />
 						</div>
 					</div>
-					<h3>AddPackage</h3>
+					<h3 className='h-as-title'>AddPackage</h3>
 					<Form className='add-package-form' onSubmit={this.handleSubmit}>
 						<Form.Group>
 							<Form.Label>Package name</Form.Label>

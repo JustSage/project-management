@@ -47,7 +47,7 @@ class NavbarComponent extends React.Component {
 						</Nav.Link>
 					</Nav>
 					<Form inline>
-						<h5>
+						<h5 className='h5-nav'>
 							<FontAwesomeIcon
 								className='user-icon'
 								icon='user'
