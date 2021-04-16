@@ -2,6 +2,8 @@
 import React, { Component } from 'react'
 import NavbarComponent from '../general-components/navbar'
 import Sidebar from '../general-components/sidebar'
+import Package from './Customer/Package'
+import { Container } from 'react-bootstrap'
 /**
  * Packages page which appears as navbar tag, when click on the navbar button it'll be redirecting here
  * by routing. This page includes the package-components.
@@ -18,6 +20,9 @@ class Packages extends Component {
 					</div>
 				</div>
 				<h3>Packages</h3>
+				<Container>
+					<Package />
+				</Container>
 			</>
 		)
 	}
