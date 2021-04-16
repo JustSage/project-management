@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import NavbarComponent from '../../../navbar'
 import Sidebar from '../../../sidebar'
 import axios from 'axios'
+import { Form, Col, Row } from 'react-bootstrap'
+import '../../../../../css/addPackage.css'
 
 class AddPackage extends Component {
 	constructor(props) {
@@ -12,8 +14,8 @@ class AddPackage extends Component {
 
 	render() {
 		if (
-			sessionStorage.getItem('role') == 'Admin' ||
-			sessionStorage.getItem('role') == 'Travel Agent'
+			sessionStorage.getItem('logged-in-role') == 'Admin' ||
+			sessionStorage.getItem('logged-in-role') == 'Travel Agent'
 		) {
 			return (
 				<>
@@ -25,6 +27,21 @@ class AddPackage extends Component {
 						</div>
 					</div>
 					<h3>AddPackage</h3>
+					<Form className='add-package-form'>
+						<Form.Group>
+							<Form.Label>Email</Form.Label>
+							<Form.Control
+								plaintext
+								readOnly
+								defaultValue='email@example.com'
+							/>
+						</Form.Group>
+
+						<Form.Group>
+							<Form.Label>Password</Form.Label>
+							<Form.Control type='password' placeholder='Password' />
+						</Form.Group>
+					</Form>
 				</>
 			)
 		} else {
