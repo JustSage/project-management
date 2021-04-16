@@ -10,7 +10,26 @@ import '../../../../../css/addPackage.css'
 class AddPackage extends Component {
 	constructor(props) {
 		super(props)
+		this.state = {
+			//TODO: Set package features here
+			url: undefined,
+		}
+
+		this.handleURL = this.handleURL.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this)
 	}
+
+	/**
+	 * Function handles the entered text in url input below
+	 * @param {*} event
+	 */
+	handleURL = (event) => {
+		this.setState({
+			url: event.target.value,
+		})
+	}
+
+	handleSubmit = () => {}
 
 	render() {
 		if (
@@ -29,17 +48,20 @@ class AddPackage extends Component {
 					<h3>AddPackage</h3>
 					<Form className='add-package-form'>
 						<Form.Group>
-							<Form.Label>Email</Form.Label>
+							<Form.Label>Package name</Form.Label>
 							<Form.Control
 								plaintext
 								readOnly
-								defaultValue='email@example.com'
+								defaultValue='package name should be here' //TODO - send it with props
 							/>
 						</Form.Group>
 
 						<Form.Group>
-							<Form.Label>Password</Form.Label>
-							<Form.Control type='password' placeholder='Password' />
+							<Form.Label>Image</Form.Label>
+							<Form.Control
+								placeholder='Set image url'
+								onChange={this.handleURL}
+							/>
 						</Form.Group>
 					</Form>
 				</>
