@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../../../css/Package.css'
 // import Card from './Package-Components/Card'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { Container } from 'react-bootstrap'
 
 /* 
 	the main idea behind Package Component:
@@ -30,20 +31,22 @@ export default class Package extends Component {
 
 	render() {
 		return (
-			<div className='package'>
-				<div className='wrraper'>
-					<label className='packageLabel' htmlFor='location'>
-						Choose Location:
-					</label>
-					<input
-						onChange={this.handleLocation}
-						className='packageInput'
-						id='location'
-					/>
+			<Container>
+				<div className='package'>
+					<div className='wrraper'>
+						<label className='packageLabel' htmlFor='location'>
+							Choose Location:
+						</label>
+						<input
+							onChange={this.handleLocation}
+							className='packageInput'
+							id='location'
+						/>
+					</div>
+					<br />
+					{this.state.found != 0 ? this.state.packages : null}
 				</div>
-				<br />
-				{this.state.found != 0 ? this.state.packages : null}
-			</div>
+			</Container>
 		)
 	}
 }

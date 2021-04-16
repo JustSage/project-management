@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Container } from 'react-bootstrap'
 /* 
 	The main idea behind HomeContext Component:
 
@@ -11,6 +12,6 @@ import React, { Component } from 'react'
 */
 export default class HomeContext extends Component {
 	render() {
-		return <div>Home context</div>
+		return <Container>Home context</Container>
 	}
 }

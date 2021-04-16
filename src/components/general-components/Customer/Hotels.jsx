@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import { Container } from 'react-bootstrap'
 /*
     the idea behind this component is:
 
@@ -10,6 +10,6 @@ import React, { Component } from 'react'
 
 export default class Hotels extends Component {
 	render() {
-		return <div>Hotels</div>
+		return <Container>Hotels</Container>
 	}
 }

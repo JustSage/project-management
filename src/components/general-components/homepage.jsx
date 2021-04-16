@@ -3,6 +3,14 @@
 import React, { Component } from 'react'
 import Sidebar from './sidebar'
 import NavbarComponent from './navbar'
+import Packages from './Customer/Package'
+import HomeContext from './Customer/HomeContext'
+import Reservations from './TravelAgent/Reservations'
+import CustomersList from './TravelAgent/CustomersList'
+import Attractions from './Customer/Attractions'
+import Car from './Customer/Car'
+import Flights from './Customer/Flights'
+import Hotels from './Customer/Hotels'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import {
@@ -19,26 +27,60 @@ class Homepage extends Component {
 	constructor(props) {
 		super(props)
 	}
+	state = {
+		bar: 'Flights', // defatult
+	}
+
+	callBackSideNav = (data) => {
+		console.log(`homepage: ${data}`)
+		this.setState({ bar: data })
+	}
+
+	chooseContext = () => {
+		console.log(`i am: ${this.state.bar}`)
+
+		if (this.state.bar === '') {
+			return <HomeContext />
+		} else if (this.state.bar === 'Packages') {
+			return <Packages />
+		} else if (this.state.bar === 'Reservations') {
+			return <Reservations />
+		} else if (this.state.bar === 'CustomersList') {
+			return <CustomersList />
+		} else if (this.state.bar === 'Attractions') {
+			return <Attractions />
+		} else if (this.state.bar === 'Rental Cars') {
+			return <Car />
+		} else if (this.state.bar === 'Flights') {
+			return <Flights />
+		} else if (this.state.bar === 'Hotels') {
+			return <Hotels />
+		}
+	}
 
 	render() {
 		if (sessionStorage.getItem('logged-in-username')) {
 			return (
 				<>
 					<NavbarComponent history={this.props.history} />
-						<div className='row hp-divs'>
-							<div className='col-xs-12'>
-								<Sidebar history={this.props.history}/>
-							</div>
+					<div className='row hp-divs'>
+						<div className='col-xs-12'>
+							<Sidebar
+								callBackSideNav={this.callBackSideNav}
+								history={this.props.history}
+							/>
 						</div>
-							<h3 className='h-as-title'>Home Page</h3>
+					</div>
+					<div style={{ marginTop: '10%' }} className='col-xs-12 hp-divs context'>
+						{this.chooseContext()}
+					</div>
 				</>
 			)
 		} else {
 			return (
 				<>
 					<h2>
-						You have no permission to visit this page, please{' '}
-						<a href='/'>Log-in</a>
+						You have no permission to visit this page, please <a href='/'>Log-in</a>
 					</h2>
 				</>
 			)
