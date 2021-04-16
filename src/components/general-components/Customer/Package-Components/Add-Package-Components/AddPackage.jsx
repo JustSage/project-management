@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import NavbarComponent from '../../../navbar'
 import Sidebar from '../../../sidebar'
 import axios from 'axios'
-import { Form, Col, Row } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import '../../../../../css/addPackage.css'
 
 class AddPackage extends Component {
@@ -29,7 +29,22 @@ class AddPackage extends Component {
 		})
 	}
 
-	handleSubmit = () => {}
+	handleSubmit = () => {
+		event.preventDefault()
+		axios
+			.post('/add-new-package', {
+				name: '',
+				description: '',
+				url: this.state.url,
+			})
+			.then((response) => {
+				alert(response.data.message)
+				this.props.history.push('/packages')
+			})
+			.catch((error) => {
+				console.log(error.response.data.message)
+			})
+	}
 
 	render() {
 		if (
@@ -46,7 +61,7 @@ class AddPackage extends Component {
 						</div>
 					</div>
 					<h3>AddPackage</h3>
-					<Form className='add-package-form'>
+					<Form className='add-package-form' onSubmit={this.handleSubmit}>
 						<Form.Group>
 							<Form.Label>Package name</Form.Label>
 							<Form.Control
@@ -63,6 +78,9 @@ class AddPackage extends Component {
 								onChange={this.handleURL}
 							/>
 						</Form.Group>
+						<Button type='submit' style={{ border: 'none' }}>
+							Submit!
+						</Button>
 					</Form>
 				</>
 			)
