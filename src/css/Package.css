@@ -1,7 +1,7 @@
 .package {
 	width: 610px;
 	height: 5rem;
-	margin-left: -140px;
+	margin-top: 1%;
 	background-color: rgb(253, 197, 113);
 	position: relative;
 	border-radius: 25px;
@@ -24,4 +24,9 @@
 
 .packageLabel {
 	width: 232px;
+}
+
+.h5-packages {
+	margin-top: 1%;
+	margin-left: 48%;
 }

@@ -31,12 +31,23 @@ class NavbarComponent extends React.Component {
 				<Navbar variant='dark' className='navbar navbar-custom'>
 					<img src={logo} alt='' className='img_logo' />
 					<Nav className='mr-auto'>
-						<Nav.Link className='navLink'>Home</Nav.Link>
+						<Nav.Link
+							className='navLink'
+							onClick={() => this.props.history.push('homepage')}
+						>
+							Home
+						</Nav.Link>
 						<Nav.Link className='navLink'>Features</Nav.Link>
 						<Nav.Link className='navLink'>Pricing</Nav.Link>
+						<Nav.Link
+							className='navLink'
+							onClick={() => this.props.history.push('packages')}
+						>
+							Packages
+						</Nav.Link>
 					</Nav>
 					<Form inline>
-						<h5>
+						<h5 className='h5-nav'>
 							<FontAwesomeIcon
 								className='user-icon'
 								icon='user'

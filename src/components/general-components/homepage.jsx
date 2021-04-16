@@ -60,7 +60,6 @@ class Homepage extends Component {
 			return (
 				<>
 					<NavbarComponent history={this.props.history} />
-					<div className='container'>
 						<div className='row hp-divs'>
 							<div className='col-xs-12'>
 								<Sidebar
@@ -69,10 +68,7 @@ class Homepage extends Component {
 								/>
 							</div>
 						</div>
-						<div style={{ marginTop: '10%' }} className='col-xs-12 hp-divs context'>
-							{this.chooseContext()}
-						</div>
-					</div>
+							<h3 className='h-as-title'>Home Page</h3>
 				</>
 			)
 		} else {
