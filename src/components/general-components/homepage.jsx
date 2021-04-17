@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import Sidebar from './sidebar'
 import NavbarComponent from './navbar'
-import Packages from './Customer/Package'
+import Packages from './Customer/Packages'
 import HomeContext from './Customer/HomeContext'
 import Reservations from './TravelAgent/Reservations'
 import CustomersList from './TravelAgent/CustomersList'
