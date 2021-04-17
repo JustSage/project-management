@@ -1,5 +1,6 @@
 const express = require('express')
 const router = new express.Router()
+const validator = require('validator')
 const { MongoClient } = require('mongodb')
 
 router.post('/add-new-package', async (req, res) => {
@@ -19,12 +20,17 @@ router.post('/add-new-package', async (req, res) => {
 			var db = client.db(process.env.DATABASE_NAME)
 
 			try {
-				//TODO: Add the addittinal details here
+				//TODO: Add the addittional details here
 				//
 				//
-				//s
+				//
 
-				//Insert the pkg which his details sent in body with post req
+				//Check if url is valid
+				if (!validator.isURL(pkg.url, { protocols: ['http', 'https'] })) {
+					return res.status(500).send({ message: 'URL is not valid!' })
+				}
+
+				//Insert the package to the DB
 				await db.collection('packages').insertOne(pkg)
 
 				res.send({ message: `Package ${pkg.name} created successfully.` })
