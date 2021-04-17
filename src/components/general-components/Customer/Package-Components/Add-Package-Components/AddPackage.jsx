@@ -7,6 +7,9 @@ import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
 import '../../../../../css/addPackage.css'
 
+/**
+ * Class target is to show the add package page and handles an appropriate http request In front of the server
+ */
 class AddPackage extends Component {
 	constructor(props) {
 		super(props)
@@ -30,6 +33,10 @@ class AddPackage extends Component {
 		})
 	}
 
+	/**
+	 * handles url link, shows up only if url value isn't empty
+	 * @returns link to typed url
+	 */
 	handleURLLink = () => {
 		if (this.state.url !== '')
 			return (
@@ -39,6 +46,9 @@ class AddPackage extends Component {
 			)
 	}
 
+	/**
+	 * Handles the submit in the form below
+	 */
 	handleSubmit = () => {
 		event.preventDefault()
 		axios
