@@ -10,10 +10,7 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm install
-            - run: 
-                name: npm run test
-                no_output_timeout: 30s
-                command: npm run test
+            - run: npm run test
             - run: npm run lint
             - run: npm run format
 workflows:
