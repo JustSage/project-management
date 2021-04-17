@@ -13,7 +13,6 @@ const roleBars = {
 class Sidebar extends React.Component {
 	constructor(props) {
 		super(props)
-		this.isAdmin = this.isAdmin.bind(this)
 	}
 
 	state = {
@@ -25,7 +24,7 @@ class Sidebar extends React.Component {
 			return (
 				<NavItem
 					eventKey='charts/admin'
-					onClick={() => this.props.history.push('/Admin-ref')}
+					onClick={() => this.props.callBackSideNav('Admin Referecnes')}
 				>
 					<NavIcon>
 						<i className='fa fa-fw fa-home' />
@@ -33,7 +32,7 @@ class Sidebar extends React.Component {
 					<NavText>Admin References</NavText>
 				</NavItem>
 			)
-		else if (sessionStorage.getItem('logged-in-role') === 'Travel Agent') {
+		else if (sessionStorage.getItem('logged-in-role') == 'Travel Agent') {
 			const charts = roleBars.travelAgent.map((element) => {
 				return (
 					<NavItem
@@ -83,18 +82,6 @@ class Sidebar extends React.Component {
 			)
 		})
 		return userBars
-	}
-
-	isAdmin = () => {
-		if (sessionStorage.getItem('logged-in-role') == 'Admin')
-			return (
-				<NavItem
-					eventKey='charts/admin'
-					onClick={() => this.props.history.push('/Admin-ref')}
-				>
-					<NavText>Admin References</NavText>
-				</NavItem>
-			)
 	}
 
 	render() {

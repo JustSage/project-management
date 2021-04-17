@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import NavbarComponent from '../general-components/navbar'
@@ -65,13 +66,13 @@ class AdminRef extends Component {
 	render() {
 		return (
 			<>
-				<NavbarComponent history={this.props.history} />
+				{/* <NavbarComponent history={this.props.history} />
 
 				<div className='row hp-divs'>
 					<div className='col-xs-12'>
 						<Sidebar history={this.props.history} />
 					</div>
-				</div>
+				</div> */}
 				<h3 className='h-as-title'>Admin</h3>
 				<Container>
 					<Form className='admin-form' onSubmit={this.handleSubmit}>

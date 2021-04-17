@@ -22,6 +22,7 @@ class NavbarComponent extends React.Component {
 		 * Removes user session after logging out and redirects to login-page ('/')
 		 */
 		sessionStorage.removeItem('logged-in-username')
+		sessionStorage.removeItem('logged-in-role')
 		this.props.history.push('/')
 	}
 

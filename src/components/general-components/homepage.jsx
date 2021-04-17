@@ -20,6 +20,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../css/homepage.css'
+import AdminRef from '../Admin/AdminRef'
 
 library.add(fab, faCheckSquare, faCoffee, faUser)
 
@@ -55,6 +56,8 @@ class Homepage extends Component {
 			return <Flights />
 		} else if (this.state.bar === 'Hotels') {
 			return <Hotels />
+		} else if (this.state.bar === 'Admin Referecnes') {
+		return <AdminRef />
 		}
 	}
 
