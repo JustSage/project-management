@@ -42,6 +42,7 @@ class AddPackage extends Component {
 				this.props.history.push('/packages')
 			})
 			.catch((error) => {
+				alert(error.response.data.message)
 				console.log(error.response.data.message)
 			})
 	}
@@ -76,6 +77,7 @@ class AddPackage extends Component {
 							<Form.Control
 								placeholder='Set image url'
 								onChange={this.handleURL}
+								required
 							/>
 						</Form.Group>
 						<Button type='submit' style={{ border: 'none' }}>
