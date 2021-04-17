@@ -12,11 +12,12 @@ class AddPackage extends Component {
 		super(props)
 		this.state = {
 			//TODO: Set package features here
-			url: undefined,
+			url: '',
 		}
 
 		this.handleURL = this.handleURL.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleURLLink = this.handleURLLink.bind(this)
 	}
 
 	/**
@@ -27,6 +28,15 @@ class AddPackage extends Component {
 		this.setState({
 			url: event.target.value,
 		})
+	}
+
+	handleURLLink = () => {
+		if (this.state.url !== '')
+			return (
+				<a href={this.state.url} target='__blank'>
+					Check picture url
+				</a>
+			)
 	}
 
 	handleSubmit = () => {
@@ -79,6 +89,7 @@ class AddPackage extends Component {
 								onChange={this.handleURL}
 								required
 							/>
+							{this.handleURLLink()}
 						</Form.Group>
 						<Button type='submit' style={{ border: 'none' }}>
 							Submit!
