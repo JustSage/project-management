@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 const request = require('supertest')
 const app = require('../server/app-source')
-// const { MongoClient } = require('mongodb')
 
 test('Signup as a new user with appropriate details.', async () => {
 	await request(app)
