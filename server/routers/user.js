@@ -21,6 +21,8 @@ router.post('/sign-up', async (req, res) => {
 		{
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
+			connectTimeoutMS: 50000,
+			serverSelectionTimeoutMS: 50000,
 		},
 		async (error, client) => {
 			if (error) {
@@ -59,6 +61,8 @@ router.post('/login', async (req, res) => {
 		{
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
+			connectTimeoutMS: 50000,
+			serverSelectionTimeoutMS: 50000,
 		},
 		async (error, client) => {
 			if (error) {
