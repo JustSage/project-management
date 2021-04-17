@@ -40,12 +40,12 @@ class NavbarComponent extends React.Component {
 						</Nav.Link>
 						<Nav.Link className='navLink'>Features</Nav.Link>
 						<Nav.Link className='navLink'>Pricing</Nav.Link>
-						<Nav.Link
+						{/* <Nav.Link
 							className='navLink'
 							onClick={() => this.props.history.push('packages')}
 						>
 							Packages
-						</Nav.Link>
+						</Nav.Link> */}
 					</Nav>
 					<Form inline>
 						<h5 className='h5-nav'>

@@ -83,7 +83,6 @@ class Sidebar extends React.Component {
 		})
 		return userBars
 	}
-
 	render() {
 		return (
 			<SideNav className='myStyle'>

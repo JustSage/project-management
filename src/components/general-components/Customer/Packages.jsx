@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import NavbarComponent from '../general-components/navbar'
-import Sidebar from '../general-components/sidebar'
-import Package from './Customer/Package'
+import NavbarComponent from '../navbar'
+import Sidebar from '../sidebar'
+import Package from './Package'
 import { Container } from 'react-bootstrap'
 /**
  * Packages page which appears as navbar tag, when click on the navbar button it'll be redirecting here
