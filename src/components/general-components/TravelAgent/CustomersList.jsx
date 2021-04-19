@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Modal, Button } from 'react-bootstrap'
-import axios from 'axios'
+import { Modal, Button, Container } from 'react-bootstrap'
+// import axios from 'axios'
+
 /* eslint-disable react/prop-types */
 
 /**
@@ -13,16 +14,18 @@ import axios from 'axios'
 class CustomersList extends Component {
 	constructor(props) {
 		super(props)
-		axios
-			.get('/customers', { headers: { 'content-type': 'application/json' } })
-			.then((response) => {
-				console.log(response)
-			})
-			.catch((error) => {
-				console.log(error.response)
-				alert(error.response.data.message)
-			})
+		// axios
+		// 	.get('/customers', { headers: { 'content-type': 'application/json' } })
+		// 	.then((response) => {
+		// 		console.log(response)
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log(error.response)
+		// 		alert(error.response.data.message)
+		// 	})
+	}
 
+	displayModeal(props) {
 		return (
 			<Modal
 				{...props}
@@ -50,16 +53,17 @@ class CustomersList extends Component {
 		)
 	}
 	render() {
-		const [modalShow, setModalShow] = React.useState(false)
+		// const [modalShow, setModalShow] = React.useState(false)
 		return (
-			<>
-				<Button variant='primary' onClick={() => setModalShow(true)}>
+			<Container>
+				<h3>hello nigga</h3>
+				{/* <Button variant='primary' onClick={() => setModalShow(true)}>
 					{' '}
 					Launch vertically centered modal{' '}
-				</Button>
+				</Button> */}
 
-				<CustomersList show={modalShow} onHide={() => setModalShow(false)} />
-			</>
+				{/* <CustomersList show={modalShow} onHide={() => setModalShow(false)} /> */}
+			</Container>
 		)
 	}
 }
