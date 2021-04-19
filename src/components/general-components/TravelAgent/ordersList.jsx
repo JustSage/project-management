@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { response } from 'express'
+// import { response } from 'express'
 import React, { Component } from 'react'
 /**
- * Component represents the orders which was made by customers. 
+ * Component represents the orders which was made by customers.
  * Orders will represented with their full details and includes sorting options that will be eased the users to inspect the data.
  */
 export default class ordersList extends Component {

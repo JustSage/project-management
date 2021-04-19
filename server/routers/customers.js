@@ -5,7 +5,7 @@ const validator = require('validator')
 // const db = require('../database/mongoclient')
 const { MongoClient } = require('mongodb')
 
-router.get('/customers'),
+router.post('/users'),
 	async (req, res) => {
 		//Connect to mongodb
 		MongoClient.connect(process.env.MONGODB_URL, async (error, client) => {

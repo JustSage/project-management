@@ -57,7 +57,7 @@ class Homepage extends Component {
 		} else if (this.state.bar === 'Hotels') {
 			return <Hotels />
 		} else if (this.state.bar === 'Admin Referecnes') {
-		return <AdminRef />
+			return <AdminRef />
 		}
 	}
 
