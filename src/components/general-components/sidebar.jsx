@@ -6,7 +6,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css'
 import '../../css/sidebar.css'
 // import propTypes from 'prop-types'
 const roleBars = {
-	travelAgent: ['Reservations', 'Customers '],
+	travelAgent: ['Reservations', 'CustomersList '],
 	admin: ['Test1', 'Test2', 'Test3'],
 }
 
