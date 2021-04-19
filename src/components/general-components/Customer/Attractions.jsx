@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Container } from 'react-bootstrap'
+
 /*
     the idea behind this component is:
 
@@ -8,6 +10,6 @@ import React, { Component } from 'react'
 */
 export default class Attractions extends Component {
 	render() {
-		return <div>Attractions</div>
+		return <Container>Attractions</Container>
 	}
 }

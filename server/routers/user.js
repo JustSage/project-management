@@ -18,7 +18,12 @@ router.post('/sign-up', async (req, res) => {
 	//Connect to mongodb to save new user in db
 	MongoClient.connect(
 		process.env.MONGODB_URL,
-		{ useNewUrlParser: true, useUnifiedTopology: true },
+		{
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+			connectTimeoutMS: 50000,
+			serverSelectionTimeoutMS: 50000,
+		},
 		async (error, client) => {
 			if (error) {
 				//return to print and break function
@@ -52,7 +57,12 @@ router.post('/login', async (req, res) => {
 	const user = { username: req.body.username, password: req.body.password }
 	MongoClient.connect(
 		process.env.MONGODB_URL,
-		{ useNewUrlParser: true, useUnifiedTopology: true },
+		{
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+			connectTimeoutMS: 50000,
+			serverSelectionTimeoutMS: 50000,
+		},
 		async (error, client) => {
 			if (error) {
 				//return to print and break function

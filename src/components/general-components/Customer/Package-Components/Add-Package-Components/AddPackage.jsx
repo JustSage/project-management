@@ -7,16 +7,20 @@ import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
 import '../../../../../css/addPackage.css'
 
+/**
+ * Class target is to show the add package page and handles an appropriate http request In front of the server
+ */
 class AddPackage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			//TODO: Set package features here
-			url: undefined,
+			url: '',
 		}
 
 		this.handleURL = this.handleURL.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleURLLink = this.handleURLLink.bind(this)
 	}
 
 	/**
@@ -29,6 +33,22 @@ class AddPackage extends Component {
 		})
 	}
 
+	/**
+	 * handles url link, shows up only if url value isn't empty
+	 * @returns link to typed url
+	 */
+	handleURLLink = () => {
+		if (this.state.url !== '')
+			return (
+				<a href={this.state.url} target='__blank'>
+					Check picture url
+				</a>
+			)
+	}
+
+	/**
+	 * Handles the submit in the form below
+	 */
 	handleSubmit = () => {
 		event.preventDefault()
 		axios
@@ -42,6 +62,7 @@ class AddPackage extends Component {
 				this.props.history.push('/packages')
 			})
 			.catch((error) => {
+				alert(error.response.data.message)
 				console.log(error.response.data.message)
 			})
 	}
@@ -76,7 +97,9 @@ class AddPackage extends Component {
 							<Form.Control
 								placeholder='Set image url'
 								onChange={this.handleURL}
+								required
 							/>
+							{this.handleURLLink()}
 						</Form.Group>
 						<Button type='submit' style={{ border: 'none' }}>
 							Submit!

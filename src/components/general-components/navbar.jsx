@@ -22,6 +22,7 @@ class NavbarComponent extends React.Component {
 		 * Removes user session after logging out and redirects to login-page ('/')
 		 */
 		sessionStorage.removeItem('logged-in-username')
+		sessionStorage.removeItem('logged-in-role')
 		this.props.history.push('/')
 	}
 
@@ -39,12 +40,12 @@ class NavbarComponent extends React.Component {
 						</Nav.Link>
 						<Nav.Link className='navLink'>Features</Nav.Link>
 						<Nav.Link className='navLink'>Pricing</Nav.Link>
-						<Nav.Link
+						{/* <Nav.Link
 							className='navLink'
 							onClick={() => this.props.history.push('packages')}
 						>
 							Packages
-						</Nav.Link>
+						</Nav.Link> */}
 					</Nav>
 					<Form inline>
 						<h5 className='h5-nav'>
