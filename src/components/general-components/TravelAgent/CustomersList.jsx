@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Modal, Button, Container } from 'react-bootstrap'
-// import axios from 'axios'
+import axios from 'axios'
 
 /* eslint-disable react/prop-types */
 
@@ -14,15 +14,15 @@ import { Modal, Button, Container } from 'react-bootstrap'
 class CustomersList extends Component {
 	constructor(props) {
 		super(props)
-		// axios
-		// 	.get('/customers', { headers: { 'content-type': 'application/json' } })
-		// 	.then((response) => {
-		// 		console.log(response)
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error.response)
-		// 		alert(error.response.data.message)
-		// 	})
+		axios
+			.get('users', { headers: { 'content-type': 'application/json' } })
+			.then((response) => {
+				console.log(response)
+			})
+			.catch((error) => {
+				console.log(error.response)
+				alert(error.response.data.message)
+			})
 	}
 
 	displayModeal(props) {
