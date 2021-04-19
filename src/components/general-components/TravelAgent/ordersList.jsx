@@ -6,8 +6,8 @@ import React, { Component } from 'react'
 
     this component will be the base for the requrement : "status: "in process/approved/canceled."
 */
-export default class Reservations extends Component {
+export default class ordersList extends Component {
 	render() {
-		return <div>Reservations</div>
+		return <div>Orders</div>
 	}
 }
