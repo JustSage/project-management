@@ -34,8 +34,10 @@ router.post('/sign-up', async (req, res) => {
 			var db = client.db(process.env.DATABASE_NAME)
 
 			try {
-				if (await db.collection('users').findOne({username : user.username})){
-					return res.status(409).send({message : "User already exists in the database!"})
+				if (await db.collection('users').findOne({ username: user.username })) {
+					return res
+						.status(409)
+						.send({ message: 'User already exists in the database!' })
 				}
 
 				//Delete password confirmation before saving the user in db

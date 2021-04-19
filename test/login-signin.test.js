@@ -2,7 +2,7 @@
 const request = require('supertest')
 const app = require('../server/app-source')
 
-test('Signup as a new user with appropriate details.', async () => {
+test('Signup as a current user, so it will return 409 status code', async () => {
 	await request(app)
 		.post('/sign-up')
 		.send({
@@ -12,7 +12,7 @@ test('Signup as a new user with appropriate details.', async () => {
 			email: 'test@test.com',
 			role: 'Customer',
 		})
-		.expect(200)
+		.expect(409)
 })
 
 test('Access the homepage as a user (test user which created above)', async () => {

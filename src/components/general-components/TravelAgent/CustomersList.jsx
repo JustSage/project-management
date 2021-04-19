@@ -65,3 +65,4 @@ class CustomersList extends Component {
 }
 
 export default CustomersList
+

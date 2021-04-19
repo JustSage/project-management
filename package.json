@@ -57,6 +57,7 @@
 		"express": "^4.17.1",
 		"is-reachable": "^5.0.0",
 		"mongodb": "^3.6.6",
+		"mongodb-client-encryption": "^1.2.3",
 		"mongoose": "^5.11.18",
 		"prop-types": "^15.7.2",
 		"react": "^17.0.1",
