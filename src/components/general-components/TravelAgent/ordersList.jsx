@@ -54,11 +54,11 @@ export default class OrdersList extends Component {
 							</tr>
 						</thead>
 						<tbody>
-							{this.state.orders.map((h, i = 1) => {
+							{this.state.orders.map((h, i) => {
 								return (
-									<Fragment key={i++}>
+									<Fragment key={i}>
 										<tr>
-											<td>{i}</td>
+											<td>{++i}</td>
 											<td>{h['name']}</td>
 											<td>{h['date']}</td>
 											<td>{h['package number']}</td>
