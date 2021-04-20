@@ -70,3 +70,16 @@
 	margin-top: 10;
 	font-size: 17px;
 }
+
+.search-input{
+	border-radius: 25px;
+	box-shadow: 2px 3px 3px black;
+	margin-right:57%;
+	height: 80%;
+}
+
+.search-input:focus{
+	outline:none;
+	box-shadow: 2px 3px 3px black !important;
+	border-color: red !important;
+}
