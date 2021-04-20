@@ -5,6 +5,7 @@
 	background-color: rgb(253, 197, 113);
 	position: relative;
 	border-radius: 25px;
+	margin-left: 34%;
 }
 
 .packageInput {
@@ -29,4 +30,8 @@
 .h5-packages {
 	margin-top: 1%;
 	margin-left: 48%;
+}
+
+.package-container {
+	margin-left: 50%;
 }
