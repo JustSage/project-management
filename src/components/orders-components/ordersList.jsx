@@ -34,6 +34,7 @@ export default class OrdersList extends Component {
 				alert(error.response.data.message)
 			})
 	}
+
 	render() {
 		if (this.state.tableTitles === undefined) {
 			return <div>Loading...</div>
@@ -47,7 +48,9 @@ export default class OrdersList extends Component {
 								{this.state.tableTitles.map((h, i) => {
 									return (
 										<Fragment key={i}>
-											<th>{h}</th>
+											<th>
+												{h} <button className='sort-by-btn'>v</button>
+											</th>
 										</Fragment>
 									)
 								})}
