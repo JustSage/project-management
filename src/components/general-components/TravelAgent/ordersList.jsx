@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Table } from 'react-bootstrap'
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 /**
  * Component represents the orders which was made by customers.
  * Orders will represented with their full details and includes sorting options that will be eased the users to inspect the data.
@@ -11,12 +11,22 @@ export default class OrdersList extends Component {
 		super(props)
 		this.state = {
 			orders: [],
+			tableTitles: undefined,
 		}
 		axios
-			.get('/orders', { headers: { 'content-type': 'application/json' } })
+			.get('/orders')
 			.then((response) => {
 				console.log(response.data)
-				this.state.orders.push(response.data.orders)
+				//Get fields name
+				var arr = Object.keys(response.data[0]).slice(1)
+				arr.reverse()
+				arr.push('#')
+				arr.reverse()
+				this.setState({
+					tableTitles: arr,
+					orders: response.data,
+				})
+				console.log(this.state.tableTitles, this.state.orders)
 			})
 			.catch((error) => {
 				console.log(error.response.data.message)
@@ -24,39 +34,52 @@ export default class OrdersList extends Component {
 			})
 	}
 	render() {
-		return (
-			<>
-				<div>Orders</div>
-				<Table striped bordered hover size='sm'>
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>First Name</th>
-							<th>Last Name</th>
-							<th>Username</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Jacob</td>
-							<td>Thornton</td>
-							<td>@fat</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td colSpan='2'>Larry the Bird</td>
-							<td>@twitter</td>
-						</tr>
-					</tbody>
-				</Table>
-			</>
-		)
+		if (this.state.tableTitles === undefined) {
+			return <div>Loading...</div>
+		} else
+			return (
+				<>
+					<div>Orders</div>
+					<Table striped bordered hover size='sm'>
+						<thead>
+							<tr>
+								{this.state.tableTitles.map((h, i) => {
+									return (
+										<Fragment key={i}>
+											<th>{h}</th>
+										</Fragment>
+									)
+								})}
+							</tr>
+						</thead>
+						<tbody>
+							{this.state.orders.map((h, i = 1) => {
+								return (
+									<Fragment key={i++}>
+										<tr>
+											<td>{i}</td>
+											<td>{h['name']}</td>
+											<td>{h['date']}</td>
+											<td>{h['package number']}</td>
+										</tr>
+									</Fragment>
+								)
+							})}
+							{/* <tr>
+								<td>1</td>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Jacob</td>
+								<td>Thornton</td>
+								<td>@fat</td>
+							</tr> */}
+						</tbody>
+					</Table>
+				</>
+			)
 	}
 }
