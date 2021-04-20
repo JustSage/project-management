@@ -6,15 +6,16 @@ import React, { Component } from 'react'
  * Orders will represented with their full details and includes sorting options that will be eased the users to inspect the data.
  *
  */
-export default class ordersList extends Component {
+export default class OrdersList extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			orders: [],
 		}
 		axios
-			.get('/orders')
+			.get('/orders', { headers: { 'content-type': 'application/json' } })
 			.then((response) => {
+				console.log(response.data)
 				this.state.orders.push(response.data.orders)
 			})
 			.catch((error) => {
