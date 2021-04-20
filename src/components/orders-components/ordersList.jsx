@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Table } from 'react-bootstrap'
 import React, { Component, Fragment } from 'react'
-import '../../../css/orders.css'
+import '../../css/orders.css'
 /**
  * Component represents the orders which was made by customers.
  * Orders will represented with their full details and includes sorting options that will be eased the users to inspect the data.
