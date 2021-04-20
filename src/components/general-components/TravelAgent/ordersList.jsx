@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Table } from 'react-bootstrap'
 import React, { Component, Fragment } from 'react'
+import '../../../css/orders.css'
 /**
  * Component represents the orders which was made by customers.
  * Orders will represented with their full details and includes sorting options that will be eased the users to inspect the data.
@@ -40,7 +41,7 @@ export default class OrdersList extends Component {
 			return (
 				<>
 					<div>Orders</div>
-					<Table striped bordered hover size='sm'>
+					<Table striped bordered hover size='sm' className='orders-table'>
 						<thead>
 							<tr>
 								{this.state.tableTitles.map((h, i) => {
@@ -65,18 +66,6 @@ export default class OrdersList extends Component {
 									</Fragment>
 								)
 							})}
-							{/* <tr>
-								<td>1</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-							</tr> */}
 						</tbody>
 					</Table>
 				</>
