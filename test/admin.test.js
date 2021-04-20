@@ -1,2 +1,13 @@
 /* eslint-disable no-undef */
-test('Hello', () => {})
+const request = require('supertest')
+const app = require('../server/app-source')
+
+test('Change user role', async () => {
+	await request(app)
+		.post('/modify-role')
+		.send({
+			newRole: 'Admin',
+			username: 'test',
+		})
+		.expect(200)
+})
