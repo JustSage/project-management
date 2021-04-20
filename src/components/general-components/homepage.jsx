@@ -62,7 +62,6 @@ class Homepage extends Component {
 	}
 
 	render() {
-		if (sessionStorage.getItem('logged-in-username')) {
 			return (
 				<>
 					<NavbarComponent history={this.props.history} />
@@ -78,17 +77,7 @@ class Homepage extends Component {
 						{this.chooseContext()}
 					</div>
 				</>
-			)
-		} else {
-			return (
-				<>
-					<h2>
-						You have no permission to visit this page, please <a href='/'>Log-in</a>
-					</h2>
-				</>
-			)
-		}
+			)}
 	}
-}
 
 export default Homepage
