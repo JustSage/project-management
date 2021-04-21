@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
+import '../../css/Package.css'
+// import Card from './Package-Components/Card'
+import 'bootstrap/dist/css/bootstrap.min.css'
 // import Package from './package'
 // import { Container } from 'react-bootstrap'
 /**
@@ -52,7 +55,6 @@ class Packages extends Component {
 						/>
 					</div>
 					<br />
-					{this.state.found != 0 ? this.state.packages : null}
 				</div>
 			</>
 		)

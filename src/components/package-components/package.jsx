@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import '../../css/Package.css'
-// import Card from './Package-Components/Card'
-import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 /* 
 	the main idea behind Package Component:
@@ -21,6 +19,6 @@ export default class Package extends Component {
 	}
 
 	render() {
-		return <h1>package</h1>
+		return 
 	}
 }
