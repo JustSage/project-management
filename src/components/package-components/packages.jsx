@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import Package from './package'
+// import Package from './package'
 // import { Container } from 'react-bootstrap'
 /**
  * Packages page which appears as navbar tag, when click on the navbar button it'll be redirecting here
@@ -23,13 +23,37 @@ class Packages extends Component {
 				</h5>
 			)
 	}
+	handleLocation = (event) => {
+		event.preventDefault()
+		this.setState({ location: event.target.value })
+
+		// at this part we can make a search in the DB to look for a match -> if we found a match -> add to packages .
+		// after we finished with the db check, we need to pass the info we got to the <Card /> component:
+
+		// like this: <Card: locationName= {} context = {} image = {} />
+
+		// after this we will map our elements and display them as jsx.
+	}
 
 	render() {
 		return (
 			<>
 				<h3 className='h-as-title'>Packages</h3>
 				{this.AddPackage()}
-				<Package />
+				<div className='package'>
+					<div className='wrraper'>
+						<label className='packageLabel' htmlFor='location'>
+							Choose Location:
+						</label>
+						<input
+							onChange={this.handleLocation}
+							className='packageInput'
+							id='location'
+						/>
+					</div>
+					<br />
+					{this.state.found != 0 ? this.state.packages : null}
+				</div>
 			</>
 		)
 	}
