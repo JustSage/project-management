@@ -40,15 +40,23 @@ export default class OrdersList extends Component {
 	 * @param {} headerName
 	 */
 	sort = (headerName) => {
-		var temp = this.state.orders.sort(function (a, b) {
-			if (a[headerName] < b[headerName]) {
-				return -1
-			}
-			if (a[headerName] > b[headerName]) {
-				return 1
-			}
-			return 0
-		})
+		var temp
+		//Sort from must recent to earlier if sort by date selected
+		if (headerName == 'date') {
+			temp = this.state.orders.sort(function (a, b) {
+				return new Date(b[headerName]) - new Date(a[headerName])
+			})
+		} else {
+			temp = this.state.orders.sort(function (a, b) {
+				if (a[headerName] < b[headerName]) {
+					return -1
+				}
+				if (a[headerName] > b[headerName]) {
+					return 1
+				}
+				return 0
+			})
+		}
 		console.log(temp)
 		this.setState({ orders: temp })
 	}

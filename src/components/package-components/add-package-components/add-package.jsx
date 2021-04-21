@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import NavbarComponent from '../../../navbar'
-import Sidebar from '../../../sidebar'
+import Sidebar from '../../general-components/sidebar'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
-import '../../../../../css/addPackage.css'
+import '../../../css/addPackage.css'
 
 /**
  * Class target is to show the add package page and handles an appropriate http request In front of the server
@@ -21,6 +20,7 @@ class AddPackage extends Component {
 		this.handleURL = this.handleURL.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleURLLink = this.handleURLLink.bind(this)
+		this.handleFile = this.handleFile.bind(this)
 	}
 
 	/**
@@ -30,6 +30,20 @@ class AddPackage extends Component {
 	handleURL = (event) => {
 		this.setState({
 			url: event.target.value,
+		})
+	}
+
+	/**
+	 * Function will set url to the uploaded message
+	 * This will save the pictures localy only, when tried to load it, it'll not shown.
+	 * @param {*} event
+	 */
+	handleFile = (event) => {
+		const objectURL = URL.createObjectURL(
+			document.querySelector('#image').files[0]
+		)
+		this.setState({
+			url: objectURL,
 		})
 	}
 
@@ -74,8 +88,6 @@ class AddPackage extends Component {
 		) {
 			return (
 				<>
-					<NavbarComponent history={this.props.history} />
-
 					<div className='row hp-divs'>
 						<div className='col-xs-12'>
 							<Sidebar history={this.props.history} />
@@ -94,8 +106,16 @@ class AddPackage extends Component {
 
 						<Form.Group>
 							<Form.Label>Image</Form.Label>
+							<Form.Group>
+								<Form.File
+									id='image'
+									label='Choose file is not working at the moment'
+									accept='image/*'
+									onChange={this.handleFile}
+								/>
+							</Form.Group>
 							<Form.Control
-								placeholder='Set image url'
+								placeholder='Or set image url'
 								onChange={this.handleURL}
 								required
 							/>
