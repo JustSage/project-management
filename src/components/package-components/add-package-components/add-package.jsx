@@ -13,7 +13,10 @@ class AddPackage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			//TODO: Set package features here
+			name: '',
+			description: '',
+			quantity: '',
+			price: '',
 			url: '',
 		}
 
@@ -21,6 +24,10 @@ class AddPackage extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleURLLink = this.handleURLLink.bind(this)
 		this.handleFile = this.handleFile.bind(this)
+		this.handleName = this.handleName.bind(this)
+		this.handleDescription = this.handleDescription.bind(this)
+		this.handleQuantity = this.handleQuantity.bind(this)
+		this.handlePrice = this.handlePrice.bind(this)
 	}
 
 	/**
@@ -30,6 +37,46 @@ class AddPackage extends Component {
 	handleURL = (event) => {
 		this.setState({
 			url: event.target.value,
+		})
+	}
+
+	/**
+	 * Function handles the entered text in name input below
+	 * @param {*} event
+	 */
+	handleName = (event) => {
+		this.setState({
+			name: event.target.value,
+		})
+	}
+
+	/**
+	 * Function handles the entered text in description input below
+	 * @param {*} event
+	 */
+	handleDescription = (event) => {
+		this.setState({
+			description: event.target.value,
+		})
+	}
+
+	/**
+	 * Function handles the entered text in quantity input below
+	 * @param {*} event
+	 */
+	handleQuantity = (event) => {
+		this.setState({
+			quantity: event.target.value,
+		})
+	}
+
+	/**
+	 * Function handles the entered text in price input below
+	 * @param {*} event
+	 */
+	handlePrice = (event) => {
+		this.setState({
+			price: event.target.value,
 		})
 	}
 
@@ -61,16 +108,12 @@ class AddPackage extends Component {
 	}
 
 	/**
-	 * Handles the submit in the form below
+	 * Handles the submit in the form below, send the whole state to db
 	 */
 	handleSubmit = () => {
 		event.preventDefault()
 		axios
-			.post('/add-new-package', {
-				name: '',
-				description: '',
-				url: this.state.url,
-			})
+			.post('/add-new-package', this.state)
 			.then((response) => {
 				alert(response.data.message)
 				this.props.history.push('/packages')
@@ -97,19 +140,38 @@ class AddPackage extends Component {
 					<Form className='add-package-form' onSubmit={this.handleSubmit}>
 						<Form.Group>
 							<Form.Label>Package name</Form.Label>
+							<Form.Control required onChange={this.handleName} />
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Description</Form.Label>
 							<Form.Control
-								plaintext
-								readOnly
-								defaultValue='package name should be here' //TODO - send it with props
+								as='textarea'
+								rows={3}
+								required
+								onChange={this.handleDescription}
 							/>
 						</Form.Group>
-
+						<Form.Group>
+							<Form.Label>Price</Form.Label>
+							<Form.Control
+								type='number'
+								required
+								onChange={this.handlePrice}
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Quantity</Form.Label>
+							<Form.Control
+								type='number'
+								required
+								onChange={this.handleQuantity}
+							/>
+						</Form.Group>
 						<Form.Group>
 							<Form.Label>Image</Form.Label>
 							<Form.Group>
 								<Form.File
 									id='image'
-									label='Choose file is not working at the moment'
 									accept='image/*'
 									onChange={this.handleFile}
 								/>
