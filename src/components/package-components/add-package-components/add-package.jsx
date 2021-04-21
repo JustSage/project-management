@@ -76,7 +76,7 @@ class AddPackage extends Component {
 	 */
 	handlePrice = (event) => {
 		this.setState({
-			price: event.target.value,
+			price: event.target.value + '$',
 		})
 	}
 
@@ -119,8 +119,8 @@ class AddPackage extends Component {
 				this.props.history.push('/packages')
 			})
 			.catch((error) => {
-				alert(error.response.data.message)
-				console.log(error.response.data.message)
+				alert(error.data.message)
+				console.log(error.data.message)
 			})
 	}
 

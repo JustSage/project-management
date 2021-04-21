@@ -20,12 +20,6 @@ router.post('/add-new-package', async (req, res) => {
 			var db = client.db(process.env.DATABASE_NAME)
 
 			try {
-				//TODO: Add the addittional details here
-				//
-				//
-				//
-
-				//Check if url is valid
 				if (!validator.isURL(pkg.url, { protocols: ['http', 'https'] })) {
 					return res.status(500).send({ message: 'URL is not valid!' })
 				}
