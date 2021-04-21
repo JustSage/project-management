@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import './css/App.css'
 import React from 'react'
 import {
@@ -18,6 +19,7 @@ import Flights from './components/general-components/Customer/Flights'
 import OrdersList from './components/orders-components/orders-list'
 import requireAuth from './components/login-and-signup-components/auth'
 import NotAuth from './components/login-and-signup-components/notAuth'
+import NavbarComponent from './components/general-components/navbar'
 library.add(fab, faCheckSquare, faCoffee)
 
 class App extends React.Component {
@@ -30,40 +32,51 @@ class App extends React.Component {
 				<div className='bg'>
 					<Router>
 						<Switch>
-							<Route exact path='/' component={Login} />
+							<Route exact path='/' render={() => <Redirect to='/login' />} />
 							<Route path='/login' component={Login} />
 							<Route path='/signUp' component={SignUp} />
-							<Route
-								path='/homepage'
-								render={() =>
-									!requireAuth() ? <Redirect to='/not-auth' /> : <Homepage />
-								}
-							/>
-							<Route
-								path='/flights'
-								render={() =>
-									!requireAuth() ? <Redirect to='/not-auth' /> : <Flights />
-								}
-							/>
-							<Route
-								path='/packages'
-								render={() =>
-									!requireAuth() ? <Redirect to='/not-auth' /> : <Packages />
-								}
-							/>
-							<Route
-								path='/add-package'
-								render={() =>
-									!requireAuth() ? <Redirect to='/not-auth' /> : <AddPackage />
-								}
-							/>
-							<Route
-								path='/orders-list'
-								render={() =>
-									!requireAuth() ? <Redirect to='/not-auth' /> : <OrdersList />
-								}
-							/>
 							<Route path='/not-auth' component={NotAuth} />
+							<>
+								<NavbarComponent history={this.props.history} />
+								<Route
+									path='/homepage'
+									render={() =>
+										!requireAuth() ? <Redirect to='/not-auth' /> : <Homepage />
+									}
+								/>
+								<Route
+									path='/flights'
+									render={() =>
+										!requireAuth() ? <Redirect to='/not-auth' /> : <Flights />
+									}
+								/>
+								<Route
+									path='/packages'
+									render={() =>
+										!requireAuth() ? <Redirect to='/not-auth' /> : <Packages />
+									}
+								/>
+								<Route
+									path='/add-package'
+									render={() =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<AddPackage />
+										)
+									}
+								/>
+								<Route
+									path='/orders-list'
+									render={() =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<OrdersList />
+										)
+									}
+								/>
+							</>
 						</Switch>
 					</Router>
 				</div>

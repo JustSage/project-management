@@ -2,7 +2,6 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
 import Sidebar from './sidebar'
-import NavbarComponent from './navbar'
 import Packages from './Customer/Packages'
 import HomeContext from './Customer/HomeContext'
 import Reservations from './TravelAgent/Reservations'
@@ -64,7 +63,6 @@ class Homepage extends Component {
 	render() {
 			return (
 				<>
-					<NavbarComponent history={this.props.history} />
 					<div className='row hp-divs'>
 						<div className='col-xs-12'>
 							<Sidebar
