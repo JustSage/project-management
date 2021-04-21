@@ -36,4 +36,30 @@ router.post('/add-new-package', async (req, res) => {
 	)
 })
 
+router.get('/packages', async (req, res) => {
+	//Connect to mongodb
+	MongoClient.connect(
+		process.env.MONGODB_URL,
+		{ useNewUrlParser: true, useUnifiedTopology: true },
+		async (error, client) => {
+			if (error) {
+				//return to print and break function
+				return console.log('Unable to connect')
+			}
+			console.log('MongoDB is connected!')
+
+			var db = client.db(process.env.DATABASE_NAME)
+
+			try {
+				const packages = await db.collection('packages').find({}).toArray()
+
+				res.send(JSON.stringify(packages))
+			} catch (e) {
+				console.log(e)
+				res.status(500).send({ message: "Can't show packages!" })
+			}
+		}
+	)
+})
+
 module.exports = router

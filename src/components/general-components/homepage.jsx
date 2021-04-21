@@ -2,7 +2,7 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
 import Sidebar from './sidebar'
-import Packages from '../package-components/packages'
+import Packages from '../package-components/packages-page'
 import HomeContext from '../package-components/home-context'
 import Reservations from '../reservations-components/reservations'
 import CustomersList from '../list-components/customer-list'
