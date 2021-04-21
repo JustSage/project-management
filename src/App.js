@@ -22,6 +22,9 @@ import NotAuth from './components/login-and-signup-components/notAuth'
 import NavbarComponent from './components/general-components/navbar'
 library.add(fab, faCheckSquare, faCoffee)
 
+/**
+ * App compnent includes the routing to the pages of the web
+ */
 class App extends React.Component {
 	constructor(props) {
 		super(props)
