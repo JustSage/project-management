@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import NavbarComponent from '../../../navbar'
-import Sidebar from '../../../sidebar'
+import Sidebar from '../../general-components/sidebar'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
-import '../../../../../css/addPackage.css'
+import '../../../css/addPackage.css'
 
 /**
  * Class target is to show the add package page and handles an appropriate http request In front of the server
@@ -89,8 +88,6 @@ class AddPackage extends Component {
 		) {
 			return (
 				<>
-					<NavbarComponent history={this.props.history} />
-
 					<div className='row hp-divs'>
 						<div className='col-xs-12'>
 							<Sidebar history={this.props.history} />

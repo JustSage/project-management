@@ -2,14 +2,14 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
 import Sidebar from './sidebar'
-import Packages from './Customer/Packages'
-import HomeContext from './Customer/HomeContext'
-import Reservations from './TravelAgent/Reservations'
-import CustomersList from './TravelAgent/CustomersList'
-import Attractions from './Customer/Attractions'
-import Car from './Customer/Car'
-import Flights from './Customer/Flights'
-import Hotels from './Customer/Hotels'
+import Packages from '../package-components/packages'
+import HomeContext from '../package-components/home-context'
+import Reservations from '../reservations-components/reservations'
+import CustomersList from '../list-components/customer-list'
+import Attractions from '../package-components/attractions'
+import Car from '../package-components/car'
+import Flights from '../package-components/flights'
+import Hotels from '../package-components/hotels'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import {
@@ -19,7 +19,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../css/homepage.css'
-import AdminRef from '../Admin/AdminRef'
+import AdminRef from '../admin-components/admin-ref'
 
 library.add(fab, faCheckSquare, faCoffee, faUser)
 

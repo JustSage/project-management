@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../../../css/Package.css'
+import '../../css/Package.css'
 // import Card from './Package-Components/Card'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
