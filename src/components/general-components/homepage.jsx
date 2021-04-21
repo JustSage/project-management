@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
-import Sidebar from './sidebar'
+// import Sidebar from './sidebar'
 import Packages from '../package-components/packages'
 import HomeContext from '../package-components/home-context'
 import Reservations from '../reservations-components/reservations'
@@ -63,14 +63,14 @@ class Homepage extends Component {
 	render() {
 			return (
 				<>
-					<div className='row hp-divs'>
+					{/* <div className='row hp-divs'>
 						<div className='col-xs-12'>
 							<Sidebar
 								callBackSideNav={this.callBackSideNav}
 								history={this.props.history}
 							/>
 						</div>
-					</div>
+					</div> */}
 					<div style={{ marginTop: '10%' }} className='col-xs-12 hp-divs context'>
 						{this.chooseContext()}
 					</div>
