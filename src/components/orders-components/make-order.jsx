@@ -13,11 +13,9 @@ class Template extends Component {
 	render() {
 		return (
 			<>
-				<NavbarComponent history={this.props.history} />
-
 				<div className='row hp-divs'>
 					<div className='col-xs-12'>
-						<Sidebar history={this.props.history} />
+						<aSidebar history={this.props.history} />
 					</div>
 				</div>
 				<h3>Template</h3>

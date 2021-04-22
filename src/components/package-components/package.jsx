@@ -2,6 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { Component } from 'react'
 import { Card, ListGroupItem, ListGroup } from 'react-bootstrap'
+import { Redirect } from 'react-router-dom'
 
 /* 
 	the main idea behind Package Component:
@@ -32,7 +33,7 @@ export default class Package extends Component {
 					<ListGroupItem>{this.state.price}</ListGroupItem>
 					<ListGroupItem>{this.state.quantity}</ListGroupItem>
 				</ListGroup>
-				<Card.Link onClick={() => this.props.history.push('/homepage')}>
+				<Card.Link onClick={() => <Redirect to='/not-auth' />}>
 					Make an Order!
 				</Card.Link>
 			</Card>
