@@ -5,6 +5,7 @@
 	background-color: rgb(253, 197, 113);
 	position: relative;
 	border-radius: 25px;
+	margin-left: 34%;
 }
 
 .packageInput {
@@ -29,4 +30,31 @@
 .h5-packages {
 	margin-top: 1%;
 	margin-left: 48%;
+}
+
+.package-container {
+	margin-left: 50%;
+}
+
+.cards-container {
+	margin-top: 2%;
+	margin-bottom: 5%;
+}
+
+.card-body {
+	padding: 1%;
+	min-height: auto;
+}
+
+.card-link {
+	padding-left: 30%;
+	color: orange
+}
+
+.add-new-package-link {
+	color:rgb(145, 94, 0);
+}
+
+.add-new-package-link:hover {
+	color:rgb(238, 184, 84);
 }

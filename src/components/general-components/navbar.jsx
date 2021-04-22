@@ -8,6 +8,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import logo from '../../images/pine-apple-logo.png'
+import { Link } from 'react-router-dom'
 library.add(fab, faUser)
 
 class NavbarComponent extends React.Component {
@@ -38,8 +39,31 @@ class NavbarComponent extends React.Component {
 						>
 							Home
 						</Nav.Link>
-						<Nav.Link className='navLink'>Features</Nav.Link>
-						<Nav.Link className='navLink'>Pricing</Nav.Link>
+						<div className='dropdown'>
+							<Nav.Link className='navLink'>Features</Nav.Link>
+							<div className='dropdown-content'>
+								<div>
+									<Link to='/flights'>Flights</Link>
+									<Link to='/hotels'>Hotels</Link>
+									<Link to='/car'>Rental Cars</Link>
+								</div>
+								<div>
+									<Link to='/packages'>Packages</Link>
+									<Link to='/attractions'>Attractions</Link>
+									<Link to='reservations'>Reservations</Link>
+								</div>
+							</div>
+						</div>
+						<div className='dropdown'>
+							<Nav.Link className='navLink'>Pricing</Nav.Link>
+							<div className='dropdown-content' style={{ minWidth: '130px' }}>
+								<div>
+									<Link to='#'>100$-500$</Link>
+									<Link to='#'>500$-1000$</Link>
+									<Link to='#'>1000$-5000$</Link>
+								</div>
+							</div>
+						</div>
 						{/* <Nav.Link
 							className='navLink'
 							onClick={() => this.props.history.push('packages')}
@@ -47,6 +71,11 @@ class NavbarComponent extends React.Component {
 							Packages
 						</Nav.Link> */}
 					</Nav>
+					<input
+						type='search'
+						placeholder='Search for packages...'
+						className='search-input'
+					></input>
 					<Form inline>
 						<h5 className='h5-nav'>
 							<FontAwesomeIcon

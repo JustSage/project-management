@@ -57,6 +57,10 @@ input:focus, select:focus {
 }
 
 .h-as-title {
-    margin-top: 5%;
+    margin-top: 2%;
     margin-left: 50%;
+}
+
+a {
+	cursor: pointer;
 }
