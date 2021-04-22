@@ -60,3 +60,7 @@ input:focus, select:focus {
     margin-top: 2%;
     margin-left: 50%;
 }
+
+a {
+	cursor: pointer;
+}
