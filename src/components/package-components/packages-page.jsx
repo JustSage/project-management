@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
+import '../../css/addPackages.css'
 import '../../css/Package.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Package from './package'
@@ -17,7 +18,7 @@ class Packages extends Component {
 		this.state = {
 			data: undefined,
 		}
-		this.AddPackage = this.AddPackage.bind(this)
+		// this.AddPackage = this.AddPackage.bind(this)
 
 		axios
 			.get('/packages')
@@ -62,8 +63,26 @@ class Packages extends Component {
 		} else
 			return (
 				<>
-					<h3 className='h-as-title'>Packages</h3>
-					{this.AddPackage()}
+					<div className='list-group list-group-horizontal'>
+						<a className='list-group-item list-group-item-action' key='Add'>
+							Add Package
+						</a>
+						<a
+							href='#'
+							key='Upgrade'
+							className='list-group-item list-group-item-action'
+						>
+							Upgrade Package
+						</a>
+						<a
+							href='#'
+							key='Delete'
+							className='list-group-item list-group-item-action'
+						>
+							Delete Package
+						</a>
+					</div>
+
 					<div className='package'>
 						<div className='wrraper'>
 							<label className='packageLabel' htmlFor='location'>
@@ -88,6 +107,7 @@ class Packages extends Component {
 										quantity={pkg.quantity}
 										price={pkg.price}
 										history={this.props.history}
+										key={pkg.description}
 									/>
 								</div>
 							)
