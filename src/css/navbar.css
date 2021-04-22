@@ -5,11 +5,7 @@
 	transition: ease 0.5s;
 }
 
-.img_logo:hover {
-	width: 210px;
-	height: 205px;
-	margin-left: -5px;
-}
+
 .navbar-custom {
 	height: 64px;
 	background-image: url('../images/nav-background.jpg');
