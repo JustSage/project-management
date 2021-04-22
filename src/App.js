@@ -21,6 +21,7 @@ import Flights from './components/package-components/flights'
 import requireAuth from './components/login-and-signup-components/auth'
 import NotAuth from './components/login-and-signup-components/notAuth'
 import NavbarComponent from './components/general-components/navbar'
+import MakeOrder from './components/orders-components/make-order'
 library.add(fab, faCheckSquare, faCoffee)
 
 /**
@@ -77,6 +78,16 @@ class App extends React.Component {
 											<Redirect to='/not-auth' />
 										) : (
 											<OrdersList />
+										)
+									}
+								/>
+								<Route
+									path='/make-order/:destination/:price/:description'
+									render={(props) =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<MakeOrder {...props} />
 										)
 									}
 								/>

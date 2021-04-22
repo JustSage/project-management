@@ -33,7 +33,12 @@ export default class Package extends Component {
 					<ListGroupItem>Packages left: {this.state.quantity}</ListGroupItem>
 				</ListGroup>
 				<Card.Body>
-					<Link to='/orders-list' className='card-link'>
+					<Link
+						to={{
+							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}`,
+						}}
+						className='card-link'
+					>
 						Make an Order!
 					</Link>
 				</Card.Body>
