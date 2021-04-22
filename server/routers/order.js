@@ -51,6 +51,7 @@ router.post('/add-order', async (req, res) => {
 
 			try {
 				//Insert the order to the DB
+				console.log(order)
 				await db.collection('orders').insertOne(order)
 
 				res.send({

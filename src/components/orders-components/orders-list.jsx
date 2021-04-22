@@ -21,6 +21,7 @@ export default class OrdersList extends Component {
 				console.log(response.data)
 				//Get fields name, remove _id attribute from the received data
 				var arr = Object.keys(response.data[0]).slice(1)
+				arr[3] = 'Order date'
 				this.setState({
 					tableTitles: arr,
 					orders: response.data,
@@ -42,7 +43,11 @@ export default class OrdersList extends Component {
 	sort = (headerName) => {
 		var temp
 		//Sort from must recent to earlier if sort by date selected
-		if (headerName == 'date') {
+		if (
+			headerName == 'Order date' ||
+			headerName == 'Start' ||
+			headerName == 'End'
+		) {
 			temp = this.state.orders.sort(function (a, b) {
 				return new Date(b[headerName]) - new Date(a[headerName])
 			})
@@ -98,9 +103,12 @@ export default class OrdersList extends Component {
 									<Fragment key={i}>
 										<tr>
 											<th>{++i}</th>
-											<td>{h['name']}</td>
-											<td>{h['date']}</td>
-											<td>{h['package number']}</td>
+											<td>{h['User']}</td>
+											<td>{h['Destination']}</td>
+											<td>{h['Price']}</td>
+											<td>{h['OrderDate']}</td>
+											<td>{h['Start']}</td>
+											<td>{h['End']}</td>
 										</tr>
 									</Fragment>
 								)
