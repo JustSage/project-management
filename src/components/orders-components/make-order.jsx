@@ -3,7 +3,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
-import '../../../css/addPackage.css'
+import '../../css/addPackage.css'
+import 'react-router-dom'
+var today = new Date(Date.now() + 10 * 86400000) //Package can be ordered 10 days from today
 
 /**
  * Class target is to show the add package page and handles an appropriate http request In front of the server
@@ -12,110 +14,34 @@ class MakeOrder extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			name: '',
-			description: '',
-			quantity: '',
-			price: '',
-			url: '',
+			start: today.toISOString().split('T')[0], //Generates todays date
+			end: '',
 		}
-
-		this.handleURL = this.handleURL.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleURLLink = this.handleURLLink.bind(this)
-		this.handleFile = this.handleFile.bind(this)
-		this.handleName = this.handleName.bind(this)
-		this.handleDescription = this.handleDescription.bind(this)
-		this.handleQuantity = this.handleQuantity.bind(this)
-		this.handlePrice = this.handlePrice.bind(this)
+		this.handleDates = this.handleDates.bind(this)
 	}
 
-	/**
-	 * Function handles the entered text in url input below
-	 * @param {*} event
-	 */
-	handleURL = (event) => {
+	handleDates = (event) => {
 		this.setState({
-			url: event.target.value,
+			start: event.target.value, //.split('-').reverse().join('/')
+			end: new Date(
+				Date.parse(event.target.value) + 5 * 86400000
+			).toLocaleDateString(), //Holiday will be 5 days currently
 		})
 	}
-
-	/**
-	 * Function handles the entered text in name input below
-	 * @param {*} event
-	 */
-	handleName = (event) => {
-		this.setState({
-			name: event.target.value,
-		})
-	}
-
-	/**
-	 * Function handles the entered text in description input below
-	 * @param {*} event
-	 */
-	handleDescription = (event) => {
-		this.setState({
-			description: event.target.value,
-		})
-	}
-
-	/**
-	 * Function handles the entered text in quantity input below
-	 * @param {*} event
-	 */
-	handleQuantity = (event) => {
-		this.setState({
-			quantity: event.target.value,
-		})
-	}
-
-	/**
-	 * Function handles the entered text in price input below
-	 * @param {*} event
-	 */
-	handlePrice = (event) => {
-		this.setState({
-			price: event.target.value + '$',
-		})
-	}
-
-	/**
-	 * Function will set url to the uploaded message
-	 * This will save the pictures localy only, when tried to load it, it'll not shown.
-	 * @param {*} event
-	 */
-	handleFile = (event) => {
-		const objectURL = URL.createObjectURL(
-			document.querySelector('#image').files[0]
-		)
-		this.setState({
-			url: objectURL,
-		})
-	}
-
-	/**
-	 * handles url link, shows up only if url value isn't empty
-	 * @returns link to typed url
-	 */
-	handleURLLink = () => {
-		if (this.state.url !== '')
-			return (
-				<a href={this.state.url} target='__blank'>
-					Check picture url
-				</a>
-			)
-	}
-
 	/**
 	 * Handles the submit in the form below, send the whole state to db
 	 */
 	handleSubmit = () => {
 		event.preventDefault()
 		axios
-			.post('/add-new-package', this.state)
+			.post('/add-new-order', {
+				...this.props,
+				start: this.state.start,
+				end: this.state.end,
+			})
 			.then((response) => {
 				alert(response.data.message)
-				this.props.history.push('/packages')
 			})
 			.catch((error) => {
 				alert(error.data.message)
@@ -135,48 +61,38 @@ class MakeOrder extends Component {
 					<Form className='add-package-form' onSubmit={this.handleSubmit}>
 						<Form.Group>
 							<Form.Label>Package name</Form.Label>
-							<Form.Control required onChange={this.handleName} />
+							<Form.Control
+								readOnly
+								defaultValue={this.props.match.params.destination}
+							/>
 						</Form.Group>
 						<Form.Group>
 							<Form.Label>Description</Form.Label>
 							<Form.Control
 								as='textarea'
+								readOnly
+								defaultValue={this.props.match.params.description}
 								rows={3}
-								required
-								onChange={this.handleDescription}
 							/>
 						</Form.Group>
 						<Form.Group>
 							<Form.Label>Price</Form.Label>
 							<Form.Control
-								type='number'
-								required
-								onChange={this.handlePrice}
+								readOnly
+								defaultValue={this.props.match.params.price}
 							/>
 						</Form.Group>
 						<Form.Group>
-							<Form.Label>Quantity</Form.Label>
+							<Form.Label>Start Date</Form.Label>
 							<Form.Control
-								type='number'
-								required
-								onChange={this.handleQuantity}
+								id='date-input'
+								type='date'
+								min={today.toISOString().split('T')[0]}
+								value={this.state.start}
+								onChange={this.handleDates}
 							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>Image</Form.Label>
-							<Form.Group>
-								<Form.File
-									id='image'
-									accept='image/*'
-									onChange={this.handleFile}
-								/>
-							</Form.Group>
-							<Form.Control
-								placeholder='Or set image url'
-								onChange={this.handleURL}
-								required
-							/>
-							{this.handleURLLink()}
+							<Form.Label>Start Date</Form.Label>
+							<Form.Control readOnly value={this.state.end} />
 						</Form.Group>
 						<Button type='submit' style={{ border: 'none' }}>
 							Submit!
