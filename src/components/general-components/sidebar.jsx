@@ -5,6 +5,10 @@ import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
 import '@trendmicro/react-sidenav/dist/react-sidenav.css'
 import '../../css/sidebar.css'
 // import propTypes from 'prop-types'
+// const roleBars = {
+// 	travelAgent: ['Reservations', 'CustomersList '],
+// 	admin: ['Test1', 'Test2', 'Test3'],
+// }
 
 class Sidebar extends React.Component {
 	constructor(props) {
