@@ -8,6 +8,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import logo from '../../images/pine-apple-logo.png'
+import { Link } from 'react-router-dom'
 library.add(fab, faUser)
 
 class NavbarComponent extends React.Component {
@@ -42,18 +43,14 @@ class NavbarComponent extends React.Component {
 							<Nav.Link className='navLink'>Features</Nav.Link>
 							<div className='dropdown-content'>
 								<div>
-									<a href='../package-components/flights.jsx'>Flights</a>
-									<a href='../package-components/hotels.jsx'>Hotels</a>
-									<a href='../package-components/car.jsx'>Rental Cars</a>
+									<Link to='/flights'>Flights</Link>
+									<Link to='/hotels'>Hotels</Link>
+									<Link to='/car'>Rental Cars</Link>
 								</div>
 								<div>
-									<a href='../package-components/packages.jsx'>Packages</a>
-									<a href='../package-components/attractions.jsx'>
-										Attractions
-									</a>
-									<a href='../reservations-components/reservations.jsx'>
-										Reservations
-									</a>
+									<Link to='/packages'>Packages</Link>
+									<Link to='/attractions'>Attractions</Link>
+									<Link to='reservations'>Reservations</Link>
 								</div>
 							</div>
 						</div>
@@ -61,9 +58,9 @@ class NavbarComponent extends React.Component {
 							<Nav.Link className='navLink'>Pricing</Nav.Link>
 							<div className='dropdown-content' style={{ minWidth: '130px' }}>
 								<div>
-									<a href='#'>100$-500$</a>
-									<a href='#'>500$-1000$</a>
-									<a href='#'>1000$-5000$</a>
+									<Link to='#'>100$-500$</Link>
+									<Link to='#'>500$-1000$</Link>
+									<Link to='#'>1000$-5000$</Link>
 								</div>
 							</div>
 						</div>
