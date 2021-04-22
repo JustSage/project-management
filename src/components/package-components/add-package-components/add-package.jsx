@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import Sidebar from '../../general-components/sidebar'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
 import '../../../css/addPackage.css'
@@ -131,11 +130,6 @@ class AddPackage extends Component {
 		) {
 			return (
 				<>
-					<div className='row hp-divs'>
-						<div className='col-xs-12'>
-							<Sidebar history={this.props.history} />
-						</div>
-					</div>
 					<h3 className='h-as-title'>AddPackage</h3>
 					<Form className='add-package-form' onSubmit={this.handleSubmit}>
 						<Form.Group>
