@@ -33,10 +33,7 @@ class NavbarComponent extends React.Component {
 				<Navbar variant='dark' className='navbar navbar-custom'>
 					<img src={logo} alt='' className='img_logo' />
 					<Nav className='mr-auto'>
-						<Nav.Link
-							className='navLink'
-							onClick={() => this.props.history.push('homepage')}
-						>
+						<Nav.Link className='navLink' href='/homepage'>
 							Home
 						</Nav.Link>
 						<div className='dropdown'>
