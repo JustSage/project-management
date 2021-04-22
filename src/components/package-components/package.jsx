@@ -2,6 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { Component } from 'react'
 import { Card, ListGroupItem, ListGroup } from 'react-bootstrap'
+
 /* 
 	the main idea behind Package Component:
 	this component will represent Packages containing flights and hotels and rent car services in different places.
@@ -21,16 +22,19 @@ export default class Package extends Component {
 
 	render() {
 		return (
-			<Card style={{ width: '18rem' }}>
+			<Card style={{ width: '18rem', height: '23rem' }}>
 				<Card.Img variant='top' src={this.state.url} />
-				<Card.Body>
+				<Card.Body style={{ overflow: 'auto' }}>
 					<Card.Title>{this.state.name}</Card.Title>
 					<Card.Text>{this.state.description}</Card.Text>
 				</Card.Body>
 				<ListGroup className='list-group-flush'>
-					<ListGroupItem>{this.state.price}</ListGroupItem>
-					<ListGroupItem>{this.state.quantity}</ListGroupItem>
+					<ListGroupItem>Price: {this.state.price}</ListGroupItem>
+					<ListGroupItem>Packages left: {this.state.quantity}</ListGroupItem>
 				</ListGroup>
+				<Card.Body>
+					<Card.Link href='/orders-list'>Make an Order!</Card.Link>
+				</Card.Body>
 			</Card>
 		)
 	}

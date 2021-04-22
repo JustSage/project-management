@@ -71,7 +71,7 @@ class Homepage extends Component {
 							/>
 						</div>
 					</div> */}
-					<div style={{ marginTop: '10%' }} className='col-xs-12 hp-divs context'>
+					<div className='col-xs-12 hp-divs context'>
 						{this.chooseContext()}
 					</div>
 				</>

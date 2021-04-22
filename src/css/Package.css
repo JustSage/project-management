@@ -37,5 +37,24 @@
 }
 
 .cards-container {
-	margin-top: 2%
+	margin-top: 2%;
+	margin-bottom: 5%;
+}
+
+.card-body {
+	padding: 1%;
+	min-height: auto;
+}
+
+.card-link {
+	padding-left: 30%;
+	color: orange
+}
+
+.add-new-package-link {
+	color:rgb(145, 94, 0);
+}
+
+.add-new-package-link:hover {
+	color:rgb(238, 184, 84);
 }
