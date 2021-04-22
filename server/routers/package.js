@@ -29,7 +29,7 @@ router.post('/add-package', async (req, res) => {
 				//Insert the package to the DB
 				await db.collection('packages').insertOne(pkg)
 
-				res.send({ message: `Package ${pkg.id} created successfully.` })
+				res.send({ message: `Package ${pkg.name} created successfully.` })
 			} catch (e) {
 				console.log(e)
 				res.status(500).send({ message: "Can't add a package!" })

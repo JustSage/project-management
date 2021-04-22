@@ -112,14 +112,13 @@ class AddPackage extends Component {
 	handleSubmit = () => {
 		event.preventDefault()
 		axios
-			.post('/add-new-package', this.state)
+			.post('/add-package', this.state)
 			.then((response) => {
 				alert(response.data.message)
-				this.props.history.push('/packages')
 			})
 			.catch((error) => {
-				alert(error.data.message)
-				console.log(error.data.message)
+				alert(error)
+				console.log(error)
 			})
 	}
 
