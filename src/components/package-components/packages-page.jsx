@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import '../../css/Package.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Package from './package'
-import { Container } from 'react-bootstrap'
+// import { Container } from 'react-bootstrap'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 /**
@@ -71,7 +71,23 @@ class Packages extends Component {
 						</div>
 						<br />
 					</div>
-					<Container className='cards-container'>
+					<div className='d-flex flex-row flex-wrap my-flex-container'>
+						{this.state.data.map((pkg) => {
+							return (
+								<div className='p-2 my-flex-item'>
+									<Package
+										name={pkg.name}
+										description={pkg.description}
+										url={pkg.url}
+										quantity={pkg.quantity}
+										price={pkg.price}
+										history={this.props.history}
+									/>
+								</div>
+							)
+						})}
+					</div>
+					{/* <Container className='cards-container'>
 						{this.state.data.map((pkg) => {
 							return (
 								<Package
@@ -84,7 +100,7 @@ class Packages extends Component {
 								/>
 							)
 						})}
-					</Container>
+					</Container> */}
 				</>
 			)
 	}
