@@ -2,7 +2,6 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import NavbarComponent from '../general-components/navbar'
-import Sidebar from '../general-components/sidebar'
 import { Button, Form, Container } from 'react-bootstrap'
 import '../../css/Admin.css'
 import axios from 'axios'
@@ -66,13 +65,6 @@ class AdminRef extends Component {
 	render() {
 		return (
 			<>
-				{/* <NavbarComponent history={this.props.history} />
-
-				<div className='row hp-divs'>
-					<div className='col-xs-12'>
-						<Sidebar history={this.props.history} />
-					</div>
-				</div> */}
 				<h3 className='h-as-title'>Admin</h3>
 				<Container>
 					<Form className='admin-form' onSubmit={this.handleSubmit}>
