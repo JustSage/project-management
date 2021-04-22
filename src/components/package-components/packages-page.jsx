@@ -52,7 +52,13 @@ class Packages extends Component {
 
 	render() {
 		if (this.state.data === undefined) {
-			return <div>loading...</div>
+			return (
+				<div className='text-center'>
+					<div className='spinner-border' role='status'>
+						<span className='sr-only'>Loading...</span>
+					</div>
+				</div>
+			)
 		} else
 			return (
 				<>
