@@ -36,8 +36,8 @@ class NavbarComponent extends React.Component {
 						<img src={logo} alt='' className='img_logo' />
 					</Link>
 					<Nav className='mr-auto'>
-						<Link to='./homepage'>
-							<Nav.Link className='navLink'>Home</Nav.Link>
+						<Link to='/homepage' className='navLink nav-link'>
+							Home
 						</Link>
 						{/* <Nav.Link
 							className='navLink'
