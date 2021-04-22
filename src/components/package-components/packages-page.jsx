@@ -33,18 +33,33 @@ class Packages extends Component {
 			})
 	}
 
-	AddPackage = () => {
+	varifyAccess = () => {
 		if (
 			sessionStorage.getItem('logged-in-role') == 'Admin' ||
 			sessionStorage.getItem('logged-in-role') == 'Travel Agent'
-		)
+		) {
 			return (
-				<h5 className='h5-packages'>
-					<Link to='/add-package' className='add-new-package-link'>
-						Add new package!
-					</Link>
-				</h5>
+				<div className='list-group list-group-horizontal'>
+					<a className='list-group-item list-group-item-action' key='Add'>
+						<Link to='/add-package'>Add Package</Link>
+					</a>
+					<a
+						href='#'
+						key='Upgrade'
+						className='list-group-item list-group-item-action'
+					>
+						Upgrade Package
+					</a>
+					<a
+						href='#'
+						key='Delete'
+						className='list-group-item list-group-item-action'
+					>
+						Delete Package
+					</a>
+				</div>
 			)
+		}
 	}
 	handleLocation = (event) => {
 		event.preventDefault()
@@ -63,26 +78,7 @@ class Packages extends Component {
 		} else
 			return (
 				<>
-					<div className='list-group list-group-horizontal'>
-						<a className='list-group-item list-group-item-action' key='Add'>
-							Add Package
-						</a>
-						<a
-							href='#'
-							key='Upgrade'
-							className='list-group-item list-group-item-action'
-						>
-							Upgrade Package
-						</a>
-						<a
-							href='#'
-							key='Delete'
-							className='list-group-item list-group-item-action'
-						>
-							Delete Package
-						</a>
-					</div>
-
+					{this.varifyAccess()}
 					<div className='package'>
 						<div className='wrraper'>
 							<label className='packageLabel' htmlFor='location'>
