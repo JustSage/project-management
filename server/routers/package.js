@@ -10,7 +10,12 @@ router.post('/add-package', async (req, res) => {
 	//Connect to mongodb
 	MongoClient.connect(
 		process.env.MONGODB_URL,
-		{ useNewUrlParser: true, useUnifiedTopology: true },
+		{
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+			connectTimeoutMS: 50000,
+			serverSelectionTimeoutMS: 50000,
+		},
 		async (error, client) => {
 			if (error) {
 				//return to print and break function
@@ -44,7 +49,12 @@ router.delete('/packages/:id', async (req, res) => {
 	//Connect to mongodb
 	MongoClient.connect(
 		process.env.MONGODB_URL,
-		{ useNewUrlParser: true, useUnifiedTopology: true },
+		{
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+			connectTimeoutMS: 50000,
+			serverSelectionTimeoutMS: 50000,
+		},
 		async (error, client) => {
 			if (error) {
 				//return to print and break function

@@ -7,7 +7,12 @@ router.post('/modify-role', async (req, res) => {
 
 	MongoClient.connect(
 		process.env.MONGODB_URL,
-		{ useNewUrlParser: true, useUnifiedTopology: true },
+		{
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+			connectTimeoutMS: 50000,
+			serverSelectionTimeoutMS: 50000,
+		},
 		async (error, client) => {
 			if (error) {
 				//return to print and break function

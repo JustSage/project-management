@@ -21,6 +21,10 @@ class MakeOrder extends Component {
 		this.handleDates = this.handleDates.bind(this)
 	}
 
+	/**
+	 * Function handles the start and end date of the vacation
+	 * @param {} event
+	 */
 	handleDates = (event) => {
 		this.setState({
 			start: event.target.value, //.split('-').reverse().join('/')
@@ -35,7 +39,7 @@ class MakeOrder extends Component {
 	handleSubmit = () => {
 		event.preventDefault()
 		axios
-			.post('/add-new-order', {
+			.post('/add-order', {
 				...this.props,
 				start: this.state.start,
 				end: this.state.end,
