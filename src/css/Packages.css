@@ -1,0 +1,32 @@
+.package {
+	width: 610px;
+	height: 5rem;
+	margin-top: 1%;
+	background-color: rgb(253, 197, 113);
+	position: relative;
+	border-radius: 25px;
+}
+
+.packageInput {
+	margin-left: 2%;
+	width: 100%;
+	border-radius: 10px;
+}
+
+.wrraper {
+	top: 31%;
+	left: 10vh;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.packageLabel {
+	width: 232px;
+}
+
+.h5-packages {
+	margin-top: 1%;
+	margin-left: 48%;
+}
