@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import Sidebar from '../../general-components/sidebar'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
 import '../../../css/addPackage.css'
@@ -132,16 +131,11 @@ class MakeOrder extends Component {
 		) {
 			return (
 				<>
-					<div className='row hp-divs'>
-						<div className='col-xs-12'>
-							<Sidebar history={this.props.history} />
-						</div>
-					</div>
 					<h3 className='h-as-title'>Make an order</h3>
 					<Form className='add-package-form' onSubmit={this.handleSubmit}>
 						<Form.Group>
 							<Form.Label>Package name</Form.Label>
-							<Form.Control required  onChange={this.handleName} />
+							<Form.Control required onChange={this.handleName} />
 						</Form.Group>
 						<Form.Group>
 							<Form.Label>Description</Form.Label>
@@ -203,4 +197,4 @@ class MakeOrder extends Component {
 	}
 }
 
-export default AddPackage
+export default MakeOrder
