@@ -32,7 +32,7 @@ class NavbarComponent extends React.Component {
 		return (
 			<>
 				<Navbar variant='dark' className='navbar navbar-custom'>
-					<Link to='./homepagegit'>
+					<Link to='./homepage'>
 						<img src={logo} alt='' className='img_logo' />
 					</Link>
 					<Nav className='mr-auto'>
@@ -101,7 +101,7 @@ class NavbarComponent extends React.Component {
 								style={{ minWidth: '160px', right: '3%' }}
 							>
 								<div>
-									<Link to='/admin-ref'>Admin Settings</Link>
+									<Link to='admin-ref'>Admin Settings</Link>
 									<Link onClick={this.logoutClick}>Log Out</Link>
 								</div>
 							</div>
