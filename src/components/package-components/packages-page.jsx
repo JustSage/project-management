@@ -39,7 +39,9 @@ class Packages extends Component {
 		)
 			return (
 				<h5 className='h5-packages'>
-					<a href='/add-package'>Add new package!</a>
+					<a href='/add-package' className='add-new-package-link'>
+						Add new package!
+					</a>
 				</h5>
 			)
 	}
