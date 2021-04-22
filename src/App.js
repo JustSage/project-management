@@ -21,6 +21,7 @@ import Flights from './components/package-components/flights'
 import requireAuth from './components/login-and-signup-components/auth'
 import NotAuth from './components/login-and-signup-components/notAuth'
 import NavbarComponent from './components/general-components/navbar'
+import AdminRef from './components/admin-components/admin-ref'
 library.add(fab, faCheckSquare, faCoffee)
 
 /**
@@ -78,6 +79,12 @@ class App extends React.Component {
 										) : (
 											<OrdersList />
 										)
+									}
+								/>
+								<Route
+									path='/admin-ref'
+									render={() =>
+										!requireAuth() ? <Redirect to='/not-auth' /> : <AdminRef />
 									}
 								/>
 							</>

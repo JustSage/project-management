@@ -63,6 +63,7 @@ class Homepage extends Component {
 		return (
 			<>
 				<div className='col-xs-12 hp-divs context'>{this.chooseContext()}</div>
+				<h1>Welcome!</h1>
 			</>
 		)
 	}
