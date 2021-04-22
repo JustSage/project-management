@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
+import '../../css/addPackages.css'
 import '../../css/Package.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Package from './package'
@@ -17,7 +18,7 @@ class Packages extends Component {
 		this.state = {
 			data: undefined,
 		}
-		this.AddPackage = this.AddPackage.bind(this)
+		// this.AddPackage = this.AddPackage.bind(this)
 
 		axios
 			.get('/packages')
@@ -32,18 +33,33 @@ class Packages extends Component {
 			})
 	}
 
-	AddPackage = () => {
+	varifyAccess = () => {
 		if (
 			sessionStorage.getItem('logged-in-role') == 'Admin' ||
 			sessionStorage.getItem('logged-in-role') == 'Travel Agent'
-		)
+		) {
 			return (
-				<h5 className='h5-packages'>
-					<Link to='/add-package' className='add-new-package-link'>
-						Add new package!
-					</Link>
-				</h5>
+				<div className='list-group list-group-horizontal'>
+					<a className='list-group-item list-group-item-action' key='Add'>
+						<Link to='/add-package'>Add Package</Link>
+					</a>
+					<a
+						href='#'
+						key='Upgrade'
+						className='list-group-item list-group-item-action'
+					>
+						Upgrade Package
+					</a>
+					<a
+						href='#'
+						key='Delete'
+						className='list-group-item list-group-item-action'
+					>
+						Delete Package
+					</a>
+				</div>
 			)
+		}
 	}
 	handleLocation = (event) => {
 		event.preventDefault()
@@ -52,12 +68,17 @@ class Packages extends Component {
 
 	render() {
 		if (this.state.data === undefined) {
-			return <div>loading...</div>
+			return (
+				<div className='text-center'>
+					<div className='spinner-border' role='status'>
+						<span className='sr-only'>Loading...</span>
+					</div>
+				</div>
+			)
 		} else
 			return (
 				<>
-					<h3 className='h-as-title'>Packages</h3>
-					{this.AddPackage()}
+					{this.varifyAccess()}
 					<div className='package'>
 						<div className='wrraper'>
 							<label className='packageLabel' htmlFor='location'>
@@ -82,6 +103,7 @@ class Packages extends Component {
 										quantity={pkg.quantity}
 										price={pkg.price}
 										history={this.props.history}
+										key={pkg.description}
 									/>
 								</div>
 							)
