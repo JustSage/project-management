@@ -43,18 +43,10 @@ class Packages extends Component {
 					<a className='list-group-item list-group-item-action' key='Add'>
 						<Link to='/add-package'>Add Package</Link>
 					</a>
-					<a
-						href='#'
-						key='Upgrade'
-						className='list-group-item list-group-item-action'
-					>
-						<Link to='/update-package'>Add Package</Link>
+					<a key='Upgrade' className='list-group-item list-group-item-action'>
+						<Link to='/update-package'>Upgrade Package</Link>
 					</a>
-					<a
-						href='#'
-						key='Delete'
-						className='list-group-item list-group-item-action'
-					>
+					<a key='Delete' className='list-group-item list-group-item-action'>
 						<Link to='/delete-package'>Delete Package</Link>
 					</a>
 				</div>
