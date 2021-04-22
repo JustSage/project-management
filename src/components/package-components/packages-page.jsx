@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Package from './package'
 import { Container } from 'react-bootstrap'
 import axios from 'axios'
-
+import { Link } from 'react-router-dom'
 /**
  * Packages page which appears as navbar tag, when click on the navbar button it'll be redirecting here
  * by routing. This page includes the package-components.
@@ -39,9 +39,9 @@ class Packages extends Component {
 		)
 			return (
 				<h5 className='h5-packages'>
-					<a href='/add-package' className='add-new-package-link'>
+					<Link to='/add-package' className='add-new-package-link'>
 						Add new package!
-					</a>
+					</Link>
 				</h5>
 			)
 	}

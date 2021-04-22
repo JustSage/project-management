@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { Component } from 'react'
 import { Card, ListGroupItem, ListGroup } from 'react-bootstrap'
-
+import { Link } from 'react-router-dom'
 /* 
 	the main idea behind Package Component:
 	this component will represent Packages containing flights and hotels and rent car services in different places.
@@ -33,7 +33,9 @@ export default class Package extends Component {
 					<ListGroupItem>Packages left: {this.state.quantity}</ListGroupItem>
 				</ListGroup>
 				<Card.Body>
-					<Card.Link href='/orders-list'>Make an Order!</Card.Link>
+					<Link to='/orders-list' className='card-link'>
+						Make an Order!
+					</Link>
 				</Card.Body>
 			</Card>
 		)
