@@ -48,14 +48,14 @@ class Packages extends Component {
 						key='Upgrade'
 						className='list-group-item list-group-item-action'
 					>
-						Upgrade Package
+						<Link to='/update-package'>Add Package</Link>
 					</a>
 					<a
 						href='#'
 						key='Delete'
 						className='list-group-item list-group-item-action'
 					>
-						Delete Package
+						<Link to='/delete-package'>Delete Package</Link>
 					</a>
 				</div>
 			)

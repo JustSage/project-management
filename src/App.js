@@ -22,6 +22,8 @@ import requireAuth from './components/login-and-signup-components/auth'
 import NotAuth from './components/login-and-signup-components/notAuth'
 import NavbarComponent from './components/general-components/navbar'
 import MakeOrder from './components/orders-components/make-order'
+import UpdatePackage from './components/package-components/update-package-component/update-package'
+import DeletePackage from './components/package-components/delete-package-compomponent/delete-package'
 library.add(fab, faCheckSquare, faCoffee)
 
 /**
@@ -68,6 +70,26 @@ class App extends React.Component {
 											<Redirect to='/not-auth' />
 										) : (
 											<AddPackage />
+										)
+									}
+								/>
+								<Route
+									path='/update-package'
+									render={() =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<UpdatePackage />
+										)
+									}
+								/>
+								<Route
+									path='/delete-package'
+									render={() =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<DeletePackage />
 										)
 									}
 								/>
