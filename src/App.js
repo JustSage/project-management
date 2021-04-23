@@ -128,6 +128,12 @@ class App extends React.Component {
 									}
 								/>
 								<Route
+									path='/admin-ref'
+									render={() =>
+										!requireAuth() ? <Redirect to='/not-auth' /> : <AdminRef />
+									}
+								/>
+								<Route
 									path='/make-order/:destination/:price/:description'
 									render={(props) =>
 										!requireAuth() ? (
@@ -135,12 +141,6 @@ class App extends React.Component {
 										) : (
 											<MakeOrder {...props} />
 										)
-									}
-								/>
-								<Route
-									path='/admin-ref'
-									render={() =>
-										!requireAuth() ? <Redirect to='/not-auth' /> : <AdminRef />
 									}
 								/>
 							</>
