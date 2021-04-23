@@ -18,6 +18,8 @@ class Packages extends Component {
 		this.state = {
 			data: undefined,
 		}
+	}
+	componentDidMount() {
 		axios
 			.get('/packages')
 			.then((response) => {
@@ -51,6 +53,7 @@ class Packages extends Component {
 			)
 		}
 	}
+
 	handleLocation = (event) => {
 		event.preventDefault()
 		this.setState({ location: event.target.value })
@@ -85,7 +88,7 @@ class Packages extends Component {
 					<div className='d-flex flex-row flex-wrap my-flex-container'>
 						{this.state.data.map((pkg) => {
 							return (
-								<div className='p-2 my-flex-item'>
+								<div className='p-2 my-flex-item' key={pkg.description}>
 									<Package
 										name={pkg.name}
 										description={pkg.description}

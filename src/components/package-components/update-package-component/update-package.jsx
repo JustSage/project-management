@@ -7,42 +7,45 @@ import PropTypes from 'prop-types'
 export default class UpdatePackage extends Component {
 	constructor(props) {
 		super(props)
-
 		this.state = {
-			data: undefined,
+			data: [],
 			package: null,
 		}
+		this.packagesNames = this.packagesNames.bind(this)
+	}
+
+	componentDidMount() {
+		let temp
 		axios
 			.get('/packages')
-			.then((response) => {
-				this.setState({
-					data: response.data,
+			.then(async (response) => {
+				await this.setState({ data: response.data }, () => {
+					console.log(`temp: ${temp.data}`)
 				})
-				console.log(this.state.data)
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
-				alert(error.response.data.message)
+				alert(error)
 			})
 	}
 
 	packagesNames = () => {
-		const names = this.state.data.map((pkg) => {
-			return (
-				<option
-					onClick={() => {
-						this.setState({ package: pkg })
-					}}
-					key={pkg.name}
-				>
-					{pkg.name}
-				</option>
-			)
-		})
-		return names
+		console.log(`data: ${this.data}`)
+		// const names = this.state.data.map((pkg) => {
+		// 	return (
+		// 		<option
+		// 			onClick={() => {
+		// 				this.setState({ package: pkg })
+		// 			}}
+		// 			key={pkg.name}
+		// 		>
+		// 			{pkg.name}
+		// 		</option>
+		// 	)
+		// })
+		// return names
 	}
 	render() {
-		if (this.state.data === undefined) {
+		if (this.state.data.length == 0) {
 			return (
 				<div className='text-center'>
 					<div className='spinner-border' role='status'>
@@ -56,20 +59,26 @@ export default class UpdatePackage extends Component {
 					<Form>
 						<Form.Group>
 							<Form.Label>Please choose a Package:</Form.Label>
-							<Form.Control as='select'>{this.packagesNames()}</Form.Control>
+							<Form.Control as='select'>
+								{() => {
+									this.state.data.length != 0 ? this.packagesNames : null
+								}}
+							</Form.Control>
 						</Form.Group>
 					</Form>
 					<div className='d-flex flex-row flex-wrap my-flex-container'>
 						<div className='p-2 my-flex-item'>
-							<Package
-								name={this.package.name}
-								description={this.package.description}
-								url={this.package.url}
-								quantity={this.package.quantity}
-								price={this.package.price}
-								history={this.props.history}
-								key={this.package.description}
-							/>
+							{this.state.package != null ? (
+								<Package
+									name={this.package.name}
+									description={this.package.description}
+									url={this.package.url}
+									quantity={this.package.quantity}
+									price={this.package.price}
+									history={this.props.history}
+									key={this.package.description}
+								/>
+							) : null}
 						</div>
 					</div>
 				</>

@@ -102,7 +102,9 @@ class NavbarComponent extends React.Component {
 							>
 								<div>
 									<Link to='admin-ref'>Admin Settings</Link>
-									<Link onClick={this.logoutClick}>Log Out</Link>
+									<Link to='#' onClick={this.logoutClick}>
+										Log Out
+									</Link>
 								</div>
 							</div>
 						</div>

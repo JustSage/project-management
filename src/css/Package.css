@@ -48,17 +48,21 @@
 
 .card-link {
 	padding-left: 30%;
-	color: orange
+	color: orange;
 }
 
 .card-link:hover {
-	color:rgb(238, 184, 84);
+	color: rgb(238, 184, 84);
 }
 
 .add-new-package-link {
-	color:rgb(145, 94, 0);
+	color: rgb(145, 94, 0);
 }
 
 .add-new-package-link:hover {
-	color:rgb(209, 151, 42);
+	color: rgb(209, 151, 42);
+}
+
+.update-button {
+	margin-left: 32% !important;
 }

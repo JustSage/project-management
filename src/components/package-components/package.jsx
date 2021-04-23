@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import React, { Component } from 'react'
-import { Card, ListGroupItem, ListGroup } from 'react-bootstrap'
+import { Button, Card, ListGroupItem, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 /* 
 	the main idea behind Package Component:
@@ -17,6 +17,27 @@ export default class Package extends Component {
 			quantity: this.props.quantity,
 			price: this.props.price,
 			url: this.props.url,
+		}
+	}
+
+	varifyAccess = () => {
+		if (
+			sessionStorage.getItem('logged-in-role') == 'Admin' ||
+			sessionStorage.getItem('logged-in-role') == 'Travel Agent'
+		) {
+			return (
+				<div className='list-group list-group-horizontal'>
+					<a className='list-group-item list-group-item-action' key='Add'>
+						<Link to='/add-package'>Add Package</Link>
+					</a>
+					<a key='Upgrade' className='list-group-item list-group-item-action'>
+						<Link to='/update-package'>Upgrade Package</Link>
+					</a>
+					<a key='Delete' className='list-group-item list-group-item-action'>
+						<Link to='/delete-package'>Delete Package</Link>
+					</a>
+				</div>
+			)
 		}
 	}
 
@@ -55,6 +76,13 @@ export default class Package extends Component {
 					>
 						Make an Order!
 					</Link>
+					{sessionStorage.getItem('logged-in-role') != 'Customer' ? (
+						<div className='row justify-content-center'>
+							<Button className='update-button' variant='warning'>
+								Update
+							</Button>
+						</div>
+					) : null}
 				</Card.Body>
 			</Card>
 		)
