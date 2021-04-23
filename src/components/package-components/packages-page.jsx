@@ -18,8 +18,6 @@ class Packages extends Component {
 		this.state = {
 			data: undefined,
 		}
-		// this.AddPackage = this.AddPackage.bind(this)
-
 		axios
 			.get('/packages')
 			.then((response) => {
