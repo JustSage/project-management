@@ -45,8 +45,8 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	overflow-x: scroll;
-	position: fixed;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 form label {
