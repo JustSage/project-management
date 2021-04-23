@@ -1,9 +1,8 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 const express = require('express')
 const router = new express.Router()
 const validator = require('validator')
-// const db = require('../database/mongoclient')
-const { MongoClient } = require('mongodb')
 const bcrypt = require('bcrypt')
 
 router.post('/sign-up', async (req, res) => {
@@ -15,89 +14,50 @@ router.post('/sign-up', async (req, res) => {
 	//hash password
 	user.password = await bcrypt.hash(user.password, 10)
 
-	//Connect to mongodb to save new user in db
-	MongoClient.connect(
-		process.env.MONGODB_URL,
-		{
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-			connectTimeoutMS: 50000,
-			serverSelectionTimeoutMS: 50000,
-		},
-		async (error, client) => {
-			if (error) {
-				//return to print and break function
-				return console.log('Unable to connect')
-			}
-			console.log('MongoDB is connected!')
-
-			var db = client.db(process.env.DATABASE_NAME)
-
-			try {
-				if (await db.collection('users').findOne({ username: user.username })) {
-					return res
-						.status(409)
-						.send({ message: 'User already exists in the database!' })
-				}
-
-				//Delete password confirmation before saving the user in db
-				delete user.confirmPass
-
-				//Insert the user which his details sent in body with post req
-				await db.collection('users').insertOne(user)
-
-				res.send({ message: `customer ${user.username} created successfully.` })
-			} catch (e) {
-				console.log(e)
-				res.status(500).send({ message: "Can't add customer!" })
-			}
+	try {
+		if (await db.collection('users').findOne({ username: user.username })) {
+			return res
+				.status(409)
+				.send({ message: 'User already exists in the database!' })
 		}
-	)
+
+		//Delete password confirmation before saving the user in db
+		delete user.confirmPass
+
+		//Insert the user which his details sent in body with post req
+		await db.collection('users').insertOne(user)
+
+		res.send({ message: `customer ${user.username} created successfully.` })
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't add customer!" })
+	}
 })
 
 router.post('/login', async (req, res) => {
 	const user = { username: req.body.username, password: req.body.password }
-	MongoClient.connect(
-		process.env.MONGODB_URL,
-		{
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-			connectTimeoutMS: 50000,
-			serverSelectionTimeoutMS: 50000,
-		},
-		async (error, client) => {
-			if (error) {
-				//return to print and break function
-				return console.log('Unable to connect')
-			}
-			console.log('MongoDB is connected!')
+	try {
+		//find user by typed usernmae/email in the input
+		const foundUser = await db.collection('users').findOne({
+			$or: [{ username: user.username }, { email: user.username }],
+		})
 
-			var db = client.db(process.env.DATABASE_NAME)
-
-			try {
-				//find user by typed usernmae/email in the input
-				const foundUser = await db.collection('users').findOne({
-					$or: [{ username: user.username }, { email: user.username }],
-				})
-
-				if (!foundUser) {
-					return res.status(404).send({ message: 'User not found.' })
-				}
-
-				//encrypt password and compare
-				const isMatch = await bcrypt.compare(user.password, foundUser.password)
-				if (!isMatch) {
-					return res.status(400).send({ message: 'password is not correct.' })
-				}
-
-				//Send user role for later use.
-				res.send({ message: 'logged in.', role: foundUser.role })
-			} catch (e) {
-				console.log(e)
-				res.status(500).send({ message: "Can't login!" })
-			}
+		if (!foundUser) {
+			return res.status(404).send({ message: 'User not found.' })
 		}
-	)
+
+		//encrypt password and compare
+		const isMatch = await bcrypt.compare(user.password, foundUser.password)
+		if (!isMatch) {
+			return res.status(400).send({ message: 'password is not correct.' })
+		}
+
+		//Send user role for later use.
+		res.send({ message: 'logged in.', role: foundUser.role })
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't login!" })
+	}
 })
 
 module.exports = router
