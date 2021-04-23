@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 const { MongoClient } = require('mongodb')
-//Connect to mongodb to save new user in db
 MongoClient.connect(
 	process.env.MONGODB_URL,
 	{
@@ -9,12 +8,12 @@ MongoClient.connect(
 	},
 	async (error, client) => {
 		if (error) {
-			//return to print and break function
 			console.log('Unable to connect')
 			throw error
 		}
 		console.log('MongoDB is connected!')
 
+		//Global variable defined and will be reached by all scripts (routers) of App.js in server
 		global.db = client.db(process.env.DATABASE_NAME)
 	}
 )
