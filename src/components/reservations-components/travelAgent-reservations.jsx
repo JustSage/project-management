@@ -18,37 +18,49 @@ export default class TAReservations extends Component {
 		data: undefined,
 		demoCustomers: [
 			{
-				id: 1,
 				fullName: 'David Charon-Zade',
-				Destination: 'Canada',
-				Price: '1000$',
+				destination: 'Canada',
+				deal: 'Package',
+				price: '1000$',
 			},
 			{
-				id: 2,
 				fullName: 'Yehonatan Ben',
-				Destination: 'Canada',
-				Price: '1000$',
+				destination: 'Canada',
+				deal: 'Flght',
+				price: '1000$',
 			},
 			{
-				id: 3,
 				fullName: 'Ariel Turchinsky',
-				Destination: 'Canada',
-				Price: '1000$',
+				destination: 'Canada',
+				deal: 'Package',
+				price: '1000$',
 			},
-			{ id: 4, fullName: 'Saggy Balls', Destination: 'Canada', Price: '1000$' },
+			{
+				fullName: 'Saggy Balls',
+				destination: 'Canada',
+				deal: 'Flight',
+				price: '1000$',
+			},
 		],
 	}
 
 	componentDidMount() {
-		axios.get('/pending-reservations').then((response) => {
-			this.setState({
-				data: response.data,
+		axios
+			.get('/pending-reservations')
+			.then((response) => {
+				this.setState(
+					{
+						data: response.data,
+					},
+					() => {
+						console.log(this.state.data)
+					}
+				)
 			})
-		})
-		// .catch((error) => {
-		// 	console.log(error.response.data.message)
-		// 	alert(error.response.data.message)
-		// })
+			.catch((error) => {
+				console.log(error.response.data.message)
+				alert(error.response.data.message)
+			})
 	}
 
 	handleAccept = (index) => {
@@ -74,19 +86,21 @@ export default class TAReservations extends Component {
 						<tr>
 							<th>#</th>
 							<th>Full Name</th>
-							<th>Price</th>
 							<th>Destination</th>
+							<th>Deal</th>
+							<th>Price</th>
 							<th>Approve</th>
 						</tr>
 					</thead>
 					<tbody>
 						{this.state.demoCustomers.map((element, index) => {
 							return (
-								<tr key={element.fullName}>
+								<tr key={index}>
 									<td>{index + 1}</td>
 									<td>{element.fullName}</td>
-									<td>{element.Price}</td>
-									<td>{element.Destination}</td>
+									<td>{element.destination}</td>
+									<td>{element.deal}</td>
+									<td>{element.price}</td>
 									<td>
 										<Button
 											onClick={() => {
