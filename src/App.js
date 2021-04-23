@@ -26,6 +26,8 @@ import MakeOrder from './components/orders-components/make-order'
 import UpdatePackage from './components/package-components/update-package-component/update-package'
 import DeletePackage from './components/package-components/delete-package-compomponent/delete-package'
 import AdminRef from './components/admin-components/admin-ref'
+import CustomeReservations from './components/reservations-components/customer-reservations'
+import TravelAgentReservations from './components/reservations-components/travelAgent-reservations'
 library.add(fab, faCheckSquare, faCoffee)
 
 /**
@@ -57,6 +59,26 @@ class App extends React.Component {
 									path='/flights'
 									render={() =>
 										!requireAuth() ? <Redirect to='/not-auth' /> : <Flights />
+									}
+								/>
+								<Route
+									path='/customer-reservations'
+									render={() =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<CustomeReservations />
+										)
+									}
+								/>
+								<Route
+									path='/travel-agent-reservations'
+									render={() =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<TravelAgentReservations />
+										)
 									}
 								/>
 								<Route
