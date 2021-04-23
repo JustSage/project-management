@@ -39,7 +39,6 @@ router.delete('/packages/:id', async (req, res) => {
 router.get('/packages', async (req, res) => {
 	try {
 		const packages = await db.collection('packages').find({}).toArray()
-
 		res.send(JSON.stringify(packages))
 	} catch (e) {
 		console.log(e)
