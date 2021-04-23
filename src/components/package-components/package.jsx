@@ -79,7 +79,13 @@ export default class Package extends Component {
 					{sessionStorage.getItem('logged-in-role') != 'Customer' ? (
 						<div className='row justify-content-center'>
 							<Button className='update-button' variant='warning'>
-								Update
+								<Link
+									to={{
+										pathname: `/update-package/${this.props.name}/${this.props.description}/${this.props.price}/${this.props.quantity}/${this.props.url}`,
+									}}
+								>
+									Upgrade{' '}
+								</Link>
 							</Button>
 						</div>
 					) : null}

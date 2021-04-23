@@ -1,92 +1,224 @@
+// eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
-import { Form } from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import { Form } from 'react-bootstrap'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
-import Package from '../package'
-import PropTypes from 'prop-types'
+// import Package from '../package'
+import { Form, Button } from 'react-bootstrap'
+import '../../../css/addPackage.css'
+// import PropTypes from 'prop-types'
+
 export default class UpdatePackage extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			data: [],
-			package: null,
-		}
-		this.packagesNames = this.packagesNames.bind(this)
+		this.handleURL = this.handleURL.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleURLLink = this.handleURLLink.bind(this)
+		this.handleFile = this.handleFile.bind(this)
+		this.handleName = this.handleName.bind(this)
+		this.handleDescription = this.handleDescription.bind(this)
+		this.handleQuantity = this.handleQuantity.bind(this)
+		this.handlePrice = this.handlePrice.bind(this)
+	}
+	state = {
+		// eslint-disable-next-line react/prop-types
+		name: this.props.match.params.destination,
+		// eslint-disable-next-line react/prop-types
+		description: this.props.match.params.description,
+		// eslint-disable-next-line react/prop-types
+		price: this.props.match.params.price,
+		// eslint-disable-next-line react/prop-types
+		quantity: this.props.match.params.quantity,
+		// eslint-disable-next-line react/prop-types
+		url: this.props.match.params.url,
+		data: undefined,
+	}
+	componentDidMount() {
+		console.log(`props: ${this.props}`)
+		// ****** here we need to replace an existing package with updated one ******
+		// 	axios
+		// 		.get('/packages')
+		// 		.then((response) => {
+		// 			setTimeout(() => {
+		// 				this.setState(
+		// 					{
+		// 						data: response.data,
+		// 					},
+		// 					() => {
+		// 						console.log(`data callback: ${this.state.data}`)
+		// 					}
+		// 				)
+		// 			}, 1000)
+		// 		})
+		// 		.catch((error) => {
+		// 			console.log(error.response.data.message)
+		// 			alert(error.response.data.message)
+		// 		})
 	}
 
-	componentDidMount() {
-		let temp
+	/**
+	 * Function handles the entered text in url input below
+	 * @param {*} event
+	 */
+	handleURL = (event) => {
+		this.setState({
+			url: event.target.value,
+		})
+	}
+
+	/**
+	 * Function handles the entered text in name input below
+	 * @param {*} event
+	 */
+	handleName = (event) => {
+		this.setState({
+			name: event.target.value,
+		})
+	}
+
+	/**
+	 * Function handles the entered text in description input below
+	 * @param {*} event
+	 */
+	handleDescription = (event) => {
+		this.setState({
+			description: event.target.value,
+		})
+	}
+
+	/**
+	 * Function handles the entered text in quantity input below
+	 * @param {*} event
+	 */
+	handleQuantity = (event) => {
+		this.setState({
+			quantity: event.target.value,
+		})
+	}
+
+	/**
+	 * Function handles the entered text in price input below
+	 * @param {*} event
+	 */
+	handlePrice = (event) => {
+		this.setState({
+			price: event.target.value + '$',
+		})
+	}
+
+	/**
+	 * Function will set url to the uploaded message
+	 * This will save the pictures localy only, when tried to load it, it'll not shown.
+	 * @param {*} event
+	 */
+	handleFile = (event) => {
+		event.preventDefault()
+		const objectURL = URL.createObjectURL(
+			document.querySelector('#image').files[0]
+		)
+		this.setState({
+			url: objectURL,
+		})
+	}
+
+	/**
+	 * handles url link, shows up only if url value isn't empty
+	 * @returns link to typed url
+	 */
+	handleURLLink = () => {
+		if (this.state.url !== '')
+			return (
+				<a href={this.state.url} target='__blank'>
+					Check picture url
+				</a>
+			)
+	}
+
+	/**
+	 * Handles the submit in the form below, send the whole state to db
+	 */
+	handleSubmit = () => {
+		event.preventDefault()
 		axios
-			.get('/packages')
-			.then(async (response) => {
-				await this.setState({ data: response.data }, () => {
-					console.log(`temp: ${temp.data}`)
-				})
+			.post('/add-package', this.state)
+			.then((response) => {
+				alert(response.data.message)
 			})
 			.catch((error) => {
 				alert(error)
+				console.log(error)
 			})
 	}
 
-	packagesNames = () => {
-		console.log(`data: ${this.data}`)
-		// const names = this.state.data.map((pkg) => {
-		// 	return (
-		// 		<option
-		// 			onClick={() => {
-		// 				this.setState({ package: pkg })
-		// 			}}
-		// 			key={pkg.name}
-		// 		>
-		// 			{pkg.name}
-		// 		</option>
-		// 	)
-		// })
-		// return names
-	}
 	render() {
-		if (this.state.data.length == 0) {
-			return (
-				<div className='text-center'>
-					<div className='spinner-border' role='status'>
-						<span className='sr-only'>Loading...</span>
-					</div>
-				</div>
-			)
-		} else {
+		if (
+			sessionStorage.getItem('logged-in-role') == 'Admin' ||
+			sessionStorage.getItem('logged-in-role') == 'Travel Agent'
+		) {
 			return (
 				<>
-					<Form>
+					<h3 className='h-as-title'>Update Package</h3>
+					<Form className='add-package-form' onSubmit={this.handleSubmit}>
 						<Form.Group>
-							<Form.Label>Please choose a Package:</Form.Label>
-							<Form.Control as='select'>
-								{() => {
-									this.state.data.length != 0 ? this.packagesNames : null
-								}}
-							</Form.Control>
+							<Form.Label>Package name</Form.Label>
+							<Form.Control
+								// eslint-disable-next-line react/prop-types
+								defaultValue={this.name}
+								required
+								onChange={this.handleName}
+							/>
 						</Form.Group>
-					</Form>
-					<div className='d-flex flex-row flex-wrap my-flex-container'>
-						<div className='p-2 my-flex-item'>
-							{this.state.package != null ? (
-								<Package
-									name={this.package.name}
-									description={this.package.description}
-									url={this.package.url}
-									quantity={this.package.quantity}
-									price={this.package.price}
-									history={this.props.history}
-									key={this.package.description}
+						<Form.Group>
+							<Form.Label>Description</Form.Label>
+							<Form.Control
+								defaultValue={this.state.description}
+								as='textarea'
+								rows={3}
+								required
+								onChange={this.handleDescription}
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Price</Form.Label>
+							<Form.Control
+								type='number'
+								required
+								defaultValue={this.state.price}
+								onChange={this.handlePrice}
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Quantity</Form.Label>
+							<Form.Control
+								type='number'
+								required
+								defaultValue={this.state.quantity}
+								onChange={this.handleQuantity}
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Image</Form.Label>
+							<Form.Group>
+								<Form.File
+									id='image'
+									accept='image/*'
+									onChange={this.handleFile}
 								/>
-							) : null}
-						</div>
-					</div>
+							</Form.Group>
+							<Form.Control
+								placeholder='Or set image url'
+								onChange={this.handleURL}
+								defaultValue={this.state.url}
+								required
+							/>
+							{this.handleURLLink()}
+						</Form.Group>
+						<Button type='submit' style={{ border: 'none' }}>
+							Update
+						</Button>
+					</Form>
 				</>
 			)
 		}
 	}
-}
-
-UpdatePackage.propTypes = {
-	history: PropTypes.string,
 }

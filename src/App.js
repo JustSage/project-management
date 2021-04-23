@@ -76,7 +76,7 @@ class App extends React.Component {
 									}
 								/>
 								<Route
-									path='/update-package'
+									path='/update-package/:destination/:description/:price/:quantity/:url'
 									render={() =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />
