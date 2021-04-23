@@ -21,9 +21,11 @@ import Flights from './components/package-components/flights'
 import requireAuth from './components/login-and-signup-components/auth'
 import NotAuth from './components/login-and-signup-components/notAuth'
 import NavbarComponent from './components/general-components/navbar'
+// import AdminRef from './components/admin-components/admin-ref'
 import MakeOrder from './components/orders-components/make-order'
 import UpdatePackage from './components/package-components/update-package-component/update-package'
 import DeletePackage from './components/package-components/delete-package-compomponent/delete-package'
+import AdminRef from './components/admin-components/admin-ref'
 library.add(fab, faCheckSquare, faCoffee)
 
 /**
@@ -111,6 +113,12 @@ class App extends React.Component {
 										) : (
 											<MakeOrder {...props} />
 										)
+									}
+								/>
+								<Route
+									path='/admin-ref'
+									render={() =>
+										!requireAuth() ? <Redirect to='/not-auth' /> : <AdminRef />
 									}
 								/>
 							</>

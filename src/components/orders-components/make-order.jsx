@@ -15,18 +15,22 @@ class MakeOrder extends Component {
 		super(props)
 		this.state = {
 			start: today.toISOString().split('T')[0], //Generates todays date
-			end: '',
+			end: today.toISOString().split('T')[0].split('-').reverse().join('/'),
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleDates = this.handleDates.bind(this)
 	}
 
+	/**
+	 * Function handles the start and end date of the vacation
+	 * @param {} event
+	 */
 	handleDates = (event) => {
 		this.setState({
-			start: event.target.value, //.split('-').reverse().join('/')
+			start: event.target.value,
 			end: new Date(
 				Date.parse(event.target.value) + 5 * 86400000
-			).toLocaleDateString(), //Holiday will be 5 days currently
+			).toLocaleDateString('en-GB'), //Holiday will be 5 days currently
 		})
 	}
 	/**
@@ -35,10 +39,13 @@ class MakeOrder extends Component {
 	handleSubmit = () => {
 		event.preventDefault()
 		axios
-			.post('/add-new-order', {
-				...this.props,
-				start: this.state.start,
-				end: this.state.end,
+			.post('/add-order', {
+				User: sessionStorage.getItem('logged-in-username'),
+				Destination: this.props.match.params.destination,
+				Price: this.props.match.params.price,
+				OrderDate: today.toUTCString(),
+				Start: this.state.start.split('-').reverse().join('/'),
+				End: this.state.end,
 			})
 			.then((response) => {
 				alert(response.data.message)
@@ -90,9 +97,10 @@ class MakeOrder extends Component {
 								min={today.toISOString().split('T')[0]}
 								value={this.state.start}
 								onChange={this.handleDates}
+								required
 							/>
-							<Form.Label>Start Date</Form.Label>
-							<Form.Control readOnly value={this.state.end} />
+							<Form.Label>End Date</Form.Label>
+							<Form.Control readOnly value={this.state.end} required />
 						</Form.Group>
 						<Button type='submit' style={{ border: 'none' }}>
 							Submit!

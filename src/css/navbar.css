@@ -66,24 +66,15 @@
 	color: #a52a2a;
 }
 
-.user-icon {
-	margin-top: 10;
+.user-icon{
 	font-size: 17px;
 }
 
-.search-input {
-	border-radius: 15px;
-	height: 80%;
-	max-width: 500px;
-	margin-right: 3vh;
-	transition: all ease 0.7s;
+.cog{
+	margin-bottom: 4%;
+	font-size: 17px;
 }
 
-.search-input:focus {
-	outline: none;
-	box-shadow: 0px 0px 10px rgb(202, 169, 169) !important;
-	border-color: rgb(212, 144, 87) !important;
-}
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
