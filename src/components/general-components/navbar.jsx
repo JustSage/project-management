@@ -56,7 +56,6 @@ class NavbarComponent extends React.Component {
 								<div>
 									<Link to='/packages'>Packages</Link>
 									<Link to='/attractions'>Attractions</Link>
-									<Link to='reservations'>Reservations</Link>
 								</div>
 							</div>
 						</div>
@@ -101,8 +100,22 @@ class NavbarComponent extends React.Component {
 								style={{ minWidth: '160px', right: '3%' }}
 							>
 								<div>
-									<Link to='admin-ref'>Admin Settings</Link>
-									<Link to='' onClick={this.logoutClick}>
+									{sessionStorage.getItem('logged-in-role') == 'Admin' ? (
+										<>
+											<Link to='admin-ref'>Admin Settings</Link>
+											<Link to='/customer-info'>Personal Info</Link>
+											<Link to='/travel-agent-reservations'>Reservations</Link>
+										</>
+									) : (
+										<>
+											<Link to='/customer-info'>Personal Info</Link>
+											<Link to='/customer-reservations'>Reservations</Link>
+										</>
+									)}
+									{/* <Link to='/customer-info'>Personal Info</Link>
+									<Link to='/customer-reservations'>Reservations</Link>
+									<Link to='admin-ref'>Admin Settings</Link> */}
+									<Link to='#' onClick={this.logoutClick}>
 										Log Out
 									</Link>
 								</div>
