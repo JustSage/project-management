@@ -4,11 +4,16 @@ const router = new express.Router()
 
 router.get('/pending-reservations', async (req, res) => {
 	try {
-		const reservations = await db
+		let reservations = null
+		let i = 0
+		reservations = await db
 			.collection('pending-reservations')
 			.find({})
 			.toArray()
-
+		while (reservations == null) {
+			i = i + 1
+		}
+		console.log(reservations)
 		res.send(JSON.stringify(reservations))
 	} catch (e) {
 		console.log(e)

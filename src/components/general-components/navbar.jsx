@@ -81,8 +81,10 @@ class NavbarComponent extends React.Component {
 						placeholder='Search for packages...'
 						className='search-input'
 					></input> */}
-					<SearchBar />
-					<Form inline>
+					<div className='searchBar'>
+						<SearchBar />
+					</div>
+					<Form className='navbar-nav text-right'>
 						<h5 className='h5-nav'>
 							<FontAwesomeIcon
 								className='user-icon'

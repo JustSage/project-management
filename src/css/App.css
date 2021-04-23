@@ -45,20 +45,23 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	overflow-x: scroll;
+	position: fixed;
 }
 
 form label {
 	font-size: 15px;
 }
 
-input:focus, select:focus {
-    box-shadow: none !important;
-    border-color: orange !important;
+input:focus,
+select:focus {
+	box-shadow: none !important;
+	border-color: orange !important;
 }
 
 .h-as-title {
-    margin-top: 2%;
-    margin-left: 50%;
+	margin-top: 2%;
+	margin-left: 50%;
 }
 
 a {

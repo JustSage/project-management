@@ -12,27 +12,10 @@
 	box-shadow: 0px -10px 20px 20px rgb(223, 164, 87);
 }
 
-.logout_btn {
-	margin-left: 15;
-	margin-top: 5;
-	margin-right: 3;
-	font-weight: bold;
-	border-radius: 15px;
-	background-color: rgb(190, 162, 142);
-	opacity: 0.5;
-	transition: ease 0.5s;
-	width: 80px;
-	height: 40px;
-}
-
-.logout_btn:hover {
-	opacity: 1;
-	background-color: rgb(218, 90, 31);
-}
-
 .h5-nav {
 	font-size: 17;
-	margin-right: 10px;
+	margin-right: auto;
+	display: block;
 }
 
 .navLink {
@@ -41,6 +24,7 @@
 	/* font-weight: inherit; */
 	transition: all ease 0.5s;
 }
+
 /* .navLink:hover {
 	color: rgb(94, 82, 82);
 	font-weight: bold;
@@ -66,15 +50,14 @@
 	color: #a52a2a;
 }
 
-.user-icon{
+.user-icon {
 	font-size: 17px;
 }
 
-.cog{
+.cog {
 	margin-bottom: 4%;
 	font-size: 17px;
 }
-
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
@@ -123,4 +106,7 @@
 	background-color: #3e8e41;
 }
 
-
+.searchBar {
+	display: flex;
+	margin-left: 10px;
+}
