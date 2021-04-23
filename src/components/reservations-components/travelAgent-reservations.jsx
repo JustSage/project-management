@@ -54,8 +54,16 @@ export default class TAReservations extends Component {
 	handleAccept = (index) => {
 		let temp = this.state.demoCustomers
 		temp.splice(index, 1)
-		console.log(temp)
+		this.setState({ demoCustomers: temp })
+	}
 
+	acceptAll = () => {
+		// logic for empty the db
+		let temp
+		while (this.state.demoCustomers.length > 0) {
+			temp = this.state.demoCustomers
+			temp.pop()
+		}
 		this.setState({ demoCustomers: temp })
 	}
 	render() {
@@ -93,6 +101,7 @@ export default class TAReservations extends Component {
 						})}
 					</tbody>
 				</Table>
+				<Button onClick={this.acceptAll}>Accpet All</Button>
 			</div>
 		)
 	}
