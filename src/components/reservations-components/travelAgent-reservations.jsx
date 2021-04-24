@@ -48,9 +48,14 @@ export default class TAReservations extends Component {
 		axios
 			.get('/pending-reservations')
 			.then((response) => {
-				this.setState({
-					data: response.data,
-				})
+				this.setState(
+					{
+						data: response.data,
+					},
+					() => {
+						console.log(this.state.data)
+					}
+				)
 			})
 			.catch((error) => {
 				console.log(error.response.data.message)
