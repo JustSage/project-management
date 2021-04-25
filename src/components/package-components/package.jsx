@@ -43,22 +43,8 @@ export default class Package extends Component {
 
 	render() {
 		return (
-			<Card
-				style={{
-					borderRadius: '25px',
-					borderTopLeftRadius: '25px',
-					width: '18rem',
-					height: '30rem',
-				}}
-			>
-				<Card.Img
-					style={{
-						borderTopLeftRadius: '25px',
-						borderTopRightRadius: '25px',
-					}}
-					variant='top'
-					src={this.state.url}
-				/>
+			<Card className='myCard'>
+				<Card.Img className='myCardImage' variant='top' src={this.state.url} />
 				<Card.Body style={{ overflow: 'auto' }}>
 					<Card.Title>{this.state.name}</Card.Title>
 					<Card.Text>{this.state.description}</Card.Text>

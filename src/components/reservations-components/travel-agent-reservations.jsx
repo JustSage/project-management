@@ -58,8 +58,7 @@ export default class TAReservations extends Component {
 				)
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
-				alert(error.response.data.message)
+				alert(`error: ${error.response.data}`)
 			})
 	}
 

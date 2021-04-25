@@ -66,3 +66,15 @@
 .update-button {
 	margin-left: 32% !important;
 }
+
+.myCard {
+	border-radius: 25px;
+	border-top-left-radius: 25px;
+	width: 18rem;
+	height: 30rem;
+}
+
+.myCardImage {
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+}
