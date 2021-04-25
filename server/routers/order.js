@@ -12,6 +12,16 @@ router.get('/orders', async (req, res) => {
 		res.status(500).send({ message: "Can't show orders!" })
 	}
 })
+router.get('/customer-orders', async (req, res) => {
+	try {
+		let user = req.query.User
+		const orders = await db.collection('orders').find({ User: user }).toArray()
+		res.send(JSON.stringify(orders))
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't show orders!" })
+	}
+})
 
 // adding an order to the database
 router.post('/add-order', async (req, res) => {
