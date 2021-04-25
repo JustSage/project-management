@@ -43,6 +43,8 @@ class MakeOrder extends Component {
 				User: sessionStorage.getItem('logged-in-username'),
 				Destination: this.props.match.params.destination,
 				Price: this.props.match.params.price,
+				Deal: this.props.match.params.deal,
+				Status: 'Pending',
 				OrderDate: today.toUTCString(),
 				Start: this.state.start.split('-').reverse().join('/'),
 				End: this.state.end,

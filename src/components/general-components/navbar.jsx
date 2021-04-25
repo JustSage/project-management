@@ -107,7 +107,7 @@ class NavbarComponent extends React.Component {
 										<>
 											<Link to='/admin-ref'>Admin Settings</Link>
 											<Link to='/customer-info'>Personal Info</Link>
-											<Link to='/travel-agent-reservations'>Reservations</Link>
+											<Link to='/orders-list'>Reservations</Link>
 										</>
 									) : (
 										<>
