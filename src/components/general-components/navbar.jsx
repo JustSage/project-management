@@ -75,15 +75,16 @@ class NavbarComponent extends React.Component {
 						>
 							Packages
 						</Nav.Link> */}
+						<div className='searchBar'>
+							<SearchBar />
+						</div>
 					</Nav>
 					{/* <input
 						type='search'
 						placeholder='Search for packages...'
 						className='search-input'
 					></input> */}
-					<div className='searchBar'>
-						<SearchBar />
-					</div>
+
 					<Form className='navbar-nav text-right'>
 						<h5 className='h5-nav'>
 							<FontAwesomeIcon
