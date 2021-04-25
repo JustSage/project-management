@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Table } from 'react-bootstrap'
+import { Table, Button } from 'react-bootstrap'
 import React, { Component, Fragment } from 'react'
 import '../../css/orders.css'
 
@@ -13,8 +13,31 @@ export default class OrdersList extends Component {
 		super(props)
 		this.state = {
 			orders: [],
+			temp: [],
 			tableTitles: undefined,
 		}
+		// axios
+		// 	.get('/orders')
+		// 	.then((response) => {
+		// 		console.log(response.data)
+		// 		//Get fields name, remove _id attribute from the received data
+		// 		var arr = Object.keys(response.data[0]).slice(1)
+		// 		arr[3] = 'Order date'
+		// 		this.setState({
+		// 			tableTitles: arr,
+		// 			orders: response.data,
+		// 		})
+		// 		console.log(this.state.tableTitles, this.state.orders)
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log(error.response.data.message)
+		// 		alert(error.response.data.message)
+		// 	})
+
+		this.sort = this.sort.bind(this)
+	}
+
+	fetchingData() {
 		axios
 			.get('/orders')
 			.then((response) => {
@@ -32,8 +55,35 @@ export default class OrdersList extends Component {
 				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
+	}
 
-		this.sort = this.sort.bind(this)
+	handleAccept = (userName) => {
+		axios
+			.post('/update-order-status', {
+				User: userName,
+				Status: 'Accepted',
+			})
+			.then((response) => {
+				alert(response.data.message)
+			})
+			.catch((error) => {
+				alert(error.data.message)
+				console.log(error.data.message)
+			})
+	}
+
+	handleAcceptAll = () => {
+		axios
+			.post('/update-all-ordes-statuses', {
+				Status: 'Accepted',
+			})
+			.then((response) => {
+				alert(response.data.message)
+			})
+			.catch((error) => {
+				alert(error.data.message)
+				console.log(error.data.message)
+			})
 	}
 
 	/**
@@ -68,16 +118,25 @@ export default class OrdersList extends Component {
 
 	render() {
 		if (this.state.tableTitles === undefined) {
-			return <div>Loading...</div>
+			return (
+				<div className='text-center'>
+					<div className='spinner-border' role='status'>
+						<span className='sr-only'>Loading...</span>
+						{this.fetchingData()}
+					</div>
+				</div>
+			)
 		} else
 			return (
 				<>
+					{this.fetchingData()}
 					<div>Orders</div>
 					<Table striped bordered hover size='sm' className='orders-table'>
 						<thead>
 							<tr>
 								<th>{'#'} </th>
 								{/* Map state's table titles */}
+								{}
 								{this.state.tableTitles.map((h, i) => {
 									return (
 										<Fragment key={i}>
@@ -94,6 +153,7 @@ export default class OrdersList extends Component {
 										</Fragment>
 									)
 								})}
+								<th>{'Approve'} </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -106,15 +166,27 @@ export default class OrdersList extends Component {
 											<td>{h['User']}</td>
 											<td>{h['Destination']}</td>
 											<td>{h['Price']}</td>
+											<td>{h['Deal']}</td>
+											<td>{h['Status']}</td>
 											<td>{h['OrderDate']}</td>
 											<td>{h['Start']}</td>
 											<td>{h['End']}</td>
+											<td>
+												<Button
+													onClick={() => {
+														this.handleAccept(h['User'])
+													}}
+												>
+													Accept
+												</Button>
+											</td>
 										</tr>
 									</Fragment>
 								)
 							})}
 						</tbody>
 					</Table>
+					<Button onClick={this.handleAcceptAll}>Accpet All</Button>
 				</>
 			)
 	}
