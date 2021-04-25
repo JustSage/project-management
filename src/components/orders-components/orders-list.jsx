@@ -16,23 +16,6 @@ export default class OrdersList extends Component {
 			temp: [],
 			tableTitles: undefined,
 		}
-		// axios
-		// 	.get('/orders')
-		// 	.then((response) => {
-		// 		console.log(response.data)
-		// 		//Get fields name, remove _id attribute from the received data
-		// 		var arr = Object.keys(response.data[0]).slice(1)
-		// 		arr[3] = 'Order date'
-		// 		this.setState({
-		// 			tableTitles: arr,
-		// 			orders: response.data,
-		// 		})
-		// 		console.log(this.state.tableTitles, this.state.orders)
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error.response.data.message)
-		// 		alert(error.response.data.message)
-		// 	})
 
 		this.sort = this.sort.bind(this)
 	}
