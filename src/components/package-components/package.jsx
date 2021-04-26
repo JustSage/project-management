@@ -73,6 +73,15 @@ export default class Package extends Component {
 									Upgrade{' '}
 								</Link>
 							</Button>
+							<Button className='update-button' variant='warning'>
+								<Link
+									to={{
+										pathname: `/update-package/${this.props.name}/${this.props.description}/${this.props.price}/${this.props.quantity}/${this.props.url}`,
+									}}
+								>
+									Delete{' '}
+								</Link>
+							</Button>
 						</div>
 					) : null}
 				</Card.Body>
