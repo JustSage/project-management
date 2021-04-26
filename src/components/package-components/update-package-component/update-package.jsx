@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
 // import { Form } from 'react-bootstrap'
@@ -5,6 +6,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 // import Package from '../package'
 import { Form, Button } from 'react-bootstrap'
+
 import '../../../css/addPackage.css'
 // import PropTypes from 'prop-types'
 
@@ -27,33 +29,12 @@ export default class UpdatePackage extends Component {
 		description: this.props.match.params.description,
 		// eslint-disable-next-line react/prop-types
 		price: this.props.match.params.price,
+
 		// eslint-disable-next-line react/prop-types
 		quantity: this.props.match.params.quantity,
 		// eslint-disable-next-line react/prop-types
 		url: this.props.match.params.url,
 		data: undefined,
-	}
-	componentDidMount() {
-		console.log(`props: ${this.props}`)
-		// ****** here we need to replace an existing package with updated one ******
-		// 	axios
-		// 		.get('/packages')
-		// 		.then((response) => {
-		// 			setTimeout(() => {
-		// 				this.setState(
-		// 					{
-		// 						data: response.data,
-		// 					},
-		// 					() => {
-		// 						console.log(`data callback: ${this.state.data}`)
-		// 					}
-		// 				)
-		// 			}, 1000)
-		// 		})
-		// 		.catch((error) => {
-		// 			console.log(error.response.data.message)
-		// 			alert(error.response.data.message)
-		// 		})
 	}
 
 	/**
@@ -128,7 +109,13 @@ export default class UpdatePackage extends Component {
 	handleURLLink = () => {
 		if (this.state.url !== '')
 			return (
-				<a href={this.state.url} target='__blank'>
+				<a
+					href={this.props.location.pathname.substring(
+						this.props.location.pathname.indexOf('https'),
+						this.props.location.pathname.length
+					)}
+					target='__blank'
+				>
 					Check picture url
 				</a>
 			)
@@ -137,10 +124,23 @@ export default class UpdatePackage extends Component {
 	/**
 	 * Handles the submit in the form below, send the whole state to db
 	 */
-	handleSubmit = () => {
+	handleSubmit = (event) => {
 		event.preventDefault()
+		this.setState({
+			url: this.props.location.pathname.substring(
+				this.props.location.pathname.indexOf('https'),
+				this.props.location.pathname.length
+			),
+		})
+
 		axios
-			.post('/add-package', this.state)
+			.post('/update-package', {
+				name: this.state.name,
+				description: this.state.description,
+				quantity: this.state.quantity,
+				price: this.state.price,
+				url: this.state.url,
+			})
 			.then((response) => {
 				alert(response.data.message)
 			})
@@ -163,7 +163,7 @@ export default class UpdatePackage extends Component {
 							<Form.Label>Package name</Form.Label>
 							<Form.Control
 								// eslint-disable-next-line react/prop-types
-								defaultValue={this.name}
+								defaultValue={this.state.name}
 								required
 								onChange={this.handleName}
 							/>
@@ -183,7 +183,9 @@ export default class UpdatePackage extends Component {
 							<Form.Control
 								type='number'
 								required
-								defaultValue={this.state.price}
+								defaultValue={parseInt(
+									this.state.price.substring(0, this.state.price.length - 1)
+								)}
 								onChange={this.handlePrice}
 							/>
 						</Form.Group>
@@ -208,7 +210,10 @@ export default class UpdatePackage extends Component {
 							<Form.Control
 								placeholder='Or set image url'
 								onChange={this.handleURL}
-								defaultValue={this.state.url}
+								defaultValue={this.props.location.pathname.substring(
+									this.props.location.pathname.indexOf('https'),
+									this.props.location.pathname.length
+								)}
 								required
 							/>
 							{this.handleURLLink()}
