@@ -27,33 +27,17 @@ export default class Package extends Component {
 		}
 	}
 
-	varifyAccess = () => {
-		if (
-			sessionStorage.getItem('logged-in-role') == 'Admin' ||
-			sessionStorage.getItem('logged-in-role') == 'Travel Agent'
-		) {
-			return (
-				<div className='list-group list-group-horizontal'>
-					<a className='list-group-item list-group-item-action' key='Add'>
-						<Link to='/add-package'>Add Package</Link>
-					</a>
-					<a key='Upgrade' className='list-group-item list-group-item-action'>
-						<Link to='/update-package'>Upgrade Package</Link>
-					</a>
-					<a key='Delete' className='list-group-item list-group-item-action'>
-						<Link to='/delete-package'>Delete Package</Link>
-					</a>
-				</div>
-			)
-		}
-	}
-
 	render() {
 		return (
 			<Card className='myCard'>
 				<Card.Img className='myCardImage' variant='top' src={this.state.url} />
 				<Card.Body style={{ overflow: 'auto' }}>
-					<Card.Title>{this.state.name}</Card.Title>
+					<Card.Title>
+						{this.state.name}
+						{this.props.updated === 'yes' ? (
+							<h4 style={{ color: 'red' }}>Package Updated</h4>
+						) : null}
+					</Card.Title>
 					<Card.Text>{this.state.description}</Card.Text>
 				</Card.Body>
 				<ListGroup className='list-group-flush'>
@@ -69,6 +53,7 @@ export default class Package extends Component {
 					>
 						Make an Order!
 					</Link>
+
 					{sessionStorage.getItem('logged-in-role') != 'Customer' ? (
 						<Container className=' justify-content-center'>
 							<Col>
