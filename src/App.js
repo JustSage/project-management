@@ -89,11 +89,11 @@ class App extends React.Component {
 								/>
 								<Route
 									path='/update-package/:destination/:description/:price/:quantity/:url'
-									render={() =>
+									render={(props) =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />
 										) : (
-											<UpdatePackage />
+											<UpdatePackage {...props} />
 										)
 									}
 								/>
