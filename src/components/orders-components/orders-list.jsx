@@ -24,15 +24,15 @@ export default class OrdersList extends Component {
 		axios
 			.get('/orders')
 			.then((response) => {
-				console.log(response.data)
 				//Get fields name, remove _id attribute from the received data
 				var arr = Object.keys(response.data[0]).slice(1)
-				arr[3] = 'Order date'
+
+				arr[4] = 'Order date'
 				this.setState({
 					tableTitles: arr,
 					orders: response.data,
 				})
-				console.log(this.state.tableTitles, this.state.orders)
+				// console.log(this.state.tableTitles, this.state.orders)
 			})
 			.catch((error) => {
 				console.log(error.response.data.message)
@@ -112,7 +112,9 @@ export default class OrdersList extends Component {
 		} else
 			return (
 				<>
-					{this.fetchingData()}
+					{() => {
+						this.fetchingData()
+					}}
 					<div>Orders</div>
 					<Table striped bordered hover size='sm' className='orders-table'>
 						<thead>

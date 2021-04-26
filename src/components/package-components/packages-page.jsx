@@ -33,6 +33,18 @@ class Packages extends Component {
 			})
 	}
 
+	AddPackage = () => {
+		if (
+			sessionStorage.getItem('logged-in-role') == 'Admin' ||
+			sessionStorage.getItem('logged-in-role') == 'Travel Agent'
+		)
+			return (
+				<h5 className='h5-packages'>
+					<a href='/add-package'>Add new package!</a>
+				</h5>
+			)
+	}
+
 	handleLocation = (event) => {
 		event.preventDefault()
 		this.setState({ location: event.target.value })
@@ -63,6 +75,7 @@ class Packages extends Component {
 						</div>
 						<br />
 					</div>
+					{this.AddPackage()}d
 					<div className='d-flex flex-row flex-wrap my-flex-container'>
 						{this.state.data.map((pkg) => {
 							if (pkg.quantity > 0) {
