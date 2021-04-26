@@ -41,6 +41,7 @@ router.post('/update-package', async (req, res) => {
 					quantity: pkg.quantity,
 					price: pkg.price,
 					url: pkg.url,
+					updated: pkg.updated,
 				},
 			}
 		)
