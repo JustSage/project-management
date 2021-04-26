@@ -22,6 +22,35 @@ router.post('/add-package', async (req, res) => {
 		res.status(500).send({ message: "Can't add a package!" })
 	}
 })
+router.post('/update-package', async (req, res) => {
+	const pkg = req.body
+
+	try {
+		//Check if url is valid
+		if (!validator.isURL(pkg.url, { protocols: ['http', 'https'] })) {
+			return res.status(500).send({ message: 'URL is not valid!' })
+		}
+
+		//Insert the package to the DB
+		await db.collection('packages').updateOne(
+			{ description: pkg.description },
+			{
+				$set: {
+					name: pkg.name,
+					description: pkg.description,
+					quantity: pkg.quantity,
+					price: pkg.price,
+					url: pkg.url,
+				},
+			}
+		)
+
+		res.send({ message: `Package ${pkg.name} Updated successfully!.` })
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't add a package!" })
+	}
+})
 
 router.delete('/packages/:id', async (req, res) => {
 	// :id removes accepts any path after /.
