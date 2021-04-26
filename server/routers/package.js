@@ -53,12 +53,32 @@ router.post('/update-package', async (req, res) => {
 	}
 })
 
+router.post('/decrement-quantity', async (req, res) => {
+	const pkg = req.body
+	const q = pkg.quantity - 1
+	try {
+		await db.collection('packages').updateOne(
+			{ description: pkg.description },
+			{
+				$set: {
+					quantity: q,
+				},
+			}
+		)
+
+		res.send({ message: `Thank you!` })
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't add a package!" })
+	}
+})
+
 router.delete('/packages/:id', async (req, res) => {
 	// :id removes accepts any path after /.
 	const pkg = req.body
 
 	try {
-		await db.collection('pacakage').deleteOne({ name: pkg.name })
+		await db.collection('package').deleteOne({ name: pkg.name })
 		res.send({ message: `Package ${pkg.name} deleted successfully.` })
 	} catch (e) {
 		console.log(e)
@@ -69,6 +89,19 @@ router.delete('/packages/:id', async (req, res) => {
 router.get('/packages', async (req, res) => {
 	try {
 		const packages = await db.collection('packages').find({}).toArray()
+		res.send(JSON.stringify(packages))
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't show packages!" })
+	}
+})
+router.get('/one-package', async (req, res) => {
+	try {
+		let description = req.query.Description
+		const packages = await db
+			.collection('packages')
+			.find({ description: description })
+			.toArray()
 		res.send(JSON.stringify(packages))
 	} catch (e) {
 		console.log(e)
