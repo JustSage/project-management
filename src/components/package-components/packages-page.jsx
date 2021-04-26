@@ -73,6 +73,7 @@ class Packages extends Component {
 										url={pkg.url}
 										quantity={pkg.quantity}
 										price={pkg.price}
+										updated={pkg.updated}
 										history={this.props.history}
 										key={pkg.description}
 									/>
