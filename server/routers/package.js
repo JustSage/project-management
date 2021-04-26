@@ -73,6 +73,26 @@ router.post('/decrement-quantity', async (req, res) => {
 	}
 })
 
+router.post('/increment-quantity', async (req, res) => {
+	const pkg = req.body
+	const q = pkg.quantity + 1
+	try {
+		await db.collection('packages').updateOne(
+			{ name: pkg.destination },
+			{
+				$set: {
+					quantity: q,
+				},
+			}
+		)
+
+		res.send({ message: `Thank you!` })
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't add a package!" })
+	}
+})
+
 router.delete('/packages/:id', async (req, res) => {
 	// :id removes accepts any path after /.
 	const pkg = req.body
@@ -101,6 +121,20 @@ router.get('/one-package', async (req, res) => {
 		const packages = await db
 			.collection('packages')
 			.find({ description: description })
+			.toArray()
+		res.send(JSON.stringify(packages))
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't show packages!" })
+	}
+})
+
+router.get('/one-package-destination', async (req, res) => {
+	try {
+		let name = req.query.name
+		const packages = await db
+			.collection('packages')
+			.find({ name: name })
 			.toArray()
 		res.send(JSON.stringify(packages))
 	} catch (e) {
