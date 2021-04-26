@@ -59,6 +59,45 @@ router.post('/update-order-status', async (req, res) => {
 	}
 })
 
+router.post('/update-order-status-canceled', async (req, res) => {
+	const order = req.body
+
+	try {
+		console.log(order)
+		await db
+			.collection('orders')
+			.updateOne(
+				{ User: order.User, Destination: order.Destination },
+				{ $set: { Status: order.Status } }
+			)
+
+		res.send({
+			message: `Your order Updated successfully.`,
+		})
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't make an order!" })
+	}
+})
+
+router.post('/delete-order-by-destination', async (req, res) => {
+	const order = req.body
+
+	try {
+		console.log(order)
+		await db
+			.collection('orders')
+			.deleteOne({ Destination: order.Destination, User: order.User })
+
+		res.send({
+			message: `Your order Updated successfully.`,
+		})
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't make an order!" })
+	}
+})
+
 router.post('/update-all-ordes-statuses', async (req, res) => {
 	const order = req.body
 
