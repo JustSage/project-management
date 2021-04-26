@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Container, Table, Row } from 'react-bootstrap'
+import { Container, Table, Row, Button } from 'react-bootstrap'
 
 import axios from 'axios'
 export default class CustomeReservations extends Component {
@@ -27,6 +27,70 @@ export default class CustomeReservations extends Component {
 				alert(error.response.data.message)
 			})
 	}
+
+	fetchAgain = () => {
+		axios
+			.get('/customer-orders', {
+				params: {
+					User: sessionStorage.getItem('logged-in-username'),
+				},
+			})
+			.then((response) => {
+				this.setState({ data: response.data }, () => {
+					console.log(response.data)
+				})
+			})
+			.catch((error) => {
+				console.log(error.response.data.message)
+				alert(error.response.data.message)
+			})
+	}
+
+	cancelOrder = (name, user) => {
+		axios
+			.get('/one-package-destination', {
+				params: {
+					name: name,
+				},
+			})
+			.then((response) => {
+				this.setState({ data: response.data })
+
+				let quantity = this.state.data[0].quantity
+				console.log(`quantity : ${quantity}`)
+				if (quantity >= 0) {
+					axios
+						.post('/increment-quantity', {
+							destination: name,
+							quantity: quantity,
+						})
+						.then((response) => {
+							alert(response.data.message)
+							axios
+								.post('/update-order-status-canceled', {
+									Destination: name,
+									User: user,
+									Status: 'Canceled',
+								})
+								.then((response) => {
+									alert(response.data.message)
+								})
+								.catch((error) => {
+									alert(error.data.message)
+									console.log(error.data.message)
+								})
+						})
+						.catch((error) => {
+							alert(error.data.message)
+							console.log(error.data.message)
+						})
+				}
+			})
+			.catch((error) => {
+				console.log(error.response.data.message)
+				alert(error.response.data.message)
+			})
+	}
 	render() {
 		if (this.state.data === undefined) {
 			return (
@@ -39,6 +103,9 @@ export default class CustomeReservations extends Component {
 		} else
 			return (
 				<Container>
+					{() => {
+						this.fetchAgain()
+					}}
 					{/* <Row>
 						<h3>Here you could see your Reservations:</h3>
 					</Row> */}
@@ -55,6 +122,7 @@ export default class CustomeReservations extends Component {
 									<th>{'Order Date'} </th>
 									<th>{'Start'} </th>
 									<th>{'End'} </th>
+									<th>{'Cancel'} </th>
 								</tr>
 							</thead>
 							<tbody>
@@ -71,6 +139,32 @@ export default class CustomeReservations extends Component {
 												<td>{element.OrderDate}</td>
 												<td>{element.Start}</td>
 												<td>{element.End}</td>
+												<td>
+													{element.Status === 'Canceled' ? (
+														<Button
+															disabled
+															onClick={() => {
+																this.cancelOrder(
+																	element.Destination,
+																	element.User
+																)
+															}}
+														>
+															Cancel
+														</Button>
+													) : (
+														<Button
+															onClick={() => {
+																this.cancelOrder(
+																	element.Destination,
+																	element.User
+																)
+															}}
+														>
+															Cancel
+														</Button>
+													)}
+												</td>
 											</tr>
 										</Fragment>
 									)
