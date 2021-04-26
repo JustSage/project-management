@@ -64,17 +64,23 @@
 }
 
 .update-button {
-	margin-left: 32% !important;
+	margin-left: -81px !important;
+	margin-bottom: 10px !important;
+}
+.delete-button {
+	margin-left: -93px !important;
 }
 
 .myCard {
 	border-radius: 25px;
 	border-top-left-radius: 25px;
 	width: 18rem;
-	height: 30rem;
+	height: 35rem;
 }
 
 .myCardImage {
 	border-top-left-radius: 25px;
 	border-top-right-radius: 25px;
+	max-height: 400px;
+	height: 200px;
 }

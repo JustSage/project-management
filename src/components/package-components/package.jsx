@@ -1,7 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import React, { Component } from 'react'
-import { Button, Card, ListGroupItem, ListGroup } from 'react-bootstrap'
+import {
+	Container,
+	Button,
+	Card,
+	ListGroupItem,
+	ListGroup,
+	Col,
+} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 /* 
 	the main idea behind Package Component:
@@ -63,26 +70,30 @@ export default class Package extends Component {
 						Make an Order!
 					</Link>
 					{sessionStorage.getItem('logged-in-role') != 'Customer' ? (
-						<div className='row justify-content-center'>
-							<Button className='update-button' variant='warning'>
-								<Link
-									to={{
-										pathname: `/update-package/${this.props.name}/${this.props.description}/${this.props.price}/${this.props.quantity}/${this.props.url}`,
-									}}
-								>
-									Upgrade{' '}
-								</Link>
-							</Button>
-							<Button className='update-button' variant='warning'>
-								<Link
-									to={{
-										pathname: `/update-package/${this.props.name}/${this.props.description}/${this.props.price}/${this.props.quantity}/${this.props.url}`,
-									}}
-								>
-									Delete{' '}
-								</Link>
-							</Button>
-						</div>
+						<Container className=' justify-content-center'>
+							<Col>
+								<Button className='update-button' variant='warning'>
+									<Link
+										to={{
+											pathname: `/update-package/${this.props.name}/${this.props.description}/${this.props.price}/${this.props.quantity}/${this.props.url}`,
+										}}
+									>
+										Upgrade{' '}
+									</Link>
+								</Button>
+							</Col>
+							<Col>
+								<Button className='delete-button' variant='warning'>
+									<Link
+										to={{
+											pathname: `/update-package/${this.props.name}/${this.props.description}/${this.props.price}/${this.props.quantity}/${this.props.url}`,
+										}}
+									>
+										Delete{' '}
+									</Link>
+								</Button>
+							</Col>
+						</Container>
 					) : null}
 				</Card.Body>
 			</Card>

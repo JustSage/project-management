@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Package from './package'
 // import { Container } from 'react-bootstrap'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+
 /**
  * Packages page which appears as navbar tag, when click on the navbar button it'll be redirecting here
  * by routing. This page includes the package-components.
@@ -33,27 +33,6 @@ class Packages extends Component {
 			})
 	}
 
-	varifyAccess = () => {
-		if (
-			sessionStorage.getItem('logged-in-role') == 'Admin' ||
-			sessionStorage.getItem('logged-in-role') == 'Travel Agent'
-		) {
-			return (
-				<div className='list-group list-group-horizontal'>
-					<a className='list-group-item list-group-item-action' key='Add'>
-						<Link to='/add-package'>Add Package</Link>
-					</a>
-					<a key='Upgrade' className='list-group-item list-group-item-action'>
-						<Link to='/update-package'>Upgrade Package</Link>
-					</a>
-					<a key='Delete' className='list-group-item list-group-item-action'>
-						<Link to='/delete-package'>Delete Package</Link>
-					</a>
-				</div>
-			)
-		}
-	}
-
 	handleLocation = (event) => {
 		event.preventDefault()
 		this.setState({ location: event.target.value })
@@ -71,7 +50,6 @@ class Packages extends Component {
 		} else
 			return (
 				<>
-					{this.varifyAccess()}
 					<div className='package'>
 						<div className='wrraper'>
 							<label className='packageLabel' htmlFor='location'>
