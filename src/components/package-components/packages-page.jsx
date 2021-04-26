@@ -81,30 +81,9 @@ class Packages extends Component {
 							)
 						})}
 					</div>
-					{/* <Container className='cards-container'>
-						{this.state.data.map((pkg) => {
-							return (
-								<Package
-									name={pkg.name}
-									description={pkg.description}
-									url={pkg.url}
-									quantity={pkg.quantity}
-									price={pkg.price}
-									history={this.props.history}
-								/>
-							)
-						})}
-					</Container> */}
 				</>
 			)
 	}
 }
 
 export default Packages
-
-// at this part we can make a search in the DB to look for a match -> if we found a match -> add to packages .
-// after we finished with the db check, we need to pass the info we got to the <Card /> component:
-
-// like this: <Card: locationName= {} context = {} image = {} />
-
-// after this we will map our elements and display them as jsx.

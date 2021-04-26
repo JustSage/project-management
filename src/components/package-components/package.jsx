@@ -27,6 +27,21 @@ export default class Package extends Component {
 		}
 	}
 
+	updatedPackageDisplay = () => {
+		if (
+			sessionStorage.getItem('logged-in-role') == 'Admin' ||
+			sessionStorage.getItem('logged-in-role') == 'Travel Agent'
+		) {
+			if (this.props.updated === 'yes') {
+				return <h4 style={{ color: 'red' }}>Package Updated</h4>
+			} else {
+				return null
+			}
+		} else {
+			return null
+		}
+	}
+
 	render() {
 		return (
 			<Card className='myCard'>
@@ -34,9 +49,7 @@ export default class Package extends Component {
 				<Card.Body style={{ overflow: 'auto' }}>
 					<Card.Title>
 						{this.state.name}
-						{this.props.updated === 'yes' ? (
-							<h4 style={{ color: 'red' }}>Package Updated</h4>
-						) : null}
+						{this.updatedPackageDisplay()}
 					</Card.Title>
 					<Card.Text>{this.state.description}</Card.Text>
 				</Card.Body>
