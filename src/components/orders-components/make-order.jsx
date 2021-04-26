@@ -16,6 +16,7 @@ class MakeOrder extends Component {
 		this.state = {
 			start: today.toISOString().split('T')[0], //Generates todays date
 			end: today.toISOString().split('T')[0].split('-').reverse().join('/'),
+			package: undefined,
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleDates = this.handleDates.bind(this)
@@ -36,8 +37,9 @@ class MakeOrder extends Component {
 	/**
 	 * Handles the submit in the form below, send the whole state to db
 	 */
-	handleSubmit = () => {
+	handleSubmit = (event) => {
 		event.preventDefault()
+		let quantity = 0
 		axios
 			.post('/add-order', {
 				User: sessionStorage.getItem('logged-in-username'),
@@ -56,6 +58,55 @@ class MakeOrder extends Component {
 				alert(error.data.message)
 				console.log(error.data.message)
 			})
+
+		axios
+			.get('/one-package', {
+				params: {
+					Description: this.props.match.params.description,
+				},
+			})
+			.then((response) => {
+				this.setState({ data: response.data }, () => {
+					quantity = this.state.data[0].quantity
+					// console.log(typeof quantity)
+					// quantity = parseInt(quantity)
+					// console.log(typeof quantity)
+					// console.log(quantity)
+					if (quantity > 0) {
+						axios
+							.post('/decrement-quantity', {
+								description: this.props.match.params.description,
+								quantity: quantity,
+							})
+							.then((response) => {
+								alert(response.data.message)
+							})
+							.catch((error) => {
+								alert(error.data.message)
+								console.log(error.data.message)
+							})
+					}
+				})
+			})
+			.catch((error) => {
+				console.log(error.response.data.message)
+				alert(error.response.data.message)
+			})
+		// if (quantity > 0) {
+		// 	console.log(quantity)
+		// 	axios
+		// 		.post('/decrement-quantity', {
+		// 			description: this.props.match.params.description,
+		// 			quantity: quantity,
+		// 		})
+		// 		.then((response) => {
+		// 			alert(response.data.message)
+		// 		})
+		// 		.catch((error) => {
+		// 			alert(error.data.message)
+		// 			console.log(error.data.message)
+		// 		})
+		// }
 	}
 
 	render() {
