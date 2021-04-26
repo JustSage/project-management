@@ -140,6 +140,7 @@ export default class UpdatePackage extends Component {
 				quantity: this.state.quantity,
 				price: this.state.price,
 				url: this.state.url,
+				updated: 'yes',
 			})
 			.then((response) => {
 				alert(response.data.message)
