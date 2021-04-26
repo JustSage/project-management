@@ -65,20 +65,24 @@ class Packages extends Component {
 					</div>
 					<div className='d-flex flex-row flex-wrap my-flex-container'>
 						{this.state.data.map((pkg) => {
-							return (
-								<div className='p-2 my-flex-item' key={pkg.description}>
-									<Package
-										name={pkg.name}
-										description={pkg.description}
-										url={pkg.url}
-										quantity={pkg.quantity}
-										price={pkg.price}
-										updated={pkg.updated}
-										history={this.props.history}
-										key={pkg.description}
-									/>
-								</div>
-							)
+							if (pkg.quantity > 0) {
+								return (
+									<div className='p-2 my-flex-item' key={pkg.description}>
+										<Package
+											name={pkg.name}
+											description={pkg.description}
+											url={pkg.url}
+											quantity={pkg.quantity}
+											price={pkg.price}
+											updated={pkg.updated}
+											history={this.props.history}
+											key={pkg.description}
+										/>
+									</div>
+								)
+							} else {
+								return null
+							}
 						})}
 					</div>
 				</>

@@ -14,7 +14,7 @@ class AddPackage extends Component {
 		this.state = {
 			name: '',
 			description: '',
-			quantity: '',
+			quantity: 0,
 			price: '',
 			url: '',
 			updated: 'No',
@@ -66,7 +66,7 @@ class AddPackage extends Component {
 	 */
 	handleQuantity = (event) => {
 		this.setState({
-			quantity: event.target.value,
+			quantity: parseInt(event.target.value),
 		})
 	}
 
