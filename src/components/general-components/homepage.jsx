@@ -24,7 +24,10 @@ class Homepage extends Component {
 	render() {
 		return (
 			<>
-				<h1>Welcome!</h1>
+				<div align='center'>
+				<h1>Welcome to PineApple Travels!</h1>
+				<h3 margin top>About us:</h3>
+				</div>
 			</>
 		)
 	}

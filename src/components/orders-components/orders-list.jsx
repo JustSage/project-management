@@ -75,7 +75,7 @@ export default class OrdersList extends Component {
 	 */
 	sort = (headerName) => {
 		var temp
-		//Sort from must recent to earlier if sort by date selected
+		//Sort from most recent to earlier if sort by date selected
 		if (
 			headerName == 'Order date' ||
 			headerName == 'Start' ||
@@ -148,6 +148,7 @@ export default class OrdersList extends Component {
 									<Fragment key={i}>
 										<tr>
 											<th>{++i}</th>
+											<td>{h['OrderName']}</td>
 											<td>{h['User']}</td>
 											<td>{h['Destination']}</td>
 											<td>{h['Price']}</td>

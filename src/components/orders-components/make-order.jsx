@@ -17,6 +17,10 @@ class MakeOrder extends Component {
 			start: today.toISOString().split('T')[0], //Generates todays date
 			end: today.toISOString().split('T')[0].split('-').reverse().join('/'),
 			package: undefined,
+			orderName:
+				'#' +
+				this.props.match.params.destination[0] +
+				String(Math.floor(Math.random() * 100000)),
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleDates = this.handleDates.bind(this)
@@ -42,6 +46,7 @@ class MakeOrder extends Component {
 		let quantity = 0
 		axios
 			.post('/add-order', {
+				OrderName: this.state.orderName,
 				User: sessionStorage.getItem('logged-in-username'),
 				Destination: this.props.match.params.destination,
 				Price: this.props.match.params.price,
@@ -119,6 +124,10 @@ class MakeOrder extends Component {
 				<>
 					<h3 className='h-as-title'>Make an order</h3>
 					<Form className='add-package-form' onSubmit={this.handleSubmit}>
+						<Form.Group>
+							<Form.Label>Order name</Form.Label>
+							<Form.Control readOnly defaultValue={this.state.orderName} />
+						</Form.Group>
 						<Form.Group>
 							<Form.Label>Package name</Form.Label>
 							<Form.Control
