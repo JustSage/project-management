@@ -42,6 +42,7 @@ export default class UpdatePackage extends Component {
 	 * @param {*} event
 	 */
 	handleURL = (event) => {
+		console.log(event.target.value)
 		this.setState({
 			url: event.target.value,
 		})
@@ -126,12 +127,16 @@ export default class UpdatePackage extends Component {
 	 */
 	handleSubmit = (event) => {
 		event.preventDefault()
-		this.setState({
-			url: this.props.location.pathname.substring(
-				this.props.location.pathname.indexOf('https'),
-				this.props.location.pathname.length
-			),
-		})
+		if (this.state.url === '') {
+			this.setState({ url: 'insert new URL' })
+		} else {
+			this.setState({
+				url: this.props.location.pathname.substring(
+					this.props.location.pathname.indexOf('https'),
+					this.props.location.pathname.length
+				),
+			})
+		}
 
 		axios
 			.post('/update-package', {
@@ -209,13 +214,9 @@ export default class UpdatePackage extends Component {
 								/>
 							</Form.Group>
 							<Form.Control
-								placeholder='Or set image url'
+								placeholder='Set image url'
 								onChange={this.handleURL}
-								defaultValue={this.props.location.pathname.substring(
-									this.props.location.pathname.indexOf('https'),
-									this.props.location.pathname.length
-								)}
-								required
+								defaultValue={this.state.url}
 							/>
 							{this.handleURLLink()}
 						</Form.Group>
