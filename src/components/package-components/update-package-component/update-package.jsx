@@ -13,6 +13,14 @@ import '../../../css/addPackage.css'
 export default class UpdatePackage extends Component {
 	constructor(props) {
 		super(props)
+		this.state = {
+			name: this.props.match.params.destination,
+			description: this.props.match.params.description,
+			price: this.props.match.params.price,
+			quantity: this.props.match.params.quantity,
+			url: this.props.match.params.url,
+			data: undefined,
+		}
 		this.handleURL = this.handleURL.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleURLLink = this.handleURLLink.bind(this)
@@ -21,20 +29,6 @@ export default class UpdatePackage extends Component {
 		this.handleDescription = this.handleDescription.bind(this)
 		this.handleQuantity = this.handleQuantity.bind(this)
 		this.handlePrice = this.handlePrice.bind(this)
-	}
-	state = {
-		// eslint-disable-next-line react/prop-types
-		name: this.props.match.params.destination,
-		// eslint-disable-next-line react/prop-types
-		description: this.props.match.params.description,
-		// eslint-disable-next-line react/prop-types
-		price: this.props.match.params.price,
-
-		// eslint-disable-next-line react/prop-types
-		quantity: this.props.match.params.quantity,
-		// eslint-disable-next-line react/prop-types
-		url: this.props.match.params.url,
-		data: undefined,
 	}
 
 	/**
@@ -140,11 +134,7 @@ export default class UpdatePackage extends Component {
 
 		axios
 			.post('/update-package', {
-				name: this.state.name,
-				description: this.state.description,
-				quantity: this.state.quantity,
-				price: this.state.price,
-				url: this.state.url,
+				...this.state,
 				updated: 'yes',
 			})
 			.then((response) => {
