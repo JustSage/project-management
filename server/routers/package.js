@@ -143,4 +143,15 @@ router.get('/one-package-destination', async (req, res) => {
 	}
 })
 
+router.get('/delete-package/:name', async (req, res) => {
+	try {
+		const packageName = req.params.name
+		await db.collection('packages').deleteOne({ name: packageName })
+		res.send({ message: `package ${packageName} deleted successfully!` })
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't delete package!" })
+	}
+})
+
 module.exports = router

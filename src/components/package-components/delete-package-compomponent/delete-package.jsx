@@ -1,8 +1,34 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import axios from 'axios'
 import React, { Component } from 'react'
 import { Button, Container } from 'react-bootstrap'
 import '../../../css/deletePackage.css'
+
+/**
+ * Component showing simple UI for package deletion.
+ */
 export default class DeletePackage extends Component {
+	constructor(props) {
+		super(props)
+		this.handleSubmit = this.handleSubmit.bind(this)
+	}
+
+	/**
+	 * Handle to submission of delete request.
+	 */
+	handleSubmit = () => {
+		axios
+			.get(`/delete-package/${this.props.match.params.name}`)
+			.then((response) => {
+				alert(response.data.message)
+			})
+			.catch((error) => {
+				alert(error)
+				console.log(error)
+			})
+	}
+
 	render() {
 		return (
 			<>
