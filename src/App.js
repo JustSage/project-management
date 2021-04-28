@@ -98,7 +98,7 @@ class App extends React.Component {
 									}
 								/>
 								<Route
-									path='/delete-package'
+									path='/delete-package/:name'
 									render={() =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />
