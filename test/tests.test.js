@@ -2,23 +2,6 @@
 /* eslint-disable no-undef */
 const validator = require('validator')
 
-// const userOne = {
-// 	name: 'Admin',
-// 	email: 'admin@gmail.com',
-// 	password: 'Admin123',
-// }
-
-// // Checks if post request passes
-// test('Check user', async () => {
-// 	await request(app)
-// 		.post('/login')
-// 		.send({
-// 			username: userOne.name,
-// 			password: userOne.password,
-// 		})
-// 		.expect(200)
-// })
-
 test('Validate email', () => {
 	expect(validator.isEmail('abcd@gmail.com')).toBe(true)
 })
