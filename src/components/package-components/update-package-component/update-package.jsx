@@ -134,6 +134,7 @@ export default class UpdatePackage extends Component {
 			})
 			.then((response) => {
 				alert(response.data.message)
+				this.props.history.push('/packages')
 			})
 			.catch((error) => {
 				alert(error)
