@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import './css/App.css'
 import React from 'react'
@@ -99,11 +100,11 @@ class App extends React.Component {
 								/>
 								<Route
 									path='/delete-package/:name'
-									render={() =>
+									render={(props) =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />
 										) : (
-											<DeletePackage />
+											<DeletePackage {...props} />
 										)
 									}
 								/>
