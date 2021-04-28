@@ -124,6 +124,12 @@ export default class UpdatePackage extends Component {
 		if (this.state.url === '') {
 			this.setState({ url: 'insert new URL' })
 		} else {
+			console.log(
+				this.props.location.pathname.substring(
+					this.props.location.pathname.indexOf('https'),
+					this.props.location.pathname.length
+				)
+			)
 			this.setState({
 				url: this.props.location.pathname.substring(
 					this.props.location.pathname.indexOf('https'),
@@ -206,7 +212,10 @@ export default class UpdatePackage extends Component {
 							<Form.Control
 								placeholder='Set image url'
 								onChange={this.handleURL}
-								defaultValue={this.state.url}
+								defaultValue={this.props.location.pathname.substring(
+									this.props.location.pathname.indexOf('https'),
+									this.props.location.pathname.length
+								)}
 							/>
 							{this.handleURLLink()}
 						</Form.Group>
