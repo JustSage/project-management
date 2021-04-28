@@ -51,7 +51,7 @@ class MakeOrder extends Component {
 				Destination: this.props.match.params.destination,
 				Price: this.props.match.params.price,
 				Deal: 'Package',
-				Status: 'Pending',
+				Status: 'In Proc',
 				OrderDate: today.toUTCString(),
 				Start: this.state.start.split('-').reverse().join('/'),
 				End: this.state.end,
