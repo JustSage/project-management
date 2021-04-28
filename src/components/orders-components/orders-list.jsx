@@ -15,12 +15,8 @@ export default class OrdersList extends Component {
 			orders: [],
 			temp: [],
 			tableTitles: undefined,
+			searchValue: '',
 		}
-
-		this.sort = this.sort.bind(this)
-	}
-
-	fetchingData() {
 		axios
 			.get('/orders')
 			.then((response) => {
@@ -38,6 +34,9 @@ export default class OrdersList extends Component {
 				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
+
+		this.sort = this.sort.bind(this)
+		this.filterOrders = this.filterOrders.bind(this)
 	}
 
 	handleAccept = (userName) => {
@@ -67,6 +66,13 @@ export default class OrdersList extends Component {
 				alert(error.data.message)
 				console.log(error.data.message)
 			})
+	}
+
+	/**
+	 * Function filter the orders (State variable) according to search input text
+	 */
+	filterOrders = (event) => {
+		this.setState({ searchValue: event.target.value })
 	}
 
 	/**
@@ -105,17 +111,25 @@ export default class OrdersList extends Component {
 				<div className='text-center'>
 					<div className='spinner-border' role='status'>
 						<span className='sr-only'>Loading...</span>
-						{this.fetchingData()}
 					</div>
 				</div>
 			)
 		} else
 			return (
 				<>
-					{() => {
-						this.fetchingData()
-					}}
-					<div>Orders</div>
+					<div className='package'>
+						<div className='wrraper'>
+							<label className='packageLabel' htmlFor='location'>
+								Search order:
+							</label>
+							<input
+								onChange={this.filterOrders}
+								className='packageInput'
+								id='location'
+							/>
+						</div>
+						<br />
+					</div>
 					<Table striped bordered hover size='sm' className='orders-table'>
 						<thead>
 							<tr>
@@ -143,33 +157,39 @@ export default class OrdersList extends Component {
 						</thead>
 						<tbody>
 							{/* Mapping the data which received from db, every document will be a column in the table */}
-							{this.state.orders.map((h, i) => {
-								return (
-									<Fragment key={i}>
-										<tr>
-											<th>{++i}</th>
-											<td>{h['OrderName']}</td>
-											<td>{h['User']}</td>
-											<td>{h['Destination']}</td>
-											<td>{h['Price']}</td>
-											<td>{h['Deal']}</td>
-											<td>{h['Status']}</td>
-											<td>{h['OrderDate']}</td>
-											<td>{h['Start']}</td>
-											<td>{h['End']}</td>
-											<td>
-												<Button
-													onClick={() => {
-														this.handleAccept(h['User'])
-													}}
-												>
-													Accept
-												</Button>
-											</td>
-										</tr>
-									</Fragment>
+							{this.state.orders
+								.filter(
+									(h) =>
+										h['OrderName'].includes(this.state.searchValue) ||
+										h['Destination'].includes(this.state.searchValue)
 								)
-							})}
+								.map((h, i) => {
+									return (
+										<Fragment key={i}>
+											<tr>
+												<th>{++i}</th>
+												<td>{h['OrderName']}</td>
+												<td>{h['User']}</td>
+												<td>{h['Destination']}</td>
+												<td>{h['Price']}</td>
+												<td>{h['Deal']}</td>
+												<td>{h['Status']}</td>
+												<td>{h['OrderDate']}</td>
+												<td>{h['Start']}</td>
+												<td>{h['End']}</td>
+												<td>
+													<Button
+														onClick={() => {
+															this.handleAccept(h['User'])
+														}}
+													>
+														Accept
+													</Button>
+												</td>
+											</tr>
+										</Fragment>
+									)
+								})}
 						</tbody>
 					</Table>
 					<Button onClick={this.handleAcceptAll}>Accpet All</Button>
