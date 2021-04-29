@@ -28,6 +28,11 @@ class AddPackage extends Component {
 		this.handleDescription = this.handleDescription.bind(this)
 		this.handleQuantity = this.handleQuantity.bind(this)
 		this.handlePrice = this.handlePrice.bind(this)
+		this.goBack = this.goBack.bind(this)
+	}
+
+	goBack() {
+		this.props.history.back()
 	}
 
 	/**
@@ -121,6 +126,7 @@ class AddPackage extends Component {
 				alert(error)
 				console.log(error)
 			})
+		this.goBack()
 	}
 
 	render() {

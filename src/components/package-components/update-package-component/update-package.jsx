@@ -6,7 +6,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 // import Package from '../package'
 import { Form, Button } from 'react-bootstrap'
-
 import '../../../css/addPackage.css'
 // import PropTypes from 'prop-types'
 
@@ -150,6 +149,7 @@ export default class UpdatePackage extends Component {
 				alert(error)
 				console.log(error)
 			})
+		this.context.router.history.goBack
 	}
 
 	render() {

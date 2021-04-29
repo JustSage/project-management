@@ -75,7 +75,7 @@ class Packages extends Component {
 						</div>
 						<br />
 					</div>
-					{this.AddPackage()}d
+					{this.AddPackage()}
 					<div className='d-flex flex-row flex-wrap my-flex-container'>
 						{this.state.data.map((pkg) => {
 							if (pkg.quantity > 0) {
