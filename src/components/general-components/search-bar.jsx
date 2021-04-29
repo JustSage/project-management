@@ -8,6 +8,7 @@ class SearchBar extends react.Component {
 		super(props)
 		this.state = {
 			data: undefined,
+			chosenPkg: undefined,
 		}
 		axios
 			.get('/packages')
@@ -20,6 +21,12 @@ class SearchBar extends react.Component {
 				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
+	}
+
+	onPkgClick = (pkg) => {
+		this.setState({
+			chosenPkg: pkg,
+		})
 	}
 
 	render() {
