@@ -14,4 +14,9 @@
 .glass {
 	margin-left: 40%;
 	margin-top: 52%;
+	color: black;
+}
+
+.glass:hover {
+	color: blue;
 }
