@@ -1,5 +1,5 @@
 # Pine Apple Travel Agency (Website)
-> This repo includes the first sprint of software project management course.
+> This repo includes the third sprint of software project management course.
 
 ## Table of contents
 * [General info](#general-info)
@@ -17,7 +17,7 @@ to find their perfect resort location and book a trip using our services.
 
 ## Status
 Project is: _in progress_.
-This is the result of sprint 1.
+This is the result of sprint 3.
 
 
 ## Setup
@@ -35,9 +35,10 @@ Pre-Installation requirements:
 4. The website can now be view from http://localhost:3000 or 3001.
 
 ## Technologies
-* React - Frontend
-* Express - Backend
-* Jest - Testing
+* Frameworks - Node.js, React.js
+* Backend - based on Express.js
+* Testing - Jest
+* Database - MongoDB
 
 ## Code Example
 * Server side using express:
@@ -81,14 +82,12 @@ Currently added basic pages and components:
 
 ![Login](./public/login.png)
 
-![Homepage](./public/homepage.png)
-
 ## Contact
 
 Visit our website:
-[Pine Apple Travel Agency](https://pine-apple-website.herokuapp.com/ "Pine Apple Travel Agency")
+[Pine Apple Travel Agency](https://pine-apple-travel-agency.herokuapp.com/ "Pine Apple Travel Agency")
 
-Created by the magnificant team:
+Created by:
 [@Sagie Baram](https://github.com/JustSage)
 [@Ariel Turchinsky](https://github.com/ariel7590)
 [@Yehonatan Hen](https://github.com/YehonatanHen)
