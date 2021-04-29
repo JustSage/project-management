@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
-import Sidebar from './sidebar'
-import NavbarComponent from './navbar'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import {
@@ -19,34 +17,19 @@ class Homepage extends Component {
 	constructor(props) {
 		super(props)
 	}
+	state = {
+		bar: 'Flights', // defatult
+	}
 
 	render() {
-		if (sessionStorage.getItem('logged-in-username')) {
-			return (
-				<>
-					<NavbarComponent history={this.props.history} />
-					<div className='container'>
-						<div className='row hp-divs'>
-							<div className='col-xs-12'>
-								<Sidebar />
-							</div>
-						</div>
-						<div style={{ marginTop: '10%' }} className='col-xs-12 hp-divs'>
-							<h3>Home Page</h3>
-						</div>
-					</div>
-				</>
-			)
-		} else {
-			return (
-				<>
-					<h2>
-						You have no permission to visit this page, please{' '}
-						<a href='/'>Log-in</a>
-					</h2>
-				</>
-			)
-		}
+		return (
+			<>
+				<div align='center'>
+				<h1>Welcome to PineApple Travels!</h1>
+				<h3 margin top>About us:</h3>
+				</div>
+			</>
+		)
 	}
 }
 

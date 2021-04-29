@@ -4,11 +4,13 @@ import '../../css/navbar.css'
 import { Navbar, Nav, Form } from 'react-bootstrap'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faCog } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import logo from '../../images/pine-apple-logo.png'
-library.add(fab, faUser)
+import { Link } from 'react-router-dom'
+import SearchBar from './search-bar'
+library.add(fab, faUser, faCog)
 
 class NavbarComponent extends React.Component {
 	constructor(props) {
@@ -22,6 +24,7 @@ class NavbarComponent extends React.Component {
 		 * Removes user session after logging out and redirects to login-page ('/')
 		 */
 		sessionStorage.removeItem('logged-in-username')
+		sessionStorage.removeItem('logged-in-role')
 		this.props.history.push('/')
 	}
 
@@ -29,14 +32,61 @@ class NavbarComponent extends React.Component {
 		return (
 			<>
 				<Navbar variant='dark' className='navbar navbar-custom'>
-					<img src={logo} alt='' className='img_logo' />
+					<Link to='./homepage'>
+						<img src={logo} alt='' className='img_logo' />
+					</Link>
 					<Nav className='mr-auto'>
-						<Nav.Link className='navLink'>Home</Nav.Link>
-						<Nav.Link className='navLink'>Features</Nav.Link>
-						<Nav.Link className='navLink'>Pricing</Nav.Link>
+						<Link to='/homepage' className='navLink nav-link'>
+							Home
+						</Link>
+						{/* <Nav.Link
+							className='navLink'
+							onClick={() => this.props.history.push('homepage')}
+						>
+							Home
+						</Nav.Link> */}
+						<div className='dropdown'>
+							<Nav.Link className='navLink'>Features</Nav.Link>
+							<div className='dropdown-content'>
+								<div>
+									<Link to='/flights'>Flights</Link>
+									<Link to='/hotels'>Hotels</Link>
+									<Link to='/car'>Rental Cars</Link>
+								</div>
+								<div>
+									<Link to='/packages'>Packages</Link>
+									<Link to='/attractions'>Attractions</Link>
+								</div>
+							</div>
+						</div>
+						<div className='dropdown'>
+							<Nav.Link className='navLink'>Pricing</Nav.Link>
+							<div className='dropdown-content' style={{ minWidth: '130px' }}>
+								<div>
+									<Link to='#'>100$-500$</Link>
+									<Link to='#'>500$-1000$</Link>
+									<Link to='#'>1000$-5000$</Link>
+								</div>
+							</div>
+						</div>
+						{/* <Nav.Link
+							className='navLink'
+							onClick={() => this.props.history.push('packages')}
+						>
+							Packages
+						</Nav.Link> */}
+						<div className='searchBar'>
+							<SearchBar />
+						</div>
 					</Nav>
-					<Form inline>
-						<h5>
+					{/* <input
+						type='search'
+						placeholder='Search for packages...'
+						className='search-input'
+					></input> */}
+
+					<Form className='navbar-nav text-right'>
+						<h5 className='h5-nav'>
 							<FontAwesomeIcon
 								className='user-icon'
 								icon='user'
@@ -46,9 +96,37 @@ class NavbarComponent extends React.Component {
 								{sessionStorage.getItem('logged-in-username')}
 							</span>
 						</h5>
-						<button className='logout_btn' onClick={this.logoutClick}>
+						<div className='dropdown'>
+							<FontAwesomeIcon className='cog' icon='cog'></FontAwesomeIcon>
+							<div
+								className='dropdown-content'
+								style={{ minWidth: '160px', right: '3%' }}
+							>
+								<div>
+									{sessionStorage.getItem('logged-in-role') == 'Admin' ? (
+										<>
+											<Link to='/admin-ref'>Admin Settings</Link>
+											<Link to='/customer-list'>Customer List</Link>
+											<Link to='/orders-list'>Reservations</Link>
+										</>
+									) : (
+										<>
+											<Link to='/customer-info'>Personal Info</Link>
+											<Link to='/customer-reservations'>Reservations</Link>
+										</>
+									)}
+									{/* <Link to='/customer-info'>Personal Info</Link>
+									<Link to='/customer-reservations'>Reservations</Link>
+									<Link to='admin-ref'>Admin Settings</Link> */}
+									<Link to='#' onClick={this.logoutClick}>
+										Log Out
+									</Link>
+								</div>
+							</div>
+						</div>
+						{/* <button className='logout_btn' onClick={this.logoutClick}>
 							Log out
-						</button>
+						</button> */}
 					</Form>
 				</Navbar>
 			</>

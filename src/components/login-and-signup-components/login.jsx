@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react'
 import axios from 'axios'
@@ -46,14 +47,15 @@ class Login extends React.Component {
 				},
 				{ headers: { 'content-type': 'application/json' } }
 			)
-			.then(() => {
+			.then((response) => {
 				// saves a cookie during session
 				sessionStorage.setItem('logged-in-username', this.state.username)
+				sessionStorage.setItem('logged-in-role', response.data.role)
 				this.props.history.push('/homepage')
 			})
 			.catch((error) => {
-				console.log(error)
-				alert('User not found!')
+				console.log(error.response)
+				alert(error.response.data.message)
 			})
 	}
 
@@ -77,7 +79,7 @@ class Login extends React.Component {
 								<h2 style={{ textAlign: 'center' }}>Log In:</h2>
 								<div className='myForm'>
 									<form onSubmit={this.handleSubmit} method='get'>
-										<label>Username: </label>
+										<label className='login-label'>Username: </label>
 										<br></br>
 										<input
 											className='myInput'
@@ -88,7 +90,7 @@ class Login extends React.Component {
 											required
 										/>
 										<br />
-										<label>Password:</label>
+										<label className='login-label'>Password:</label>
 										<input
 											className='myInput'
 											type='password'

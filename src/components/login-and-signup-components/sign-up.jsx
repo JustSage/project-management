@@ -4,7 +4,7 @@ import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../css/sign-up.css'
-//import axios from 'axios'
+import axios from 'axios'
 
 class signUp extends Component {
 	constructor(props) {
@@ -30,7 +30,7 @@ class signUp extends Component {
 		this.setState({ confirmPass: event.target.value })
 		let passCheck = event.target.value
 		if (passCheck == this.state.password) {
-			this.setStage({ confirmPassBorder: 'lime' })
+			this.setState({ confirmPassBorder: 'lime' })
 		} else {
 			this.setState({ confirmPassBorder: 'red' })
 		}
@@ -44,31 +44,29 @@ class signUp extends Component {
 	}
 	handleSubmit = () => {
 		event.preventDefault()
-		alert('Signed Up!')
 		sessionStorage.setItem('logged-in-username', this.state.username)
-		this.setState({ redirect: true })
-		//This part will be out of comment when server will be connected
-
-		// axios
-		// 	.post(
-		// 		'/signup',
-		// 		{
-		// 			username: this.state.username,
-		// 			password: this.state.password,
-		// 			email: this.state.email
-		// 		},
-		// 		{ headers: { 'content-type': 'application/json' } }
-		// 	)
-		// 	.then((response) => {
-		// 		alert(response.data.message)
-		// 		this.setState({
-		// 			redirect: true,
-		// 		})
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error)
-		// 		alert('User not found!')
-		// 	})
+		axios
+			.post(
+				'/sign-up',
+				{
+					username: this.state.username,
+					password: this.state.password,
+					confirmPass: this.state.confirmPass,
+					email: this.state.email,
+					role: 'Customer',
+				},
+				{ headers: { 'content-type': 'application/json' } }
+			)
+			.then((response) => {
+				alert(response.data.message)
+				this.setState({
+					redirect: true,
+				})
+			})
+			.catch((error) => {
+				console.log(error.response.data.message)
+				alert(error.response.data.message)
+			})
 	}
 
 	render() {

@@ -5,11 +5,6 @@
 	transition: ease 0.5s;
 }
 
-.img_logo:hover {
-	width: 210px;
-	height: 205px;
-	margin-left: -5px;
-}
 .navbar-custom {
 	height: 64px;
 	background-image: url('../images/nav-background.jpg');
@@ -17,56 +12,101 @@
 	box-shadow: 0px -10px 20px 20px rgb(223, 164, 87);
 }
 
-.logout_btn {
-	margin-left: 15;
-	margin-top: 5;
-	margin-right: 3;
-	font-weight: bold;
-	border-radius: 15px;
-	background-color: rgb(190, 162, 142);
-	opacity: 0.5;
-	transition: ease 0.5s;
-	width: 80px;
-	height: 40px;
-}
-
-.logout_btn:hover {
-	opacity: 1;
-	background-color: rgb(218, 90, 31);
-}
-
-h5 {
+.h5-nav {
 	font-size: 17;
-	margin-right: 10px;
+	margin-right: 1vh;
+	display: block;
 }
 
 .navLink {
-	color: rgb(150, 140, 94) !important;
-	font-size: 17px;
-	font-weight: inherit;
-	transition: all ease 0.2s;
+	color: rgb(99, 89, 47) !important;
+	font-size: 20px;
+	/* font-weight: inherit; */
+	transition: all ease 0.5s;
 }
-.navLink:hover {
-	color: rgb(94, 82, 82) !important;
-	font-size: 17px;
+
+/* .navLink:hover {
+	color: rgb(94, 82, 82);
 	font-weight: bold;
 	cursor: pointer;
 	border: tomato;
 	text-shadow: 0px 10px 5px #aaa396;
+} */
+.navLink:hover {
+	color: rgb(94, 82, 82) !important;
+	cursor: pointer;
+	border: tomato;
+	text-shadow: 0px 0px 5px #ad8888;
 }
 
-.welcome{
+.welcome {
 	font-size: 17px;
 	opacity: 0.7;
 }
 
-.user-name{
+.user-name {
 	font-size: 17px;
 	opacity: 0.9;
-	color: #A52A2A;
+	color: #a52a2a;
 }
 
-.user-icon{
-	margin-top: 10;
+.user-icon {
 	font-size: 17px;
+}
+
+.cog {
+	margin-bottom: 4%;
+	font-size: 17px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	display: none;
+	position: absolute;
+	margin-left: 5px;
+	background-color: white;
+	min-width: 290px;
+	box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 1);
+	z-index: 1;
+	border-radius: 15px;
+	border-color: orange;
+	border-style: solid;
+	padding: 7px 7px 7px 5px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: rgb(248, 165, 55);
+	color: white;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+
+.searchBar {
+	display: flex;
+	margin-left: 10px;
 }

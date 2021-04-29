@@ -16,8 +16,7 @@
 	width: 100%;
 	padding: 10px;
 }
-
-label{
+.login-label {
 	font-size: 15;
 	margin-top: 5px;
 	margin-left: 15px

@@ -1,0 +1,12 @@
+.customers-table {
+    width: 70%;
+    margin: 2% 10% auto 10%;
+}
+
+.sort-by-btn {
+    height: 30px;
+    float: right;
+    color: orange;
+    background-color: black;
+    border-radius: 30%;
+}

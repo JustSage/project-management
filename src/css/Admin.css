@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 30%;
+}
+
+.admin-form {
+    margin-top: 2%;
+    margin-left: 19%;
+}

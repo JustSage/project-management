@@ -28,6 +28,7 @@
                 "jsxSingleQuote": true,
                 "singleQuote": true,
                 "doubleQuotes":true,
+                "backtick":true,
                 "useTabs": true,
                 "endOfLine":"auto"
             }

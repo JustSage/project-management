@@ -1,0 +1,12 @@
+.search-input {
+	border-radius: 15px;
+	height: 39px;
+	width: 260px;
+	transition: all ease 0.7s;
+}
+
+.search-input:focus {
+	outline: none;
+	box-shadow: 0px 0px 10px rgb(202, 169, 169) !important;
+	border-color: rgb(212, 144, 87) !important;
+}

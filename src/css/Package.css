@@ -1,0 +1,86 @@
+.package {
+	width: 610px;
+	height: 5rem;
+	margin-top: 1%;
+	background-color: rgb(253, 197, 113);
+	position: relative;
+	border-radius: 25px;
+	margin-left: 34%;
+}
+
+.packageInput {
+	margin-left: 2%;
+	width: 100%;
+	border-radius: 10px;
+}
+
+.wrraper {
+	top: 31%;
+	left: 10vh;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.packageLabel {
+	width: 232px;
+}
+
+.h5-packages {
+	margin-top: 1%;
+	margin-left: 48%;
+}
+
+.package-container {
+	margin-left: 50%;
+}
+
+.cards-container {
+	margin-top: 2%;
+	margin-bottom: 5%;
+}
+
+.card-body {
+	padding: 1%;
+	min-height: auto;
+}
+
+.card-link {
+	padding-left: 30%;
+	color: orange;
+}
+
+.card-link:hover {
+	color: rgb(238, 184, 84);
+}
+
+.add-new-package-link {
+	color: rgb(145, 94, 0);
+}
+
+.add-new-package-link:hover {
+	color: rgb(209, 151, 42);
+}
+
+.update-button {
+	margin-left: -81px !important;
+	margin-bottom: 10px !important;
+}
+.delete-button {
+	margin-left: -93px !important;
+}
+
+.myCard {
+	border-radius: 25px;
+	border-top-left-radius: 25px;
+	width: 18rem;
+	height: 35rem;
+}
+
+.myCardImage {
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	max-height: 400px;
+	height: 200px;
+}
