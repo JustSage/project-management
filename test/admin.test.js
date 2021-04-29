@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 const request = require('supertest')
-const app = require('../server/app-source')
+const app = require('../server/app')
 
 test('Change user role', async () => {
 	await request(app)
