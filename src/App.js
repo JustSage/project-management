@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import './css/App.css'
 import React from 'react'
@@ -10,7 +11,7 @@ import {
 import Login from './components/login-and-signup-components/login'
 import Homepage from './components/general-components/homepage'
 import SignUp from './components/login-and-signup-components/sign-up'
-// import CustomerList from './components/list-components/customer-list'
+import CustomerList from './components/list-components/customer-list'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
@@ -73,17 +74,31 @@ class App extends React.Component {
 
 								<Route
 									path='/packages'
-									render={() =>
-										!requireAuth() ? <Redirect to='/not-auth' /> : <Packages />
+									render={(props) =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<Packages {...props} />
+										)
 									}
 								/>
 								<Route
 									path='/add-package'
+									render={(props) =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<AddPackage {...props} />
+										)
+									}
+								/>
+								<Route
+									path='/customer-list'
 									render={() =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />
 										) : (
-											<AddPackage />
+											<CustomerList />
 										)
 									}
 								/>
@@ -98,12 +113,12 @@ class App extends React.Component {
 									}
 								/>
 								<Route
-									path='/delete-package'
-									render={() =>
+									path='/delete-package/:name'
+									render={(props) =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />
 										) : (
-											<DeletePackage />
+											<DeletePackage {...props} />
 										)
 									}
 								/>

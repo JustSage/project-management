@@ -24,11 +24,13 @@ router.post('/add-package', async (req, res) => {
 })
 router.post('/update-package', async (req, res) => {
 	const pkg = req.body
-
+	console.log(`url is: ${pkg.url}`)
 	try {
 		//Check if url is valid
-		if (!validator.isURL(pkg.url, { protocols: ['http', 'https'] })) {
-			return res.status(500).send({ message: 'URL is not valid!' })
+		if (pkg.url != '') {
+			if (!validator.isURL(pkg.url, { protocols: ['http', 'https'] })) {
+				return res.status(500).send({ message: 'URL is not valid!' })
+			}
 		}
 
 		//Insert the package to the DB
@@ -140,6 +142,17 @@ router.get('/one-package-destination', async (req, res) => {
 	} catch (e) {
 		console.log(e)
 		res.status(500).send({ message: "Can't show packages!" })
+	}
+})
+
+router.get('/delete-package/:name', async (req, res) => {
+	try {
+		const packageName = req.params.name
+		await db.collection('packages').deleteOne({ name: packageName })
+		res.send({ message: `package ${packageName} deleted successfully!` })
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't delete package!" })
 	}
 })
 

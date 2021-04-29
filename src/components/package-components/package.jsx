@@ -84,7 +84,7 @@ export default class Package extends Component {
 								<Button className='delete-button' variant='warning'>
 									<Link
 										to={{
-											pathname: `/update-package/${this.props.name}/${this.props.description}/${this.props.price}/${this.props.quantity}/${this.props.url}`,
+											pathname: `/delete-package/${this.props.name}`,
 										}}
 									>
 										Delete{' '}

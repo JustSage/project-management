@@ -67,3 +67,7 @@ select:focus {
 a {
 	cursor: pointer;
 }
+
+button {
+	border-color: black !important;
+}

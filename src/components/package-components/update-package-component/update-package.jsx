@@ -13,6 +13,14 @@ import '../../../css/addPackage.css'
 export default class UpdatePackage extends Component {
 	constructor(props) {
 		super(props)
+		this.state = {
+			name: this.props.match.params.destination,
+			description: this.props.match.params.description,
+			price: this.props.match.params.price,
+			quantity: this.props.match.params.quantity,
+			url: this.props.match.params.url,
+			data: undefined,
+		}
 		this.handleURL = this.handleURL.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleURLLink = this.handleURLLink.bind(this)
@@ -22,26 +30,13 @@ export default class UpdatePackage extends Component {
 		this.handleQuantity = this.handleQuantity.bind(this)
 		this.handlePrice = this.handlePrice.bind(this)
 	}
-	state = {
-		// eslint-disable-next-line react/prop-types
-		name: this.props.match.params.destination,
-		// eslint-disable-next-line react/prop-types
-		description: this.props.match.params.description,
-		// eslint-disable-next-line react/prop-types
-		price: this.props.match.params.price,
-
-		// eslint-disable-next-line react/prop-types
-		quantity: this.props.match.params.quantity,
-		// eslint-disable-next-line react/prop-types
-		url: this.props.match.params.url,
-		data: undefined,
-	}
 
 	/**
 	 * Function handles the entered text in url input below
 	 * @param {*} event
 	 */
 	handleURL = (event) => {
+		console.log(event.target.value)
 		this.setState({
 			url: event.target.value,
 		})
@@ -126,24 +121,31 @@ export default class UpdatePackage extends Component {
 	 */
 	handleSubmit = (event) => {
 		event.preventDefault()
-		this.setState({
-			url: this.props.location.pathname.substring(
-				this.props.location.pathname.indexOf('https'),
-				this.props.location.pathname.length
-			),
-		})
+		if (this.state.url === '') {
+			this.setState({ url: 'insert new URL' })
+		} else {
+			console.log(
+				this.props.location.pathname.substring(
+					this.props.location.pathname.indexOf('https'),
+					this.props.location.pathname.length
+				)
+			)
+			this.setState({
+				url: this.props.location.pathname.substring(
+					this.props.location.pathname.indexOf('https'),
+					this.props.location.pathname.length
+				),
+			})
+		}
 
 		axios
 			.post('/update-package', {
-				name: this.state.name,
-				description: this.state.description,
-				quantity: this.state.quantity,
-				price: this.state.price,
-				url: this.state.url,
+				...this.state,
 				updated: 'yes',
 			})
 			.then((response) => {
 				alert(response.data.message)
+				this.props.history.push('/packages')
 			})
 			.catch((error) => {
 				alert(error)
@@ -209,13 +211,12 @@ export default class UpdatePackage extends Component {
 								/>
 							</Form.Group>
 							<Form.Control
-								placeholder='Or set image url'
+								placeholder='Set image url'
 								onChange={this.handleURL}
 								defaultValue={this.props.location.pathname.substring(
 									this.props.location.pathname.indexOf('https'),
 									this.props.location.pathname.length
 								)}
-								required
 							/>
 							{this.handleURLLink()}
 						</Form.Group>

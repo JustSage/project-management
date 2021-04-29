@@ -16,7 +16,7 @@ export default class CustomerList extends Component {
 			tableTitles: undefined,
 		}
 		axios
-			.get('/customers')
+			.get('/users')
 			.then((response) => {
 				console.log(response.data)
 				//Get fields name, remove _id attribute from the received data
