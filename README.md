@@ -71,12 +71,13 @@ module.exports = app
 ```
 
 ## Features
-Currently added basic pages and components:
 * Login page
 * Signup page
 * Homepage
 * Navbar
-* Sidebar
+* Admin references page
+* Packages page + CRUD functionalities
+* Orders & reservations pages + CRUD functionalities
 
 ## Screenshots
 
