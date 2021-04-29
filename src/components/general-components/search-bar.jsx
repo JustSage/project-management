@@ -2,6 +2,10 @@ import react from 'react'
 import '../../css/search-bar.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core'
+library.add(faSearch)
 
 class SearchBar extends react.Component {
 	constructor(props) {
@@ -62,6 +66,13 @@ class SearchBar extends react.Component {
 							)
 						})}
 					</datalist>
+					<Link
+						to={{
+							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}`,
+						}}
+					>
+						<FontAwesomeIcon icon='search'></FontAwesomeIcon>
+					</Link>
 				</>
 			)
 		}
