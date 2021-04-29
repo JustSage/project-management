@@ -15,6 +15,7 @@ router.get('/orders', async (req, res) => {
 router.get('/customer-orders', async (req, res) => {
 	try {
 		let user = req.query.User
+		console.log(`user: ${user}`)
 		const orders = await db.collection('orders').find({ User: user }).toArray()
 		res.send(JSON.stringify(orders))
 	} catch (e) {

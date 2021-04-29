@@ -106,7 +106,7 @@ class NavbarComponent extends React.Component {
 									{sessionStorage.getItem('logged-in-role') == 'Admin' ? (
 										<>
 											<Link to='/admin-ref'>Admin Settings</Link>
-											<Link to='/customer-info'>Personal Info</Link>
+											<Link to='/customer-list'>Customer List</Link>
 											<Link to='/orders-list'>Reservations</Link>
 										</>
 									) : (
