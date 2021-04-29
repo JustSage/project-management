@@ -55,13 +55,7 @@ class SearchBar extends react.Component {
 						{this.state.data.map((pkg) => {
 							return (
 								<div key={pkg.description}>
-									<Link
-										to={{
-											pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}`,
-										}}
-									>
-										<option value={pkg.name}>{pkg.price}</option>
-									</Link>
+									<option value={pkg.name}>{pkg.price}</option>
 								</div>
 							)
 						})}
@@ -71,7 +65,11 @@ class SearchBar extends react.Component {
 							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}`,
 						}}
 					>
-						<FontAwesomeIcon icon='search'></FontAwesomeIcon>
+						<FontAwesomeIcon
+							className='glass'
+							size='lg'
+							icon='search'
+						></FontAwesomeIcon>
 					</Link>
 				</>
 			)
