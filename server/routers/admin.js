@@ -22,7 +22,6 @@ router.post('/modify-role', async (req, res) => {
 			message: `New role of ${data.username} is ${data.newRole}.`,
 		})
 	} catch (e) {
-		console.log(e)
 		res.status(500).send({ message: "Can't update!" })
 	}
 })

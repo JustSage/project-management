@@ -74,8 +74,12 @@ class App extends React.Component {
 
 								<Route
 									path='/packages'
-									render={() =>
-										!requireAuth() ? <Redirect to='/not-auth' /> : <Packages />
+									render={(props) =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<Packages {...props} />
+										)
 									}
 								/>
 								<Route
