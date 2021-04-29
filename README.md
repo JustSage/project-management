@@ -14,6 +14,12 @@
 ## General info
 The given website by the end of the course will provide a platform for travelers
 to find their perfect resort location and book a trip using our services.
+The server side based on two parts which serving us in production and development environments respectively.
+The server side includes root file (Called app.js) in both enviroments. the app.js file forked to 
+routers to make our code much modular and simplier, the division to routers based on the idea that
+each functionality has it's own router which handles the http request and respondes in the server.
+The frontend based on React.js. when new version is done, npm run build command run to make shrinked 
+static version of the frontend code which helps to deploy the website to Heroku via one and only port.
 
 ## Status
 Project is: _in progress_.
@@ -39,24 +45,69 @@ Pre-Installation requirements:
 * Backend - based on Express.js
 * Testing - Jest
 * Database - MongoDB
+* Communication between client and server - based on Axios
 
 ## Code Example
 * Server side using express:
 
+- App source script - exported to the production and development servers script
 ```javascript
-const path = require('path')
 const express = require('express')
+require('./database/mongoclient')
 const userRouter = require('./routers/user')
+const adminRouter = require('./routers/admin')
+const pacakgeRouter = require('./routers/package')
+const customersRouter = require('./routers/customers')
+const orderRouter = require('./routers/order')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
 const app = express()
 
-const port = process.env.PORT || 3001
-
 app.use(bodyParser.json())
 app.use(userRouter)
+app.use(adminRouter)
+app.use(pacakgeRouter)
+app.use(customersRouter)
+app.use(orderRouter)
 app.use(cors())
+
+module.exports = app
+
+```
+
+- app-dev.js (development):
+
+```javascript
+const app = require('./app-source')
+const express = require('express')
+const path = require('path')
+const publicDirectoryPath = path.join(__dirname, '../public')
+app.use(express.static(publicDirectoryPath))
+
+const port = process.env.PORT || 3001
+
+app.get('/', (req, res) => {
+	res.sendFile('index.html')
+})
+
+app.listen(port, () => {
+	console.log(`App is listen to port ${port}`)
+})
+
+module.exports = app
+
+
+```
+- app.js (production):
+
+```javascript
+const app = require('./app-source')
+const path = require('path')
+const express = require('express')
+
+const port = process.env.PORT || 3001
+
 app.use(express.static(path.join(__dirname, 'build')))
 
 app.get('/*', (req, res) => {
@@ -68,6 +119,7 @@ app.listen(port, () => {
 })
 
 module.exports = app
+
 ```
 
 ## Features
