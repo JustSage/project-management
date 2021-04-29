@@ -121,6 +121,7 @@ class AddPackage extends Component {
 			.post('/add-package', this.state)
 			.then((response) => {
 				alert(response.data.message)
+				this.props.history.push('/packages')
 			})
 			.catch((error) => {
 				alert(error)
