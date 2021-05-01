@@ -134,15 +134,19 @@ module.exports = app
 ## Screenshots
 
 Login page:
+
 ![Login](./public/login.png)
 
 Homepage (+ Navbar):
+
 ![Homepage]('./public/homepage.png)
 
 Packages page:
+
 ![Packages]('./public/packages.png)
 
 Orders page:
+
 ![Orders]('./public/orders.png)
 
 ## Contact
