@@ -65,7 +65,7 @@ class AdminRef extends Component {
 	render() {
 		return (
 			<>
-				<h3 className='h-as-title'>Admin</h3>
+				<h3 className='h-as-title admin-title'>Admin</h3>
 				<Container>
 					<Form className='admin-form' onSubmit={this.handleSubmit}>
 						<Form.Group controlId='exampleForm.ControlInput1'>
