@@ -139,15 +139,15 @@ Login page:
 
 Homepage (+ Navbar):
 
-![Homepage]('./public/homepage.png)
+![Homepage](./public/homepage.png)
 
 Packages page:
 
-![Packages]('./public/packages.png)
+![Packages](./public/packages.png)
 
 Orders page:
 
-![Orders]('./public/orders.png)
+![Orders](./public/orders.png)
 
 ## Contact
 
