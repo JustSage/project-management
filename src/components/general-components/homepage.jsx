@@ -27,6 +27,11 @@ class Homepage extends Component {
 				<div align='center'>
 				<h1>Welcome to PineApple Travels!</h1>
 				<h3 margin top>About us:</h3>
+				<p>
+					Our travel agency offers vacations to destinations all around the world!<br/>
+					You can reach us through our mail: TravelAgency@travelAgecny.com<br/>
+					Or through our phone: 123-456789
+				</p>
 				</div>
 			</>
 		)

@@ -2,12 +2,17 @@ import react from 'react'
 import '../../css/search-bar.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core'
+library.add(faSearch)
 
 class SearchBar extends react.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			data: undefined,
+			chosenPkg: undefined,
 		}
 		axios
 			.get('/packages')
@@ -20,6 +25,12 @@ class SearchBar extends react.Component {
 				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
+	}
+
+	onPkgClick = (pkg) => {
+		this.setState({
+			chosenPkg: pkg,
+		})
 	}
 
 	render() {
@@ -44,17 +55,22 @@ class SearchBar extends react.Component {
 						{this.state.data.map((pkg) => {
 							return (
 								<div key={pkg.description}>
-									<Link
-										to={{
-											pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}`,
-										}}
-									>
-										<option value={pkg.name}>{pkg.price}</option>
-									</Link>
+									<option value={pkg.name}>{pkg.price}</option>
 								</div>
 							)
 						})}
 					</datalist>
+					<Link
+						to={{
+							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}`,
+						}}
+					>
+						<FontAwesomeIcon
+							className='glass'
+							size='lg'
+							icon='search'
+						></FontAwesomeIcon>
+					</Link>
 				</>
 			)
 		}
