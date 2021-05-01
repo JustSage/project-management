@@ -150,7 +150,6 @@ export default class UpdatePackage extends Component {
 				alert(error)
 				console.log(error)
 			})
-		this.context.router.history.goBack
 	}
 
 	render() {
