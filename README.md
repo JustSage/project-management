@@ -141,7 +141,7 @@ Homepage (+ Navbar):
 
 ![Homepage](./public/homepage.png)
 
-Packages page:
+Packages page (shrinked version):
 
 ![Packages](./public/packages.png)
 
