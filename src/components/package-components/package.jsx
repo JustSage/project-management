@@ -8,11 +8,13 @@ import {
 	ListGroupItem,
 	ListGroup,
 	Col,
+	Form,
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
 library.add(faStar)
 
 /* 
@@ -31,8 +33,25 @@ export default class Package extends Component {
 			url: this.props.url,
 			rating: this.props.rating,
 		}
+		// this.handleRating = this.handleRating.bind(this)
 	}
 
+	handleRating = () => {
+		console.log(event.target.value)
+		axios
+			.post('/update-rating', {
+				name: this.props.name,
+				rating: event.target.value,
+			})
+			.then((response) => {
+				alert(response.data.message)
+				this.props.history.push('/packages')
+			})
+			.catch((error) => {
+				alert(error)
+				console.log(error)
+			})
+	}
 	updatedPackageDisplay = () => {
 		if (
 			sessionStorage.getItem('logged-in-role') == 'Admin' ||
@@ -74,32 +93,50 @@ export default class Package extends Component {
 					>
 						Make an Order!
 					</Link>
-
+					<Card.Body>
+						<Form>
+							<Form.Group>
+								<Form.Label>Rate Package:</Form.Label>
+								<Form.Control
+									onChange={this.handleRating.bind(this)}
+									as='select'
+								>
+									<option id='op1'>1</option>
+									<option id='op2'>2</option>
+									<option id='op3'>3</option>
+									<option id='op4'>4</option>
+									<option id='op5'>5</option>
+								</Form.Control>
+							</Form.Group>
+						</Form>
+					</Card.Body>
 					{sessionStorage.getItem('logged-in-role') != 'Customer' ? (
-						<Container className=' justify-content-center'>
-							<Col>
-								<Button className='update-button' variant='warning'>
-									<Link
-										to={{
-											pathname: `/update-package/${this.props.name}/${this.props.description}/${this.props.price}/${this.props.quantity}/${this.props.url}`,
-										}}
-									>
-										Upgrade{' '}
-									</Link>
-								</Button>
-							</Col>
-							<Col>
-								<Button className='delete-button' variant='warning'>
-									<Link
-										to={{
-											pathname: `/delete-package/${this.props.name}`,
-										}}
-									>
-										Delete{' '}
-									</Link>
-								</Button>
-							</Col>
-						</Container>
+						<Card.Body>
+							<Container className=' justify-content-center'>
+								<Col>
+									<Button className='update-button' variant='warning'>
+										<Link
+											to={{
+												pathname: `/update-package/${this.props.name}/${this.props.description}/${this.props.price}/${this.props.quantity}/${this.props.url}`,
+											}}
+										>
+											Upgrade{' '}
+										</Link>
+									</Button>
+								</Col>
+								<Col>
+									<Button className='delete-button' variant='warning'>
+										<Link
+											to={{
+												pathname: `/delete-package/${this.props.name}`,
+											}}
+										>
+											Delete{' '}
+										</Link>
+									</Button>
+								</Col>
+							</Container>
+						</Card.Body>
 					) : null}
 				</Card.Body>
 			</Card>
