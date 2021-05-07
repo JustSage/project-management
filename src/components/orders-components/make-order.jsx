@@ -73,10 +73,6 @@ class MakeOrder extends Component {
 			.then((response) => {
 				this.setState({ data: response.data }, () => {
 					quantity = this.state.data[0].quantity
-					// console.log(typeof quantity)
-					// quantity = parseInt(quantity)
-					// console.log(typeof quantity)
-					// console.log(quantity)
 					if (quantity > 0) {
 						axios
 							.post('/decrement-quantity', {
@@ -97,21 +93,6 @@ class MakeOrder extends Component {
 				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
-		// if (quantity > 0) {
-		// 	console.log(quantity)
-		// 	axios
-		// 		.post('/decrement-quantity', {
-		// 			description: this.props.match.params.description,
-		// 			quantity: quantity,
-		// 		})
-		// 		.then((response) => {
-		// 			alert(response.data.message)
-		// 		})
-		// 		.catch((error) => {
-		// 			alert(error.data.message)
-		// 			console.log(error.data.message)
-		// 		})
-		// }
 	}
 
 	render() {

@@ -10,6 +10,11 @@ import {
 	Col,
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+library.add(faStar)
+
 /* 
 	the main idea behind Package Component:
 	this component will represent Packages containing flights and hotels and rent car services in different places.
@@ -24,6 +29,7 @@ export default class Package extends Component {
 			quantity: this.props.quantity,
 			price: this.props.price,
 			url: this.props.url,
+			rating: this.props.rating,
 		}
 	}
 
@@ -49,6 +55,8 @@ export default class Package extends Component {
 				<Card.Body style={{ overflow: 'auto' }}>
 					<Card.Title>
 						{this.state.name}
+						<FontAwesomeIcon className='fa fa-star' icon={faStar} />{' '}
+						<span className='rating'>{this.state.rating}</span>
 						{this.updatedPackageDisplay()}
 					</Card.Title>
 					<Card.Text>{this.state.description}</Card.Text>

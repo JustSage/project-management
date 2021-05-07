@@ -54,6 +54,7 @@ class NavbarComponent extends React.Component {
 									<Link to='/car'>Rental Cars</Link>
 								</div>
 								<div>
+									<Link to='/reccomendations'>Reccomendations</Link>
 									<Link to='/packages'>Packages</Link>
 									<Link to='/attractions'>Attractions</Link>
 								</div>
@@ -69,21 +70,11 @@ class NavbarComponent extends React.Component {
 								</div>
 							</div>
 						</div>
-						{/* <Nav.Link
-							className='navLink'
-							onClick={() => this.props.history.push('packages')}
-						>
-							Packages
-						</Nav.Link> */}
+
 						<div className='searchBar'>
 							<SearchBar />
 						</div>
 					</Nav>
-					{/* <input
-						type='search'
-						placeholder='Search for packages...'
-						className='search-input'
-					></input> */}
 
 					<Form className='navbar-nav text-right'>
 						<h5 className='h5-nav'>

@@ -28,6 +28,7 @@ import UpdatePackage from './components/package-components/update-package-compon
 import DeletePackage from './components/package-components/delete-package-compomponent/delete-package'
 import AdminRef from './components/admin-components/admin-ref'
 import CustomeReservations from './components/reservations-components/customer-reservations'
+import Reccomendations from './components/package-components/reccomendations'
 library.add(fab, faCheckSquare, faCoffee)
 
 /**
@@ -89,6 +90,16 @@ class App extends React.Component {
 											<Redirect to='/not-auth' />
 										) : (
 											<AddPackage {...props} />
+										)
+									}
+								/>
+								<Route
+									path='/reccomendations'
+									render={(props) =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<Reccomendations {...props} />
 										)
 									}
 								/>
