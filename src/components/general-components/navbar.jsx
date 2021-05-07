@@ -54,6 +54,7 @@ class NavbarComponent extends React.Component {
 									<Link to='/car'>Rental Cars</Link>
 								</div>
 								<div>
+									<Link to='/reccomendations'>Reccomendations</Link>
 									<Link to='/packages'>Packages</Link>
 									<Link to='/attractions'>Attractions</Link>
 								</div>
