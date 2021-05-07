@@ -5,13 +5,15 @@ const validator = require('validator')
 
 // adding a package to the database
 router.post('/add-package', async (req, res) => {
-	const pkg = req.body
+	let pkg = req.body
 
 	try {
 		//Check if url is valid
 		if (!validator.isURL(pkg.url, { protocols: ['http', 'https'] })) {
 			return res.status(500).send({ message: 'URL is not valid!' })
 		}
+
+		pkg.rating = 0.0
 
 		//Insert the package to the DB
 		await db.collection('packages').insertOne(pkg)
