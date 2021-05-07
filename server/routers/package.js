@@ -69,6 +69,25 @@ router.post('/decrement-quantity', async (req, res) => {
 				},
 			}
 		)
+		res.send({ message: `Thank you for rating this package!` })
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't add a package!" })
+	}
+})
+router.post('/update-rating', async (req, res) => {
+	const pkg = req.body
+	const rating = pkg.rating
+	const name = pkg.name
+	try {
+		await db.collection('packages').updateOne(
+			{ name: name },
+			{
+				$set: {
+					rating: rating,
+				},
+			}
+		)
 
 		res.send({ message: `Thank you!` })
 	} catch (e) {
