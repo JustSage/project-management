@@ -1,6 +1,6 @@
 .package {
 	width: 610px;
-	height: 5rem;
+	height: 6rem;
 	margin-top: 1%;
 	background-color: rgb(253, 197, 113);
 	position: relative;
@@ -74,15 +74,15 @@
 .myCard {
 	border-radius: 25px;
 	border-top-left-radius: 25px;
-	width: 18rem;
-	height: 35rem;
+	width: 25rem;
+	height: 45rem;
 }
 
 .myCardImage {
 	border-top-left-radius: 25px;
 	border-top-right-radius: 25px;
 	max-height: 400px;
-	height: 200px;
+	height: 250px;
 }
 
 .fa-star {
