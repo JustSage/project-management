@@ -84,3 +84,11 @@
 	max-height: 400px;
 	height: 200px;
 }
+
+.fa-star {
+	float: right;
+	color: rgb(255, 62, 4);
+}
+.rating {
+	float: right;
+}

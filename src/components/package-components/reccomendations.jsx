@@ -21,7 +21,7 @@ class Packages extends Component {
 	}
 	componentDidMount() {
 		axios
-			.get('/packages')
+			.get('/package-by-rating')
 			.then((response) => {
 				this.setState({
 					data: response.data,
@@ -31,18 +31,6 @@ class Packages extends Component {
 				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
-	}
-
-	AddPackage = () => {
-		if (
-			sessionStorage.getItem('logged-in-role') == 'Admin' ||
-			sessionStorage.getItem('logged-in-role') == 'Travel Agent'
-		)
-			return (
-				<h5 className='h5-packages'>
-					<a href='/add-package'>Add new package!</a>
-				</h5>
-			)
 	}
 
 	handleLocation = (event) => {
@@ -62,20 +50,6 @@ class Packages extends Component {
 		} else
 			return (
 				<>
-					<div className='package'>
-						<div className='wrraper'>
-							<label className='packageLabel' htmlFor='location'>
-								Choose Location:
-							</label>
-							<input
-								onChange={this.handleLocation}
-								className='packageInput'
-								id='location'
-							/>
-						</div>
-						<br />
-					</div>
-					{this.AddPackage()}
 					<div className='d-flex flex-row flex-wrap my-flex-container'>
 						{this.state.data.map((pkg) => {
 							if (pkg.quantity > 0) {
