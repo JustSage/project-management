@@ -18,6 +18,7 @@ class AddPackage extends Component {
 			price: '',
 			url: '',
 			updated: 'No',
+			rating: 0,
 		}
 
 		this.handleURL = this.handleURL.bind(this)

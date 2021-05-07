@@ -69,7 +69,7 @@ router.post('/decrement-quantity', async (req, res) => {
 				},
 			}
 		)
-		res.send({ message: `Thank you for rating this package!` })
+		res.send({ message: `Thank you!` })
 	} catch (e) {
 		console.log(e)
 		res.status(500).send({ message: "Can't add a package!" })
@@ -89,7 +89,7 @@ router.post('/update-rating', async (req, res) => {
 			}
 		)
 
-		res.send({ message: `Thank you!` })
+		res.send({ message: `Thank you for rating this package!` })
 	} catch (e) {
 		console.log(e)
 		res.status(500).send({ message: "Can't add a package!" })
