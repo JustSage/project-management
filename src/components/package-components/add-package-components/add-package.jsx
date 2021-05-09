@@ -80,15 +80,23 @@ class AddPackage extends Component {
 	}
 
 	handleStartDate = (event) => {
-		this.start = event.target.value.toISOString().split('T')[0]
+		this.start = event.target.value.split('T')[0].replace('-', '/')
 	}
 
 	handleDates = (event) => {
-		this.setState({
-			packageDates: this.state.packageDates.push(
-				this.start + '-' + event.target.value.toISOString().split('T')[0]
-			),
-		})
+		const end = event.target.value.split('T')[0].replace('-', '/')
+		const dates = this.start + ' - ' + end
+
+		if (this.state.packageDates.includes(dates)) {
+			alert('Dates already exist')
+		} else if (new Date(this.start) > new Date(end)) {
+			alert('You picked illegal dates!')
+		} else {
+			this.setState({
+				packageDates: this.state.packageDates.push(dates),
+			})
+			alert(`Successfully added vacation dates:${dates}`)
+		}
 	}
 
 	handleSubmit = () => {
@@ -173,9 +181,6 @@ class AddPackage extends Component {
 								onChange={this.handleDates}
 								required
 							/>
-							<Button type='submit' style={{ border: 'none' }}>
-								Add dates
-							</Button>
 						</Form.Group>
 						<Button type='submit' style={{ border: 'none' }}>
 							Submit!
