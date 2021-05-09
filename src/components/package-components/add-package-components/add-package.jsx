@@ -80,13 +80,13 @@ class AddPackage extends Component {
 	}
 
 	handleStartDate = (event) => {
-		this.start = event.target.value.split('T')[0].replace('-', '/')
+		this.start = event.target.value.split('T')[0]
 	}
 
 	handleDates = (event) => {
 		event.preventDefault()
-		const end = event.target.value.split('T')[0].replace('-', '/')
-		const dates = this.start + ' - ' + end
+		const end = event.target.value.split('T')[0]
+		const dates = this.start + ' to ' + end
 
 		if (this.state.packageDates.includes(dates)) {
 			alert('Dates already exist')
@@ -113,7 +113,6 @@ class AddPackage extends Component {
 				alert(error)
 				console.log(error)
 			})
-		this.goBack()
 	}
 
 	render() {

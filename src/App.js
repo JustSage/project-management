@@ -150,7 +150,7 @@ class App extends React.Component {
 									}
 								/>
 								<Route
-									path='/make-order/:destination/:price/:description'
+									path='/make-order/:destination/:price/:description/:dates'
 									render={(props) =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />

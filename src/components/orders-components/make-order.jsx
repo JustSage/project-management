@@ -18,7 +18,10 @@ class MakeOrder extends Component {
 				'#' +
 				this.props.match.params.destination[0] +
 				String(Math.floor(Math.random() * 100000)),
+			OrderDate: undefined,
 		}
+
+		console.log(this.props.match.params.dates)
 	}
 
 	/**
@@ -118,7 +121,7 @@ class MakeOrder extends Component {
 						</Form.Group>
 						<Form.Group>
 							<DropdownButton id='dropdown-item-button' title='Select date'>
-								{}
+								{/* {this.} */}
 								<Dropdown.Item as='button'>Action</Dropdown.Item>
 								<Dropdown.Item as='button'>Another action</Dropdown.Item>
 								<Dropdown.Item as='button'>Something else</Dropdown.Item>
