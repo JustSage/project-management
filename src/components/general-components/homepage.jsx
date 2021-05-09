@@ -10,6 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../css/homepage.css'
+import HomeContext from './homepage-components/homecontext'
 
 library.add(fab, faCheckSquare, faCoffee, faUser)
 
@@ -18,7 +19,7 @@ class Homepage extends Component {
 		super(props)
 	}
 	state = {
-		bar: 'Flights', // defatult
+		bar: 'Flights', 
 	}
 
 	render() {
@@ -32,6 +33,7 @@ class Homepage extends Component {
 					You can reach us through our mail: TravelAgency@travelAgecny.com<br/>
 					Or through our phone: 123-456789
 				</p>
+				<HomeContext/>
 				</div>
 			</>
 		)
