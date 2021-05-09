@@ -5,6 +5,8 @@ import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
 import '../../../css/addPackage.css'
 
+var today = new Date(Date.now() + 10 * 86400000) //Package can be ordered 10 days from today
+
 /**
  * Class target is to show the add package page and handles an appropriate http request In front of the server
  */
@@ -19,78 +21,46 @@ class AddPackage extends Component {
 			url: '',
 			updated: 'No',
 			rating: 0,
+			packageDates: [],
 		}
 
-		this.handleURL = this.handleURL.bind(this)
-		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleURLLink = this.handleURLLink.bind(this)
-		this.handleFile = this.handleFile.bind(this)
-		this.handleName = this.handleName.bind(this)
-		this.handleDescription = this.handleDescription.bind(this)
-		this.handleQuantity = this.handleQuantity.bind(this)
-		this.handlePrice = this.handlePrice.bind(this)
-		this.goBack = this.goBack.bind(this)
+		this.start = undefined //The start date which selected on every session
 	}
 
-	goBack() {
+	goBack = () => {
 		this.props.history.back()
 	}
 
-	/**
-	 * Function handles the entered text in url input below
-	 * @param {*} event
-	 */
 	handleURL = (event) => {
 		this.setState({
 			url: event.target.value,
 		})
 	}
 
-	/**
-	 * Function handles the entered text in name input below
-	 * @param {*} event
-	 */
 	handleName = (event) => {
 		this.setState({
 			name: event.target.value,
 		})
 	}
 
-	/**
-	 * Function handles the entered text in description input below
-	 * @param {*} event
-	 */
 	handleDescription = (event) => {
 		this.setState({
 			description: event.target.value,
 		})
 	}
 
-	/**
-	 * Function handles the entered text in quantity input below
-	 * @param {*} event
-	 */
 	handleQuantity = (event) => {
 		this.setState({
 			quantity: parseInt(event.target.value),
 		})
 	}
 
-	/**
-	 * Function handles the entered text in price input below
-	 * @param {*} event
-	 */
 	handlePrice = (event) => {
 		this.setState({
 			price: event.target.value + '$',
 		})
 	}
 
-	/**
-	 * Function will set url to the uploaded message
-	 * This will save the pictures localy only, when tried to load it, it'll not shown.
-	 * @param {*} event
-	 */
 	handleFile = (event) => {
 		const objectURL = URL.createObjectURL(
 			document.querySelector('#image').files[0]
@@ -100,10 +70,6 @@ class AddPackage extends Component {
 		})
 	}
 
-	/**
-	 * handles url link, shows up only if url value isn't empty
-	 * @returns link to typed url
-	 */
 	handleURLLink = () => {
 		if (this.state.url !== '')
 			return (
@@ -113,9 +79,18 @@ class AddPackage extends Component {
 			)
 	}
 
-	/**
-	 * Handles the submit in the form below, send the whole state to db
-	 */
+	handleStartDate = (event) => {
+		this.start = event.target.value.toISOString().split('T')[0]
+	}
+
+	handleDates = (event) => {
+		this.setState({
+			packageDates: this.state.packageDates.push(
+				this.start + '-' + event.target.value.toISOString().split('T')[0]
+			),
+		})
+	}
+
 	handleSubmit = () => {
 		event.preventDefault()
 		axios
@@ -139,10 +114,13 @@ class AddPackage extends Component {
 			return (
 				<>
 					<h3 className='h-as-title'>AddPackage</h3>
-					<Form className='add-package-form' onSubmit={this.handleSubmit}>
+					<Form
+						className='add-package-form'
+						onSubmit={this.handleSubmit.bind(this)}
+					>
 						<Form.Group>
 							<Form.Label>Package name</Form.Label>
-							<Form.Control required onChange={this.handleName} />
+							<Form.Control required onChange={this.handleName.bind(this)} />
 						</Form.Group>
 						<Form.Group>
 							<Form.Label>Description</Form.Label>
@@ -150,7 +128,7 @@ class AddPackage extends Component {
 								as='textarea'
 								rows={3}
 								required
-								onChange={this.handleDescription}
+								onChange={this.handleDescription.bind(this)}
 							/>
 						</Form.Group>
 						<Form.Group>
@@ -158,7 +136,7 @@ class AddPackage extends Component {
 							<Form.Control
 								type='number'
 								required
-								onChange={this.handlePrice}
+								onChange={this.handlePrice.bind(this)}
 							/>
 						</Form.Group>
 						<Form.Group>
@@ -166,24 +144,38 @@ class AddPackage extends Component {
 							<Form.Control
 								type='number'
 								required
-								onChange={this.handleQuantity}
+								onChange={this.handleQuantity.bind(this)}
 							/>
 						</Form.Group>
 						<Form.Group>
 							<Form.Label>Image</Form.Label>
-							<Form.Group>
-								<Form.File
-									id='image'
-									accept='image/*'
-									onChange={this.handleFile}
-								/>
-							</Form.Group>
 							<Form.Control
-								placeholder='Or set image url'
-								onChange={this.handleURL}
+								placeholder='Set image url'
+								onChange={this.handleURL.bind(this)}
 								required
 							/>
 							{this.handleURLLink()}
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Start date</Form.Label>
+							<Form.Control
+								id='date-input'
+								type='date'
+								min={today.toISOString().split('T')[0]}
+								onChange={this.handleStartDate.bind(this)}
+								required
+							/>
+							<Form.Label>End date</Form.Label>
+							<Form.Control
+								id='date-input'
+								type='date'
+								min={today.toISOString().split('T')[0]}
+								onChange={this.handleDates}
+								required
+							/>
+							<Button type='submit' style={{ border: 'none' }}>
+								Add dates
+							</Button>
 						</Form.Group>
 						<Button type='submit' style={{ border: 'none' }}>
 							Submit!
