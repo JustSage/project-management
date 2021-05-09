@@ -31,8 +31,8 @@ export default class OrdersList extends Component {
 				// console.log(this.state.tableTitles, this.state.orders)
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
-				alert(error.response.data.message)
+				console.log(error.response)
+				alert(error.response)
 			})
 
 		this.sort = this.sort.bind(this)
@@ -49,8 +49,8 @@ export default class OrdersList extends Component {
 				alert(response.data.message)
 			})
 			.catch((error) => {
-				alert(error.data.message)
-				console.log(error.data.message)
+				alert(error)
+				console.log(error)
 			})
 	}
 

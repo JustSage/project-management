@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Dropdown, DropdownButton } from 'react-bootstrap'
 import '../../css/addPackage.css'
 import 'react-router-dom'
 
@@ -115,6 +115,14 @@ class MakeOrder extends Component {
 								readOnly
 								defaultValue={this.props.match.params.price}
 							/>
+						</Form.Group>
+						<Form.Group>
+							<DropdownButton id='dropdown-item-button' title='Select date'>
+								{}
+								<Dropdown.Item as='button'>Action</Dropdown.Item>
+								<Dropdown.Item as='button'>Another action</Dropdown.Item>
+								<Dropdown.Item as='button'>Something else</Dropdown.Item>
+							</DropdownButton>
 						</Form.Group>
 						<Button type='submit' style={{ border: 'none' }}>
 							Submit!

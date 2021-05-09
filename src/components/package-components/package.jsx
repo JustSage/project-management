@@ -32,6 +32,7 @@ export default class Package extends Component {
 			price: this.props.price,
 			url: this.props.url,
 			rating: this.props.rating,
+			dates: this.props.dates,
 		}
 		// this.handleRating = this.handleRating.bind(this)
 	}
@@ -87,7 +88,7 @@ export default class Package extends Component {
 				<Card.Body>
 					<Link
 						to={{
-							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}`,
+							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}/${this.props.dates}`,
 						}}
 						className='card-link'
 					>

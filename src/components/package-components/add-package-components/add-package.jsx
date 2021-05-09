@@ -27,9 +27,9 @@ class AddPackage extends Component {
 		this.start = undefined //The start date which selected on every session
 	}
 
-	goBack = () => {
-		this.props.history.back()
-	}
+	// goBack = () => {
+	// 	this.props.history.back()
+	// }
 
 	handleURL = (event) => {
 		this.setState({
@@ -84,6 +84,7 @@ class AddPackage extends Component {
 	}
 
 	handleDates = (event) => {
+		event.preventDefault()
 		const end = event.target.value.split('T')[0].replace('-', '/')
 		const dates = this.start + ' - ' + end
 
@@ -93,9 +94,10 @@ class AddPackage extends Component {
 			alert('You picked illegal dates!')
 		} else {
 			this.setState({
-				packageDates: this.state.packageDates.push(dates),
+				packageDates: [...this.state.packageDates, dates],
 			})
 			alert(`Successfully added vacation dates:${dates}`)
+			console.log(this.state.packageDates)
 		}
 	}
 

@@ -89,6 +89,7 @@ class Packages extends Component {
 											price={pkg.price}
 											updated={pkg.updated}
 											rating={pkg.rating}
+											dates={pkg.packageDates}
 											history={this.props.history}
 											key={pkg.description}
 										/>
