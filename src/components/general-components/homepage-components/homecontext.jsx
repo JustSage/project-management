@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../../css/homepage.css'
 import { Container, Row, Col, ListGroup } from 'react-bootstrap'
 import axios from 'axios'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 class HomeContext extends Component {
 	constructor(props) {
@@ -42,7 +44,24 @@ class HomeContext extends Component {
 									})}
 								</ListGroup>
 							</Col>
-							<Col sm={10}>map will be here</Col>
+							<Col sm={10}>
+								<MapContainer
+									center={[51.505, -0.09]}
+									zoom={2}
+									scrollWheelZoom={false}
+									style={{ height: 350, width: 600 }}
+								>
+									<TileLayer
+										attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+										url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+									/>
+									<Marker position={[51.505, -0.09]}>
+										<Popup>
+											A pretty CSS3 popup. <br /> Easily customizable.
+										</Popup>
+									</Marker>
+								</MapContainer>
+							</Col>
 						</Row>
 					</Container>
 				</>
