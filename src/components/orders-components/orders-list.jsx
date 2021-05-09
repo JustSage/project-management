@@ -175,7 +175,7 @@ export default class OrdersList extends Component {
 												<td>{h['Deal']}</td>
 												<td>{h['Status']}</td>
 												<td>{h['OrderDate']}</td>
-												<td>{h['VacationDates']}</td>
+												<td>{h['VacationDate']}</td>
 												<td>
 													<Button
 														onClick={() => {

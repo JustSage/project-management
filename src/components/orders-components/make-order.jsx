@@ -18,7 +18,8 @@ class MakeOrder extends Component {
 				'#' +
 				this.props.match.params.destination[0] +
 				String(Math.floor(Math.random() * 100000)),
-			OrderDate: undefined,
+			Dates: this.props.match.params.dates.split(','),
+			VacationDate: undefined,
 		}
 
 		console.log(this.props.match.params.dates)
@@ -38,7 +39,8 @@ class MakeOrder extends Component {
 				Price: this.props.match.params.price,
 				Deal: 'Package',
 				Status: 'In Proc',
-				OrderDate: undefined,
+				OrderDate: new Date(),
+				VacationDate: this.state.VacationDate,
 			})
 			.then((response) => {
 				alert(response.data.message)
@@ -77,6 +79,12 @@ class MakeOrder extends Component {
 				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
+	}
+
+	handleDateSelection = (event) => {
+		this.setState({
+			VacationDate: event.target.value,
+		})
 	}
 
 	render() {
@@ -120,12 +128,20 @@ class MakeOrder extends Component {
 							/>
 						</Form.Group>
 						<Form.Group>
-							<DropdownButton id='dropdown-item-button' title='Select date'>
-								{/* {this.} */}
-								<Dropdown.Item as='button'>Action</Dropdown.Item>
-								<Dropdown.Item as='button'>Another action</Dropdown.Item>
-								<Dropdown.Item as='button'>Something else</Dropdown.Item>
-							</DropdownButton>
+							<Form.Control
+								as='select'
+								id='dropdown-item-button'
+								title='Select date'
+								onChange={this.handleDateSelection.bind(this)}
+							>
+								{this.state.Dates.map((item, i) => {
+									return (
+										<option as='label' key={i}>
+											{item}
+										</option>
+									)
+								})}
+							</Form.Control>
 						</Form.Group>
 						<Button type='submit' style={{ border: 'none' }}>
 							Submit!
