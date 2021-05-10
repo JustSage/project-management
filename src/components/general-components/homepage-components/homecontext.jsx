@@ -5,6 +5,7 @@ import '../../../css/homepage.css'
 import { Container, Row, Col, ListGroup } from 'react-bootstrap'
 import axios from 'axios'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import geocoding from '../../../utilities/reverse-geocoding'
 
 class HomeContext extends Component {
 	constructor(props) {
@@ -40,7 +41,7 @@ class HomeContext extends Component {
 							<Col sm={2}>
 								<ListGroup variant='flush'>
 									{this.state.destinations.map((dest, i) => {
-										return <ListGroup.Item key={i}>{dest}</ListGroup.Item>
+										return <ListGroup.Item key={i}>{dest, geocoding(dest)}</ListGroup.Item>
 									})}
 								</ListGroup>
 							</Col>
