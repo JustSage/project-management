@@ -29,7 +29,7 @@ class HomeContext extends Component {
 				}
 				array().then((data) => {
 					const filteredArray = data.map((item) => {
-						return [item[0].x, item[0].y]
+						return [[item[0].y, item[0].x], item[0]]
 					})
 					this.setState({ latlongs: filteredArray })
 					console.log(this.state.latlongs)
@@ -71,12 +71,13 @@ class HomeContext extends Component {
 										attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 										url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 									/>
-									)
-									<Marker position={[51.505, -0.09]}>
-										<Popup>
-											A pretty CSS3 popup. <br /> Easily customizable.
-										</Popup>
-									</Marker>
+									{this.state.latlongs.map((item, i) => {
+										return (
+											<Marker key={i} position={item[0]}>
+												<Popup>{`${item[1].label}`}</Popup>
+											</Marker>
+										)
+									})}
 								</MapContainer>
 							</Col>
 						</Row>
