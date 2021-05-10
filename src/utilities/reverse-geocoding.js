@@ -1,15 +1,10 @@
-import Geocode from 'react-geocode'
+import { OpenStreetMapProvider } from 'leaflet-geosearch'
 
-export default function geocoding(name) {
-  let data
-  Geocode.fromAddress(name).then(
-    (response) => {
-      data = response.results[0].geometry.location
-      console.log(data)
-    },
-    (error) => {
-      console.error(error)
-    }
-  )
-  return data
+const provider = new OpenStreetMapProvider()
+
+const geocoding = async (name) => {
+	const results = await provider.search({ query: name })
+	return results
 }
+
+export default geocoding
