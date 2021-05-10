@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import logo from '../../images/pine-apple-logo.png'
 import { Link } from 'react-router-dom'
 import SearchBar from './search-bar'
+
 library.add(fab, faUser, faCog, faEnvelope)
 
 class NavbarComponent extends React.Component {
@@ -60,16 +61,9 @@ class NavbarComponent extends React.Component {
 								</div>
 							</div>
 						</div>
-						<div className='dropdown'>
-							<Nav.Link className='navLink'>Pricing</Nav.Link>
-							<div className='dropdown-content' style={{ minWidth: '130px' }}>
-								<div>
-									<Link to='#'>100$-500$</Link>
-									<Link to='#'>500$-1000$</Link>
-									<Link to='#'>1000$-5000$</Link>
-								</div>
-							</div>
-						</div>
+						<Link className='navLink nav-link' to='/contact-us'>
+							Contact Us!
+						</Link>
 
 						<div className='searchBar'>
 							<SearchBar />

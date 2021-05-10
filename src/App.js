@@ -29,6 +29,7 @@ import DeletePackage from './components/package-components/delete-package-compom
 import AdminRef from './components/admin-components/admin-ref'
 import CustomeReservations from './components/reservations-components/customer-reservations'
 import Reccomendations from './components/package-components/reccomendations'
+import ContactUs from './components/contact-component/contact-us'
 library.add(fab, faCheckSquare, faCoffee)
 
 /**
@@ -157,6 +158,12 @@ class App extends React.Component {
 										) : (
 											<MakeOrder {...props} />
 										)
+									}
+								/>
+								<Route
+									path='/contact-us'
+									render={() =>
+										!requireAuth() ? <Redirect to='/not-auth' /> : <ContactUs />
 									}
 								/>
 							</>
