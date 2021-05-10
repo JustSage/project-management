@@ -47,9 +47,9 @@ class HomeContext extends Component {
 							<Col sm={10}>
 								<MapContainer
 									center={[51.505, -0.09]}
-									zoom={2}
+									zoom={3}
 									scrollWheelZoom={false}
-									style={{ height: 350, width: 600 }}
+									style={{ height: '500%', width: '90%' }}
 								>
 									<TileLayer
 										attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
