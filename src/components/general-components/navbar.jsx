@@ -4,13 +4,13 @@ import '../../css/navbar.css'
 import { Navbar, Nav, Form } from 'react-bootstrap'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faUser, faCog } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faCog, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import logo from '../../images/pine-apple-logo.png'
 import { Link } from 'react-router-dom'
 import SearchBar from './search-bar'
-library.add(fab, faUser, faCog)
+library.add(fab, faUser, faCog, faEnvelope)
 
 class NavbarComponent extends React.Component {
 	constructor(props) {
@@ -77,16 +77,24 @@ class NavbarComponent extends React.Component {
 					</Nav>
 
 					<Form className='navbar-nav text-right'>
-						<h5 className='h5-nav'>
-							<FontAwesomeIcon
-								className='user-icon'
-								icon='user'
-							></FontAwesomeIcon>{' '}
-							<span className='welcome'>Welcome </span>
-							<span className='user-name'>
-								{sessionStorage.getItem('logged-in-username')}
-							</span>
-						</h5>
+						<div className='user-menu'>
+							<h5 className='h5-nav'>
+								<FontAwesomeIcon
+									className='user-icon'
+									icon='user'
+								></FontAwesomeIcon>{' '}
+								<span className='welcome'>Welcome </span>
+								<span className='user-name'>
+									{sessionStorage.getItem('logged-in-username')}
+								</span>
+							</h5>
+						</div>
+						<FontAwesomeIcon
+							className='envelope'
+							icon='envelope'
+							data-toggle='tooltip'
+							title='Inbox'
+						></FontAwesomeIcon>
 						<div className='dropdown'>
 							<FontAwesomeIcon className='cog' icon='cog'></FontAwesomeIcon>
 							<div

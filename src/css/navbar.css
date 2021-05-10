@@ -12,11 +12,11 @@
 	box-shadow: 0px -10px 20px 20px rgb(223, 164, 87);
 }
 
-.h5-nav {
+/* .h5-nav {
 	font-size: 17;
 	margin-right: 1vh;
 	display: block;
-}
+} */
 
 .navLink {
 	color: rgb(99, 89, 47) !important;
@@ -39,6 +39,11 @@
 	text-shadow: 0px 0px 5px #ad8888;
 }
 
+.user-menu {
+	width: 30vh;
+	margin-right: 4vh;
+}
+
 .welcome {
 	font-size: 17px;
 	opacity: 0.7;
@@ -55,8 +60,18 @@
 }
 
 .cog {
-	margin-bottom: 4%;
+	margin-bottom: 2%;
 	font-size: 17px;
+}
+
+.envelope {
+	margin-top: 1%;
+	margin-right: 4%;
+	font-size: 17px;
+}
+
+.envelope :hover {
+	cursor: pointer;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -110,3 +125,4 @@
 	display: flex;
 	margin-left: 10px;
 }
+
