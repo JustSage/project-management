@@ -69,6 +69,7 @@
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "4.0.3",
 		"react-spring": "^8.0.27",
+		"sweetalert": "^2.1.2",
 		"validator": "^13.5.2",
 		"web-vitals": "^1.0.1"
 	},

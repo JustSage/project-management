@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Form, Button, Dropdown, DropdownButton } from 'react-bootstrap'
 import '../../css/addPackage.css'
 import 'react-router-dom'
+import swal from 'sweetalert'
 
 /**
  * Class target is to show the add package page and handles an appropriate http request In front of the server
@@ -43,11 +44,15 @@ class MakeOrder extends Component {
 				VacationDate: this.state.VacationDate,
 			})
 			.then((response) => {
-				alert(response.data.message)
+				swal({
+					title: 'Thank you',
+					text: response.data.message,
+					icon: 'success',
+				})
 			})
 			.catch((error) => {
-				alert(error.data.message)
-				console.log(error.data.message)
+				swal(error.data.message)
+				console.log({ text: error.data.message, icon: 'error' })
 			})
 
 		axios
@@ -66,10 +71,10 @@ class MakeOrder extends Component {
 								quantity: quantity,
 							})
 							.then((response) => {
-								alert(response.data.message)
+								// swal({ text: response.data.message, icon: 'success' })
 							})
 							.catch((error) => {
-								alert(error.data.message)
+								swal({ text: error.data.message, icon: 'error' })
 								console.log(error.data.message)
 							})
 					}
@@ -77,7 +82,7 @@ class MakeOrder extends Component {
 			})
 			.catch((error) => {
 				console.log(error.response.data.message)
-				alert(error.response.data.message)
+				swal({ text: error.response.data.message, icon: 'error' })
 			})
 	}
 
