@@ -14,6 +14,8 @@ class MakeOrder extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			quantityArr: [],
+			quantity: 1,
 			package: undefined,
 			orderName:
 				'#' +
@@ -23,9 +25,16 @@ class MakeOrder extends Component {
 			VacationDate: undefined,
 		}
 
+		let i
+		for (i = 0; i < this.props.match.params.quantity; i++) {
+			this.state.quantityArr.push(i + 1)
+		}
+		console.log(this.state.quantityArr)
 		console.log(this.props.match.params.dates)
 	}
-
+	handleQuanity = (event) => {
+		this.setState({ quantity: event.target.value })
+	}
 	/**
 	 * Handles the submit in the form below, send the whole state to db
 	 */
@@ -37,6 +46,7 @@ class MakeOrder extends Component {
 				OrderName: this.state.orderName,
 				User: sessionStorage.getItem('logged-in-username'),
 				Destination: this.props.match.params.destination,
+				Quantity: this.state.quantity,
 				Price: this.props.match.params.price,
 				Deal: 'Package',
 				Status: 'In Proc',
@@ -68,7 +78,7 @@ class MakeOrder extends Component {
 						axios
 							.post('/decrement-quantity', {
 								description: this.props.match.params.description,
-								quantity: quantity,
+								quantity: quantity - this.state.quantity,
 							})
 							.then((response) => {
 								// swal({ text: response.data.message, icon: 'success' })
@@ -124,6 +134,24 @@ class MakeOrder extends Component {
 								defaultValue={this.props.match.params.description}
 								rows={3}
 							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Quantity</Form.Label>
+							<Form.Control
+								as='select'
+								id='dropdown-item-button'
+								title='Select Quantity'
+								defaultValue={1}
+								onClick={this.handleQuanity.bind(this)}
+							>
+								{this.state.quantityArr.map((item, i) => {
+									return (
+										<option as='label' key={i}>
+											{item}
+										</option>
+									)
+								})}
+							</Form.Control>
 						</Form.Group>
 						<Form.Group>
 							<Form.Label>Price</Form.Label>

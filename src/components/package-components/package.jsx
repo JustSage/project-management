@@ -88,7 +88,7 @@ export default class Package extends Component {
 				<Card.Body>
 					<Link
 						to={{
-							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}/${this.props.dates}`,
+							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}/${this.props.quantity}/${this.props.dates}`,
 						}}
 						className='card-link'
 					>

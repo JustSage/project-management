@@ -59,7 +59,7 @@ router.post('/update-package', async (req, res) => {
 
 router.post('/decrement-quantity', async (req, res) => {
 	const pkg = req.body
-	const q = pkg.quantity - 1
+	const q = pkg.quantity
 	try {
 		await db.collection('packages').updateOne(
 			{ description: pkg.description },
