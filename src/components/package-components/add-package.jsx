@@ -2,8 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Form, Button } from 'react-bootstrap'
-import '../../../css/addPackage.css'
+import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 
 var today = new Date(Date.now() + 10 * 86400000) //Package can be ordered 10 days from today
 
@@ -26,10 +25,6 @@ class AddPackage extends Component {
 
 		this.start = undefined //The start date which selected on every session
 	}
-
-	// goBack = () => {
-	// 	this.props.history.back()
-	// }
 
 	handleURL = (event) => {
 		this.setState({
@@ -122,71 +117,84 @@ class AddPackage extends Component {
 		) {
 			return (
 				<>
-					<h3 className='h-as-title'>AddPackage</h3>
-					<Form
-						className='add-package-form'
-						onSubmit={this.handleSubmit.bind(this)}
-					>
-						<Form.Group>
-							<Form.Label>Package name</Form.Label>
-							<Form.Control required onChange={this.handleName.bind(this)} />
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>Description</Form.Label>
-							<Form.Control
-								as='textarea'
-								rows={3}
-								required
-								onChange={this.handleDescription.bind(this)}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>Price</Form.Label>
-							<Form.Control
-								type='number'
-								required
-								onChange={this.handlePrice.bind(this)}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>Quantity</Form.Label>
-							<Form.Control
-								type='number'
-								required
-								onChange={this.handleQuantity.bind(this)}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>Image</Form.Label>
-							<Form.Control
-								placeholder='Set image url'
-								onChange={this.handleURL.bind(this)}
-								required
-							/>
-							{this.handleURLLink()}
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>Start date</Form.Label>
-							<Form.Control
-								id='date-input'
-								type='date'
-								min={today.toISOString().split('T')[0]}
-								onChange={this.handleStartDate.bind(this)}
-								required
-							/>
-							<Form.Label>End date</Form.Label>
-							<Form.Control
-								id='date-input'
-								type='date'
-								min={today.toISOString().split('T')[0]}
-								onChange={this.handleDates}
-								required
-							/>
-						</Form.Group>
-						<Button type='submit' style={{ border: 'none' }}>
-							Submit!
-						</Button>
-					</Form>
+					<Container fluid>
+						<Row>
+							<h3 className='h-as-title'>AddPackage</h3>
+						</Row>
+						<Row>
+							<Col />
+							<Col>
+								<Form
+									className='add-package-form'
+									onSubmit={this.handleSubmit.bind(this)}
+								>
+									<Form.Group>
+										<Form.Label>Package name</Form.Label>
+										<Form.Control
+											required
+											onChange={this.handleName.bind(this)}
+										/>
+									</Form.Group>
+									<Form.Group>
+										<Form.Label>Description</Form.Label>
+										<Form.Control
+											as='textarea'
+											rows={3}
+											required
+											onChange={this.handleDescription.bind(this)}
+										/>
+									</Form.Group>
+									<Form.Group>
+										<Form.Label>Price</Form.Label>
+										<Form.Control
+											type='number'
+											required
+											onChange={this.handlePrice.bind(this)}
+										/>
+									</Form.Group>
+									<Form.Group>
+										<Form.Label>Quantity</Form.Label>
+										<Form.Control
+											type='number'
+											required
+											onChange={this.handleQuantity.bind(this)}
+										/>
+									</Form.Group>
+									<Form.Group>
+										<Form.Label>Image</Form.Label>
+										<Form.Control
+											placeholder='Set image url'
+											onChange={this.handleURL.bind(this)}
+											required
+										/>
+										{this.handleURLLink()}
+									</Form.Group>
+									<Form.Group>
+										<Form.Label>Start date</Form.Label>
+										<Form.Control
+											id='date-input'
+											type='date'
+											min={today.toISOString().split('T')[0]}
+											onChange={this.handleStartDate.bind(this)}
+											required
+										/>
+										<Form.Label>End date</Form.Label>
+										<Form.Control
+											id='date-input'
+											type='date'
+											min={today.toISOString().split('T')[0]}
+											onChange={this.handleDates}
+											required
+										/>
+									</Form.Group>
+									<Button type='submit' style={{ border: 'none' }}>
+										Submit!
+									</Button>
+								</Form>
+							</Col>
+							<Col />
+						</Row>
+					</Container>
 				</>
 			)
 		} else {

@@ -16,16 +16,14 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import Packages from './components/package-components/packages-page'
-import AddPackage from './components/package-components/add-package-components/add-package'
+import AddPackage from './components/package-components/add-package'
 import OrdersList from './components/orders-components/orders-list'
-import Flights from './components/package-components/flights'
 import requireAuth from './components/login-and-signup-components/auth'
 import NotAuth from './components/login-and-signup-components/notAuth'
 import NavbarComponent from './components/general-components/navbar'
-// import AdminRef from './components/admin-components/admin-ref'
 import MakeOrder from './components/orders-components/make-order'
-import UpdatePackage from './components/package-components/update-package-component/update-package'
-import DeletePackage from './components/package-components/delete-package-compomponent/delete-package'
+import UpdatePackage from './components/package-components/update-package'
+import DeletePackage from './components/package-components/delete-package'
 import AdminRef from './components/admin-components/admin-ref'
 import CustomeReservations from './components/reservations-components/customer-reservations'
 import Reccomendations from './components/package-components/reccomendations'
@@ -54,12 +52,6 @@ class App extends React.Component {
 									path='/homepage'
 									render={() =>
 										!requireAuth() ? <Redirect to='/not-auth' /> : <Homepage />
-									}
-								/>
-								<Route
-									path='/flights'
-									render={() =>
-										!requireAuth() ? <Redirect to='/not-auth' /> : <Flights />
 									}
 								/>
 								<Route

@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import '../../css/addPackages.css'
 import '../../css/Package.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Package from './package'

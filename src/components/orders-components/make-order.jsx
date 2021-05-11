@@ -3,7 +3,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Form, Button, Dropdown, DropdownButton } from 'react-bootstrap'
-import '../../css/addPackage.css'
 import 'react-router-dom'
 import swal from 'sweetalert'
 
