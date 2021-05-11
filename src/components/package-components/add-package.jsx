@@ -122,8 +122,8 @@ class AddPackage extends Component {
 							<h3 className='h-as-title'>AddPackage</h3>
 						</Row>
 						<Row>
-							<Col />
-							<Col>
+							<Col sm={3} />
+							<Col sm={6}>
 								<Form
 									className='add-package-form'
 									onSubmit={this.handleSubmit.bind(this)}
@@ -192,7 +192,7 @@ class AddPackage extends Component {
 									</Button>
 								</Form>
 							</Col>
-							<Col />
+							<Col sm={2} />
 						</Row>
 					</Container>
 				</>
