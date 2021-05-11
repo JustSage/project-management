@@ -15,7 +15,7 @@ class MakeOrder extends Component {
 		this.state = {
 			quantityArr: [],
 			quantity: 1,
-			price: this.props.match.params.price,
+			price: parseInt(this.props.match.params.price),
 			package: undefined,
 			orderName:
 				'#' +
@@ -23,6 +23,7 @@ class MakeOrder extends Component {
 				String(Math.floor(Math.random() * 100000)),
 			Dates: this.props.match.params.dates.split(','),
 			VacationDate: undefined,
+			selectedAttractions: [],
 		}
 
 		let i
@@ -56,7 +57,7 @@ class MakeOrder extends Component {
 				User: sessionStorage.getItem('logged-in-username'),
 				Destination: this.props.match.params.destination,
 				Quantity: this.state.quantity,
-				Price: this.state.price,
+				Price: this.state.price + '$',
 				Deal: 'Package',
 				Status: 'In Proc',
 				OrderDate: new Date(),
@@ -107,6 +108,22 @@ class MakeOrder extends Component {
 		this.setState({
 			VacationDate: event.target.value,
 		})
+	}
+
+	attrSelector = (event) => {
+		let total = this.state.price
+		let value = event.target.value.split('price: ')[1]
+		console.log(value)
+		if (this.state.selectedAttractions.includes(value)) {
+			this.setState({
+				price: total - parseInt(value),
+			})
+		} else {
+			this.setState({
+				selectedAttractions: [...this.state.selectedAttractions, value],
+				price: total + parseInt(value),
+			})
+		}
 	}
 
 	render() {
@@ -175,7 +192,12 @@ class MakeOrder extends Component {
 											Select addittional features (ctrl+right click on the mouse
 											to select multiple options)
 										</Form.Label>
-										<Form.Control as='select' htmlSize={3} multiple>
+										<Form.Control
+											as='select'
+											htmlSize={3}
+											multiple
+											onChange={this.attrSelector.bind(this)}
+										>
 											{this.attractions.map((item, i) => {
 												return (
 													<option
@@ -202,7 +224,7 @@ class MakeOrder extends Component {
 										</Form.Control>
 										<Form.Group>
 											<Form.Label>Price</Form.Label>
-											<Form.Control readOnly defaultValue={this.state.price} />
+											<Form.Control readOnly value={this.state.price + '$'} />
 										</Form.Group>
 									</Form.Group>
 									<Button type='submit' style={{ border: 'none' }}>
