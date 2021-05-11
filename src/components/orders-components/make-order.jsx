@@ -15,6 +15,7 @@ class MakeOrder extends Component {
 		this.state = {
 			quantityArr: [],
 			quantity: 1,
+			price: this.props.match.params.price,
 			package: undefined,
 			orderName:
 				'#' +
@@ -55,7 +56,7 @@ class MakeOrder extends Component {
 				User: sessionStorage.getItem('logged-in-username'),
 				Destination: this.props.match.params.destination,
 				Quantity: this.state.quantity,
-				Price: this.props.match.params.price,
+				Price: this.state.price,
 				Deal: 'Package',
 				Status: 'In Proc',
 				OrderDate: new Date(),
@@ -168,13 +169,7 @@ class MakeOrder extends Component {
 											})}
 										</Form.Control>
 									</Form.Group>
-									<Form.Group>
-										<Form.Label>Price</Form.Label>
-										<Form.Control
-											readOnly
-											defaultValue={this.props.match.params.price}
-										/>
-									</Form.Group>
+
 									<Form.Group>
 										<Form.Label>
 											Select addittional features (ctrl+right click on the mouse
@@ -205,6 +200,10 @@ class MakeOrder extends Component {
 												)
 											})}
 										</Form.Control>
+										<Form.Group>
+											<Form.Label>Price</Form.Label>
+											<Form.Control readOnly defaultValue={this.state.price} />
+										</Form.Group>
 									</Form.Group>
 									<Button type='submit' style={{ border: 'none' }}>
 										Submit!
