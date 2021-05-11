@@ -127,6 +127,7 @@ class AddPackage extends Component {
 								<Form
 									className='add-package-form'
 									onSubmit={this.handleSubmit.bind(this)}
+									style={{ marginBottom: '1%' }}
 								>
 									<Form.Group>
 										<Form.Label>Package name</Form.Label>
@@ -192,7 +193,7 @@ class AddPackage extends Component {
 									</Button>
 								</Form>
 							</Col>
-							<Col sm={2} />
+							<Col />
 						</Row>
 					</Container>
 				</>
