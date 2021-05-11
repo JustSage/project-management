@@ -53,8 +53,14 @@ class HomeContext extends Component {
 				<>
 					<Container fluid>
 						<Row>
+							<Col sm={2} className='dest-text'>
+								{'Our Destinations:'}
+							</Col>
+							<Col sm={10} />
+						</Row>
+						<Row>
 							<Col sm={2}>
-								<ListGroup variant='flush'>
+								<ListGroup variant='flush' className='dest-list'>
 									{this.state.destinations.map((dest, i) => {
 										return <ListGroup.Item key={i}>{dest}</ListGroup.Item>
 									})}
@@ -62,10 +68,10 @@ class HomeContext extends Component {
 							</Col>
 							<Col sm={10}>
 								<MapContainer
-									center={[51.505, -0.09]}
+									center={[25, 0]}
 									zoom={3}
 									scrollWheelZoom={false}
-									style={{ height: '400%', width: '90%' }}
+									style={{ height: '200%', width: '90%' }}
 								>
 									<TileLayer
 										attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
