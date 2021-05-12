@@ -25,9 +25,9 @@ class ContactUs extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault()
 		axios
-			.post('/add-order', {
-				Subject: '',
-				Message: '',
+			.post('/contact-us', {
+				Subject: this.state.Subject,
+				Message: this.state.Message,
 			})
 			.then((response) => {
 				swal({
@@ -65,7 +65,7 @@ class ContactUs extends Component {
 							onChange={this.handleChange}
 						/>
 					</div>
-					<button className='send' type='submit'>
+					<button className='send' type='submit' onClick={this.handleSubmit}>
 						Send
 					</button>
 				</form>
