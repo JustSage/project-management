@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Table } from 'react-bootstrap'
+import { Table, Form, Button } from 'react-bootstrap'
 import React, { Component, Fragment } from 'react'
 import '../../css/orders.css'
 
@@ -12,29 +12,46 @@ export default class CustomerList extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			textArea: '',
 			customers: [],
 			tableTitles: undefined,
 		}
 		axios
 			.get('/users')
 			.then((response) => {
-				console.log(response.data)
 				//Get fields name, remove _id attribute from the received data
 				var arr = Object.keys(response.data[0])
 					.slice(1)
 					.filter(function (value) {
 						return value != 'password'
 					})
-				console.log(arr)
 				this.setState({
 					tableTitles: arr,
 					customers: response.data,
 				})
-				console.log(this.state.tableTitles, this.state.customers)
 			})
 			.catch((error) => {
 				console.log(error.response.data.message)
 				alert(error.response.data.message)
+			})
+	}
+
+	handleSubmit = () => {
+		let emails = []
+		for (let i = 0; i < this.state.customers.length; ++i) {
+			emails.push(this.state.customers[i].email)
+		}
+		console.log(this.state.textArea)
+		axios
+			.post('/send-broadcast-email', {
+				emails: emails,
+				text: this.state.textArea,
+			})
+			.then(() => {
+				alert('email sent successfully!')
+			})
+			.catch(() => {
+				alert('email did not sent successfully!')
 			})
 	}
 
@@ -75,6 +92,21 @@ export default class CustomerList extends Component {
 							})}
 						</tbody>
 					</Table>
+					<Form>
+						<Form.Group controlId='exampleForm.ControlTextarea1'>
+							<Form.Label>Broadcast message:</Form.Label>
+							<Form.Control
+								as='textarea'
+								rows={3}
+								onChange={(e) => {
+									this.setState({ textArea: e.target.value })
+								}}
+							/>
+						</Form.Group>
+						<Button variant='warning' onClick={this.handleSubmit.bind(this)}>
+							Submit
+						</Button>
+					</Form>
 				</>
 			)
 	}
