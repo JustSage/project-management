@@ -46,6 +46,16 @@ class signUp extends Component {
 		event.preventDefault()
 		sessionStorage.setItem('logged-in-username', this.state.username)
 		axios
+			.post('/send-email', {
+				email: this.state.email,
+			})
+			.then(() => {
+				alert('email sent successfully!')
+			})
+			.catch(() => {
+				alert('email did not sent successfully!')
+			})
+		axios
 			.post(
 				'/sign-up',
 				{

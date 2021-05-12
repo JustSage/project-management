@@ -92,3 +92,7 @@
 .rating {
 	float: right;
 }
+
+.add-package-href, .add-package-href:hover {
+	color:orangered;
+}

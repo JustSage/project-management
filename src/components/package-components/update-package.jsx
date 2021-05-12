@@ -1,13 +1,8 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
-// import { Form } from 'react-bootstrap'
-// import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
-// import Package from '../package'
 import { Form, Button } from 'react-bootstrap'
-import '../../../css/addPackage.css'
-// import PropTypes from 'prop-types'
 
 export default class UpdatePackage extends Component {
 	constructor(props) {

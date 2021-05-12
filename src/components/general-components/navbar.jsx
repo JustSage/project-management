@@ -40,20 +40,13 @@ class NavbarComponent extends React.Component {
 						<Link to='/homepage' className='navLink nav-link'>
 							Home
 						</Link>
-						{/* <Nav.Link
-							className='navLink'
-							onClick={() => this.props.history.push('homepage')}
-						>
-							Home
-						</Nav.Link> */}
+
 						<div className='dropdown'>
 							<Nav.Link className='navLink'>Features</Nav.Link>
-							<div className='dropdown-content'>
-								<div>
-									<Link to='/flights'>Flights</Link>
-									<Link to='/hotels'>Hotels</Link>
-									<Link to='/car'>Rental Cars</Link>
-								</div>
+							<div
+								className='dropdown-content'
+								style={{ minWidth: '160px', right: '3%' }}
+							>
 								<div>
 									<Link to='/reccomendations'>Reccomendations</Link>
 									<Link to='/packages'>Packages</Link>

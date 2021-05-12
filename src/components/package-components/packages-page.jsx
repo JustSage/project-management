@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import '../../css/addPackages.css'
 import '../../css/Package.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Package from './package'
@@ -40,7 +39,9 @@ class Packages extends Component {
 		)
 			return (
 				<h5 className='h5-packages'>
-					<a href='/add-package'>Add new package!</a>
+					<a href='/add-package' className='add-package-href'>
+						Add new package!
+					</a>
 				</h5>
 			)
 	}

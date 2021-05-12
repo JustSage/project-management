@@ -5,12 +5,16 @@ import '../../../css/homepage.css'
 import { Container, Row, Col, ListGroup } from 'react-bootstrap'
 import axios from 'axios'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { OpenStreetMapProvider } from 'leaflet-geosearch'
+
+const provider = new OpenStreetMapProvider()
 
 class HomeContext extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			destinations: undefined,
+			latlongs: [],
 		}
 
 		axios
@@ -18,6 +22,18 @@ class HomeContext extends Component {
 			.then((response) => {
 				const names = response.data.map((pkg) => pkg.name)
 				this.setState({ destinations: names })
+				let array = async () => {
+					return Promise.all(
+						names.map((dest, i) => provider.search({ query: dest }))
+					)
+				}
+				array().then((data) => {
+					const filteredArray = data.map((item) => {
+						return [[item[0].y, item[0].x], item[0]]
+					})
+					this.setState({ latlongs: filteredArray })
+					console.log(this.state.latlongs)
+				})
 			})
 			.catch((error) => {
 				console.log(error)
@@ -37,8 +53,14 @@ class HomeContext extends Component {
 				<>
 					<Container fluid>
 						<Row>
+							<Col sm={2} className='dest-text'>
+								{'Our Destinations:'}
+							</Col>
+							<Col sm={10} />
+						</Row>
+						<Row>
 							<Col sm={2}>
-								<ListGroup variant='flush'>
+								<ListGroup variant='flush' className='dest-list'>
 									{this.state.destinations.map((dest, i) => {
 										return <ListGroup.Item key={i}>{dest}</ListGroup.Item>
 									})}
@@ -46,20 +68,22 @@ class HomeContext extends Component {
 							</Col>
 							<Col sm={10}>
 								<MapContainer
-									center={[51.505, -0.09]}
-									zoom={2}
+									center={[25, 0]}
+									zoom={3}
 									scrollWheelZoom={false}
-									style={{ height: 350, width: 600 }}
+									style={{ height: '200%', width: '90%' }}
 								>
 									<TileLayer
 										attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 										url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 									/>
-									<Marker position={[51.505, -0.09]}>
-										<Popup>
-											A pretty CSS3 popup. <br /> Easily customizable.
-										</Popup>
-									</Marker>
+									{this.state.latlongs.map((item, i) => {
+										return (
+											<Marker key={i} position={item[0]}>
+												<Popup>{`${item[1].label}`}</Popup>
+											</Marker>
+										)
+									})}
 								</MapContainer>
 							</Col>
 						</Row>

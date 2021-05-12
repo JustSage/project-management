@@ -2,8 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Form, Button, Dropdown, DropdownButton } from 'react-bootstrap'
-import '../../css/addPackage.css'
+import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import 'react-router-dom'
 import swal from 'sweetalert'
 
@@ -16,6 +15,7 @@ class MakeOrder extends Component {
 		this.state = {
 			quantityArr: [],
 			quantity: 1,
+			price: parseInt(this.props.match.params.price),
 			package: undefined,
 			orderName:
 				'#' +
@@ -23,15 +23,25 @@ class MakeOrder extends Component {
 				String(Math.floor(Math.random() * 100000)),
 			Dates: this.props.match.params.dates.split(','),
 			VacationDate: undefined,
+			selectedAttractions: [],
 		}
 
 		let i
 		for (i = 0; i < this.props.match.params.quantity; i++) {
 			this.state.quantityArr.push(i + 1)
 		}
-		console.log(this.state.quantityArr)
-		console.log(this.props.match.params.dates)
+
+		this.attractions = [
+			['Rent a car', 100],
+			['Upgrde to VIP room', 250],
+			['Transfers between airport and hotel', 30],
+			['Breakfeast', 100],
+			['Diner', 100],
+			['Spa services', 200],
+			['Tour in the city', 50],
+		]
 	}
+
 	handleQuanity = (event) => {
 		this.setState({ quantity: event.target.value })
 	}
@@ -47,7 +57,7 @@ class MakeOrder extends Component {
 				User: sessionStorage.getItem('logged-in-username'),
 				Destination: this.props.match.params.destination,
 				Quantity: this.state.quantity,
-				Price: this.props.match.params.price,
+				Price: this.state.price + '$',
 				Deal: 'Package',
 				Status: 'In Proc',
 				OrderDate: new Date(),
@@ -80,9 +90,7 @@ class MakeOrder extends Component {
 								description: this.props.match.params.description,
 								quantity: quantity - this.state.quantity,
 							})
-							.then((response) => {
-								// swal({ text: response.data.message, icon: 'success' })
-							})
+							.then((response) => {})
 							.catch((error) => {
 								swal({ text: error.data.message, icon: 'error' })
 								console.log(error.data.message)
@@ -102,6 +110,22 @@ class MakeOrder extends Component {
 		})
 	}
 
+	attrSelector = (event) => {
+		let total = this.state.price
+		let value = event.target.value.split('price: ')[1]
+		console.log(value)
+		if (this.state.selectedAttractions.includes(value)) {
+			this.setState({
+				price: total - parseInt(value),
+			})
+		} else {
+			this.setState({
+				selectedAttractions: [...this.state.selectedAttractions, value],
+				price: total + parseInt(value),
+			})
+		}
+	}
+
 	render() {
 		if (
 			sessionStorage.getItem('logged-in-role') == 'Admin' ||
@@ -110,76 +134,107 @@ class MakeOrder extends Component {
 		) {
 			return (
 				<>
-					<h3 className='h-as-title'>Make an order</h3>
-					<Form
-						className='add-package-form'
-						onSubmit={this.handleSubmit.bind(this)}
-					>
-						<Form.Group>
-							<Form.Label>Order name</Form.Label>
-							<Form.Control readOnly defaultValue={this.state.orderName} />
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>Package name</Form.Label>
-							<Form.Control
-								readOnly
-								defaultValue={this.props.match.params.destination}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>Description</Form.Label>
-							<Form.Control
-								as='textarea'
-								readOnly
-								defaultValue={this.props.match.params.description}
-								rows={3}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>Quantity</Form.Label>
-							<Form.Control
-								as='select'
-								id='dropdown-item-button'
-								title='Select Quantity'
-								defaultValue={1}
-								onClick={this.handleQuanity.bind(this)}
-							>
-								{this.state.quantityArr.map((item, i) => {
-									return (
-										<option as='label' key={i}>
-											{item}
-										</option>
-									)
-								})}
-							</Form.Control>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>Price</Form.Label>
-							<Form.Control
-								readOnly
-								defaultValue={this.props.match.params.price}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Control
-								as='select'
-								id='dropdown-item-button'
-								title='Select date'
-								onChange={this.handleDateSelection.bind(this)}
-							>
-								{this.state.Dates.map((item, i) => {
-									return (
-										<option as='label' key={i}>
-											{item}
-										</option>
-									)
-								})}
-							</Form.Control>
-						</Form.Group>
-						<Button type='submit' style={{ border: 'none' }}>
-							Submit!
-						</Button>
-					</Form>
+					<Container fluid>
+						<Row>
+							<h3 className='h-as-title'>Make an order</h3>
+						</Row>
+						<Row>
+							<Col sm={3} />
+							<Col sm={7}>
+								<Form
+									className='add-package-form'
+									onSubmit={this.handleSubmit.bind(this)}
+								>
+									<Form.Group>
+										<Form.Label>Order name</Form.Label>
+										<Form.Control
+											readOnly
+											defaultValue={this.state.orderName}
+										/>
+									</Form.Group>
+									<Form.Group>
+										<Form.Label>Package name</Form.Label>
+										<Form.Control
+											readOnly
+											defaultValue={this.props.match.params.destination}
+										/>
+									</Form.Group>
+									<Form.Group>
+										<Form.Label>Description</Form.Label>
+										<Form.Control
+											as='textarea'
+											readOnly
+											defaultValue={this.props.match.params.description}
+											rows={3}
+										/>
+									</Form.Group>
+									<Form.Group>
+										<Form.Label>Quantity</Form.Label>
+										<Form.Control
+											as='select'
+											id='dropdown-item-button'
+											title='Select Quantity'
+											defaultValue={1}
+											onClick={this.handleQuanity.bind(this)}
+										>
+											{this.state.quantityArr.map((item, i) => {
+												return (
+													<option as='label' key={i}>
+														{item}
+													</option>
+												)
+											})}
+										</Form.Control>
+									</Form.Group>
+
+									<Form.Group>
+										<Form.Label>
+											Select addittional features (ctrl+right click on the mouse
+											to select multiple options)
+										</Form.Label>
+										<Form.Control
+											as='select'
+											htmlSize={3}
+											multiple
+											onChange={this.attrSelector.bind(this)}
+										>
+											{this.attractions.map((item, i) => {
+												return (
+													<option
+														key={item[0]}
+													>{`${item[0]}, price: ${item[1]}$`}</option>
+												)
+											})}
+										</Form.Control>
+									</Form.Group>
+									<Form.Group>
+										<Form.Control
+											as='select'
+											id='dropdown-item-button'
+											title='Select date'
+											onChange={this.handleDateSelection.bind(this)}
+										>
+											{this.state.Dates.map((item, i) => {
+												return (
+													<option as='label' key={i}>
+														{item}
+													</option>
+												)
+											})}
+										</Form.Control>
+										<Form.Group>
+											<Form.Label>Price</Form.Label>
+											<Form.Control readOnly value={this.state.price + '$'} />
+										</Form.Group>
+									</Form.Group>
+									<Button type='submit' style={{ border: 'none' }}>
+										Submit!
+									</Button>
+								</Form>
+							</Col>
+							<Col sm={2} />
+						</Row>
+					</Container>
 				</>
 			)
 		} else {

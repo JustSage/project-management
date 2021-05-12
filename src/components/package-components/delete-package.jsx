@@ -3,7 +3,6 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { Button, Container } from 'react-bootstrap'
-import '../../../css/deletePackage.css'
 
 /**
  * Component showing simple UI for package deletion.
