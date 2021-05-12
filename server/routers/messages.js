@@ -34,7 +34,7 @@ router.post('/contact-us', async (req, res) => {
 		await db.collection('messages').insertOne(message)
 
 		res.send({
-			errorMessage: `Your message was sent successfully`,
+			successMessage: `Your message was sent successfully`,
 		})
 	} catch (e) {
 		console.log(e)

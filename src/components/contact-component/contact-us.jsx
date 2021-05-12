@@ -26,19 +26,20 @@ class ContactUs extends Component {
 		event.preventDefault()
 		axios
 			.post('/contact-us', {
+				Email: sessionStorage.getItem('logged-in-email'),
 				Subject: this.state.Subject,
 				Message: this.state.Message,
 			})
 			.then((response) => {
 				swal({
 					title: 'Thank you',
-					text: response.data.message,
+					text: response.data.successMessage,
 					icon: 'success',
 				})
 			})
 			.catch((error) => {
 				swal(error.data.message)
-				console.log({ text: error.data.message, icon: 'error' })
+				console.log({ text: error.data.errorMessage, icon: 'error' })
 			})
 	}
 	render() {
