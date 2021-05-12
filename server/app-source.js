@@ -7,6 +7,7 @@ const customersRouter = require('./routers/customers')
 const orderRouter = require('./routers/order')
 const emailRouter = require('./routers/email')
 const messageRouter = require('./routers/messages')
+const agentsAdmins = require('./routers/agents-admins')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
@@ -20,6 +21,7 @@ app.use(customersRouter)
 app.use(orderRouter)
 app.use(emailRouter)
 app.use(messageRouter)
+app.use(agentsAdmins)
 app.use(cors())
 
 module.exports = app
