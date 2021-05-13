@@ -33,8 +33,6 @@ router.post('/send-broadcast-email', async (req, res) => {
 	const emails = email.emails
 	const text = email.text
 
-	console.log(`text is: \n ${text}`)
-	console.log(`emails are: \n ${emails}`)
 	let msg
 
 	try {

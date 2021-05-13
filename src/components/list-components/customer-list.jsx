@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Table, Form, Button } from 'react-bootstrap'
 import React, { Component, Fragment } from 'react'
-import '../../css/orders.css'
+import '../../css/customerList.css'
 
 /**
  * Component represents the orders which was made by customers.
@@ -93,17 +93,24 @@ export default class CustomerList extends Component {
 						</tbody>
 					</Table>
 					<Form>
-						<Form.Group controlId='exampleForm.ControlTextarea1'>
-							<Form.Label>Broadcast message:</Form.Label>
+						<Form.Group controlId='textArea'>
+							<Form.Label className='label-customer'>
+								Broadcast message:
+							</Form.Label>
 							<Form.Control
 								as='textarea'
+								className='message-customer'
 								rows={3}
 								onChange={(e) => {
 									this.setState({ textArea: e.target.value })
 								}}
 							/>
 						</Form.Group>
-						<Button variant='warning' onClick={this.handleSubmit.bind(this)}>
+						<Button
+							className='textButton'
+							variant='warning'
+							onClick={this.handleSubmit.bind(this)}
+						>
 							Submit
 						</Button>
 					</Form>
