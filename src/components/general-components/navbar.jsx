@@ -26,6 +26,7 @@ class NavbarComponent extends React.Component {
 		 */
 		sessionStorage.removeItem('logged-in-username')
 		sessionStorage.removeItem('logged-in-role')
+		sessionStorage.removeItem('logged-in-email')
 		window.location.replace('/')
 	}
 
