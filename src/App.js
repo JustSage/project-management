@@ -161,12 +161,12 @@ class App extends React.Component {
 									}
 								/>
 								<Route
-									path='/search-results'
+									path='/search-results/:destination/:price/:description/:quantity/:dates'
 									render={() =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />
 										) : (
-											<SearchResults />
+											<SearchResults {...props} />
 										)
 									}
 								/>
