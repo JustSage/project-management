@@ -62,8 +62,8 @@ class SearchBar extends react.Component {
 					</datalist>
 					<Link
 						to={{
-							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}`,
-							state: this.state,
+							pathname: './search-results',
+							state: { suka: 'blat' },
 						}}
 					>
 						<FontAwesomeIcon
