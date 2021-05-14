@@ -5,16 +5,21 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { Form } from 'react-bootstrap'
+
 library.add(faSearch)
 
 class SearchBar extends react.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'undefined',
+			data: [],
 			chosenPkg: undefined,
-			currentPackage: undefined,
+			flag: false,
 		}
+	}
+
+	componentDidMount() {
 		axios
 			.get('/packages')
 			.then((response) => {
@@ -24,6 +29,7 @@ class SearchBar extends react.Component {
 					},
 					() => {
 						console.log(this.state.data)
+						console.log(response.data)
 					}
 				)
 			})
@@ -33,10 +39,22 @@ class SearchBar extends react.Component {
 			})
 	}
 
-	onPkgClick = (pkg) => {
-		this.setState({
-			chosenPkg: pkg,
-		})
+	onPkgClick = (event) => {
+		console.log(`package name: ${event.target.value}`)
+
+		axios
+			.get('/one-package-destination', {
+				params: {
+					name: event.target.value,
+				},
+			})
+			.then((response) => {
+				this.setState({ chosenPkg: response.data, flag: true })
+			})
+			.catch((error) => {
+				console.log(error.response.data.message)
+				alert(error.response.data.message)
+			})
 	}
 
 	render() {
@@ -51,37 +69,45 @@ class SearchBar extends react.Component {
 		} else {
 			return (
 				<>
-					<input
-						type='search'
-						placeholder='Search for packages...'
-						className='search-input'
-						list='cityname'
-					/>
-					<datalist id='cityname'>
-						{this.state.data.map((pkg) => {
-							return (
-								<div key={pkg.description}>
-									<option
-										onClick={this.setState({ currentPackage: pkg })}
-										value={pkg.name}
-									>
-										{pkg.price}
+					<Form.Group controlId='bla'>
+						<Form.Control
+							className='search-input'
+							as='select'
+							onChange={this.onPkgClick.bind(this)}
+							defaultValue='search here'
+						>
+							{this.state.data.map((pkg) => {
+								return (
+									<option value={pkg.name} key={pkg.name}>
+										{pkg.name}
 									</option>
-								</div>
-							)
-						})}
-					</datalist>
-					<Link
-						to={{
-							pathname: `/search-results/${this.state.currentPackage.name}/${this.state.currentPackage.price}/${this.state.currentPackage.description}/${this.state.currentPackage.quantity}/${this.state.currentPackage.dates}`,
-						}}
-					>
-						<FontAwesomeIcon
-							className='glass'
-							size='lg'
-							icon='search'
-						></FontAwesomeIcon>
-					</Link>
+								)
+							})}
+						</Form.Control>
+					</Form.Group>
+
+					{this.state.flag === true ? (
+						<Link
+							to={{
+								pathname: `/search-results/${this.state.chosenPkg.name}/${this.state.chosenPkg.price}/${this.state.chosenPkg.description}/${this.state.chosenPkg.quantity}/${this.state.chosenPkg.dates}`,
+							}}
+						>
+							<FontAwesomeIcon
+								className='glass'
+								size='lg'
+								icon='search'
+							></FontAwesomeIcon>
+						</Link>
+					) : (
+						<Link>
+							<FontAwesomeIcon
+								disabled
+								className='glass'
+								size='lg'
+								icon='search'
+							></FontAwesomeIcon>
+						</Link>
+					)}
 				</>
 			)
 		}

@@ -77,7 +77,7 @@ class AdminRef extends Component {
 						</Form.Group>
 						<Form.Group controlId='exampleForm.ControlSelect2'>
 							<Form.Label>Select new role:</Form.Label>
-							<Form.Control as='select' onChange={this.handleSelectedOption}>
+							<Form.Control as='select' onChange={this.handleUsername}>
 								<option>Admin</option>
 								<option>Customer</option>
 								<option>Travel Agent</option>
