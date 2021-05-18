@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { Form } from 'react-bootstrap'
+
 library.add(faSearch)
 
 class SearchBar extends react.Component {
@@ -14,6 +16,9 @@ class SearchBar extends react.Component {
 			data: undefined,
 			chosenPkg: undefined,
 		}
+	}
+
+	componentDidMount() {
 		axios
 			.get('/packages')
 			.then((response) => {
@@ -27,10 +32,22 @@ class SearchBar extends react.Component {
 			})
 	}
 
-	onPkgClick = (pkg) => {
-		this.setState({
-			chosenPkg: pkg,
-		})
+	onPkgClick = (event) => {
+		console.log(`package name: ${event.target.value}`)
+
+		axios
+			.get('/one-package-destination', {
+				params: {
+					name: event.target.value,
+				},
+			})
+			.then((response) => {
+				this.setState({ chosenPkg: response.data, flag: true })
+			})
+			.catch((error) => {
+				console.log(error.response.data.message)
+				alert(error.response.data.message)
+			})
 	}
 
 	render() {
