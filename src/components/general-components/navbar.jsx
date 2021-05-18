@@ -50,7 +50,7 @@ class NavbarComponent extends React.Component {
 							>
 								<div>
 									<Link to='/reccomendations'>Reccomendations</Link>
-									<Link to='/packages'>Packages</Link>
+									<Link to={{ pathname: `packages/` }}>Packages</Link>
 									<Link to='/attractions'>Attractions</Link>
 								</div>
 							</div>

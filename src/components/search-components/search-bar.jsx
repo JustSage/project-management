@@ -1,7 +1,7 @@
 import react from 'react'
 import '../../css/search-bar.css'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -33,20 +33,13 @@ class SearchBar extends react.Component {
 
 	onPkgClick = (event) => {
 		console.log(`package name: ${event.target.value}`)
-
-		axios
-			.get('/one-package-destination', {
-				params: {
-					name: event.target.value,
-				},
-			})
-			.then((response) => {
-				this.setState({ chosenPkg: response.data, flag: true })
-			})
-			.catch((error) => {
-				console.log(error.response.data.message)
-				alert(error.response.data.message)
-			})
+		this.setState({
+			chosenPkg: event.target.value,
+		})
+	}
+	handleSubmit = () => {
+		console.log('blat')
+		return <a href={`/packages/${this.state.chosenPkg}`} />
 	}
 
 	render() {
@@ -66,6 +59,7 @@ class SearchBar extends react.Component {
 						placeholder='Search for packages...'
 						className='search-input'
 						list='cityname'
+						onChange={this.onPkgClick}
 					/>
 					<datalist id='cityname'>
 						{this.state.data.map((pkg) => {
@@ -76,17 +70,14 @@ class SearchBar extends react.Component {
 							)
 						})}
 					</datalist>
-					<Link
-						to={{
-							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}`,
-						}}
-					>
+					<a href={`/packages/${this.state.chosenPkg}`}>
 						<FontAwesomeIcon
 							className='glass'
 							size='lg'
 							icon='search'
-						></FontAwesomeIcon>
-					</Link>
+							onClick={this.handleSubmit}
+						/>
+					</a>
 				</>
 			)
 		}

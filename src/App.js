@@ -70,7 +70,7 @@ class App extends React.Component {
 								/>
 
 								<Route
-									path='/packages'
+									path='/packages/:search'
 									render={(props) =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />
