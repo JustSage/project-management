@@ -16,7 +16,10 @@ class Packages extends Component {
 		super(props)
 		this.state = {
 			data: undefined,
-			location: '',
+			location:
+				sessionStorage.getItem('search-value') == undefined
+					? ''
+					: sessionStorage.getItem('search-value'),
 		}
 
 		axios
@@ -72,6 +75,7 @@ class Packages extends Component {
 								onChange={this.handleLocation}
 								className='packageInput'
 								id='location'
+								value={this.state.location}
 							/>
 						</div>
 						<br />

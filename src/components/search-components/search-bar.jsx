@@ -15,9 +15,7 @@ class SearchBar extends react.Component {
 			data: undefined,
 			chosenPkg: undefined,
 		}
-	}
 
-	componentDidMount() {
 		axios
 			.get('/packages')
 			.then((response) => {
@@ -31,22 +29,9 @@ class SearchBar extends react.Component {
 			})
 	}
 
-	onPkgClick = (event) => {
-		console.log(`package name: ${event.target.value}`)
-
-		axios
-			.get('/one-package-destination', {
-				params: {
-					name: event.target.value,
-				},
-			})
-			.then((response) => {
-				this.setState({ chosenPkg: response.data, flag: true })
-			})
-			.catch((error) => {
-				console.log(error.response.data.message)
-				alert(error.response.data.message)
-			})
+	handleSubmit = (event) => {
+		sessionStorage.setItem('search-value', event.target.value)
+		this.props.history.push('/packages')
 	}
 
 	render() {
@@ -66,6 +51,7 @@ class SearchBar extends react.Component {
 						placeholder='Search for packages...'
 						className='search-input'
 						list='cityname'
+						onChange={this.handleSubmit}
 					/>
 					<datalist id='cityname'>
 						{this.state.data.map((pkg) => {
@@ -81,11 +67,7 @@ class SearchBar extends react.Component {
 							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}`,
 						}}
 					>
-						<FontAwesomeIcon
-							className='glass'
-							size='lg'
-							icon='search'
-						></FontAwesomeIcon>
+						<FontAwesomeIcon className='glass' size='lg' icon='search' />
 					</Link>
 				</>
 			)
