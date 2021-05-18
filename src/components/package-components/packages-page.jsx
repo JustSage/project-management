@@ -7,9 +7,6 @@ import Package from './package'
 // import { Container } from 'react-bootstrap'
 import axios from 'axios'
 
-const queryString = window.location.search
-const urlParams = new URLSearchParams(queryString)
-
 /**
  * Packages page which appears as navbar tag, when click on the navbar button it'll be redirecting here
  * by routing. This page includes the package-components.
@@ -19,7 +16,10 @@ class Packages extends Component {
 		super(props)
 		this.state = {
 			data: undefined,
-			location: urlParams.get('search'),
+			location:
+				sessionStorage.getItem('search-value') == undefined
+					? ''
+					: sessionStorage.getItem('search-value'),
 		}
 
 		axios
@@ -75,6 +75,7 @@ class Packages extends Component {
 								onChange={this.handleLocation}
 								className='packageInput'
 								id='location'
+								value={this.state.location}
 							/>
 						</div>
 						<br />
