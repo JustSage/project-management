@@ -11,21 +11,15 @@ class SearchBar extends react.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'undefined',
+			data: undefined,
 			chosenPkg: undefined,
-			currentPackage: undefined,
 		}
 		axios
 			.get('/packages')
 			.then((response) => {
-				this.setState(
-					{
-						data: response.data,
-					},
-					() => {
-						console.log(this.state.data)
-					}
-				)
+				this.setState({
+					data: response.data,
+				})
 			})
 			.catch((error) => {
 				console.log(error.response.data.message)
@@ -61,19 +55,14 @@ class SearchBar extends react.Component {
 						{this.state.data.map((pkg) => {
 							return (
 								<div key={pkg.description}>
-									<option
-										onClick={this.setState({ currentPackage: pkg })}
-										value={pkg.name}
-									>
-										{pkg.price}
-									</option>
+									<option value={pkg.name}>{pkg.price}</option>
 								</div>
 							)
 						})}
 					</datalist>
 					<Link
 						to={{
-							pathname: `/search-results/${this.state.currentPackage.name}/${this.state.currentPackage.price}/${this.state.currentPackage.description}/${this.state.currentPackage.quantity}/${this.state.currentPackage.dates}`,
+							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}`,
 						}}
 					>
 						<FontAwesomeIcon
