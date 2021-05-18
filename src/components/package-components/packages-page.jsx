@@ -16,9 +16,9 @@ class Packages extends Component {
 		super(props)
 		this.state = {
 			data: undefined,
+			location: '',
 		}
-	}
-	componentDidMount() {
+
 		axios
 			.get('/packages')
 			.then((response) => {
@@ -27,8 +27,8 @@ class Packages extends Component {
 				})
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
-				alert(error.response.data.message)
+				console.log(error.message)
+				alert(error.message)
 			})
 	}
 
@@ -78,28 +78,30 @@ class Packages extends Component {
 					</div>
 					{this.AddPackage()}
 					<div className='d-flex flex-row flex-wrap my-flex-container'>
-						{this.state.data.map((pkg) => {
-							if (pkg.quantity > 0) {
-								return (
-									<div className='p-2 my-flex-item' key={pkg.description}>
-										<Package
-											name={pkg.name}
-											description={pkg.description}
-											url={pkg.url}
-											quantity={pkg.quantity}
-											price={pkg.price}
-											updated={pkg.updated}
-											rating={pkg.rating}
-											dates={pkg.packageDates}
-											history={this.props.history}
-											key={pkg.description}
-										/>
-									</div>
-								)
-							} else {
-								return null
-							}
-						})}
+						{this.state.data
+							.filter((pkg) => pkg.name.includes(this.state.location))
+							.map((pkg) => {
+								if (pkg.quantity > 0) {
+									return (
+										<div className='p-2 my-flex-item' key={pkg.description}>
+											<Package
+												name={pkg.name}
+												description={pkg.description}
+												url={pkg.url}
+												quantity={pkg.quantity}
+												price={pkg.price}
+												updated={pkg.updated}
+												rating={pkg.rating}
+												dates={pkg.packageDates}
+												history={this.props.history}
+												key={pkg.description}
+											/>
+										</div>
+									)
+								} else {
+									return null
+								}
+							})}
 					</div>
 				</>
 			)
