@@ -47,6 +47,13 @@ class ContactUs extends Component {
 		*/
 		event.preventDefault()
 
+		// if (this.state.Subject === '' || this.state.Message === '') {
+		// 	swal({
+		// 		title: 'Error',
+		// 		text: "Fields can't be empty",
+		// 		icon: 'error',
+		// 	})
+		// } else {
 		//Make a random raffle to decide which agent will get the customer mail
 		const destAgent = Math.floor(Math.random() * this.state.Users.length)
 		axios
@@ -67,6 +74,7 @@ class ContactUs extends Component {
 				swal(error.data.message)
 				console.log({ text: error.data.errorMessage, icon: 'error' })
 			})
+		// }
 	}
 	render() {
 		return (
@@ -80,16 +88,16 @@ class ContactUs extends Component {
 							className='subject'
 							type='text'
 							placeholder='Subject *'
-							required
 							onChange={this.handleChange}
+							required
 						/>
 					</div>
 					<div>
 						<textarea
 							className='message'
 							placeholder='Message *'
-							required
 							onChange={this.handleChange}
+							required
 						/>
 					</div>
 					<button className='send' type='submit' onClick={this.handleSubmit}>
