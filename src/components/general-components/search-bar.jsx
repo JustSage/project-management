@@ -31,7 +31,6 @@ class SearchBar extends react.Component {
 
 	handleSubmit = (event) => {
 		sessionStorage.setItem('search-value', event.target.value)
-		// this.props.history.push('/packages')
 	}
 
 	render() {
