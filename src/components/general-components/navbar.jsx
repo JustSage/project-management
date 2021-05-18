@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import logo from '../../images/pine-apple-logo.png'
 import { Link } from 'react-router-dom'
-import SearchBar from './search-bar'
+import SearchBar from '../search-components/search-bar'
 
 library.add(fab, faUser, faCog, faEnvelope)
 
@@ -26,6 +26,7 @@ class NavbarComponent extends React.Component {
 		 */
 		sessionStorage.removeItem('logged-in-username')
 		sessionStorage.removeItem('logged-in-role')
+		sessionStorage.removeItem('logged-in-email')
 		window.location.replace('/')
 	}
 
@@ -54,7 +55,7 @@ class NavbarComponent extends React.Component {
 								</div>
 							</div>
 						</div>
-						<Link className='navLink nav-link' to='/contact-us'>
+						<Link className='navLink nav-link contact' to='/contact-us'>
 							Contact Us!
 						</Link>
 

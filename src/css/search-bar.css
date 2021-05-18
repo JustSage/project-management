@@ -3,6 +3,7 @@
 	height: 39px;
 	width: 260px;
 	transition: all ease 0.7s;
+	margin-top: 1.1vh;
 }
 
 .search-input:focus {
