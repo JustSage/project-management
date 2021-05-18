@@ -4,6 +4,9 @@ import axios from 'axios'
 class Inbox extends Component {
 	constructor(props) {
 		super(props)
+		this.state = {
+			data: '',
+		}
 		axios
 			.get('/messages')
 			.then((response) => {
@@ -19,14 +22,18 @@ class Inbox extends Component {
 	}
 	render() {
 		return (
-			<h1>Inbox</h1>
-			// {this.state.data.map((msg,index) => {
-			//     return <tr>
-			//                 <td>
-			//                     {msg.Subject}
-			//                 </td>
-			//             </tr>
-			// })}
+			<>
+				<h1>Inbox</h1>
+				{/* <table>
+					{this.state.data.map((msg, index) => {
+						return (
+							<tr key={index}>
+								<td key={index}>{msg.Subject}</td>
+							</tr>
+						)
+					})}
+				</table> */}
+			</>
 		)
 	}
 }
