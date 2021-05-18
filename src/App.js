@@ -28,8 +28,6 @@ import AdminRef from './components/admin-components/admin-ref'
 import CustomeReservations from './components/reservations-components/customer-reservations'
 import Reccomendations from './components/package-components/reccomendations'
 import ContactUs from './components/contact-component/contact-us'
-import SearchResults from './components/search-components/search-results'
-import Inbox from './components/inbox-components/inbox'
 
 library.add(fab, faCheckSquare, faCoffee)
 
@@ -159,22 +157,6 @@ class App extends React.Component {
 									path='/contact-us'
 									render={() =>
 										!requireAuth() ? <Redirect to='/not-auth' /> : <ContactUs />
-									}
-								/>
-								<Route
-									path='/search-results/:destination/:price/:description/:quantity/:dates'
-									render={() =>
-										!requireAuth() ? (
-											<Redirect to='/not-auth' />
-										) : (
-											<SearchResults {...props} />
-										)
-									}
-								/>
-								<Route
-									path='/inbox'
-									render={() =>
-										!requireAuth() ? <Redirect to='/not-auth' /> : <Inbox />
 									}
 								/>
 							</>
