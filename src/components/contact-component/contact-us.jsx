@@ -63,6 +63,7 @@ class ContactUs extends Component {
 					DestEmail: this.state.Users[destAgent].email,
 					Subject: this.state.Subject,
 					Message: this.state.Message,
+					Read: false,
 				})
 				.then((response) => {
 					swal({

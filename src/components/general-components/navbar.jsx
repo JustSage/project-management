@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import logo from '../../images/pine-apple-logo.png'
 import { Link } from 'react-router-dom'
 import SearchBar from './search-bar'
+import Notification from '../inbox-components/messages-notification'
 
 library.add(fab, faUser, faCog, faEnvelope)
 
@@ -77,13 +78,16 @@ class NavbarComponent extends React.Component {
 								</span>
 							</h5>
 						</div>
-						<Link to='/inbox'>
+						{/* <Link to='/inbox'>
 							<FontAwesomeIcon
 								className='envelope'
 								icon='envelope'
 								data-toggle='tooltip'
 								title='Inbox'
 							></FontAwesomeIcon>
+						</Link> */}
+						<Link to='/inbox'>
+							<Notification />
 						</Link>
 						<div className='dropdown'>
 							<FontAwesomeIcon className='cog' icon='cog'></FontAwesomeIcon>

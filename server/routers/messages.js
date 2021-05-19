@@ -12,17 +12,6 @@ router.get('/messages', async (req, res) => {
 		res.status(500).send({ message: "Can't show messages!" })
 	}
 })
-// router.get('/customer-orders', async (req, res) => {
-// 	try {
-// 		let user = req.query.User
-// 		console.log(`user: ${user}`)
-// 		const orders = await db.collection('orders').find({ User: user }).toArray()
-// 		res.send(JSON.stringify(orders))
-// 	} catch (e) {
-// 		console.log(e)
-// 		res.status(500).send({ message: "Can't show orders!" })
-// 	}
-// })
 
 // adding a message to the database
 router.post('/contact-us', async (req, res) => {
@@ -44,79 +33,41 @@ router.post('/contact-us', async (req, res) => {
 	}
 })
 
-// router.post('/update-order-status', async (req, res) => {
-// 	const order = req.body
+router.get('/read-massages', async (req, res) => {
+	try {
+		//Get the whole data from the collection and send it to client.
+		const orders = await db
+			.collection('messages')
+			.find({
+				Read: false,
+			})
+			.toArray()
+		res.send(JSON.stringify(orders))
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't show messages!" })
+	}
+})
 
-// 	try {
-// 		console.log(order)
-// 		await db
-// 			.collection('orders')
-// 			.updateOne({ User: order.User }, { $set: { Status: order.Status } })
+router.post('/set-read', async (req, res) => {
+	const message = req.body
 
-// 		res.send({
-// 			message: `Your order Updated successfully.`,
-// 		})
-// 	} catch (e) {
-// 		console.log(e)
-// 		res.status(500).send({ message: "Can't make an order!" })
-// 	}
-// })
+	try {
+		console.log(message)
+		await db
+			.collection('messages')
+			.updateOne(
+				{ Subject: message.Subject, Message: message.Message },
+				{ $set: { Read: true } }
+			)
 
-// router.post('/update-order-status-canceled', async (req, res) => {
-// 	const order = req.body
-
-// 	try {
-// 		console.log(order)
-// 		await db
-// 			.collection('orders')
-// 			.updateOne(
-// 				{ User: order.User, Destination: order.Destination },
-// 				{ $set: { Status: order.Status } }
-// 			)
-
-// 		res.send({
-// 			message: `Your order Updated successfully.`,
-// 		})
-// 	} catch (e) {
-// 		console.log(e)
-// 		res.status(500).send({ message: "Can't make an order!" })
-// 	}
-// })
-
-// router.post('/delete-order-by-destination', async (req, res) => {
-// 	const order = req.body
-
-// 	try {
-// 		console.log(order)
-// 		await db
-// 			.collection('orders')
-// 			.deleteOne({ Destination: order.Destination, User: order.User })
-
-// 		res.send({
-// 			message: `Your order Updated successfully.`,
-// 		})
-// 	} catch (e) {
-// 		console.log(e)
-// 		res.status(500).send({ message: "Can't make an order!" })
-// 	}
-// })
-
-// router.post('/update-all-ordes-statuses', async (req, res) => {
-// 	const order = req.body
-
-// 	try {
-// 		console.log(order)
-// 		await db
-// 			.collection('orders')
-// 			.updateMany({ Status: 'Pending' }, { $set: { Status: order.Status } })
-
-// 		res.send({
-// 			message: `All orders Updated successfully.`,
-// 		})
-// 	} catch (e) {
-// 		console.log(e)
-// 		res.status(500).send({ message: "Can't make an order!" })
-// 	}
-// })
+		res.send({
+			message: `Your message Updated successfully.`,
+		})
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: 'Message was not updated' })
+	}
+})
 
 module.exports = router

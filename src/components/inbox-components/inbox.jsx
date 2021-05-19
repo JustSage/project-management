@@ -14,10 +14,21 @@ function Inbox() {
 
 	const handleClose = () => setShow(false)
 	const handleClick = (sbj, src, cont) => {
-		setSubject(sbj)
-		setSource(src)
-		setContent(cont)
-		setShow(true)
+		axios
+			.post('/set-read', {
+				Subject: sbj,
+				Message: cont,
+			})
+			.then(() => {
+				setSubject(sbj)
+				setSource(src)
+				setContent(cont)
+				setShow(true)
+			})
+			.catch((error) => {
+				alert(error)
+				console.log(error)
+			})
 	}
 
 	axios
