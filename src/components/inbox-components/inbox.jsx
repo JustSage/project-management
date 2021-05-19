@@ -22,7 +22,10 @@ function Inbox() {
 	axios
 		.get('/messages')
 		.then((response) => {
-			setData(response.data)
+			var filteredMail = response.data.filter((msg) => {
+				return msg.DestEmail === sessionStorage.getItem('logged-in-email')
+			})
+			setData(filteredMail)
 			console.log(response.data)
 		})
 		.catch((error) => {
