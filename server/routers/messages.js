@@ -2,16 +2,16 @@
 const express = require('express')
 const router = new express.Router()
 
-// router.get('/orders', async (req, res) => {
-// 	try {
-// 		//Get the whole data from the collection and send it to client.
-// 		const orders = await db.collection('orders').find({}).toArray()
-// 		res.send(JSON.stringify(orders))
-// 	} catch (e) {
-// 		console.log(e)
-// 		res.status(500).send({ message: "Can't show orders!" })
-// 	}
-// })
+router.get('/messages', async (req, res) => {
+	try {
+		//Get the whole data from the collection and send it to client.
+		const orders = await db.collection('messages').find({}).toArray()
+		res.send(JSON.stringify(orders))
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't show messages!" })
+	}
+})
 // router.get('/customer-orders', async (req, res) => {
 // 	try {
 // 		let user = req.query.User

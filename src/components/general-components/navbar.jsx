@@ -50,7 +50,7 @@ class NavbarComponent extends React.Component {
 							>
 								<div>
 									<Link to='/reccomendations'>Reccomendations</Link>
-									<Link to='/packages'>Packages</Link>
+									<Link to={{ pathname: `packages/` }}>Packages</Link>
 									<Link to='/attractions'>Attractions</Link>
 								</div>
 							</div>
@@ -77,12 +77,14 @@ class NavbarComponent extends React.Component {
 								</span>
 							</h5>
 						</div>
-						<FontAwesomeIcon
-							className='envelope'
-							icon='envelope'
-							data-toggle='tooltip'
-							title='Inbox'
-						></FontAwesomeIcon>
+						<Link to='/inbox'>
+							<FontAwesomeIcon
+								className='envelope'
+								icon='envelope'
+								data-toggle='tooltip'
+								title='Inbox'
+							></FontAwesomeIcon>
+						</Link>
 						<div className='dropdown'>
 							<FontAwesomeIcon className='cog' icon='cog'></FontAwesomeIcon>
 							<div

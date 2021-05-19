@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../../css/contanctUs.css'
 import axios from 'axios'
 import swal from 'sweetalert'
+import { Form, Button } from 'react-bootstrap'
 
 class ContactUs extends Component {
 	constructor(props) {
@@ -47,26 +48,38 @@ class ContactUs extends Component {
 		*/
 		event.preventDefault()
 
-		//Make a random raffle to decide which agent will get the customer mail
-		const destAgent = Math.floor(Math.random() * this.state.Users.length)
-		axios
-			.post('/contact-us', {
-				SourceEmail: sessionStorage.getItem('logged-in-email'),
-				DestEmail: this.state.Users[destAgent].email,
-				Subject: this.state.Subject,
-				Message: this.state.Message,
+		if (this.state.Subject === '' || this.state.Message === '') {
+			swal({
+				title: 'Error',
+				text: "Fields can't be empty",
+				icon: 'error',
 			})
-			.then((response) => {
-				swal({
-					title: 'Thank you',
-					text: response.data.successMessage,
-					icon: 'success',
+		} else {
+			//Make a random raffle to decide which agent will get the customer mail
+			const destAgent = Math.floor(Math.random() * this.state.Users.length)
+			axios
+				.post('/contact-us', {
+					SourceEmail: sessionStorage.getItem('logged-in-email'),
+					DestEmail: this.state.Users[destAgent].email,
+					Subject: this.state.Subject,
+					Message: this.state.Message,
 				})
-			})
-			.catch((error) => {
-				swal(error.data.message)
-				console.log({ text: error.data.errorMessage, icon: 'error' })
-			})
+				.then((response) => {
+					swal({
+						title: 'Thank you',
+						text: response.data.successMessage,
+						icon: 'success',
+					})
+					this.setState({
+						Subject: '',
+						Message: '',
+					})
+				})
+				.catch((error) => {
+					swal(error.data.message)
+					console.log({ text: error.data.errorMessage, icon: 'error' })
+				})
+		}
 	}
 	render() {
 		return (
@@ -74,28 +87,32 @@ class ContactUs extends Component {
 				<h1 className='contact-header' align='center'>
 					Contact us!
 				</h1>
-				<form>
-					<div>
-						<input
+				<Form onSubmit={this.handleSubmit}>
+					<Form.Group>
+						<Form.Control
 							className='subject'
 							type='text'
 							placeholder='Subject *'
-							required
 							onChange={this.handleChange}
+							value={this.state.Subject}
+							required
 						/>
-					</div>
-					<div>
-						<textarea
+					</Form.Group>
+					<Form.Group>
+						<Form.Control
+							as='textarea'
 							className='message'
 							placeholder='Message *'
-							required
+							rows={7}
 							onChange={this.handleChange}
+							value={this.state.Message}
+							required
 						/>
-					</div>
-					<button className='send' type='submit' onClick={this.handleSubmit}>
+					</Form.Group>
+					<Button className='send' type='submit'>
 						Send
-					</button>
-				</form>
+					</Button>
+				</Form>
 			</>
 		)
 	}
