@@ -23,6 +23,10 @@
 	font-size: 20px;
 	/* font-weight: inherit; */
 	transition: all ease 0.5s;
+	margin-top: 1vh;
+}
+.contact {
+	width: 138px;
 }
 
 /* .navLink:hover {
@@ -125,4 +129,3 @@
 	display: flex;
 	margin-left: 10px;
 }
-
