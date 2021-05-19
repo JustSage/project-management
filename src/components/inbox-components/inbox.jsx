@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import Table from 'react-bootstrap/Table'
-import Modal from 'react-bootstrap/Modal'
+import { Modal, Table } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom'
 import '../../css/inbox.css'
 
 function Inbox() {
@@ -12,6 +12,25 @@ function Inbox() {
 	const [source, setSource] = useState('')
 	const [content, setContent] = useState('')
 
+	useEffect(() => {
+		axios
+			.get('/messages')
+			.then((response) => {
+				var filteredMail = response.data.filter((msg) => {
+					return msg.DestEmail != sessionStorage.getItem('logged-in-email')
+				})
+				setData(filteredMail)
+				console.log(response.data)
+			})
+			.catch((error) => {
+				console.log(error.response.data.message)
+				alert(error.response.data.message)
+			})
+	}, [])
+
+	const handleShowRes = () => {
+		setShow(false)
+	}
 	const handleClose = () => setShow(false)
 	const handleClick = (sbj, src, cont) => {
 		setSubject(sbj)
@@ -20,19 +39,39 @@ function Inbox() {
 		setShow(true)
 	}
 
-	axios
-		.get('/messages')
-		.then((response) => {
-			var filteredMail = response.data.filter((msg) => {
-				return msg.DestEmail === sessionStorage.getItem('logged-in-email')
-			})
-			setData(filteredMail)
-			console.log(response.data)
-		})
-		.catch((error) => {
-			console.log(error.response.data.message)
-			alert(error.response.data.message)
-		})
+	const getMessageModal = () => {
+		return (
+			<Modal show={show} onHide={handleClose}>
+				<Modal.Header closeButton>
+					<Modal.Title>{subject}</Modal.Title>
+				</Modal.Header>
+				<Modal.Body className='modal-dialog'>
+					<div>
+						<div>
+							<label>From: </label> {source}
+						</div>
+						<div>
+							<label>Message: </label>
+							<label>{content}</label>
+						</div>
+					</div>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button
+						variant='secondary'
+						onClick={() => {
+							handleShowRes(true)
+						}}
+					>
+						<Link to={`/send-to/${source}`}> Replay</Link>
+					</Button>
+					<Button variant='primary' onClick={handleClose}>
+						Close
+					</Button>
+				</Modal.Footer>
+			</Modal>
+		)
+	}
 
 	if (data === undefined) {
 		return (
@@ -71,30 +110,7 @@ function Inbox() {
 						})}
 					</tbody>
 				</Table>
-				<Modal show={show} onHide={handleClose}>
-					<Modal.Header closeButton>
-						<Modal.Title>{subject}</Modal.Title>
-					</Modal.Header>
-					<Modal.Body className='modal-dialog'>
-						<div>
-							<div>
-								<label>From: </label> {source}
-							</div>
-							<div>
-								<label>Message: </label>
-								<label>{content}</label>
-							</div>
-						</div>
-					</Modal.Body>
-					<Modal.Footer>
-						<Button variant='secondary' onClick={handleClose}>
-							Reply
-						</Button>
-						<Button variant='primary' onClick={handleClose}>
-							Close
-						</Button>
-					</Modal.Footer>
-				</Modal>
+				{getMessageModal()}
 			</>
 		)
 	}
