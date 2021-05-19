@@ -7,9 +7,18 @@ import Button from 'react-bootstrap/Button'
 function Inbox() {
 	const [data, setData] = useState(undefined)
 	const [show, setShow] = useState(false)
+	const [subject, setSubject] = useState('')
+	const [source, setSource] = useState('')
+	const [content, setContent] = useState('')
 
 	const handleClose = () => setShow(false)
-	const handleShow = () => setShow(true)
+	const handleClick = (sbj, src, cont) => {
+		setSubject(sbj)
+		setSource(src)
+		setContent(cont)
+		setShow(true)
+	}
+
 	axios
 		.get('/messages')
 		.then((response) => {
@@ -32,20 +41,6 @@ function Inbox() {
 	} else {
 		return (
 			<>
-				<Modal show={show} onHide={handleClose}>
-					<Modal.Header closeButton>
-						<Modal.Title>Message</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>Woohoo, youre reading this text in a modal!</Modal.Body>
-					<Modal.Footer>
-						<Button variant='secondary' onClick={handleClose}>
-							Close
-						</Button>
-						<Button variant='primary' onClick={handleClose}>
-							Save Changes
-						</Button>
-					</Modal.Footer>
-				</Modal>
 				<h1 align='center'>Inbox</h1>
 				<Table striped bordered hover>
 					<thead>
@@ -58,7 +53,12 @@ function Inbox() {
 					<tbody>
 						{data.map((msg, index) => {
 							return (
-								<tr key={index} onClick={handleShow}>
+								<tr
+									key={index}
+									onClick={() => {
+										handleClick(msg.Subject, msg.SourceEmail, msg.Message)
+									}}
+								>
 									<td>{index}</td>
 									<td>{msg.Subject}</td>
 									<td>{msg.SourceEmail}</td>
@@ -67,6 +67,24 @@ function Inbox() {
 						})}
 					</tbody>
 				</Table>
+				<Modal show={show} onHide={handleClose}>
+					<Modal.Header closeButton>
+						<Modal.Title>{subject}</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<label>From: {source}</label>
+						<br />
+						<label>Message: {content}</label>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button variant='secondary' onClick={handleClose}>
+							Close
+						</Button>
+						<Button variant='primary' onClick={handleClose}>
+							Save Changes
+						</Button>
+					</Modal.Footer>
+				</Modal>
 			</>
 		)
 	}
