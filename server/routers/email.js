@@ -28,6 +28,55 @@ router.post('/send-email', async (req, res) => {
 		res.status(500).send({ message: "Can't! send an email" })
 	}
 })
+router.post('/send-email', async (req, res) => {
+	const email = req.body
+
+	try {
+		const msg = {
+			to: email.email,
+			from: 'davech1228@gmail.com',
+			subject: 'Register to PineApple Travels',
+			text: 'Thank you for registering to PineApple Travels!',
+		}
+
+		sgMail.send(msg, (err) => {
+			if (err) {
+				console.log('email did not sent')
+			} else {
+				console.log(`email sent successfully to ${email.email}`)
+			}
+		})
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't! send an email" })
+	}
+})
+router.post('/send-email-to', async (req, res) => {
+	const sendTo = req.body
+	const email = sendTo.email
+	const subject = sendTo.subject
+	const text = sendTo.text
+
+	try {
+		const msg = {
+			to: email,
+			from: 'davech1228@gmail.com',
+			subject: subject,
+			text: text,
+		}
+
+		await sgMail.send(msg, (err) => {
+			if (err) {
+				console.log('email did not sent')
+			} else {
+				console.log(`email sent successfully to ${email}`)
+			}
+		})
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't! send an email" })
+	}
+})
 router.post('/send-broadcast-email', async (req, res) => {
 	const email = req.body
 	const emails = email.emails
