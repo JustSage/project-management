@@ -53,7 +53,7 @@ class SendTo extends Component {
 				})
 				.then(() => {
 					swal({
-						title: `Email to ${this.state.email}`,
+						title: `Email to ${this.state.sendTo}`,
 						text: 'email sent successfully!',
 						icon: 'success',
 					})
