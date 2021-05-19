@@ -81,10 +81,10 @@ function Inbox() {
 					</Modal.Body>
 					<Modal.Footer>
 						<Button variant='secondary' onClick={handleClose}>
-							Close
+							Reply
 						</Button>
 						<Button variant='primary' onClick={handleClose}>
-							Save Changes
+							Close
 						</Button>
 					</Modal.Footer>
 				</Modal>
