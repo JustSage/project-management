@@ -3,6 +3,7 @@ import axios from 'axios'
 import Table from 'react-bootstrap/Table'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import '../../css/inbox.css'
 
 function Inbox() {
 	const [data, setData] = useState(undefined)
@@ -74,10 +75,16 @@ function Inbox() {
 					<Modal.Header closeButton>
 						<Modal.Title>{subject}</Modal.Title>
 					</Modal.Header>
-					<Modal.Body>
-						<label>From: {source}</label>
-						<br />
-						<label>Message: {content}</label>
+					<Modal.Body className='modal-dialog'>
+						<div>
+							<div>
+								<label>From: </label> {source}
+							</div>
+							<div>
+								<label>Message: </label>
+								<label>{content}</label>
+							</div>
+						</div>
 					</Modal.Body>
 					<Modal.Footer>
 						<Button variant='secondary' onClick={handleClose}>
