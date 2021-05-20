@@ -41,13 +41,16 @@ class Notification extends Component {
 			)
 		} else {
 			return (
-				<FontAwesomeIcon
-					className='envelope'
-					style={{ color: 'red' }}
-					icon='envelope'
-					data-toggle='tooltip'
-					title={`you have ${this.state.unreadMessages} messages`}
-				></FontAwesomeIcon>
+				<>
+					{this.state.unreadMessages}x
+					<FontAwesomeIcon
+						className='envelope'
+						style={{ color: 'red' }}
+						icon='envelope'
+						data-toggle='tooltip'
+						title={`${this.state.unreadMessages} new messages`}
+					></FontAwesomeIcon>
+				</>
 			)
 		}
 	}

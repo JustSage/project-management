@@ -31,7 +31,10 @@ function Inbox() {
 	const handleShowRes = () => {
 		setShow(false)
 	}
-	const handleClose = () => setShow(false)
+	const handleClose = () => {
+		setShow(false)
+		window.location.reload(false)
+	}
 	const handleClick = (sbj, src, cont) => {
 		axios
 			.post('/set-read', {
@@ -74,7 +77,7 @@ function Inbox() {
 							handleShowRes(true)
 						}}
 					>
-						<Link to={`/send-to/${source}`}> Replay</Link>
+						<Link to={`/send-to/${source}`}> Reply</Link>
 					</Button>
 					<Button variant='primary' onClick={handleClose}>
 						Close

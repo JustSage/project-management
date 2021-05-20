@@ -24,3 +24,7 @@
 	margin-right: 2vh;
 	font-size: 17px;
 }
+
+td{
+	cursor: pointer;
+}
