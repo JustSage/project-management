@@ -80,14 +80,16 @@ function Inbox() {
 					</div>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button
-						variant='secondary'
-						onClick={() => {
-							handleClose
-						}}
-					>
-						<Link to={`/reply/${source}/${subject}`}> Reply</Link>
-					</Button>
+					<Link to={`/reply/${source}/${subject}`}>
+						<Button
+							variant='secondary'
+							onClick={() => {
+								handleClose
+							}}
+						>
+							Reply
+						</Button>
+					</Link>
 					<Button variant='primary' onClick={handleClose}>
 						Close
 					</Button>
