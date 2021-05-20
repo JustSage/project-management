@@ -22,7 +22,7 @@ function Inbox() {
 				var filteredMail = response.data.filter((msg) => {
 					return msg.DestEmail === sessionStorage.getItem('logged-in-email')
 				})
-				setData(filteredMail)
+				setData(filteredMail.reverse())
 				console.log(response.data)
 			})
 			.catch((error) => {
