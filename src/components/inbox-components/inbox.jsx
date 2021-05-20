@@ -17,7 +17,7 @@ function Inbox() {
 			.get('/messages')
 			.then((response) => {
 				var filteredMail = response.data.filter((msg) => {
-					return msg.DestEmail === sessionStorage.getItem('logged-in-email')
+					return msg.DestEmail != sessionStorage.getItem('logged-in-email')
 				})
 				setData(filteredMail)
 				console.log(response.data)

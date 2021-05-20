@@ -65,13 +65,8 @@ router.post('/send-email-to', async (req, res) => {
 			text: text,
 		}
 
-		await sgMail.send(msg, (err) => {
-			if (err) {
-				console.log('email did not sent')
-			} else {
-				console.log(`email sent successfully to ${email}`)
-			}
-		})
+		sgMail.send(msg)
+		res.send(JSON.stringify('Did it!'))
 	} catch (e) {
 		console.log(e)
 		res.status(500).send({ message: "Can't! send an email" })
