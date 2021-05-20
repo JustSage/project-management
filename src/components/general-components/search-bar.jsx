@@ -15,7 +15,9 @@ class SearchBar extends react.Component {
 			data: undefined,
 			chosenPkg: undefined,
 		}
+	}
 
+	componentDidMount() {
 		axios
 			.get('/packages')
 			.then((response) => {

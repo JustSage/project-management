@@ -11,7 +11,7 @@ class SendTo extends Component {
 		console.log(props)
 		this.state = {
 			Users: '',
-			Subject: '',
+			Subject: this.props.match.params.Subject,
 			Message: '',
 			sendTo: this.props.match.params.SourceEmail,
 		}
@@ -21,20 +21,14 @@ class SendTo extends Component {
 		/*
 		Changes the state dynamically according to the user input
 		*/
-		if (e.target.localName === 'input') {
-			this.setState({
-				Subject: e.target.value,
-			})
-		} else {
-			this.setState({
-				Message: e.target.value,
-			})
-		}
+		this.setState({
+			Message: e.target.value,
+		})
 	}
 
 	handleSubmit = (event) => {
 		/*
-		Sends the message to the DB
+		Sends the message to the DB and if that succeeds, sends an email to the customer
 		*/
 		event.preventDefault()
 
@@ -46,20 +40,42 @@ class SendTo extends Component {
 			})
 		} else {
 			axios
-				.post('/send-email-to', {
-					email: this.state.sendTo,
-					subject: this.state.Subject,
-					text: this.state.Message,
+				.post('/contact-us', {
+					SourceEmail: sessionStorage.getItem('logged-in-email'),
+					DestEmail: this.state.sendTo,
+					Subject: this.state.Subject,
+					Message: this.state.Message,
+					Read: false,
 				})
 				.then(() => {
-					swal({
-						title: `Email to ${this.state.sendTo}`,
-						text: 'email sent successfully!',
-						icon: 'success',
-					})
+					axios
+						.post('/send-email-to', {
+							email: this.state.sendTo,
+							subject: this.state.Subject,
+							text: this.state.Message,
+						})
+						.then(() => {
+							swal({
+								title: `Reply to ${this.state.sendTo}`,
+								text: 'Reply sent successfully!',
+								icon: 'success',
+							})
+							this.setState({
+								Message: '',
+							})
+							window.location.reload(false) //refreshing the window to take down the notification
+						})
+						.catch(() => {
+							swal({
+								title: `Reply to ${this.state.sendTo}`,
+								text: "Error: Can't send the reply",
+								icon: 'error',
+							})
+						})
 				})
-				.catch(() => {
-					alert('email did not sent successfully!')
+				.catch((error) => {
+					swal(error.data.message)
+					console.log({ text: error.data.errorMessage, icon: 'error' })
 				})
 		}
 	}
@@ -67,7 +83,7 @@ class SendTo extends Component {
 		return (
 			<>
 				<h1 className='contact-header' align='center'>
-					Send to: {}
+					Reply to: {this.state.sendTo}
 				</h1>
 				<Form onSubmit={this.handleSubmit}>
 					<Form.Group>
@@ -75,9 +91,8 @@ class SendTo extends Component {
 							className='subject'
 							type='text'
 							placeholder='Subject *'
-							onChange={this.handleChange}
 							value={this.state.Subject}
-							required
+							readOnly
 						/>
 					</Form.Group>
 					<Form.Group>

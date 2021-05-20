@@ -12,6 +12,9 @@ class Notification extends Component {
 		this.state = {
 			unreadMessages: 0,
 		}
+	}
+
+	componentDidMount() {
 		axios
 			.get('/read-massages')
 			.then((response) => {
@@ -28,6 +31,7 @@ class Notification extends Component {
 				alert(error.response.data.message)
 			})
 	}
+
 	render() {
 		if (this.state.unreadMessages === 0) {
 			return (

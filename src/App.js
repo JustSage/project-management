@@ -29,7 +29,7 @@ import CustomeReservations from './components/reservations-components/customer-r
 import Reccomendations from './components/package-components/reccomendations'
 import ContactUs from './components/contact-component/contact-us'
 import Inbox from './components/inbox-components/inbox'
-import SendTo from './components/inbox-components/sendTo'
+import SendTo from './components/inbox-components/reply'
 
 library.add(fab, faCheckSquare, faCoffee)
 
@@ -162,7 +162,7 @@ class App extends React.Component {
 									}
 								/>
 								<Route
-									path='/send-to/:SourceEmail'
+									path='/reply/:SourceEmail/:Subject'
 									render={(props) =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />

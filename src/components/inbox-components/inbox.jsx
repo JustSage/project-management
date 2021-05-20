@@ -13,11 +13,14 @@ function Inbox() {
 	const [content, setContent] = useState('')
 
 	useEffect(() => {
+		/**
+		 * getting the messages from the DB, filteres them and returns only the messages that are for the logged in user
+		 */
 		axios
 			.get('/messages')
 			.then((response) => {
 				var filteredMail = response.data.filter((msg) => {
-					return msg.DestEmail != sessionStorage.getItem('logged-in-email')
+					return msg.DestEmail === sessionStorage.getItem('logged-in-email')
 				})
 				setData(filteredMail)
 				console.log(response.data)
@@ -28,14 +31,17 @@ function Inbox() {
 			})
 	}, [])
 
-	const handleShowRes = () => {
-		setShow(false)
-	}
 	const handleClose = () => {
+		/**
+		 * turnes off the modal and refreshes the page to reload the updated notification
+		 */
 		setShow(false)
 		window.location.reload(false)
 	}
 	const handleClick = (sbj, src, cont) => {
+		/**
+		 * Sending post request to mark the message as read, changing the state to see the message on the modal and triggers the modal
+		 */
 		axios
 			.post('/set-read', {
 				Subject: sbj,
@@ -54,6 +60,9 @@ function Inbox() {
 	}
 
 	const getMessageModal = () => {
+		/**
+		 * Rendering the modal
+		 */
 		return (
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
@@ -74,10 +83,10 @@ function Inbox() {
 					<Button
 						variant='secondary'
 						onClick={() => {
-							handleShowRes(true)
+							handleClose
 						}}
 					>
-						<Link to={`/send-to/${source}`}> Reply</Link>
+						<Link to={`/reply/${source}/${subject}`}> Reply</Link>
 					</Button>
 					<Button variant='primary' onClick={handleClose}>
 						Close
@@ -116,9 +125,25 @@ function Inbox() {
 										handleClick(msg.Subject, msg.SourceEmail, msg.Message)
 									}}
 								>
-									<td>{index}</td>
-									<td>{msg.Subject}</td>
-									<td>{msg.SourceEmail}</td>
+									{msg.Read == false ? (
+										<>
+											<td>
+												<b>{index}</b>
+											</td>
+											<td>
+												<b>{msg.Subject}</b>
+											</td>
+											<td>
+												<b>{msg.SourceEmail}</b>
+											</td>
+										</>
+									) : (
+										<>
+											<td>{index}</td>
+											<td>{msg.Subject}</td>
+											<td>{msg.SourceEmail}</td>
+										</>
+									)}
 								</tr>
 							)
 						})}
