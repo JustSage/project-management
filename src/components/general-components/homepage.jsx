@@ -26,7 +26,7 @@ class Homepage extends Component {
 		return (
 			<>
 				<div align='center'>
-				<h1>Welcome to PineApple Travels!</h1>
+				<h1 style={{marginTop:'30px'}}>Welcome to PineApple Travels!</h1>
 				<h3 margin top>About us:</h3>
 				<p>
 					Our travel agency offers vacations to destinations all around the world!<br/>

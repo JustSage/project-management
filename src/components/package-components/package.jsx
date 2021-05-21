@@ -2,19 +2,22 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { Component } from 'react'
 import {
-	Container,
+	// Container,
 	Button,
 	Card,
 	ListGroupItem,
 	ListGroup,
-	Col,
+	// Col,
 	Form,
+	// Row,
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
+import '../../css/Package.css'
+
 library.add(faStar)
 
 /* 
@@ -59,7 +62,7 @@ export default class Package extends Component {
 			sessionStorage.getItem('logged-in-role') == 'Travel Agent'
 		) {
 			if (this.props.updated === 'yes') {
-				return <h4 style={{ color: 'red' }}>Package Updated</h4>
+				return <span style={{ color: 'red' }}>Package Updated</span>
 			} else {
 				return null
 			}
@@ -72,14 +75,14 @@ export default class Package extends Component {
 		return (
 			<Card className='myCard'>
 				<Card.Img className='myCardImage' variant='top' src={this.state.url} />
-				<Card.Body style={{ overflow: 'auto' }}>
+				<Card.Body className='card-body'>
 					<Card.Title>
-						{this.state.name}
+						{this.state.name} {this.updatedPackageDisplay()}
 						<FontAwesomeIcon className='fa fa-star' icon={faStar} />{' '}
 						<span className='rating'>{this.state.rating}</span>
-						{this.updatedPackageDisplay()}
+						{/* {this.updatedPackageDisplay()} */}
 					</Card.Title>
-					<Card.Text>{this.state.description}</Card.Text>
+					<Card.Text className='card-text'>{this.state.description}</Card.Text>
 				</Card.Body>
 				<ListGroup className='list-group-flush'>
 					<ListGroupItem>Price: {this.state.price}</ListGroupItem>
@@ -92,7 +95,9 @@ export default class Package extends Component {
 						}}
 						className='card-link'
 					>
-						Make an Order!
+						<Button variant='success' className='mao-btn'>
+							Make an Order!
+						</Button>
 					</Link>
 					<Card.Body>
 						<Form>
@@ -113,30 +118,28 @@ export default class Package extends Component {
 					</Card.Body>
 					{sessionStorage.getItem('logged-in-role') != 'Customer' ? (
 						<Card.Body>
-							<Container className=' justify-content-center'>
-								<Col>
-									<Button className='update-button' variant='warning'>
-										<Link
-											to={{
-												pathname: `/update-package/${this.props.name}/${this.props.description}/${this.props.price}/${this.props.quantity}/${this.props.url}`,
-											}}
-										>
-											Upgrade{' '}
-										</Link>
-									</Button>
-								</Col>
-								<Col>
-									<Button className='delete-button' variant='warning'>
-										<Link
-											to={{
-												pathname: `/delete-package/${this.props.name}`,
-											}}
-										>
-											Delete{' '}
-										</Link>
-									</Button>
-								</Col>
-							</Container>
+							<div className='updrage-delete'>
+								<Button variant='primary' className='upgrade-btn'>
+									<Link
+										style={{ color: 'white' }}
+										to={{
+											pathname: `/update-package/${this.props.name}/${this.props.description}/${this.props.price}/${this.props.quantity}/${this.props.url}`,
+										}}
+									>
+										Upgrade{' '}
+									</Link>
+								</Button>
+								<Button variant='primary' className='delete-btn'>
+									<Link
+										style={{ color: 'white' }}
+										to={{
+											pathname: `/delete-package/${this.props.name}`,
+										}}
+									>
+										Delete{' '}
+									</Link>
+								</Button>
+							</div>
 						</Card.Body>
 					) : null}
 				</Card.Body>

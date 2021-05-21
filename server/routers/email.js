@@ -89,7 +89,8 @@ router.post('/send-broadcast-email', async (req, res) => {
 
 		sgMail.sendMultiple(msg, (err) => {
 			if (err) {
-				console.log('email did not sent')
+				console.log(`email did not sent ${err}`)
+				res.send()
 			} else {
 				console.log(`email sent successfully to ${emails}`)
 			}

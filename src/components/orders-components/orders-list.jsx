@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Table, Button } from 'react-bootstrap'
 import React, { Component, Fragment } from 'react'
+import swal from 'sweetalert'
 import '../../css/orders.css'
 
 /**
@@ -40,18 +41,30 @@ export default class OrdersList extends Component {
 	}
 
 	handleAccept = (userName) => {
-		axios
-			.post('/update-order-status', {
-				User: userName,
-				Status: 'Accepted',
-			})
-			.then((response) => {
-				alert(response.data.message)
-			})
-			.catch((error) => {
-				alert(error)
-				console.log(error)
-			})
+		swal({
+			title: 'Approve this order?',
+			icon: 'warning',
+			buttons: true,
+		}).then((willDelete) => {
+			if (willDelete) {
+				axios
+					.post('/update-order-status', {
+						User: userName,
+						Status: 'Accepted',
+					})
+					.then((response) => {
+						swal({
+							title: 'Order approved!',
+							text: response.data.message,
+							icon: 'success',
+						})
+					})
+					.catch((error) => {
+						alert(error)
+						console.log(error)
+					})
+			}
+		})
 	}
 
 	handleAcceptAll = () => {
@@ -129,7 +142,11 @@ export default class OrdersList extends Component {
 							/>
 						</div>
 						<br />
+						<Button className='accept-btn' onClick={this.handleAcceptAll}>
+							Accpet All
+						</Button>
 					</div>
+
 					<Table striped bordered hover size='sm' className='orders-table'>
 						<thead>
 							<tr>
@@ -152,7 +169,6 @@ export default class OrdersList extends Component {
 										</Fragment>
 									)
 								})}
-								<th>{'Approve'} </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -166,7 +182,11 @@ export default class OrdersList extends Component {
 								.map((h, i) => {
 									return (
 										<Fragment key={i}>
-											<tr>
+											<tr
+												onClick={() => {
+													this.handleAccept(h['User'])
+												}}
+											>
 												<th>{++i}</th>
 												<td>{h['OrderName']}</td>
 												<td>{h['User']}</td>
@@ -176,22 +196,12 @@ export default class OrdersList extends Component {
 												<td>{h['Status']}</td>
 												<td>{h['OrderDate']}</td>
 												<td>{h['VacationDate']}</td>
-												<td>
-													<Button
-														onClick={() => {
-															this.handleAccept(h['User'])
-														}}
-													>
-														Accept
-													</Button>
-												</td>
 											</tr>
 										</Fragment>
 									)
 								})}
 						</tbody>
 					</Table>
-					<Button onClick={this.handleAcceptAll}>Accpet All</Button>
 				</>
 			)
 	}

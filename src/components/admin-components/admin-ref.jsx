@@ -66,7 +66,7 @@ class AdminRef extends Component {
 		return (
 			<>
 				<h3 className='h-as-title admin-title'>Admin</h3>
-				<Container>
+				<Container className='container-admin'>
 					<Form className='admin-form' onSubmit={this.handleSubmit}>
 						<Form.Group controlId='exampleForm.ControlInput1'>
 							<Form.Control
@@ -83,9 +83,11 @@ class AdminRef extends Component {
 								<option>Travel Agent</option>
 							</Form.Control>
 						</Form.Group>
-						<Button type='submit' style={{ border: 'none' }}>
-							Submit!
-						</Button>
+						<div className='submit-btn'>
+							<Button type='submit' style={{ border: 'none' }}>
+								Submit!
+							</Button>
+						</div>
 					</Form>
 				</Container>
 			</>

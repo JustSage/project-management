@@ -7,35 +7,23 @@
 
 .navbar-custom {
 	height: 64px;
-	background-image: url('../images/nav-background.jpg');
+	background-color: #4d9ae6;
 	background-size: cover;
-	box-shadow: 0px -10px 20px 20px rgb(223, 164, 87);
+	box-shadow: 0px -10px 20px 8px black;
+	width: 100%;
 }
 
-/* .h5-nav {
-	font-size: 17;
-	margin-right: 1vh;
-	display: block;
-} */
-
 .navLink {
-	color: rgb(99, 89, 47) !important;
+	color: white !important;
 	font-size: 20px;
 	/* font-weight: inherit; */
 	transition: all ease 0.5s;
-	margin-top: 1vh;
+	margin-top: 3px;
 }
 .contact {
 	width: 138px;
 }
 
-/* .navLink:hover {
-	color: rgb(94, 82, 82);
-	font-weight: bold;
-	cursor: pointer;
-	border: tomato;
-	text-shadow: 0px 10px 5px #aaa396;
-} */
 .navLink:hover {
 	color: rgb(94, 82, 82) !important;
 	cursor: pointer;
@@ -81,13 +69,15 @@
 	margin-left: 5px;
 	background-color: white;
 	min-width: 290px;
-	box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 1);
+	box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 1);
 	z-index: 1;
-	border-radius: 15px;
-	border-color: orange;
+	border-radius: 12px;
+	border-color: rgb(255, 255, 255);
+	transition: ease 0.5s;
 	border-style: solid;
 	padding: 7px 7px 7px 5px;
 }
+
 
 /* Links inside the dropdown */
 .dropdown-content a {
@@ -99,7 +89,7 @@
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-	background-color: rgb(248, 165, 55);
+	background-color: rgb(55, 171, 248);
 	color: white;
 }
 
@@ -118,4 +108,39 @@
 .searchBar {
 	display: flex;
 	margin-left: 10px;
+}
+
+.dropdown-content-cog {
+	display: none;
+	position: absolute;
+	margin-left: 5px;
+	background-color: white;
+	width: 80px;
+	box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 1);
+	z-index: 1;
+	border-radius: 12px;
+	border-color: rgb(255, 255, 255);
+	transition: ease 0.5s;
+	border-style: solid;
+	padding: 7px 7px 7px 5px;
+	
+}
+
+.dropdown-content-cog a:hover {
+	background-color: rgb(55, 171, 248);
+	color: white;
+}
+
+.dropdown-content-cog a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	width: 144px;
+}
+
+.dropdown:hover .dropdown-content-cog {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }

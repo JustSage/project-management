@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import '../../css/Package.css'
+import { Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Package from './package'
 // import { Container } from 'react-bootstrap'
@@ -35,6 +36,10 @@ class Packages extends Component {
 			})
 	}
 
+	componentDidMount() {
+		sessionStorage.setItem('search-value', '')
+	}
+
 	AddPackage = () => {
 		if (
 			sessionStorage.getItem('logged-in-role') == 'Admin' ||
@@ -43,7 +48,7 @@ class Packages extends Component {
 			return (
 				<h5 className='h5-packages'>
 					<a href='/add-package' className='add-package-href'>
-						Add new package!
+						<Button className='anp-btn'>Add new package!</Button>
 					</a>
 				</h5>
 			)
@@ -79,8 +84,8 @@ class Packages extends Component {
 							/>
 						</div>
 						<br />
+						{this.AddPackage()}
 					</div>
-					{this.AddPackage()}
 					<div className='d-flex flex-row flex-wrap my-flex-container'>
 						{this.state.data
 							.filter((pkg) => pkg.name.includes(this.state.location))

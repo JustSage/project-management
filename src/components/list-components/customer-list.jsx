@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Table, Form, Button } from 'react-bootstrap'
 import React, { Component, Fragment } from 'react'
+import swal from 'sweetalert'
 import '../../css/customerList.css'
 
 /**
@@ -48,10 +49,18 @@ export default class CustomerList extends Component {
 				text: this.state.textArea,
 			})
 			.then(() => {
-				alert('email sent successfully!')
+				swal({
+					title: 'Broadcast Email',
+					text: 'Email sent successfully!',
+					icon: 'success',
+				})
 			})
 			.catch(() => {
-				alert('email did not sent successfully!')
+				swal({
+					title: 'Broadcast Email',
+					text: 'email did not sent successfully!',
+					icon: 'error',
+				})
 			})
 	}
 
@@ -70,7 +79,7 @@ export default class CustomerList extends Component {
 								{this.state.tableTitles.map((h, i) => {
 									return (
 										<Fragment key={i}>
-											<th>{h} </th>
+											<th style={{ height: '40px' }}>{h} </th>
 										</Fragment>
 									)
 								})}
@@ -82,7 +91,7 @@ export default class CustomerList extends Component {
 								return (
 									<Fragment key={i}>
 										<tr>
-											<th>{++i}</th>
+											<th style={{ width: '50px' }}>{++i}</th>
 											<td>{h['username']}</td>
 											<td>{h['email']}</td>
 											<td>{h['role']}</td>
@@ -108,10 +117,10 @@ export default class CustomerList extends Component {
 						</Form.Group>
 						<Button
 							className='textButton'
-							variant='warning'
+							variant='primary'
 							onClick={this.handleSubmit.bind(this)}
 						>
-							Submit
+							Send
 						</Button>
 					</Form>
 				</>

@@ -91,7 +91,7 @@ class SendTo extends Component {
 							className='subject'
 							type='text'
 							placeholder='Subject *'
-							value={this.state.Subject}
+							value={`re: ${this.state.Subject}`}
 							readOnly
 						/>
 					</Form.Group>

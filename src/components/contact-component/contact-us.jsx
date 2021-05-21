@@ -66,15 +66,30 @@ class ContactUs extends Component {
 					Read: false,
 				})
 				.then((response) => {
-					swal({
-						title: 'Thank you',
-						text: response.data.successMessage,
-						icon: 'success',
-					})
-					this.setState({
-						Subject: '',
-						Message: '',
-					})
+					axios
+						.post('/send-email-to', {
+							email: this.state.Users[destAgent].email,
+							subject: this.state.Subject,
+							text: this.state.Message,
+						})
+						.then(() => {
+							swal({
+								title: 'Thank you',
+								text: response.data.successMessage,
+								icon: 'success',
+							})
+							this.setState({
+								Subject: '',
+								Message: '',
+							})
+						})
+						.catch(() => {
+							swal({
+								title: `Reply to ${this.state.sendTo}`,
+								text: "Error: Can't send the reply",
+								icon: 'error',
+							})
+						})
 				})
 				.catch((error) => {
 					swal(error.data.message)
@@ -110,7 +125,7 @@ class ContactUs extends Component {
 							required
 						/>
 					</Form.Group>
-					<Button className='send' type='submit'>
+					<Button variant='primary' className='send' type='submit'>
 						Send
 					</Button>
 				</Form>

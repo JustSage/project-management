@@ -136,7 +136,7 @@ class signUp extends Component {
 												required
 											/>
 											<div className='wrapper'>
-												<button className='btn' type='submit'>
+												<button className='btn-signup' type='submit'>
 													Accept
 												</button>
 											</div>

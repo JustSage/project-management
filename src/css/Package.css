@@ -1,8 +1,8 @@
 .package {
-	width: 610px;
-	height: 6rem;
+	width: 450px;
+	height: 5rem;
 	margin-top: 1%;
-	background-color: rgb(253, 197, 113);
+	background-color: #9ACBFB;
 	position: relative;
 	border-radius: 25px;
 	margin-left: 34%;
@@ -10,21 +10,23 @@
 
 .packageInput {
 	margin-left: 2%;
-	width: 100%;
+	width: 220px;
 	border-radius: 10px;
 }
 
 .wrraper {
 	top: 31%;
-	left: 10vh;
+	left: 47px;
 	position: absolute;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-right: 80px;
 }
 
 .packageLabel {
-	width: 232px;
+	width: 130px;
+	margin-right: 2px;
 }
 
 .h5-packages {
@@ -95,4 +97,40 @@
 
 .add-package-href, .add-package-href:hover {
 	color:orangered;
+}
+
+.card-text {
+	height:145px;
+	overflow: scroll; 
+	overflow-x: hidden;
+}
+
+.card-body {
+	height: 8px;
+}
+
+.updrage-delete{
+	display: flex;
+	justify-content: space-evenly;
+	margin-top:78px;
+	margin-left:20px;
+}
+
+.delete-btn{
+	margin-right: 20px;
+	width:90px;
+}
+
+.upgrade-btn{
+	margin-left: 20px;
+	width:90px;
+}
+
+.mao-btn{
+	margin-left:12px;
+}
+
+.anp-btn{
+	margin-left: 250px;
+	width:180px;
 }

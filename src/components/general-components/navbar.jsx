@@ -92,7 +92,7 @@ class NavbarComponent extends React.Component {
 						<div className='dropdown'>
 							<FontAwesomeIcon className='cog' icon='cog'></FontAwesomeIcon>
 							<div
-								className='dropdown-content'
+								className='dropdown-content-cog'
 								style={{ minWidth: '160px', right: '3%' }}
 							>
 								<div>
