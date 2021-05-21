@@ -181,7 +181,7 @@ router.get('/package-by-rating', async (req, res) => {
 	try {
 		const packages = await db
 			.collection('packages')
-			.find({ rating: { $gt: 3 } })
+			.find({ rating: { $gt: '3' } })
 			.toArray()
 		res.send(JSON.stringify(packages))
 	} catch (e) {

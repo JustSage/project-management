@@ -24,6 +24,7 @@ class Reccomendations extends Component {
 				this.setState({
 					data: response.data,
 				})
+				console.log(this.state.data)
 			})
 			.catch((error) => {
 				console.log(error.response.data.message)
