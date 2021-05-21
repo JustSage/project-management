@@ -11,14 +11,13 @@ import axios from 'axios'
  * Packages page which appears as navbar tag, when click on the navbar button it'll be redirecting here
  * by routing. This page includes the package-components.
  */
-class Packages extends Component {
+class Reccomendations extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			data: undefined,
 		}
-	}
-	componentDidMount() {
+
 		axios
 			.get('/package-by-rating')
 			.then((response) => {
@@ -31,11 +30,7 @@ class Packages extends Component {
 				alert(error.response.data.message)
 			})
 	}
-
-	handleLocation = (event) => {
-		event.preventDefault()
-		this.setState({ location: event.target.value })
-	}
+	componentDidMount() {}
 
 	render() {
 		if (this.state.data === undefined) {
@@ -77,4 +72,4 @@ class Packages extends Component {
 	}
 }
 
-export default Packages
+export default Reccomendations
