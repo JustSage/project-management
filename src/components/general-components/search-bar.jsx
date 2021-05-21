@@ -14,6 +14,7 @@ class SearchBar extends react.Component {
 		this.state = {
 			data: undefined,
 			chosenPkg: undefined,
+			SearchInput: '',
 		}
 	}
 
@@ -32,7 +33,16 @@ class SearchBar extends react.Component {
 	}
 
 	handleSubmit = (event) => {
+		this.setState({
+			SearchInput: event.target.value,
+		})
 		sessionStorage.setItem('search-value', event.target.value)
+	}
+
+	handleClick = () => {
+		this.setState({
+			SearchInput: '',
+		})
 	}
 
 	render() {
@@ -53,6 +63,7 @@ class SearchBar extends react.Component {
 						className='search-input'
 						list='cityname'
 						onChange={this.handleSubmit}
+						value={this.state.SearchInput}
 					/>
 					<datalist id='cityname'>
 						{this.state.data.map((pkg) => {
@@ -65,10 +76,15 @@ class SearchBar extends react.Component {
 					</datalist>
 					<Link
 						to={{
-							pathname: `/packages`,
+							pathname: `/packages/${null}`,
 						}}
 					>
-						<FontAwesomeIcon className='glass' size='lg' icon='search' />
+						<FontAwesomeIcon
+							className='glass'
+							size='lg'
+							icon='search'
+							onClick={this.handleClick}
+						/>
 					</Link>
 				</>
 			)
