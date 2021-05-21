@@ -70,4 +70,17 @@ router.post('/set-read', async (req, res) => {
 	}
 })
 
+router.get('/delete-message/:id', async (req, res) => {
+	try {
+		var ObjectID = require('mongodb').ObjectID
+		const mailID = req.params.id
+		// eslint-disable-next-line prettier/prettier
+		await db.collection('messages').deleteOne({"_id": ObjectID(mailID)})
+		res.send({ message: `Message deleted successfully!` })
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't delete mail!" })
+	}
+})
+
 module.exports = router

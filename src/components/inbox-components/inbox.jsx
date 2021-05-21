@@ -3,7 +3,13 @@ import axios from 'axios'
 import { Modal, Table } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import swal from 'sweetalert'
 import '../../css/inbox.css'
+
+library.add(faTrashAlt)
 
 function Inbox() {
 	const [data, setData] = useState(undefined)
@@ -38,6 +44,42 @@ function Inbox() {
 		setShow(false)
 		window.location.reload(false)
 	}
+
+	const handleDelete = (id) => {
+		/**
+		 * Sending a post request to delete the selected message from the DB
+		 */
+		swal({
+			title: 'Are you sure?',
+			text: 'Once deleted, you will not be able to recover this message!',
+			icon: 'warning',
+			buttons: true,
+		}).then((willDelete) => {
+			if (willDelete) {
+				axios
+					.get(`/delete-message/${id}`)
+					.then((response) => {
+						swal({
+							title: response.data.message,
+							icon: 'success',
+						}).then((ok) => {
+							if (ok) {
+								window.location.reload(false)
+							}
+						})
+					})
+					.catch((error) => {
+						swal({
+							title: 'Error',
+							text: error,
+							icon: 'error',
+						})
+						console.log(error)
+					})
+			}
+		})
+	}
+
 	const handleClick = (sbj, src, cont) => {
 		/**
 		 * Sending post request to mark the message as read, changing the state to see the message on the modal and triggers the modal
@@ -116,34 +158,79 @@ function Inbox() {
 							<th>#</th>
 							<th>Subject</th>
 							<th>From</th>
+							<th>Delete</th>
 						</tr>
 					</thead>
 					<tbody>
 						{data.map((msg, index) => {
 							return (
-								<tr
-									key={index}
-									onClick={() => {
-										handleClick(msg.Subject, msg.SourceEmail, msg.Message)
-									}}
-								>
+								<tr key={index}>
 									{msg.Read == false ? (
 										<>
-											<td>
+											<td
+												onClick={() => {
+													handleClick(msg.Subject, msg.SourceEmail, msg.Message)
+												}}
+											>
 												<b>{index}</b>
 											</td>
-											<td>
+											<td
+												onClick={() => {
+													handleClick(msg.Subject, msg.SourceEmail, msg.Message)
+												}}
+											>
 												<b>{msg.Subject}</b>
 											</td>
-											<td>
+											<td
+												onClick={() => {
+													handleClick(msg.Subject, msg.SourceEmail, msg.Message)
+												}}
+											>
 												<b>{msg.SourceEmail}</b>
+											</td>
+											<td
+												onClick={() => {
+													handleDelete(msg._id)
+												}}
+											>
+												<b>
+													<FontAwesomeIcon className='trash' icon='trash-alt' />
+												</b>
 											</td>
 										</>
 									) : (
 										<>
-											<td>{index}</td>
-											<td>{msg.Subject}</td>
-											<td>{msg.SourceEmail}</td>
+											<td
+												onClick={() => {
+													handleClick(msg.Subject, msg.SourceEmail, msg.Message)
+												}}
+											>
+												{index}
+											</td>
+											<td
+												onClick={() => {
+													handleClick(msg.Subject, msg.SourceEmail, msg.Message)
+												}}
+											>
+												{msg.Subject}
+											</td>
+											<td
+												onClick={() => {
+													handleClick(msg.Subject, msg.SourceEmail, msg.Message)
+												}}
+											>
+												{msg.SourceEmail}
+											</td>
+											<td
+												onClick={() => {
+													handleDelete(msg._id)
+												}}
+											>
+												<FontAwesomeIcon
+													className='trash'
+													icon='trash-alt'
+												></FontAwesomeIcon>
+											</td>
 										</>
 									)}
 								</tr>

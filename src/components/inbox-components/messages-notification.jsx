@@ -46,7 +46,7 @@ class Notification extends Component {
 		} else {
 			return (
 				<>
-					{this.state.unreadMessages}x
+					<span style={{ color: 'black' }}>{this.state.unreadMessages}x</span>
 					<FontAwesomeIcon
 						className='envelope'
 						style={{ color: 'red' }}

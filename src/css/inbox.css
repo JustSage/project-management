@@ -28,3 +28,10 @@
 td{
 	cursor: pointer;
 }
+
+.trash{
+	color:black;
+}
+.trash:hover {
+	color:red;
+}
