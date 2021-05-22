@@ -20,15 +20,18 @@ class HomeContext extends Component {
 		axios
 			.get('/packages')
 			.then((response) => {
-				const names = response.data.map((pkg) => pkg.name)
+				const names = response.data
+					.filter((pkg) => pkg.rating >= 3)
+					.map((pkg) => pkg.name)
 				this.setState({ destinations: names })
 				let array = async () => {
 					return Promise.all(
 						names.map((dest, i) => provider.search({ query: dest }))
 					)
 				}
-				array().then((data) => {
-					const filteredArray = data.map((item) => {
+				array().then((names) => {
+					if (names.size > 5) names = names.slice(0, 5)
+					const filteredArray = names.map((item) => {
 						return [[item[0].y, item[0].x], item[0]]
 					})
 					this.setState({ latlongs: filteredArray })
@@ -51,10 +54,10 @@ class HomeContext extends Component {
 		else
 			return (
 				<>
-					<Container fluid>
+					<Container fluid style={{ width: '90%', height: '90%' }}>
 						<Row>
 							<Col sm={2} className='dest-text'>
-								{'Our Destinations:'}
+								{'Some Of Our Recommended Destinations:'}
 							</Col>
 							<Col sm={10} />
 						</Row>
@@ -71,13 +74,15 @@ class HomeContext extends Component {
 									center={[25, 0]}
 									zoom={3}
 									scrollWheelZoom={false}
-									style={{ height: '200%', width: '90%' }}
+									style={{ height: '400px', width: '1000px' }}
 								>
 									<TileLayer
 										attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 										url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+										// crossOrigin={null}
 									/>
 									{this.state.latlongs.map((item, i) => {
+										setTimeout(() => {}, 10001)
 										return (
 											<Marker key={i} position={item[0]}>
 												<Popup>{`${item[1].label}`}</Popup>
