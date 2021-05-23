@@ -21,11 +21,10 @@ export default class DeletePackage extends Component {
 			.get(`/delete-package/${this.props.match.params.name}`)
 			.then((response) => {
 				alert(response.data.message)
-				this.props.history.push('/packages')
+				this.props.history.push(`/packages/${null}`)
 			})
 			.catch((error) => {
 				alert(error)
-				console.log(error)
 			})
 	}
 

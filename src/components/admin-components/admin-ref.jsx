@@ -41,7 +41,6 @@ class AdminRef extends Component {
 				this.props.history.push('/homepage')
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}

@@ -23,6 +23,8 @@ class Packages extends Component {
 					: sessionStorage.getItem('search-value'),
 		}
 
+		sessionStorage.setItem('search-value', '')
+
 		axios
 			.get('/packages')
 			.then((response) => {
@@ -31,13 +33,8 @@ class Packages extends Component {
 				})
 			})
 			.catch((error) => {
-				console.log(error.message)
 				alert(error.message)
 			})
-	}
-
-	componentDidMount() {
-		sessionStorage.setItem('search-value', '')
 	}
 
 	AddPackage = () => {

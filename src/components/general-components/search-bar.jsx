@@ -27,7 +27,6 @@ class SearchBar extends react.Component {
 				})
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}

@@ -29,10 +29,8 @@ function Inbox() {
 					return msg.DestEmail === sessionStorage.getItem('logged-in-email')
 				})
 				setData(filteredMail.reverse())
-				console.log(response.data)
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}, [])
@@ -74,7 +72,7 @@ function Inbox() {
 							text: error,
 							icon: 'error',
 						})
-						console.log(error)
+						alert(error)
 					})
 			}
 		})
@@ -97,7 +95,6 @@ function Inbox() {
 			})
 			.catch((error) => {
 				alert(error)
-				console.log(error)
 			})
 	}
 

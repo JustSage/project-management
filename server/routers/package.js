@@ -24,7 +24,8 @@ router.post('/add-package', async (req, res) => {
 		res.status(500).send({ message: "Can't add a package!" })
 	}
 })
-router.post('/update-package', async (req, res) => {
+
+router.put('/update-package', async (req, res) => {
 	const pkg = req.body
 	console.log(`url is: ${pkg.url}`)
 	try {
@@ -50,7 +51,7 @@ router.post('/update-package', async (req, res) => {
 			}
 		)
 
-		res.send({ message: `Package ${pkg.name} Updated successfully!.` })
+		await res.send({ message: `Package ${pkg.name} Updated successfully!.` })
 	} catch (e) {
 		console.log(e)
 		res.status(500).send({ message: "Can't add a package!" })
@@ -138,6 +139,7 @@ router.get('/packages', async (req, res) => {
 		res.status(500).send({ message: "Can't show packages!" })
 	}
 })
+
 router.get('/one-package', async (req, res) => {
 	try {
 		let description = req.query.Description
