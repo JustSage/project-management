@@ -3,6 +3,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
+// import swal from 'sweetalert'
+var today = new Date(Date.now() + 10 * 86400000) //Package can be ordered 10 days from today
 
 export default class UpdatePackage extends Component {
 	constructor(props) {
@@ -12,9 +14,15 @@ export default class UpdatePackage extends Component {
 			description: this.props.match.params.description,
 			price: this.props.match.params.price,
 			quantity: this.props.match.params.quantity,
-			url: this.props.match.params.url,
+			url: this.props.location.pathname.substring(
+				this.props.location.pathname.indexOf('http'),
+				this.props.location.pathname.length
+			),
 			data: undefined,
+			packageDates: [],
+			// dates: this.props.match.params.dates,
 		}
+		this.start = undefined //The start date which selected on every session
 		this.handleURL = this.handleURL.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleURLLink = this.handleURLLink.bind(this)
@@ -89,6 +97,27 @@ export default class UpdatePackage extends Component {
 			url: objectURL,
 		})
 	}
+	handleStartDate = (event) => {
+		this.start = event.target.value.split('T')[0]
+	}
+
+	handleDates = (event) => {
+		event.preventDefault()
+		const end = event.target.value.split('T')[0]
+		const dates = this.start + ' to ' + end
+
+		if (this.state.packageDates.includes(dates)) {
+			alert('Dates already exist')
+		} else if (new Date(this.start) > new Date(end)) {
+			alert('You picked illegal dates!')
+		} else {
+			this.setState({
+				packageDates: [...this.state.packageDates, dates],
+			})
+			alert(`Successfully added vacation dates:${dates}`)
+		}
+		console.log(this.state.packageDates)
+	}
 
 	/**
 	 * handles url link, shows up only if url value isn't empty
@@ -130,7 +159,6 @@ export default class UpdatePackage extends Component {
 				),
 			})
 		}
-
 		axios
 			.put('/update-package', {
 				...this.state,
@@ -194,6 +222,27 @@ export default class UpdatePackage extends Component {
 							/>
 						</Form.Group>
 						<Form.Group>
+							<Form.Label>
+								Start date{' '}
+								<span style={{ color: 'grey' }}>
+									( if not changed, the previous dates will remain )
+								</span>
+							</Form.Label>
+							<Form.Control
+								id='date-input'
+								type='date'
+								min={today.toISOString().split('T')[0]}
+								onChange={this.handleStartDate.bind(this)}
+							/>
+							<Form.Label>End date</Form.Label>
+							<Form.Control
+								id='date-input'
+								type='date'
+								min={today.toISOString().split('T')[0]}
+								onChange={this.handleDates}
+							/>
+						</Form.Group>
+						<Form.Group>
 							<Form.Label>Image</Form.Label>
 							<Form.Group>
 								<Form.File
@@ -205,10 +254,7 @@ export default class UpdatePackage extends Component {
 							<Form.Control
 								placeholder='Set image url'
 								onChange={this.handleURL}
-								defaultValue={this.props.location.pathname.substring(
-									this.props.location.pathname.indexOf('https'),
-									this.props.location.pathname.length
-								)}
+								defaultValue={this.state.url}
 							/>
 							{this.handleURLLink()}
 						</Form.Group>

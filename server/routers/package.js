@@ -35,21 +35,37 @@ router.put('/update-package', async (req, res) => {
 				return res.status(500).send({ message: 'URL is not valid!' })
 			}
 		}
-
+		if (pkg.packageDates.length > 0) {
+			await db.collection('packages').updateOne(
+				{ name: pkg.name },
+				{
+					$set: {
+						name: pkg.name,
+						description: pkg.description,
+						quantity: pkg.quantity,
+						price: pkg.price,
+						url: pkg.url,
+						updated: pkg.updated,
+						packageDates: pkg.packageDates,
+					},
+				}
+			)
+		} else {
+			await db.collection('packages').updateOne(
+				{ name: pkg.name },
+				{
+					$set: {
+						name: pkg.name,
+						description: pkg.description,
+						quantity: pkg.quantity,
+						price: pkg.price,
+						url: pkg.url,
+						updated: pkg.updated,
+					},
+				}
+			)
+		}
 		//Insert the package to the DB
-		await db.collection('packages').updateOne(
-			{ description: pkg.description },
-			{
-				$set: {
-					name: pkg.name,
-					description: pkg.description,
-					quantity: pkg.quantity,
-					price: pkg.price,
-					url: pkg.url,
-					updated: pkg.updated,
-				},
-			}
-		)
 
 		res.send({ message: `Package ${pkg.name} Updated successfully!.` })
 	} catch (e) {

@@ -9,7 +9,6 @@ class SendTo extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			Users: '',
 			Subject: this.props.match.params.Subject,
 			Message: '',
 			sendTo: this.props.match.params.SourceEmail,
