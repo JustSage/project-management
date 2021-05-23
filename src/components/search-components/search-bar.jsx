@@ -23,25 +23,16 @@ class SearchBar extends react.Component {
 		axios
 			.get('/packages')
 			.then((response) => {
-				this.setState(
-					{
-						data: response.data,
-					},
-					() => {
-						console.log(this.state.data)
-						console.log(response.data)
-					}
-				)
+				this.setState({
+					data: response.data,
+				})
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}
 
 	onPkgClick = (event) => {
-		console.log(`package name: ${event.target.value}`)
-
 		axios
 			.get('/one-package-destination', {
 				params: {
@@ -52,7 +43,6 @@ class SearchBar extends react.Component {
 				this.setState({ chosenPkg: response.data, flag: true })
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}

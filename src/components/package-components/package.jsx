@@ -41,7 +41,6 @@ export default class Package extends Component {
 	}
 
 	handleRating = () => {
-		console.log(event.target.value)
 		axios
 			.post('/update-rating', {
 				name: this.props.name,
@@ -49,11 +48,10 @@ export default class Package extends Component {
 			})
 			.then((response) => {
 				alert(response.data.message)
-				this.props.history.push('/packages')
+				this.props.history.push(`/packages/${null}`)
 			})
 			.catch((error) => {
 				alert(error)
-				console.log(error)
 			})
 	}
 	updatedPackageDisplay = () => {

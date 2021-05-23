@@ -5,7 +5,7 @@ import '../../../css/homepage.css'
 import { Container, Row, Col, ListGroup } from 'react-bootstrap'
 import axios from 'axios'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import { OpenStreetMapProvider } from 'leaflet-geosearch'
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch'
 
 const provider = new OpenStreetMapProvider()
 
@@ -30,16 +30,15 @@ class HomeContext extends Component {
 					)
 				}
 				array().then((names) => {
-					if (names.size > 5) names = names.slice(0, 5)
+					if (names.size > 5) names = names.slice(0, 3)
 					const filteredArray = names.map((item) => {
 						return [[item[0].y, item[0].x], item[0]]
 					})
 					this.setState({ latlongs: filteredArray })
-					console.log(this.state.latlongs)
 				})
 			})
 			.catch((error) => {
-				console.log(error)
+				alert('Error in loading data!')
 			})
 	}
 	render() {

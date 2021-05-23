@@ -29,10 +29,8 @@ export default class OrdersList extends Component {
 					tableTitles: arr,
 					orders: response.data,
 				})
-				// console.log(this.state.tableTitles, this.state.orders)
 			})
 			.catch((error) => {
-				console.log(error.response)
 				alert(error.response)
 			})
 
@@ -61,7 +59,6 @@ export default class OrdersList extends Component {
 					})
 					.catch((error) => {
 						alert(error)
-						console.log(error)
 					})
 			}
 		})
@@ -77,7 +74,6 @@ export default class OrdersList extends Component {
 			})
 			.catch((error) => {
 				alert(error.data.message)
-				console.log(error.data.message)
 			})
 	}
 
@@ -114,7 +110,6 @@ export default class OrdersList extends Component {
 				return 0
 			})
 		}
-		console.log(temp)
 		this.setState({ orders: temp })
 	}
 

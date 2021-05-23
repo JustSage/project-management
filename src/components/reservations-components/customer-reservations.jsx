@@ -18,12 +18,9 @@ export default class CustomeReservations extends Component {
 				},
 			})
 			.then((response) => {
-				this.setState({ data: response.data }, () => {
-					console.log(response.data)
-				})
+				this.setState({ data: response.data })
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}
@@ -36,12 +33,9 @@ export default class CustomeReservations extends Component {
 				},
 			})
 			.then((response) => {
-				this.setState({ data: response.data }, () => {
-					console.log(response.data)
-				})
+				this.setState({ data: response.data }, () => {})
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}
@@ -57,7 +51,6 @@ export default class CustomeReservations extends Component {
 				this.setState({ data: response.data })
 
 				let quantity = this.state.data[0].quantity
-				console.log(`quantity : ${quantity}`)
 				if (quantity >= 0) {
 					axios
 						.post('/increment-quantity', {
@@ -77,17 +70,14 @@ export default class CustomeReservations extends Component {
 								})
 								.catch((error) => {
 									alert(error.data.message)
-									console.log(error.data.message)
 								})
 						})
 						.catch((error) => {
 							alert(error.data.message)
-							console.log(error.data.message)
 						})
 				}
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}

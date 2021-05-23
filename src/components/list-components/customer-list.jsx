@@ -32,7 +32,6 @@ export default class CustomerList extends Component {
 				})
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}
@@ -42,7 +41,6 @@ export default class CustomerList extends Component {
 		for (let i = 0; i < this.state.customers.length; ++i) {
 			emails.push(this.state.customers[i].email)
 		}
-		console.log(this.state.textArea)
 		axios
 			.post('/send-broadcast-email', {
 				emails: emails,

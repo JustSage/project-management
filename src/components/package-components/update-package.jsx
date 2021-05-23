@@ -30,7 +30,6 @@ export default class UpdatePackage extends Component {
 	 * @param {*} event
 	 */
 	handleURL = (event) => {
-		console.log(event.target.value)
 		this.setState({
 			url: event.target.value,
 		})
@@ -132,18 +131,17 @@ export default class UpdatePackage extends Component {
 			})
 		}
 
-		await axios
-			.post('/update-package', {
+		axios
+			.put('/update-package', {
 				...this.state,
 				updated: 'yes',
 			})
 			.then((response) => {
 				alert(response.data.message)
-				this.props.history.push('/packages')
+				this.props.history.push(`/packages/${null}`)
 			})
 			.catch((error) => {
-				alert(error)
-				console.log(error)
+				alert(error.message)
 			})
 	}
 
