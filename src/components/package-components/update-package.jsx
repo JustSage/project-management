@@ -30,7 +30,6 @@ export default class UpdatePackage extends Component {
 	 * @param {*} event
 	 */
 	handleURL = (event) => {
-		console.log(event.target.value)
 		this.setState({
 			url: event.target.value,
 		})
@@ -143,7 +142,6 @@ export default class UpdatePackage extends Component {
 			})
 			.catch((error) => {
 				alert(error)
-				console.log(error)
 			})
 	}
 
