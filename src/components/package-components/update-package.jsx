@@ -113,7 +113,7 @@ export default class UpdatePackage extends Component {
 	/**
 	 * Handles the submit in the form below, send the whole state to db
 	 */
-	handleSubmit = (event) => {
+	handleSubmit = async (event) => {
 		event.preventDefault()
 		if (this.state.url === '') {
 			this.setState({ url: 'insert new URL' })
@@ -132,7 +132,7 @@ export default class UpdatePackage extends Component {
 			})
 		}
 
-		axios
+		await axios
 			.post('/update-package', {
 				...this.state,
 				updated: 'yes',
