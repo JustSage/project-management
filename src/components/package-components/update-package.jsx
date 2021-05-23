@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
+/* eslint-disable */
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
+import { retryAdapterEnhancer } from 'axios-extensions';
 // import swal from 'sweetalert'
 var today = new Date(Date.now() + 10 * 86400000) //Package can be ordered 10 days from today
 
@@ -152,18 +154,25 @@ export default class UpdatePackage extends Component {
 				),
 			})
 		}
-		axios
+	
+		const http = axios.create({
+			baseURL: '/',
+			headers: { 'Cache-Control': 'no-cache' },
+			adapter: retryAdapterEnhancer(axios.defaults.adapter)
+		});
+
+		http
 			.put('/update-package', {
 				...this.state,
 				updated: 'yes',
-			})
-			.then((response) => {
-				alert(response.data.message)
-				this.props.history.push(`/packages/${null}`)
-			})
-			.catch((error) => {
-				alert(error.message)
-			})
+			}, {retryTimes: 2})
+		.then((response) => {
+			alert(response.data.message)
+			this.props.history.push(`/packages/${null}`)
+		})
+		.catch((error) => {
+			alert(error.message)
+		})
 	}
 
 	render() {
