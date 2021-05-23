@@ -24,10 +24,8 @@ class Notification extends Component {
 				this.setState({
 					unreadMessages: filteredMail.length,
 				})
-				console.log(response.data)
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}

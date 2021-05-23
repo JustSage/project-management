@@ -3,7 +3,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
-import swal from 'sweetalert'
+// import swal from 'sweetalert'
+var today = new Date(Date.now() + 10 * 86400000) //Package can be ordered 10 days from today
 
 export default class UpdatePackage extends Component {
 	constructor(props) {
@@ -18,7 +19,10 @@ export default class UpdatePackage extends Component {
 				this.props.location.pathname.length
 			),
 			data: undefined,
+			packageDates: [],
+			// dates: this.props.match.params.dates,
 		}
+		this.start = undefined //The start date which selected on every session
 		this.handleURL = this.handleURL.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleURLLink = this.handleURLLink.bind(this)
@@ -34,7 +38,6 @@ export default class UpdatePackage extends Component {
 	 * @param {*} event
 	 */
 	handleURL = (event) => {
-		console.log(event.target.value)
 		this.setState({
 			url: event.target.value,
 		})
@@ -94,6 +97,27 @@ export default class UpdatePackage extends Component {
 			url: objectURL,
 		})
 	}
+	handleStartDate = (event) => {
+		this.start = event.target.value.split('T')[0]
+	}
+
+	handleDates = (event) => {
+		event.preventDefault()
+		const end = event.target.value.split('T')[0]
+		const dates = this.start + ' to ' + end
+
+		if (this.state.packageDates.includes(dates)) {
+			alert('Dates already exist')
+		} else if (new Date(this.start) > new Date(end)) {
+			alert('You picked illegal dates!')
+		} else {
+			this.setState({
+				packageDates: [...this.state.packageDates, dates],
+			})
+			alert(`Successfully added vacation dates:${dates}`)
+		}
+		console.log(this.state.packageDates)
+	}
 
 	/**
 	 * handles url link, shows up only if url value isn't empty
@@ -135,24 +159,17 @@ export default class UpdatePackage extends Component {
 				),
 			})
 		}
-		console.log(
-			`parameters to send:\n name: ${this.state.name}\ndescription: ${this.state.description}\nprice: ${this.state.price}\nquantity: ${this.state.quantity}\n URL: ${this.state.url}`
-		)
 		axios
-			.post('/update-package', {
+			.put('/update-package', {
 				...this.state,
 				updated: 'yes',
 			})
 			.then((response) => {
-				swal({
-					title: response.data.message,
-					icon: 'success',
-				})
-				this.props.history.push('/packages/null')
+				alert(response.data.message)
+				this.props.history.push(`/packages/${null}`)
 			})
 			.catch((error) => {
-				alert(error)
-				console.log(error)
+				alert(error.message)
 			})
 	}
 
@@ -202,6 +219,27 @@ export default class UpdatePackage extends Component {
 								required
 								defaultValue={this.state.quantity}
 								onChange={this.handleQuantity}
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>
+								Start date{' '}
+								<span style={{ color: 'grey' }}>
+									( if not changed, the previous dates will remain )
+								</span>
+							</Form.Label>
+							<Form.Control
+								id='date-input'
+								type='date'
+								min={today.toISOString().split('T')[0]}
+								onChange={this.handleStartDate.bind(this)}
+							/>
+							<Form.Label>End date</Form.Label>
+							<Form.Control
+								id='date-input'
+								type='date'
+								min={today.toISOString().split('T')[0]}
+								onChange={this.handleDates}
 							/>
 						</Form.Group>
 						<Form.Group>

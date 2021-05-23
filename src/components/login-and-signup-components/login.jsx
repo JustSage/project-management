@@ -56,7 +56,6 @@ class Login extends React.Component {
 				this.props.history.push('/homepage')
 			})
 			.catch((error) => {
-				console.log(error.response)
 				alert(error.response.data.message)
 			})
 	}

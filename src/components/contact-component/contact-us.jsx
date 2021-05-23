@@ -22,7 +22,6 @@ class ContactUs extends Component {
 				})
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}
@@ -93,7 +92,6 @@ class ContactUs extends Component {
 				})
 				.catch((error) => {
 					swal(error.data.message)
-					console.log({ text: error.data.errorMessage, icon: 'error' })
 				})
 		}
 	}

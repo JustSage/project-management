@@ -41,7 +41,7 @@ class SendTo extends Component {
 				.post('/contact-us', {
 					SourceEmail: sessionStorage.getItem('logged-in-email'),
 					DestEmail: this.state.sendTo,
-					Subject: this.state.Subject,
+					Subject: `re: ${this.state.Subject}`,
 					Message: this.state.Message,
 					Read: false,
 				})
@@ -49,7 +49,7 @@ class SendTo extends Component {
 					axios
 						.post('/send-email-to', {
 							email: this.state.sendTo,
-							subject: this.state.Subject,
+							subject: `re: ${this.state.Subject}`,
 							text: this.state.Message,
 						})
 						.then(() => {
@@ -57,11 +57,14 @@ class SendTo extends Component {
 								title: `Reply to ${this.state.sendTo}`,
 								text: 'Reply sent successfully!',
 								icon: 'success',
+							}).then((ok) => {
+								if (ok) {
+									window.location.reload(false) //refreshing the window to take down the notification
+								}
 							})
 							this.setState({
 								Message: '',
 							})
-							window.location.reload(false) //refreshing the window to take down the notification
 						})
 						.catch(() => {
 							swal({
@@ -73,7 +76,6 @@ class SendTo extends Component {
 				})
 				.catch((error) => {
 					swal(error.data.message)
-					console.log({ text: error.data.errorMessage, icon: 'error' })
 				})
 		}
 	}

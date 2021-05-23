@@ -92,7 +92,6 @@ class AddPackage extends Component {
 				packageDates: [...this.state.packageDates, dates],
 			})
 			alert(`Successfully added vacation dates:${dates}`)
-			console.log(this.state.packageDates)
 		}
 	}
 
@@ -102,11 +101,10 @@ class AddPackage extends Component {
 			.post('/add-package', this.state)
 			.then((response) => {
 				alert(response.data.message)
-				this.props.history.push('/packages')
+				this.props.history.push(`/packages/${null}`)
 			})
 			.catch((error) => {
 				alert(error)
-				console.log(error)
 			})
 	}
 

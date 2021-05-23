@@ -72,7 +72,6 @@ class MakeOrder extends Component {
 			})
 			.catch((error) => {
 				swal(error.data.message)
-				console.log({ text: error.data.message, icon: 'error' })
 			})
 
 		axios
@@ -93,13 +92,11 @@ class MakeOrder extends Component {
 							.then((response) => {})
 							.catch((error) => {
 								swal({ text: error.data.message, icon: 'error' })
-								console.log(error.data.message)
 							})
 					}
 				})
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				swal({ text: error.response.data.message, icon: 'error' })
 			})
 	}
@@ -113,7 +110,6 @@ class MakeOrder extends Component {
 	attrSelector = (event) => {
 		let total = this.state.price
 		let value = event.target.value.split('price: ')[1]
-		console.log(value)
 		if (this.state.selectedAttractions.includes(value)) {
 			this.setState({
 				price: total - parseInt(value),
