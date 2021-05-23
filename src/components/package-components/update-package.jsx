@@ -132,16 +132,16 @@ export default class UpdatePackage extends Component {
 		}
 
 		axios
-			.post('/update-package', {
+			.put('/update-package', {
 				...this.state,
 				updated: 'yes',
 			})
 			.then((response) => {
 				alert(response.data.message)
-				this.props.history.push('/packages')
+				this.props.history.push(`/packages/${null}`)
 			})
 			.catch((error) => {
-				alert(error)
+				alert(error.message)
 			})
 	}
 

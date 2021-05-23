@@ -31,7 +31,7 @@ router.put('/update-package', async (req, res) => {
 	try {
 		//Check if url is valid
 		if (pkg.url != '') {
-			if (!validator.isURL(pkg.url, { protocols: ['http', 'https'] })) {
+			if (!(await validator.isURL(pkg.url, { protocols: ['http', 'https'] }))) {
 				return res.status(500).send({ message: 'URL is not valid!' })
 			}
 		}
@@ -51,7 +51,7 @@ router.put('/update-package', async (req, res) => {
 			}
 		)
 
-		await res.send({ message: `Package ${pkg.name} Updated successfully!.` })
+		res.send({ message: `Package ${pkg.name} Updated successfully!.` })
 	} catch (e) {
 		console.log(e)
 		res.status(500).send({ message: "Can't add a package!" })
