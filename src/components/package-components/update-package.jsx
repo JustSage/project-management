@@ -116,7 +116,6 @@ export default class UpdatePackage extends Component {
 			})
 			alert(`Successfully added vacation dates:${dates}`)
 		}
-		console.log(this.state.packageDates)
 	}
 
 	/**
@@ -146,12 +145,6 @@ export default class UpdatePackage extends Component {
 		if (this.state.url === '') {
 			this.setState({ url: 'insert new URL' })
 		} else {
-			console.log(
-				this.props.location.pathname.substring(
-					this.props.location.pathname.indexOf('https'),
-					this.props.location.pathname.length
-				)
-			)
 			this.setState({
 				url: this.props.location.pathname.substring(
 					this.props.location.pathname.indexOf('https'),
