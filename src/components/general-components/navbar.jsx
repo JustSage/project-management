@@ -4,13 +4,15 @@ import '../../css/navbar.css'
 import { Navbar, Nav, Form } from 'react-bootstrap'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faUser, faCog } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faCog, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import logo from '../../images/pine-apple-logo.png'
 import { Link } from 'react-router-dom'
 import SearchBar from './search-bar'
-library.add(fab, faUser, faCog)
+import Notification from '../inbox-components/messages-notification'
+
+library.add(fab, faUser, faCog, faEnvelope)
 
 class NavbarComponent extends React.Component {
 	constructor(props) {
@@ -25,6 +27,7 @@ class NavbarComponent extends React.Component {
 		 */
 		sessionStorage.removeItem('logged-in-username')
 		sessionStorage.removeItem('logged-in-role')
+		sessionStorage.removeItem('logged-in-email')
 		window.location.replace('/')
 	}
 
@@ -39,67 +42,57 @@ class NavbarComponent extends React.Component {
 						<Link to='/homepage' className='navLink nav-link'>
 							Home
 						</Link>
-						{/* <Nav.Link
-							className='navLink'
-							onClick={() => this.props.history.push('homepage')}
-						>
-							Home
-						</Nav.Link> */}
+
 						<div className='dropdown'>
 							<Nav.Link className='navLink'>Features</Nav.Link>
-							<div className='dropdown-content'>
+							<div
+								className='dropdown-content'
+								style={{ minWidth: '160px', right: '3%' }}
+							>
 								<div>
-									<Link to='/flights'>Flights</Link>
-									<Link to='/hotels'>Hotels</Link>
-									<Link to='/car'>Rental Cars</Link>
-								</div>
-								<div>
-									<Link to='/packages'>Packages</Link>
+									<Link to='/reccomendations'>Reccomendations</Link>
+									<Link to={{ pathname: `packages/${null}` }}>Packages</Link>
 									<Link to='/attractions'>Attractions</Link>
 								</div>
 							</div>
 						</div>
-						<div className='dropdown'>
-							<Nav.Link className='navLink'>Pricing</Nav.Link>
-							<div className='dropdown-content' style={{ minWidth: '130px' }}>
-								<div>
-									<Link to='#'>100$-500$</Link>
-									<Link to='#'>500$-1000$</Link>
-									<Link to='#'>1000$-5000$</Link>
-								</div>
-							</div>
-						</div>
-						{/* <Nav.Link
-							className='navLink'
-							onClick={() => this.props.history.push('packages')}
-						>
-							Packages
-						</Nav.Link> */}
+						<Link className='navLink nav-link contact' to='/contact-us'>
+							Contact Us!
+						</Link>
+
 						<div className='searchBar'>
 							<SearchBar />
 						</div>
 					</Nav>
-					{/* <input
-						type='search'
-						placeholder='Search for packages...'
-						className='search-input'
-					></input> */}
 
 					<Form className='navbar-nav text-right'>
-						<h5 className='h5-nav'>
+						<div className='user-menu'>
+							<h5 className='h5-nav'>
+								<FontAwesomeIcon
+									className='user-icon'
+									icon='user'
+								></FontAwesomeIcon>{' '}
+								<span className='welcome'>Welcome </span>
+								<span className='user-name'>
+									{sessionStorage.getItem('logged-in-username')}
+								</span>
+							</h5>
+						</div>
+						{/* <Link to='/inbox'>
 							<FontAwesomeIcon
-								className='user-icon'
-								icon='user'
-							></FontAwesomeIcon>{' '}
-							<span className='welcome'>Welcome </span>
-							<span className='user-name'>
-								{sessionStorage.getItem('logged-in-username')}
-							</span>
-						</h5>
+								className='envelope'
+								icon='envelope'
+								data-toggle='tooltip'
+								title='Inbox'
+							></FontAwesomeIcon>
+						</Link> */}
+						<Link to='/inbox'>
+							<Notification />
+						</Link>
 						<div className='dropdown'>
 							<FontAwesomeIcon className='cog' icon='cog'></FontAwesomeIcon>
 							<div
-								className='dropdown-content'
+								className='dropdown-content-cog'
 								style={{ minWidth: '160px', right: '3%' }}
 							>
 								<div>

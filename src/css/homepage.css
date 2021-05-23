@@ -1,3 +1,20 @@
 .hp-divs {
     flex: 1;
 }
+
+.dest-list {
+    width: auto !important;
+    padding: auto !important;
+}
+
+.dest-list .list-group-item {
+    background-color: transparent;
+}
+
+.dest-text, .list-group-item {
+    color: rgb(116, 77, 7)
+}
+
+.dest-text {
+    font-weight: 700;
+}

@@ -1,12 +1,12 @@
 .login-frame {
-	background: Orange;
+	background-color: #d0f5f7;
 	margin: auto;
 	width: 100%;
 	max-width: 235px;
 	height: 30rem;
 	padding: 10px;
 	border-radius: 50px;
-	background-image: url('../images/background_orange.jpg');
+	background-image: url('../images/background_blue.jpg');
 	background-size: cover;
 	box-shadow: 0px -10px 40px 30px rgb(221, 200, 187);
 }
@@ -23,29 +23,26 @@
 }
 
 .login-img {
-	background-image: url('../images/avatar.png');
 	background-size: cover;
 	display: block;
-	margin-left: auto;
+	margin-left: 10px;
 	margin-right: auto;
-	height: 25%;
-	width: 55%;
-	border-radius: 50%;
-	border-style: outset;
+	height: 30%;
+	width: 90%;
+	border: 5px none transparent;
 }
 
-.btn {
+.btn-login {
 	display: block;
-	margin-left: 55px;
+	margin-left: 54px;
 	margin-right: auto;
-	width: 150px;
-	background: #ff9933;
-	border-radius: 25px;
+	width: 100px;
+	background: #b7e9f8;
+	border-radius: 12px;
 	height: 50px;
 	position: border;
 	top: 50%;
-	margin-top: -5px;
-	background-image: url('../images/background_orange.jpg');
+	margin-top: 30px;
 	background-size: cover;
 	transition: all ease 0.5s;
 }
@@ -69,6 +66,6 @@
 .signup-link{
 	margin-left: -5px;
 }
-.btn:hover {
-	opacity: 0.7;
+.btn-login:hover {
+	background-color: #78dcfa;
 }

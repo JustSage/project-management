@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { Table } from 'react-bootstrap'
+import { Table, Form, Button } from 'react-bootstrap'
 import React, { Component, Fragment } from 'react'
-import '../../css/orders.css'
+import swal from 'sweetalert'
+import '../../css/customerList.css'
 
 /**
  * Component represents the orders which was made by customers.
@@ -12,29 +13,52 @@ export default class CustomerList extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			textArea: '',
 			customers: [],
 			tableTitles: undefined,
 		}
 		axios
 			.get('/users')
 			.then((response) => {
-				console.log(response.data)
 				//Get fields name, remove _id attribute from the received data
 				var arr = Object.keys(response.data[0])
 					.slice(1)
 					.filter(function (value) {
 						return value != 'password'
 					})
-				console.log(arr)
 				this.setState({
 					tableTitles: arr,
 					customers: response.data,
 				})
-				console.log(this.state.tableTitles, this.state.customers)
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
+			})
+	}
+
+	handleSubmit = () => {
+		let emails = []
+		for (let i = 0; i < this.state.customers.length; ++i) {
+			emails.push(this.state.customers[i].email)
+		}
+		axios
+			.post('/send-broadcast-email', {
+				emails: emails,
+				text: this.state.textArea,
+			})
+			.then(() => {
+				swal({
+					title: 'Broadcast Email',
+					text: 'Email sent successfully!',
+					icon: 'success',
+				})
+			})
+			.catch(() => {
+				swal({
+					title: 'Broadcast Email',
+					text: 'email did not sent successfully!',
+					icon: 'error',
+				})
 			})
 	}
 
@@ -53,7 +77,7 @@ export default class CustomerList extends Component {
 								{this.state.tableTitles.map((h, i) => {
 									return (
 										<Fragment key={i}>
-											<th>{h} </th>
+											<th style={{ height: '40px' }}>{h} </th>
 										</Fragment>
 									)
 								})}
@@ -65,7 +89,7 @@ export default class CustomerList extends Component {
 								return (
 									<Fragment key={i}>
 										<tr>
-											<th>{++i}</th>
+											<th style={{ width: '50px' }}>{++i}</th>
 											<td>{h['username']}</td>
 											<td>{h['email']}</td>
 											<td>{h['role']}</td>
@@ -75,6 +99,28 @@ export default class CustomerList extends Component {
 							})}
 						</tbody>
 					</Table>
+					<Form>
+						<Form.Group controlId='textArea'>
+							<Form.Label className='label-customer'>
+								Broadcast message:
+							</Form.Label>
+							<Form.Control
+								as='textarea'
+								className='message-customer'
+								rows={3}
+								onChange={(e) => {
+									this.setState({ textArea: e.target.value })
+								}}
+							/>
+						</Form.Group>
+						<Button
+							className='textButton'
+							variant='primary'
+							onClick={this.handleSubmit.bind(this)}
+						>
+							Send
+						</Button>
+					</Form>
 				</>
 			)
 	}

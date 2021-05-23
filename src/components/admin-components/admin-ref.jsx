@@ -41,7 +41,6 @@ class AdminRef extends Component {
 				this.props.history.push('/homepage')
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}
@@ -66,7 +65,7 @@ class AdminRef extends Component {
 		return (
 			<>
 				<h3 className='h-as-title admin-title'>Admin</h3>
-				<Container>
+				<Container className='container-admin'>
 					<Form className='admin-form' onSubmit={this.handleSubmit}>
 						<Form.Group controlId='exampleForm.ControlInput1'>
 							<Form.Control
@@ -77,15 +76,17 @@ class AdminRef extends Component {
 						</Form.Group>
 						<Form.Group controlId='exampleForm.ControlSelect2'>
 							<Form.Label>Select new role:</Form.Label>
-							<Form.Control as='select' onChange={this.handleSelectedOption}>
+							<Form.Control as='select' onChange={this.handleUsername}>
 								<option>Admin</option>
 								<option>Customer</option>
 								<option>Travel Agent</option>
 							</Form.Control>
 						</Form.Group>
-						<Button type='submit' style={{ border: 'none' }}>
-							Submit!
-						</Button>
+						<div className='submit-btn'>
+							<Button type='submit' style={{ border: 'none' }}>
+								Submit!
+							</Button>
+						</div>
 					</Form>
 				</Container>
 			</>

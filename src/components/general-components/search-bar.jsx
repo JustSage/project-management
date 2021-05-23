@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
+
 library.add(faSearch)
 
 class SearchBar extends react.Component {
@@ -13,7 +14,11 @@ class SearchBar extends react.Component {
 		this.state = {
 			data: undefined,
 			chosenPkg: undefined,
+			SearchInput: '',
 		}
+	}
+
+	componentDidMount() {
 		axios
 			.get('/packages')
 			.then((response) => {
@@ -22,14 +27,20 @@ class SearchBar extends react.Component {
 				})
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
 				alert(error.response.data.message)
 			})
 	}
 
-	onPkgClick = (pkg) => {
+	handleSubmit = (event) => {
 		this.setState({
-			chosenPkg: pkg,
+			SearchInput: event.target.value,
+		})
+		sessionStorage.setItem('search-value', event.target.value)
+	}
+
+	handleClick = () => {
+		this.setState({
+			SearchInput: '',
 		})
 	}
 
@@ -50,6 +61,8 @@ class SearchBar extends react.Component {
 						placeholder='Search for packages...'
 						className='search-input'
 						list='cityname'
+						onChange={this.handleSubmit}
+						value={this.state.SearchInput}
 					/>
 					<datalist id='cityname'>
 						{this.state.data.map((pkg) => {
@@ -62,14 +75,15 @@ class SearchBar extends react.Component {
 					</datalist>
 					<Link
 						to={{
-							pathname: `/make-order/${this.props.name}/${this.props.price}/${this.props.description}`,
+							pathname: `/packages/${null}`,
 						}}
 					>
 						<FontAwesomeIcon
 							className='glass'
 							size='lg'
 							icon='search'
-						></FontAwesomeIcon>
+							onClick={this.handleClick}
+						/>
 					</Link>
 				</>
 			)

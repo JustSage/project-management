@@ -5,13 +5,15 @@ const validator = require('validator')
 
 // adding a package to the database
 router.post('/add-package', async (req, res) => {
-	const pkg = req.body
+	let pkg = req.body
 
 	try {
 		//Check if url is valid
 		if (!validator.isURL(pkg.url, { protocols: ['http', 'https'] })) {
 			return res.status(500).send({ message: 'URL is not valid!' })
 		}
+
+		pkg.rating = 0.0
 
 		//Insert the package to the DB
 		await db.collection('packages').insertOne(pkg)
@@ -22,31 +24,48 @@ router.post('/add-package', async (req, res) => {
 		res.status(500).send({ message: "Can't add a package!" })
 	}
 })
-router.post('/update-package', async (req, res) => {
+
+router.put('/update-package', async (req, res) => {
 	const pkg = req.body
 	console.log(`url is: ${pkg.url}`)
 	try {
 		//Check if url is valid
 		if (pkg.url != '') {
-			if (!validator.isURL(pkg.url, { protocols: ['http', 'https'] })) {
+			if (!(await validator.isURL(pkg.url, { protocols: ['http', 'https'] }))) {
 				return res.status(500).send({ message: 'URL is not valid!' })
 			}
 		}
-
+		if (pkg.packageDates.length > 0) {
+			await db.collection('packages').updateOne(
+				{ name: pkg.name },
+				{
+					$set: {
+						name: pkg.name,
+						description: pkg.description,
+						quantity: pkg.quantity,
+						price: pkg.price,
+						url: pkg.url,
+						updated: pkg.updated,
+						packageDates: pkg.packageDates,
+					},
+				}
+			)
+		} else {
+			await db.collection('packages').updateOne(
+				{ name: pkg.name },
+				{
+					$set: {
+						name: pkg.name,
+						description: pkg.description,
+						quantity: pkg.quantity,
+						price: pkg.price,
+						url: pkg.url,
+						updated: pkg.updated,
+					},
+				}
+			)
+		}
 		//Insert the package to the DB
-		await db.collection('packages').updateOne(
-			{ description: pkg.description },
-			{
-				$set: {
-					name: pkg.name,
-					description: pkg.description,
-					quantity: pkg.quantity,
-					price: pkg.price,
-					url: pkg.url,
-					updated: pkg.updated,
-				},
-			}
-		)
 
 		res.send({ message: `Package ${pkg.name} Updated successfully!.` })
 	} catch (e) {
@@ -57,7 +76,7 @@ router.post('/update-package', async (req, res) => {
 
 router.post('/decrement-quantity', async (req, res) => {
 	const pkg = req.body
-	const q = pkg.quantity - 1
+	const q = pkg.quantity
 	try {
 		await db.collection('packages').updateOne(
 			{ description: pkg.description },
@@ -67,8 +86,27 @@ router.post('/decrement-quantity', async (req, res) => {
 				},
 			}
 		)
-
 		res.send({ message: `Thank you!` })
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't add a package!" })
+	}
+})
+router.post('/update-rating', async (req, res) => {
+	const pkg = req.body
+	const rating = pkg.rating
+	const name = pkg.name
+	try {
+		await db.collection('packages').updateOne(
+			{ name: name },
+			{
+				$set: {
+					rating: rating,
+				},
+			}
+		)
+
+		res.send({ message: `Thank you for rating this package!` })
 	} catch (e) {
 		console.log(e)
 		res.status(500).send({ message: "Can't add a package!" })
@@ -117,6 +155,7 @@ router.get('/packages', async (req, res) => {
 		res.status(500).send({ message: "Can't show packages!" })
 	}
 })
+
 router.get('/one-package', async (req, res) => {
 	try {
 		let description = req.query.Description
@@ -153,6 +192,19 @@ router.get('/delete-package/:name', async (req, res) => {
 	} catch (e) {
 		console.log(e)
 		res.status(500).send({ message: "Can't delete package!" })
+	}
+})
+
+router.get('/package-by-rating', async (req, res) => {
+	try {
+		const packages = await db
+			.collection('packages')
+			.find({ rating: { $gt: '3' } })
+			.toArray()
+		res.send(JSON.stringify(packages))
+	} catch (e) {
+		console.log(e)
+		res.status(500).send({ message: "Can't show packages!" })
 	}
 })
 

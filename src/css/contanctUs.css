@@ -1,0 +1,19 @@
+.contact-header{
+    margin-top: 4vh;
+}
+.subject{
+    margin-left: 38%;
+    margin-top: 3vh;
+    width: 25%;
+}
+.message{
+    margin-left: 38%;
+    margin-top: 3vh;
+    width: 25%;
+    height: 100vh;
+    resize: none;
+}
+.send{
+    margin-left: 49%;
+    margin-top: 3vh;
+}

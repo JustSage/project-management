@@ -4,9 +4,21 @@
 }
 
 .sort-by-btn {
-    height: 30px;
+    height: 25px;
     float: right;
-    color: orange;
-    background-color: black;
+    color: white;
+    background-color: #007bff;
     border-radius: 30%;
+    border-style: none;
+}
+
+.accept-btn {
+    margin-left: 50vh;
+    border-radius: 12px;
+    width: 100px;
+    height: 45px;
+}
+
+th {
+    background-color: #9ACBFB;
 }
