@@ -37,7 +37,7 @@ router.post('/update-package', async (req, res) => {
 
 		//Insert the package to the DB
 		await db.collection('packages').updateOne(
-			{ description: pkg.description },
+			{ name: pkg.name },
 			{
 				$set: {
 					name: pkg.name,

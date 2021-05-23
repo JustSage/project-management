@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
+import swal from 'sweetalert'
 
 export default class UpdatePackage extends Component {
 	constructor(props) {
@@ -12,7 +13,10 @@ export default class UpdatePackage extends Component {
 			description: this.props.match.params.description,
 			price: this.props.match.params.price,
 			quantity: this.props.match.params.quantity,
-			url: this.props.match.params.url,
+			url: this.props.location.pathname.substring(
+				this.props.location.pathname.indexOf('http'),
+				this.props.location.pathname.length
+			),
 			data: undefined,
 		}
 		this.handleURL = this.handleURL.bind(this)
@@ -131,15 +135,20 @@ export default class UpdatePackage extends Component {
 				),
 			})
 		}
-
+		console.log(
+			`parameters to send:\n name: ${this.state.name}\ndescription: ${this.state.description}\nprice: ${this.state.price}\nquantity: ${this.state.quantity}\n URL: ${this.state.url}`
+		)
 		axios
 			.post('/update-package', {
 				...this.state,
 				updated: 'yes',
 			})
 			.then((response) => {
-				alert(response.data.message)
-				this.props.history.push('/packages')
+				swal({
+					title: response.data.message,
+					icon: 'success',
+				})
+				this.props.history.push('/packages/null')
 			})
 			.catch((error) => {
 				alert(error)
@@ -207,10 +216,7 @@ export default class UpdatePackage extends Component {
 							<Form.Control
 								placeholder='Set image url'
 								onChange={this.handleURL}
-								defaultValue={this.props.location.pathname.substring(
-									this.props.location.pathname.indexOf('https'),
-									this.props.location.pathname.length
-								)}
+								defaultValue={this.state.url}
 							/>
 							{this.handleURLLink()}
 						</Form.Group>
