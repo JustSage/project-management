@@ -6,13 +6,6 @@ const port = process.env.PORT || 3001
 
 app.use(express.static(path.join(__dirname, 'build')))
 
-//this use related to the map in the homepage
-app.use((req, res, next) => {
-	res.setHeader('Acces-Control-Allow-Origin', '*')
-	res.setHeader('Acces-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE')
-	res.setHeader('Acces-Control-Allow-Methods', 'Content-Type', 'Authorization')
-	next()
-})
 app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
