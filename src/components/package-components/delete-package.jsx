@@ -3,6 +3,7 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { Button, Container } from 'react-bootstrap'
+import '../../css/deletePackage.css'
 
 /**
  * Component showing simple UI for package deletion.
@@ -32,14 +33,14 @@ export default class DeletePackage extends Component {
 		return (
 			<>
 				<Container className='delete-conatiner'>
-					<h3 className='delete-package-title'>
+					<h5 className='delete-package-title'>
 						Please confirm delete package {this.props.match.params.name} by
 						click on the button:
-					</h3>
+					</h5>
+					<Button className='delete-package-button' onClick={this.handleSubmit}>
+						Delete
+					</Button>
 				</Container>
-				<Button className='delete-package-button' onClick={this.handleSubmit}>
-					Delete
-				</Button>
 			</>
 		)
 	}
