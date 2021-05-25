@@ -23,7 +23,7 @@ static version of the frontend code which helps to deploy the website to Heroku 
 
 ## Status
 Project is: _in progress_.
-This is the result of sprint 3.
+The branch master up to date according to the submission of Sprint #4.
 
 
 ## Setup
