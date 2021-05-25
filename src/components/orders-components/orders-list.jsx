@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Table, Button } from 'react-bootstrap'
 import React, { Component, Fragment } from 'react'
+import swal from 'sweetalert'
 import '../../css/orders.css'
 
 /**
@@ -28,11 +29,9 @@ export default class OrdersList extends Component {
 					tableTitles: arr,
 					orders: response.data,
 				})
-				// console.log(this.state.tableTitles, this.state.orders)
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
-				alert(error.response.data.message)
+				alert(error.response)
 			})
 
 		this.sort = this.sort.bind(this)
@@ -40,18 +39,29 @@ export default class OrdersList extends Component {
 	}
 
 	handleAccept = (userName) => {
-		axios
-			.post('/update-order-status', {
-				User: userName,
-				Status: 'Accepted',
-			})
-			.then((response) => {
-				alert(response.data.message)
-			})
-			.catch((error) => {
-				alert(error.data.message)
-				console.log(error.data.message)
-			})
+		swal({
+			title: 'Approve this order?',
+			icon: 'warning',
+			buttons: true,
+		}).then((willDelete) => {
+			if (willDelete) {
+				axios
+					.post('/update-order-status', {
+						User: userName,
+						Status: 'Accepted',
+					})
+					.then((response) => {
+						swal({
+							title: 'Order approved!',
+							text: response.data.message,
+							icon: 'success',
+						})
+					})
+					.catch((error) => {
+						alert(error)
+					})
+			}
+		})
 	}
 
 	handleAcceptAll = () => {
@@ -64,7 +74,6 @@ export default class OrdersList extends Component {
 			})
 			.catch((error) => {
 				alert(error.data.message)
-				console.log(error.data.message)
 			})
 	}
 
@@ -101,7 +110,6 @@ export default class OrdersList extends Component {
 				return 0
 			})
 		}
-		console.log(temp)
 		this.setState({ orders: temp })
 	}
 
@@ -129,7 +137,11 @@ export default class OrdersList extends Component {
 							/>
 						</div>
 						<br />
+						<Button className='accept-btn' onClick={this.handleAcceptAll}>
+							Accpet All
+						</Button>
 					</div>
+
 					<Table striped bordered hover size='sm' className='orders-table'>
 						<thead>
 							<tr>
@@ -152,7 +164,6 @@ export default class OrdersList extends Component {
 										</Fragment>
 									)
 								})}
-								<th>{'Approve'} </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -166,7 +177,11 @@ export default class OrdersList extends Component {
 								.map((h, i) => {
 									return (
 										<Fragment key={i}>
-											<tr>
+											<tr
+												onClick={() => {
+													this.handleAccept(h['User'])
+												}}
+											>
 												<th>{++i}</th>
 												<td>{h['OrderName']}</td>
 												<td>{h['User']}</td>
@@ -175,24 +190,13 @@ export default class OrdersList extends Component {
 												<td>{h['Deal']}</td>
 												<td>{h['Status']}</td>
 												<td>{h['OrderDate']}</td>
-												<td>{h['Start']}</td>
-												<td>{h['End']}</td>
-												<td>
-													<Button
-														onClick={() => {
-															this.handleAccept(h['User'])
-														}}
-													>
-														Accept
-													</Button>
-												</td>
+												<td>{h['VacationDate']}</td>
 											</tr>
 										</Fragment>
 									)
 								})}
 						</tbody>
 					</Table>
-					<Button onClick={this.handleAcceptAll}>Accpet All</Button>
 				</>
 			)
 	}

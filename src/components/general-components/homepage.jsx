@@ -10,6 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../css/homepage.css'
+import HomeContext from './homepage-components/homecontext'
 
 library.add(fab, faCheckSquare, faCoffee, faUser)
 
@@ -18,20 +19,21 @@ class Homepage extends Component {
 		super(props)
 	}
 	state = {
-		bar: 'Flights', // defatult
+		bar: 'Flights', 
 	}
 
 	render() {
 		return (
 			<>
 				<div align='center'>
-				<h1>Welcome to PineApple Travels!</h1>
+				<h1 style={{marginTop:'30px'}}>Welcome to PineApple Travels!</h1>
 				<h3 margin top>About us:</h3>
 				<p>
 					Our travel agency offers vacations to destinations all around the world!<br/>
 					You can reach us through our mail: TravelAgency@travelAgecny.com<br/>
 					Or through our phone: 123-456789
 				</p>
+				<HomeContext/>
 				</div>
 			</>
 		)

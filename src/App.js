@@ -16,18 +16,21 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import Packages from './components/package-components/packages-page'
-import AddPackage from './components/package-components/add-package-components/add-package'
+import AddPackage from './components/package-components/add-package'
 import OrdersList from './components/orders-components/orders-list'
-import Flights from './components/package-components/flights'
 import requireAuth from './components/login-and-signup-components/auth'
 import NotAuth from './components/login-and-signup-components/notAuth'
 import NavbarComponent from './components/general-components/navbar'
-// import AdminRef from './components/admin-components/admin-ref'
 import MakeOrder from './components/orders-components/make-order'
-import UpdatePackage from './components/package-components/update-package-component/update-package'
-import DeletePackage from './components/package-components/delete-package-compomponent/delete-package'
+import UpdatePackage from './components/package-components/update-package'
+import DeletePackage from './components/package-components/delete-package'
 import AdminRef from './components/admin-components/admin-ref'
 import CustomeReservations from './components/reservations-components/customer-reservations'
+import Reccomendations from './components/package-components/reccomendations'
+import ContactUs from './components/contact-component/contact-us'
+import Inbox from './components/inbox-components/inbox'
+import SendTo from './components/inbox-components/reply'
+
 library.add(fab, faCheckSquare, faCoffee)
 
 /**
@@ -56,12 +59,6 @@ class App extends React.Component {
 									}
 								/>
 								<Route
-									path='/flights'
-									render={() =>
-										!requireAuth() ? <Redirect to='/not-auth' /> : <Flights />
-									}
-								/>
-								<Route
 									path='/customer-reservations'
 									render={() =>
 										!requireAuth() ? (
@@ -73,7 +70,7 @@ class App extends React.Component {
 								/>
 
 								<Route
-									path='/packages'
+									path='/packages/:search'
 									render={(props) =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />
@@ -93,6 +90,16 @@ class App extends React.Component {
 									}
 								/>
 								<Route
+									path='/reccomendations'
+									render={(props) =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<Reccomendations {...props} />
+										)
+									}
+								/>
+								<Route
 									path='/customer-list'
 									render={() =>
 										!requireAuth() ? (
@@ -103,7 +110,7 @@ class App extends React.Component {
 									}
 								/>
 								<Route
-									path='/update-package/:destination/:description/:price/:quantity/:url'
+									path='/update-package/:destination/:description/:price/:quantity/:dates/:url'
 									render={(props) =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />
@@ -139,13 +146,35 @@ class App extends React.Component {
 									}
 								/>
 								<Route
-									path='/make-order/:destination/:price/:description'
+									path='/make-order/:destination/:price/:description/:quantity/:dates'
 									render={(props) =>
 										!requireAuth() ? (
 											<Redirect to='/not-auth' />
 										) : (
 											<MakeOrder {...props} />
 										)
+									}
+								/>
+								<Route
+									path='/contact-us/'
+									render={() =>
+										!requireAuth() ? <Redirect to='/not-auth' /> : <ContactUs />
+									}
+								/>
+								<Route
+									path='/reply/:SourceEmail/:Subject'
+									render={(props) =>
+										!requireAuth() ? (
+											<Redirect to='/not-auth' />
+										) : (
+											<SendTo {...props} />
+										)
+									}
+								/>
+								<Route
+									path='/inbox'
+									render={() =>
+										!requireAuth() ? <Redirect to='/not-auth' /> : <Inbox />
 									}
 								/>
 							</>

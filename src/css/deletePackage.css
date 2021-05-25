@@ -1,8 +1,14 @@
 .delete-package-button {
-    margin-top: 5%;
-    margin-left: 50%;
+	margin-top: 5%;
+	margin-left: 36%;
+	width: 140px;
 }
 
 .delete-conatiner {
-    margin-top: 2%;
+	margin-top: 5%;
+	background-color: #4d9ae6;
+	height: 170px;
+	border-radius: 25px;
+	padding: 40px;
+	width: 630px;
 }

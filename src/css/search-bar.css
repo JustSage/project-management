@@ -3,6 +3,7 @@
 	height: 39px;
 	width: 260px;
 	transition: all ease 0.7s;
+	margin-top: 5px;
 }
 
 .search-input:focus {
@@ -13,7 +14,7 @@
 
 .glass {
 	margin-left: 40%;
-	margin-top: 52%;
+	margin-top: 15px;
 	color: black;
 }
 

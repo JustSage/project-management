@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Spring } from 'react-spring/renderprops'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../css/login.css'
+import avatar from '../../images/avatar.png'
 
 class Login extends React.Component {
 	constructor(props) {
@@ -51,10 +52,10 @@ class Login extends React.Component {
 				// saves a cookie during session
 				sessionStorage.setItem('logged-in-username', this.state.username)
 				sessionStorage.setItem('logged-in-role', response.data.role)
+				sessionStorage.setItem('logged-in-email', response.data.email)
 				this.props.history.push('/homepage')
 			})
 			.catch((error) => {
-				console.log(error.response)
 				alert(error.response.data.message)
 			})
 	}
@@ -75,7 +76,7 @@ class Login extends React.Component {
 					{(props) => (
 						<div style={props}>
 							<div className='login-frame'>
-								<img className='login-img'></img>
+								<img className='login-img' src={avatar}></img>
 								<h2 style={{ textAlign: 'center' }}>Log In:</h2>
 								<div className='myForm'>
 									<form onSubmit={this.handleSubmit} method='get'>
@@ -100,7 +101,7 @@ class Login extends React.Component {
 											required
 										/>
 										<div className='wrapper'>
-											<button className='btn' type='submit'>
+											<button className='btn-login' type='submit'>
 												Log in
 											</button>
 										</div>

@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import '../../css/addPackages.css'
 import '../../css/Package.css'
+import { Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Package from './package'
 // import { Container } from 'react-bootstrap'
@@ -17,9 +17,14 @@ class Packages extends Component {
 		super(props)
 		this.state = {
 			data: undefined,
+			location:
+				sessionStorage.getItem('search-value') == undefined
+					? ''
+					: sessionStorage.getItem('search-value'),
 		}
-	}
-	componentDidMount() {
+
+		sessionStorage.setItem('search-value', '')
+
 		axios
 			.get('/packages')
 			.then((response) => {
@@ -28,8 +33,7 @@ class Packages extends Component {
 				})
 			})
 			.catch((error) => {
-				console.log(error.response.data.message)
-				alert(error.response.data.message)
+				alert(error.message)
 			})
 	}
 
@@ -40,7 +44,9 @@ class Packages extends Component {
 		)
 			return (
 				<h5 className='h5-packages'>
-					<a href='/add-package'>Add new package!</a>
+					<a href='/add-package' className='add-package-href'>
+						<Button className='anp-btn'>Add new package!</Button>
+					</a>
 				</h5>
 			)
 	}
@@ -71,32 +77,37 @@ class Packages extends Component {
 								onChange={this.handleLocation}
 								className='packageInput'
 								id='location'
+								value={this.state.location}
 							/>
 						</div>
 						<br />
+						{this.AddPackage()}
 					</div>
-					{this.AddPackage()}d
 					<div className='d-flex flex-row flex-wrap my-flex-container'>
-						{this.state.data.map((pkg) => {
-							if (pkg.quantity > 0) {
-								return (
-									<div className='p-2 my-flex-item' key={pkg.description}>
-										<Package
-											name={pkg.name}
-											description={pkg.description}
-											url={pkg.url}
-											quantity={pkg.quantity}
-											price={pkg.price}
-											updated={pkg.updated}
-											history={this.props.history}
-											key={pkg.description}
-										/>
-									</div>
-								)
-							} else {
-								return null
-							}
-						})}
+						{this.state.data
+							.filter((pkg) => pkg.name.includes(this.state.location))
+							.map((pkg) => {
+								if (pkg.quantity > 0) {
+									return (
+										<div className='p-2 my-flex-item' key={pkg.description}>
+											<Package
+												name={pkg.name}
+												description={pkg.description}
+												url={pkg.url}
+												quantity={pkg.quantity}
+												price={pkg.price}
+												updated={pkg.updated}
+												rating={pkg.rating}
+												dates={pkg.packageDates}
+												history={this.props.history}
+												key={pkg.description}
+											/>
+										</div>
+									)
+								} else {
+									return null
+								}
+							})}
 					</div>
 				</>
 			)

@@ -1,25 +1,30 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
+/* eslint-disable */
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
-import '../../../css/addPackage.css'
+import { retryAdapterEnhancer } from 'axios-extensions';
+// import swal from 'sweetalert'
+var today = new Date(Date.now() + 10 * 86400000) //Package can be ordered 10 days from today
 
-/**
- * Class target is to show the add package page and handles an appropriate http request In front of the server
- */
-class AddPackage extends Component {
+export default class UpdatePackage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			name: '',
-			description: '',
-			quantity: 0,
-			price: '',
-			url: '',
-			updated: 'No',
+			name: this.props.match.params.destination,
+			description: this.props.match.params.description,
+			price: this.props.match.params.price,
+			quantity: this.props.match.params.quantity,
+			url: this.props.location.pathname.substring(
+				this.props.location.pathname.indexOf('http'),
+				this.props.location.pathname.length
+			),
+			data: undefined,
+			packageDates: [],
+			// dates: this.props.match.params.dates,
 		}
-
+		this.start = undefined //The start date which selected on every session
 		this.handleURL = this.handleURL.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleURLLink = this.handleURLLink.bind(this)
@@ -66,7 +71,7 @@ class AddPackage extends Component {
 	 */
 	handleQuantity = (event) => {
 		this.setState({
-			quantity: parseInt(event.target.value),
+			quantity: event.target.value,
 		})
 	}
 
@@ -86,12 +91,33 @@ class AddPackage extends Component {
 	 * @param {*} event
 	 */
 	handleFile = (event) => {
+		event.preventDefault()
 		const objectURL = URL.createObjectURL(
 			document.querySelector('#image').files[0]
 		)
 		this.setState({
 			url: objectURL,
 		})
+	}
+	handleStartDate = (event) => {
+		this.start = event.target.value.split('T')[0]
+	}
+
+	handleDates = (event) => {
+		event.preventDefault()
+		const end = event.target.value.split('T')[0]
+		const dates = this.start + ' to ' + end
+
+		if (this.state.packageDates.includes(dates)) {
+			alert('Dates already exist')
+		} else if (new Date(this.start) > new Date(end)) {
+			alert('You picked illegal dates!')
+		} else {
+			this.setState({
+				packageDates: [...this.state.packageDates, dates],
+			})
+			alert(`Successfully added vacation dates:${dates}`)
+		}
 	}
 
 	/**
@@ -101,7 +127,13 @@ class AddPackage extends Component {
 	handleURLLink = () => {
 		if (this.state.url !== '')
 			return (
-				<a href={this.state.url} target='__blank'>
+				<a
+					href={this.props.location.pathname.substring(
+						this.props.location.pathname.indexOf('https'),
+						this.props.location.pathname.length
+					)}
+					target='__blank'
+				>
 					Check picture url
 				</a>
 			)
@@ -110,18 +142,37 @@ class AddPackage extends Component {
 	/**
 	 * Handles the submit in the form below, send the whole state to db
 	 */
-	handleSubmit = () => {
+	handleSubmit = async (event) => {
 		event.preventDefault()
-		axios
-			.post('/add-package', this.state)
-			.then((response) => {
-				alert(response.data.message)
-				this.props.history.push('/packages')
+		if (this.state.url === '') {
+			this.setState({ url: 'insert new URL' })
+		} else {
+			this.setState({
+				url: this.props.location.pathname.substring(
+					this.props.location.pathname.indexOf('https'),
+					this.props.location.pathname.length
+				),
 			})
-			.catch((error) => {
-				alert(error)
-				console.log(error)
-			})
+		}
+	
+		const http = axios.create({
+			baseURL: '/',
+			headers: { 'Cache-Control': 'no-cache' },
+			adapter: retryAdapterEnhancer(axios.defaults.adapter)
+		});
+
+		http
+			.put('/update-package', {
+				...this.state,
+				updated: 'yes',
+			}, {retryTimes: 2})
+		.then((response) => {
+			alert(response.data.message)
+			this.props.history.push(`/packages/${null}`)
+		})
+		.catch((error) => {
+			alert(error.message)
+		})
 	}
 
 	render() {
@@ -131,15 +182,21 @@ class AddPackage extends Component {
 		) {
 			return (
 				<>
-					<h3 className='h-as-title'>AddPackage</h3>
+					<h3 className='h-as-title'>Update Package</h3>
 					<Form className='add-package-form' onSubmit={this.handleSubmit}>
 						<Form.Group>
 							<Form.Label>Package name</Form.Label>
-							<Form.Control required onChange={this.handleName} />
+							<Form.Control
+								// eslint-disable-next-line react/prop-types
+								defaultValue={this.state.name}
+								required
+								onChange={this.handleName}
+							/>
 						</Form.Group>
 						<Form.Group>
 							<Form.Label>Description</Form.Label>
 							<Form.Control
+								defaultValue={this.state.description}
 								as='textarea'
 								rows={3}
 								required
@@ -151,6 +208,9 @@ class AddPackage extends Component {
 							<Form.Control
 								type='number'
 								required
+								defaultValue={parseInt(
+									this.state.price.substring(0, this.state.price.length - 1)
+								)}
 								onChange={this.handlePrice}
 							/>
 						</Form.Group>
@@ -159,7 +219,29 @@ class AddPackage extends Component {
 							<Form.Control
 								type='number'
 								required
+								defaultValue={this.state.quantity}
 								onChange={this.handleQuantity}
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>
+								Start date{' '}
+								<span style={{ color: 'grey' }}>
+									( if not changed, the previous dates will remain )
+								</span>
+							</Form.Label>
+							<Form.Control
+								id='date-input'
+								type='date'
+								min={today.toISOString().split('T')[0]}
+								onChange={this.handleStartDate.bind(this)}
+							/>
+							<Form.Label>End date</Form.Label>
+							<Form.Control
+								id='date-input'
+								type='date'
+								min={today.toISOString().split('T')[0]}
+								onChange={this.handleDates}
 							/>
 						</Form.Group>
 						<Form.Group>
@@ -172,29 +254,18 @@ class AddPackage extends Component {
 								/>
 							</Form.Group>
 							<Form.Control
-								placeholder='Or set image url'
+								placeholder='Set image url'
 								onChange={this.handleURL}
-								required
+								defaultValue={this.state.url}
 							/>
 							{this.handleURLLink()}
 						</Form.Group>
 						<Button type='submit' style={{ border: 'none' }}>
-							Submit!
+							Update
 						</Button>
 					</Form>
-				</>
-			)
-		} else {
-			return (
-				<>
-					<h2>
-						You have no permission to visit this page, please{' '}
-						<a href='/'>Log-in</a>
-					</h2>
 				</>
 			)
 		}
 	}
 }
-
-export default AddPackage
