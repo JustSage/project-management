@@ -68,7 +68,9 @@ export default class CustomerList extends Component {
 		} else
 			return (
 				<>
-					<div>Customers</div>
+					<h1 align='center' style={{ marginTop: '2vh' }}>
+						Customers
+					</h1>
 					<Table striped bordered hover size='sm' className='customers-table'>
 						<thead>
 							<tr>

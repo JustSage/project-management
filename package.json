@@ -60,6 +60,7 @@
 		"is-reachable": "^5.0.0",
 		"leaflet": "^1.7.1",
 		"leaflet-geosearch": "^3.3.2",
+		"mdbreact": "^5.0.2",
 		"mongodb": "^3.6.6",
 		"mongodb-client-encryption": "^1.2.3",
 		"mongoose": "^5.11.18",
