@@ -130,6 +130,10 @@ module.exports = app
 * Admin references page
 * Packages page + CRUD functionalities
 * Orders & reservations pages + CRUD functionalities
+* OSM Map & List with agency destinations
+* Contact Us! feature
+* Send email feature
+* Message box
 
 ## Screenshots
 
