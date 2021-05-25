@@ -23,14 +23,13 @@ class HomeContext extends Component {
 				const names = response.data
 					.filter((pkg) => pkg.rating >= 3)
 					.map((pkg) => pkg.name)
-				this.setState({ destinations: names })
+				this.setState({ destinations: names.slice(0, 7) })
 				let array = async () => {
 					return Promise.all(
 						names.map((dest, i) => provider.search({ query: dest }))
 					)
 				}
 				array().then((names) => {
-					if (names.size > 5) names = names.slice(0, 3)
 					const filteredArray = names.map((item) => {
 						return [[item[0].y, item[0].x], item[0]]
 					})
