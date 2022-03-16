@@ -162,5 +162,5 @@ Visit our website:
 Created by:
 [@Sagie Baram](https://github.com/JustSage)
 [@Ariel Turchinsky](https://github.com/ariel7590)
-[@Yehonatan Hen](https://github.com/YehonatanHen)
+[@Yonatan Hen](https://github.com/YonatanHen)
 [@David Haron Zade](https://github.com/Dave-Sama)
